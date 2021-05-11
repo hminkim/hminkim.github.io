@@ -3,7 +3,7 @@ layout: post
 title: "Test post"
 subtitle:  "Test post"
 categories: Devlog
-tags: DataStructure
+tags: Data_Structure
 ---
 
 ##Test Post
