@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
-title: DataStructure
-slug: DataStructure
+title: Data Structure
+slug: datastructure
 category: devlog
 menu: false
 order: 1
