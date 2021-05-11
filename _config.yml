@@ -44,35 +44,35 @@ google_fonts:        Lato
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics:    UA-92346434-1
+google_analytics:    
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
-disqus_shortname:    isme2n
+disqus_shortname:    hminkim
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2017. by isme2n'
+copyright:           '&copy; 2021. by hminkim'
 
 # Format of the permalinks
-permalink:           pretty
+permalink:
 
 # Pagination configuration (used by the `blog` layout)
-paginate:            8
-paginate_path:       '/page-:num/'
+paginate: 5
+paginate_path: '/page-:num/'
 
 # If you are upgrading form a v5 verison of Hydejack, uncomment the two lines below,
 # so that the location of the feed XML stays the same.
 # feed:
-#   path:              atom.xml
+#   path: atom.xml
 
 # Set to true when building with the `--lsi` option
 # See: https://jekyllrb.com/docs/variables/#site-variables
-# use_lsi:             true
+# use_lsi: true
 
 # Set to `true` if you don't want to show an icon after each link that opens to an external site
-# no_mark_external:    true
+# no_mark_external: true
 
 # Uncomment this line if third party plugins fail to work with dynimically loaded pages
-# disable_push_state:  true
+# disable_push_state: true
 
 # Uncomment this line if want to disable the touch drawer on mobile
 # disable_drawer: true
