@@ -35,6 +35,9 @@ font_heading:        "'Lato', 'Sans-serif'"
 # The text font. Expects a string that is a valid CSS font-family value.
 font:                "'Lato', 'Sans-serif'"
 
+# encoding setting
+encoding: UTF-8
+
 # The string encoding what fonts to fetch from Google Fonts.
 # See: https://qwtel.com/hydejack/docs/configuration/
 google_fonts:        Lato
