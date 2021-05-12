@@ -22,8 +22,7 @@
 
   &::after {
     content: "\2630"; // ☰
-    max-width: 150%;
-    height: auto;
+    font-size: 10rem;
   }
 
   @media screen and (min-width: $break-point-2) {
