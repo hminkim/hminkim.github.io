@@ -1,7 +1,7 @@
 # The primary author of this blog.
 # Must be the same as `author` in `_config.yml`.
 # Change `qwtel` to your shortname (used in the front matter to set a page's author, e.g. `author: qwtel`).
-isme2n:
+KkoHMa:
   name: KkoHMa
   email: hminkim2@gmail.com
 
@@ -26,7 +26,7 @@ isme2n:
     # twitter:         <username>
     # google: hminkim2
     # vk:              <username>
-    # youtube:         <string_string_string>
+    youtube: https://www.youtube.com/channel/UCP92a_ZkJzIxAagKxR_Oz_w
     # vimeo:           <username>
     # vine:            <username>
     # spotify:         <user>/<number>
@@ -58,7 +58,7 @@ isme2n:
     # stumbleupon:     <username>
     # paypal:          <username>
     email:           mailto:hminkim2@gmail.com
-    rss:             https://hminkim.github.io/feed.xml
+    # rss:             https://hminkim.github.io/feed.xml
 
 # Another author
 mdo:
