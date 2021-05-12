@@ -22,8 +22,8 @@ description:         >
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
-  name: KkoHMa
-  email: hminkim2@gmail.com
+  name: 'KkoHMa'
+  email: 'hminkim2@gmail.com'
 
 # Fallback image and color
 image:               /assets/img/back.jpeg
@@ -47,7 +47,7 @@ google_fonts:        Lato
 google_analytics:    
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
-disqus_shortname: KkoHMa-Blog
+disqus_shortname: 'KkoHMa-Blog'
 
 # This text will appear in the footer of every page. Markdown enabled.
 copyright: '&copy; 2021. by hminkim'
