@@ -18,13 +18,19 @@ tags: programers
 |phone_number|return|
 |---|---|
 |"01033334444"|"*******4444"|
-|"027778888"|"*****8888"|
+|"027778888"|"*****8888"|  
+  
+  
+### 내가 적은 
 
 ```python
 def solution(phone_number):
     answer = "*"*(len(phone_number)-4)+phone_number[len(phone_number)-4:]
     return answer
-```
+```  
+  
+  
+### 베스트 코드
 
 ```python
 def hide_numbers(s):
