@@ -24,6 +24,26 @@
   {% unless include.excerpt %}
   <div class="markdown-body">
     <style>
+      .myAd1190 {
+        width: 48%;
+        height: 280px;
+      }
+
+      .myAd1290 {
+        width: 48%;
+        height: 280px;
+      }
+
+      @media(max-width: 800px) {
+        .myAd1190 {
+          display: none;
+        }
+
+        .myAd1290 {
+          width: 98%;
+        }
+      }
+
       .row {
         display: flex;
         justify-content: space-between;
