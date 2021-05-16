@@ -35,10 +35,12 @@ def hide_numbers(s):
 - 이전에 다른 곳에서 한 번 풀어 본 문제라서 대략적인 알고리즘은 기억이 났다.
 - 자료형에 대한 이해도가 낮아서 문자열을 컴파일 하는 단계에서 자꾸 오류가 나서 시간이 오래걸렸다.  
   
+  
+  
 ---
 layout: post
 title: "핸드폰 번호 가리기"
 subtitle:  "프로그래머스 lv.1"
 categories: algorithmpractice
-tags: 프로그래머스
+tags: Programers
 ---
