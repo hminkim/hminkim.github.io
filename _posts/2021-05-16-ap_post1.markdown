@@ -15,10 +15,10 @@ tags: programers
 [코딩테스트 연습 - 핸드폰 번호 가리기](https://programmers.co.kr/learn/courses/30/lessons/12948)
 
 ### 입출력 예시
-phone_number|return
----|---
-"01033334444"|"*******4444"
-"027778888"|"*****8888"
+|phone_number|return|
+|---|---|
+|"01033334444"|"*******4444"|
+|"027778888"|"*****8888"|
 
 ```python
 def solution(phone_number):
