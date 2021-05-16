@@ -3,7 +3,7 @@ layout: post
 title: "핸드폰 번호 가리기"
 subtitle:  "프로그래머스 lv.1"
 categories: algorithmpractice
-tags: programers
+tags: 프로그래머스
 ---
 
 날짜: 2021년 5월 16일  
