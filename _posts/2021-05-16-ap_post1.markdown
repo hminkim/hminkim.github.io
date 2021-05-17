@@ -35,8 +35,8 @@ def solution(phone_number):
 ### 베스트 코드
 
 ```python
-    def hide_numbers(s):
-        return "*"*(len(s)-4) + s[-4:]
+def hide_numbers(s):
+  return "*"*(len(s)-4) + s[-4:]
 ```
 
 ### 반성
