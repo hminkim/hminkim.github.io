@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "핸드폰 번호 가리기"
+title: [프로그래머스/lv.1] "핸드폰 번호 가리기"
 subtitle:  "프로그래머스 lv.1"
 categories: algorithmpractice
 tags: programers
@@ -25,19 +25,23 @@ tags: programers
   
 ### 내가 적은 코드
 
-~~~python
+```python
 def solution(phone_number):
   answer = "*"*(lon(phone_number)-4)+phone_number[len(phone_number)-4:]
   return anser
-~~~
+```
+
+### 풀이 과정  
+
+`phone_number` 길이의 -4 만큼의 `*`을 만든 다음 뒤에 인덱스 슬라이싱을 통해 `phone_number`의 뒤에서부터 4자리의 문자열을 출력했다.  
   
   
 ### 베스트 코드
 
-~~~python
+```python
 def hide_numbers(s):
   return "*"*(len(s)-4) + s[-4:]
-~~~
+```
 
 ### 반성
 
