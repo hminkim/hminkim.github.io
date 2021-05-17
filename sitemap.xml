@@ -1,75 +1,29 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xmlns:xhtml="http://www.w3.org/1999/xhtml"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	  	  
-<!-- www.check-domains.com sitemap generator -->
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
 
-<url>
-   <loc>https://hminkim.github.io/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>1.0000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/feed.xml</loc>
-   <lastmod>2021-05-17T07:37:10+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/algorithmpractice/2021/05/17/ap_post1.html</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/category/algorithmpractice/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/tag/algorithmpractice-programers/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/algorithmpractice/2021/05/16/ap_post1.html</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/algorithmpractice/2021/05/05/ap_post1.html</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/category/essay/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/category/devlog/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/tag/devlog-data-structure/</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
-<url>
-   <loc>https://hminkim.github.io/about.html</loc>
-   <lastmod>2021-05-17T07:38:26+00:00</lastmod>
-   <changefreq>daily</changefreq>
-   <priority>0.8000</priority>
-</url>
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
 </urlset>
