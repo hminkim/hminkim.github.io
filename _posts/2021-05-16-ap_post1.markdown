@@ -6,45 +6,50 @@ categories: algorithmpractice
 tags: programers
 ---
 
-날짜: 2021년 5월 16일  
-소요 시간: 15분 5초  
+날짜: 2021년 5월 15일  
+소요 시간: 5분 48초  
 카테고리: 인덱싱  
 태그: `레벨1`, `파이썬`  
 
 
-[코딩테스트 연습 - 핸드폰 번호 가리기](https://programmers.co.kr/learn/courses/30/lessons/12948)
+[코딩테스트 연습 - 가운데 글자 가져오기](https://programmers.co.kr/learn/courses/30/lessons/12903)
 
 ### 입출력 예시  
 
-|phone_number|return|
+|s|return|
 |---|---|
-|"01033334444"|"*******4444"|
-|"027778888"|"*****8888"|  
+|"abcde"|"c"|
+|"qwer"|"we"|  
   
   
 ### 내가 적은 코드
 
 ```python
-def solution(phone_number):
-  answer = "*"*(len(phone_number)-4)+phone_number[len(phone_number)-4:]
-  return anser
+def solution(s):
+    half_s = len(s)//2
+    if len(s)%2 == 1:
+        answer = s[half_s]
+    else:
+        answer = s[half_s-1:half_s+1]
+    return answer
 ```
 
 ### 풀이 과정  
 
-`phone_number` 길이의 -4 갯수 만큼의 `*`을 만든 다음 뒤에 인덱스 슬라이싱을 통해 `phone_number`의 뒤에서부터 4자리의 문자열을 출력했다.  
-  
+`s` 길이를 반으로 나누었을 때  
+나머지가 1이면(문자열의 길이가 홀수이면) '길이의 반'번째 있는 문자(하나)를 가져왔고  
+나머지가 0이면(문자열의 길이가 짝수이면) '길이의 반-1'~'길이의 반'번째 있는 문자(둘)를 가져왔다.
   
 ### 베스트 코드
 
 ```python
-def hide_numbers(s):
-  return "*"*(len(s)-4) + s[-4:]
+def string_middle(str):
+    return str[(len(str)-1)//2:len(str)//2+1]
 ```
 
 ### 반성
 
-- 이전에 다른 곳에서 한 번 풀어 본 문제라서 대략적인 알고리즘은 기억이 났다.
-- 자료형에 대한 이해도가 낮아서 문자열을 컴파일 하는 단계에서 자꾸 오류가 나서 시간이 오래걸렸다.  
+- 인덱스 슬라이싱의 개념을 확실하게 잡지 못해 s[a:b] 부분을 헷갈려서 시간이 많이 소요되었다.
+- ~~사실 다시 코드 짜라고 해도 베스트 코드는 생각 못해낼 것 같긴하다.~~
   
   
