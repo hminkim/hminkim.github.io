@@ -26,13 +26,13 @@ tags: programers
 
 ```python
 def solution(phone_number):
-  answer = "*"*(lon(phone_number)-4)+phone_number[len(phone_number)-4:]
+  answer = "*"*(len(phone_number)-4)+phone_number[len(phone_number)-4:]
   return anser
 ```
 
 ### 풀이 과정  
 
-`phone_number` 길이의 -4 만큼의 `*`을 만든 다음 뒤에 인덱스 슬라이싱을 통해 `phone_number`의 뒤에서부터 4자리의 문자열을 출력했다.  
+`phone_number` 길이의 -4 갯수 만큼의 `*`을 만든 다음 뒤에 인덱스 슬라이싱을 통해 `phone_number`의 뒤에서부터 4자리의 문자열을 출력했다.  
   
   
 ### 베스트 코드
