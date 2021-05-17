@@ -127,3 +127,6 @@ compress_html:
 
 sass:
   style:             compressed
+
+markdown: kramdown
+highlighter: rouge  
