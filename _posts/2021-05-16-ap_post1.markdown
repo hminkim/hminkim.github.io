@@ -25,7 +25,7 @@ tags: programers
   
 ### 내가 적은 코드
 
-```python
+``` python
 def solution(phone_number):
     answer = "*"*(len(phone_number)-4)+phone_number[len(phone_number)-4:]
     return answer
@@ -34,7 +34,7 @@ def solution(phone_number):
   
 ### 베스트 코드
 
-```python
+``` python
 def hide_numbers(s):
     return "*"*(len(s)-4) + s[-4:]
 ```
