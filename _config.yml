@@ -55,7 +55,7 @@ disqus_shortname: 'KkoHMa-Blog'
 copyright: '&copy; 2021. by hminkim'
 
 # Format of the permalinks
-permalink:
+permalink: pretty
 
 # Pagination configuration (used by the `blog` layout)
 paginate: 5
