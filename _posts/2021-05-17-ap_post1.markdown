@@ -12,7 +12,7 @@ tags: programers
 태그: `레벨1`, `파이썬`  
 
 
-[코딩테스트 연습 - 행렬의 덧셈](https://programmers.co.kr/learn/courses/30/lessons/12950){:target="_blank"}
+[코딩테스트 연습 - 행렬의 덧셈](https://programmers.co.kr/learn/courses/30/lessons/12950){: target="_blank"}
 
 ### 입출력 예시  
 
