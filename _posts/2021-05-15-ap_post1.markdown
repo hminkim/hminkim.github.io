@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[프로그래머스 / lv.1] 핸드폰 번호 가리기"
+title: "[프로그래머스 / lv.1] 가운데 글자 가져오기"
 subtitle:  "프로그래머스 lv.1"
 categories: algorithmpractice
 tags: programers
