@@ -13,14 +13,17 @@ url: https://hminkim.github.io
 baseurl: ""
 
 # A very short description of your page
-tagline: "데이터 사이언티스트를 꿈꾸는 개발 꿈나무 입니다."
+tagline: 데이터 사이언티스트를 꿈꾸는, 개발 꿈나무 입니다.
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
   글이든지 그림이든지 코드든지  
+description:         >
   무엇이든 끄적이는 것을 좋아하고  
-  깔끔하고 이쁘게 완성하는 걸 좋아하는  
+description:         >
+  깔끔하고 이쁘게 완성하는 걸 좋아하는    
+description:         >
   꼬마 개발 꿈나무 입니다.
 # This should be the same author as first entry in `_data/authors.yml`
 author:
