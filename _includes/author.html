@@ -2,11 +2,11 @@
   <{{ include.heading_tag | default:'h2' }} class="page-title hr">
     {{ include.heading | default:include.author.name }}
   </{{ include.heading_tag | default:'h2' }}>
-<div class="author-body">
+<div class="author-body" style="width: 30%; height:150px; float:left; margin-right:10px;">
   {% if include.author.picture %}
     {% include srcset-img.html class="me" img=include.author.picture alt=include.author.name %}
   {% endif %}
-  <div class="author-body-description">
+  <div class="author-body-description" style="width: 65%; height:150px; float:right;">
     {{ include.author.about | markdownify }}
   </div>
 </div>
