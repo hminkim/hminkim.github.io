@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 정수 제곱근 판별"
+subtitle:  "프로그래머스 lv.1"
+categories: algorithmpractice
+tags: programers
+---
+
+날짜: 2021년 5월 20일  
+소요 시간: 06분 51초  
+카테고리: 수학 문제
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 정수 제곱근 판별](https://programmers.co.kr/learn/courses/30/lessons/12934)
+
+### 입출력 예시  
+
+|n|return|
+|---|---|
+|121|144|
+|3|-1|  
+
+  
+### 내가 적은 코드
+
+```python
+def solution(n):
+    if (n**(1/2))%1 == 0:
+        return ((n**(1/2)) + 1)**2
+    else:
+        return -1
+```
+
+### 풀이 과정  
+
+제곱근을 정수 1로 나누었을 때 나머지가 0이면 정수라는 로직으로 접근했다.
+  
+### 베스트 코드
+
+```python
+def nextSqure(n):
+    sqrt = n ** (1/2)
+
+    if sqrt % 1 == 0:
+        return (sqrt + 1) ** 2
+    return 'no'
+```
+
+### 반성
+
+- 처음엔 `type`으로 문제를 접근 했다가 정수가 나와도 float로 출력되어 오류가 나서 시간을 많이 잡아먹었다.
+- 베스트 코드와 같은 로직으로 접근한 첫 알고리즘 문제 인 것 같다.   
+  
