@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] x만큼 간격이 있는 n개의 숫자"
+subtitle:  "프로그래머스 lv.1"
+categories: algorithmpractice
+tags: programers
+---
+
+날짜: 2021년 5월 21일  
+소요 시간: 3분 6초  
+카테고리: 인덱싱  
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - x만큼 간격이 있는 n개의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12954)
+
+### 입출력 예시  
+
+|n|x|result|
+|---|---|---|
+|2|5|[2,4,6,8,10]|
+|4|3|[4,8,12]|
+|-4|2|[-4,-8]|  
+  
+  
+### 내가 적은 코드
+
+```python
+def solution(x, n):
+    answer = [x]
+    for i in range(1,n):
+        answer.append((answer[i-1]+x))
+        i += 1
+    return answer
+```
+
+### 풀이 과정  
+
+반복문을 통해서 리스트 원소를 `x`만큼 간격을 주어 `n`만큼 반복해서 리스트에 `append` 해주었다. 
+  
+### 베스트 코드
+
+```python
+def number_generator(x, n):
+    # 함수를 완성하세요
+    return [i * x + x for i in range(n)]
+```
+
+### 반성
+
+- 창의적으로 코드를 효율적으로 짧게 하기에는 아직 파이썬에 대한 이해도가 낮다는 느낌이 들었다. 파이썬에 대한 공부가 더 필요하다.
+  
+
+
