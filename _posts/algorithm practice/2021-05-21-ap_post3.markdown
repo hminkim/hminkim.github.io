@@ -1,0 +1,52 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 약수의 합"
+subtitle:  "프로그래머스 lv.1"
+categories: algorithmpractice
+tags: programers
+---
+
+날짜: 2021년 5월 21일  
+소요 시간: 3분 37초  
+카테고리: 수학 문제  
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 약수의 합](https://programmers.co.kr/learn/courses/30/lessons/12928)
+
+### 입출력 예시  
+
+|n|return|
+|---|---|---|
+|12|28|
+|5|6|  
+  
+  
+### 내가 적은 코드
+
+```python
+def solution(n):
+    sum = 0
+    for i in range(1,n+1):
+        if n%i == 0:
+            sum += i
+    return sum
+```
+
+### 풀이 과정  
+
+반복문을 통해서 1부터 n까지의 수 중 `n`을 나누었을 때 나머지가 0이 되는 수들을 `sum`에 더하여 `sum`을 출력한다.  
+  
+### 베스트 코드
+
+```python
+def sumDivisor(num):
+    return sum([i for i in range(1,num+1) if num%i==0])
+```
+
+### 반성
+
+- 이제는 문제 풀이 뿐 아니라 코드를 짧게 만드는 데에도 시간을 투자해야겠다는 생각이 들었다.
+  
+
+
