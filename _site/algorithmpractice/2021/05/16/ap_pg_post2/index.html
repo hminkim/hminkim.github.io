@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 행렬의 덧셈">
+<meta property="og:title" content="[프로그래머스 / lv.1] 평균 구하기">
 <meta property="og:type" content="article">
 
 
@@ -46,19 +46,19 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 행렬의 덧셈 &middot; KkoHMa's Coding Diary</title>
+  <title>[프로그래머스 / lv.1] 평균 구하기 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 5월 17일
-소요 시간: 6분 11초
-카테고리: 행렬
+<meta name="description" content="날짜: 2021년 5월 16일
+소요 시간: 7분 34초
+카테고리: 수학문제
 태그: 레벨1, 파이썬
 
 ">
-<meta property="og:description" content="날짜: 2021년 5월 17일
-소요 시간: 6분 11초
-카테고리: 행렬
+<meta property="og:description" content="날짜: 2021년 5월 16일
+소요 시간: 7분 34초
+카테고리: 수학문제
 태그: 레벨1, 파이썬
 
 ">
@@ -68,17 +68,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/17/ap_post1/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/17/ap_post1/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post2/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post2/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_post4/">
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post1/">
 
 
 
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/19/ap_post1/">
+  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post3/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -169,16 +169,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/05/17/ap_post1" class="post" role="article">
+<article id="post-algorithmpractice/2021/05/16/ap_pg_post2" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        [프로그래머스 / lv.1] 행렬의 덧셈
+        [프로그래머스 / lv.1] 평균 구하기
         
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-05-17T00:00:00+09:00">17 May 2021</time>
+      <time datetime="2021-05-16T00:00:00+09:00">16 May 2021</time>
       
 
 
@@ -218,62 +218,59 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <!--  -->
 
     <br />
-    <p>날짜: 2021년 5월 17일<br />
-소요 시간: 6분 11초<br />
-카테고리: 행렬<br />
+    <p>날짜: 2021년 5월 16일<br />
+소요 시간: 7분 34초<br />
+카테고리: 수학문제<br />
 태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
 
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12950">코딩테스트 연습 - 행렬의 덧셈</a></p>
+<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12944">코딩테스트 연습 - 평균 구하기</a></p>
 
 <h3 id="입출력-예시">입출력 예시</h3>
 
 <table>
   <thead>
     <tr>
-      <th>arr1</th>
-      <th>arr2</th>
-      <th>result</th>
+      <th>arr</th>
+      <th>return</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>[[1,2],[2,3]]</td>
-      <td>[[3,4],[5,6]]</td>
-      <td>[[4,6],[7,9]]</td>
+      <td>[1,2,3,4]</td>
+      <td>[2.5]</td>
     </tr>
     <tr>
-      <td>[[1],[2]]</td>
-      <td>[[3],[4]]</td>
-      <td>[[4],[6]]</td>
+      <td>[5,5]</td>
+      <td>[5]</td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="내가-적은-코드">내가 적은 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">):</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">answer</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+      <span class="n">k</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+      <span class="n">answer</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div></div>
 
 <h3 id="풀이-과정">풀이 과정</h3>
 
-<p>행렬의 연산이 가능한 <code class="language-plaintext highlighter-rouge">numpy</code>라이브러리를 가져와 문제를 풀었다.</p>
+<p><code class="language-plaintext highlighter-rouge">arr</code>안의 원소들을 반복문을  모두 더한 다음 <code class="language-plaintext highlighter-rouge">arr</code>의 길이만큼 나누었다.</p>
 
 <h3 id="베스트-코드">베스트 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">answer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span>
 </code></pre></div></div>
 
 <h3 id="반성">반성</h3>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">numpy</code>라이브러리를 알고 있어서 가져와 풀긴 했지만 출제자의 의도는 베스트 코드가 아니었을까…</li>
-  <li>마지막 <code class="language-plaintext highlighter-rouge">tolist()</code>를 붙이지 않아 행렬 형태로 답이 출력되는 오류 때문에 시간이 많이 걸렸다.</li>
+  <li>sum 함수를 기억해내지 못해 쓸떼 없는 반복문을 썼다.</li>
+  <li>그리 어렵지 않은 문제를 어렵게 접근하려 했다.</li>
 </ul>
 
 
@@ -315,7 +312,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
   
   <div class="author-body-description">
-    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 학부 때 컴퓨터공학을 전공했지만 공부를 하지않아 28살이 되어서야 이제 처음 개발 공부를 하고 있는 개발 꿈나무 입니다.</p>
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
 
   </div>
 </div>
@@ -341,11 +338,11 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/20/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 정수 제곱근 판별</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post3/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 약수의 합</span>
   </a>
-  <small><time datetime="2021-05-20T00:00:00+09:00">
-    20 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -357,33 +354,33 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/19/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 짝수와 홀수</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post2/" data-flip="title">
+    <span>[프로그래머스 / lv.1] x만큼 간격이 있는 n개의 숫자</span>
   </a>
-  <small><time datetime="2021-05-19T00:00:00+09:00">
-    19 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
         
       
         
-          
-          
-        
         
           
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/16/ap_post4/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 핸드폰 번호 가리기</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post1/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 직사각형 별찍기</span>
   </a>
-  <small><time datetime="2021-05-16T00:00:00+09:00">
-    16 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
+        
+      
+        
         
       
     
@@ -402,7 +399,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 행렬의 덧셈",this.page.identifier="/algorithmpractice/2021/05/17/ap_post1",this.page.url="http://localhost:4000/algorithmpractice/2021/05/17/ap_post1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 평균 구하기",this.page.identifier="/algorithmpractice/2021/05/16/ap_pg_post2",this.page.url="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post2/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
@@ -460,6 +457,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -477,6 +476,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              <li>
                <a class="sidebar-nav-subitem" href="/tag/devlog-data-structure/">Data Structure</a>
              </li>
+           
+         
            
          
            
@@ -502,6 +503,12 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              </li>
            
          
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
+             </li>
+           
+         
      </ul>
     </li>
 
@@ -515,6 +522,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            

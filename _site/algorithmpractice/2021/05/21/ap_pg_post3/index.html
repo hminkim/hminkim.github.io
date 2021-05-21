@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 핸드폰 번호 가리기">
+<meta property="og:title" content="[프로그래머스 / lv.1] 약수의 합">
 <meta property="og:type" content="article">
 
 
@@ -46,19 +46,19 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 핸드폰 번호 가리기 &middot; KkoHMa's Coding Diary</title>
+  <title>[프로그래머스 / lv.1] 약수의 합 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 5월 16일
-소요 시간: 15분 5초
-카테고리: 인덱싱
+<meta name="description" content="날짜: 2021년 5월 21일
+소요 시간: 3분 37초
+카테고리: 수학 문제
 태그: 레벨1, 파이썬
 
 ">
-<meta property="og:description" content="날짜: 2021년 5월 16일
-소요 시간: 15분 5초
-카테고리: 인덱싱
+<meta property="og:description" content="날짜: 2021년 5월 21일
+소요 시간: 3분 37초
+카테고리: 수학 문제
 태그: 레벨1, 파이썬
 
 ">
@@ -68,17 +68,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_post4/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/16/ap_post4/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/21/ap_pg_post3/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/21/ap_pg_post3/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_post3/">
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/21/ap_pg_post2/">
 
 
-
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/17/ap_post1/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -169,16 +167,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/05/16/ap_post4" class="post" role="article">
+<article id="post-algorithmpractice/2021/05/21/ap_pg_post3" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        [프로그래머스 / lv.1] 핸드폰 번호 가리기
+        [프로그래머스 / lv.1] 약수의 합
         
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-05-16T00:00:00+09:00">16 May 2021</time>
+      <time datetime="2021-05-21T00:00:00+09:00">21 May 2021</time>
       
 
 
@@ -218,58 +216,60 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <!--  -->
 
     <br />
-    <p>날짜: 2021년 5월 16일<br />
-소요 시간: 15분 5초<br />
-카테고리: 인덱싱<br />
+    <p>날짜: 2021년 5월 21일<br />
+소요 시간: 3분 37초<br />
+카테고리: 수학 문제<br />
 태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
 
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12948">코딩테스트 연습 - 핸드폰 번호 가리기</a></p>
+<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12928">코딩테스트 연습 - 약수의 합</a></p>
 
 <h3 id="입출력-예시">입출력 예시</h3>
 
 <table>
   <thead>
     <tr>
-      <th>phone_number</th>
+      <th>n</th>
       <th>return</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>“01033334444”</td>
-      <td>“<strong>**</strong>*4444”</td>
+      <td>12</td>
+      <td>28</td>
     </tr>
     <tr>
-      <td>“027778888”</td>
-      <td>“*****8888”</td>
+      <td>5</td>
+      <td>6</td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="내가-적은-코드">내가 적은 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">phone_number</span><span class="p">):</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="s">"*"</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">phone_number</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">phone_number</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">phone_number</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
-    <span class="k">return</span> <span class="n">answer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="nb">sum</span>
 </code></pre></div></div>
 
 <h3 id="풀이-과정">풀이 과정</h3>
 
-<p><code class="language-plaintext highlighter-rouge">phone_number</code>의 길이 -4의 개수만큼 문자열<code class="language-plaintext highlighter-rouge">*</code>을 출력하고<br />
-<code class="language-plaintext highlighter-rouge">phone_number</code>의 길이 -4 부터 끝까지의 문자열을 슬라이싱하여 뒤에 붙였다.</p>
+<p>반복문을 통해서 1부터 n까지의 수 중 <code class="language-plaintext highlighter-rouge">n</code>을 나누었을 때 나머지가 0이 되는 수들을 <code class="language-plaintext highlighter-rouge">sum</code>에 더하여 <code class="language-plaintext highlighter-rouge">sum</code>을 출력한다.</p>
 
 <h3 id="베스트-코드">베스트 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hide_numbers</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">"*"</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumDivisor</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">num</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div></div>
 
 <h3 id="반성">반성</h3>
 
 <ul>
-  <li>이전에 다른 곳에서 한 번 풀어 본 문제라서 대략적인 알고리즘은 기억이 났다.</li>
-  <li>자료형에 대한 이해도가 낮아서 문자열을 컴파일 하는 단계에서 자꾸 오류가 나서 시간이 오래걸렸다.</li>
+  <li>이제는 문제 풀이 뿐 아니라 코드를 짧게 만드는 데에도 시간을 투자해야겠다는 생각이 들었다.</li>
 </ul>
+
 
     <br />
     <br />
@@ -309,7 +309,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
   
   <div class="author-body-description">
-    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 학부 때 컴퓨터공학을 전공했지만 공부를 하지않아 28살이 되어서야 이제 처음 개발 공부를 하고 있는 개발 꿈나무 입니다.</p>
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
 
   </div>
 </div>
@@ -330,16 +330,19 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
       
       
         
+          
+          
+        
         
           
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/20/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 정수 제곱근 판별</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post2/" data-flip="title">
+    <span>[프로그래머스 / lv.1] x만큼 간격이 있는 n개의 숫자</span>
   </a>
-  <small><time datetime="2021-05-20T00:00:00+09:00">
-    20 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -351,11 +354,11 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/19/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 짝수와 홀수</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post1/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 직사각형 별찍기</span>
   </a>
-  <small><time datetime="2021-05-19T00:00:00+09:00">
-    19 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -367,19 +370,16 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/17/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 행렬의 덧셈</span>
+  <a href="/algorithmpractice/2021/05/21/ap_bj_post1/" data-flip="title">
+    <span>[백준 / 2501] 약수 구하기</span>
   </a>
-  <small><time datetime="2021-05-17T00:00:00+09:00">
-    17 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
         
       
-        
-          
-          
     
   </ul>
 </aside>
@@ -396,7 +396,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 핸드폰 번호 가리기",this.page.identifier="/algorithmpractice/2021/05/16/ap_post4",this.page.url="http://localhost:4000/algorithmpractice/2021/05/16/ap_post4/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 약수의 합",this.page.identifier="/algorithmpractice/2021/05/21/ap_pg_post3",this.page.url="http://localhost:4000/algorithmpractice/2021/05/21/ap_pg_post3/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
@@ -454,6 +454,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -471,6 +473,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              <li>
                <a class="sidebar-nav-subitem" href="/tag/devlog-data-structure/">Data Structure</a>
              </li>
+           
+         
            
          
            
@@ -496,6 +500,12 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              </li>
            
          
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
+             </li>
+           
+         
      </ul>
     </li>
 
@@ -509,6 +519,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            

@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 가운데 글자 가져오기">
+<meta property="og:title" content="[프로그래머스 / lv.1] 정수 제곱근 판별">
 <meta property="og:type" content="article">
 
 
@@ -46,19 +46,19 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 가운데 글자 가져오기 &middot; KkoHMa's Coding Diary</title>
+  <title>[프로그래머스 / lv.1] 정수 제곱근 판별 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 5월 15일
-소요 시간: 5분 48초
-카테고리: 인덱싱
+<meta name="description" content="날짜: 2021년 5월 20일
+소요 시간: 6분 51초
+카테고리: 수학 문제
 태그: 레벨1, 파이썬
 
 ">
-<meta property="og:description" content="날짜: 2021년 5월 15일
-소요 시간: 5분 48초
-카테고리: 인덱싱
+<meta property="og:description" content="날짜: 2021년 5월 20일
+소요 시간: 6분 51초
+카테고리: 수학 문제
 태그: 레벨1, 파이썬
 
 ">
@@ -68,17 +68,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_post1/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/15/ap_post1/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post1/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post1/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/05/ap_post1/">
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/19/ap_pg_post1/">
 
 
 
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_post2/">
+  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post2/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -169,16 +169,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/05/15/ap_post1" class="post" role="article">
+<article id="post-algorithmpractice/2021/05/20/ap_pg_post1" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        [프로그래머스 / lv.1] 가운데 글자 가져오기
+        [프로그래머스 / lv.1] 정수 제곱근 판별
         
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-05-15T00:00:00+09:00">15 May 2021</time>
+      <time datetime="2021-05-20T00:00:00+09:00">20 May 2021</time>
       
 
 
@@ -218,62 +218,62 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <!--  -->
 
     <br />
-    <p>날짜: 2021년 5월 15일<br />
-소요 시간: 5분 48초<br />
-카테고리: 인덱싱<br />
+    <p>날짜: 2021년 5월 20일<br />
+소요 시간: 6분 51초<br />
+카테고리: 수학 문제
 태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
 
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12903">코딩테스트 연습 - 가운데 글자 가져오기</a></p>
+<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12934">코딩테스트 연습 - 정수 제곱근 판별</a></p>
 
 <h3 id="입출력-예시">입출력 예시</h3>
 
 <table>
   <thead>
     <tr>
-      <th>s</th>
+      <th>n</th>
       <th>return</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>“abcde”</td>
-      <td>“c”</td>
+      <td>121</td>
+      <td>144</td>
     </tr>
     <tr>
-      <td>“qwer”</td>
-      <td>“we”</td>
+      <td>3</td>
+      <td>-1</td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="내가-적은-코드">내가 적은 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">half_s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">half_s</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">%</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">n</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">half_s</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">half_s</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">answer</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
 
 <h3 id="풀이-과정">풀이 과정</h3>
 
-<p><code class="language-plaintext highlighter-rouge">s</code> 길이를 반으로 나누었을 때<br />
-나머지가 1이면(문자열의 길이가 홀수이면) ‘길이의 반’번째 있는 문자(하나)를 가져왔고<br />
-나머지가 0이면(문자열의 길이가 짝수이면) ‘길이의 반-1’~’길이의 반’번째 있는 문자(둘)를 가져왔다.</p>
+<p>제곱근을 정수 1로 나누었을 때 나머지가 0이면 정수라는 로직으로 접근했다.</p>
 
 <h3 id="베스트-코드">베스트 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">string_middle</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">sqrt</span> <span class="o">=</span> <span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sqrt</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">sqrt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="s">'no'</span>
 </code></pre></div></div>
 
 <h3 id="반성">반성</h3>
 
 <ul>
-  <li>인덱스 슬라이싱의 개념을 확실하게 잡지 못해 s[a:b] 부분을 헷갈려서 시간이 많이 소요되었다.</li>
-  <li><del>사실 다시 코드 짜라고 해도 베스트 코드는 생각 못해낼 것 같긴하다.</del></li>
+  <li>처음엔 <code class="language-plaintext highlighter-rouge">type</code>으로 문제를 접근 했다가 정수가 나와도 float로 출력되어 오류가 나서 시간을 많이 잡아먹었다.</li>
+  <li>베스트 코드와 같은 로직으로 접근한 첫 알고리즘 문제 인 것 같다.</li>
 </ul>
 
 
@@ -315,7 +315,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
   
   <div class="author-body-description">
-    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 학부 때 컴퓨터공학을 전공했지만 공부를 하지않아 28살이 되어서야 이제 처음 개발 공부를 하고 있는 개발 꿈나무 입니다.</p>
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
 
   </div>
 </div>
@@ -341,11 +341,11 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/20/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 정수 제곱근 판별</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post3/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 약수의 합</span>
   </a>
-  <small><time datetime="2021-05-20T00:00:00+09:00">
-    20 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -357,11 +357,11 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/19/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 짝수와 홀수</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post2/" data-flip="title">
+    <span>[프로그래머스 / lv.1] x만큼 간격이 있는 n개의 숫자</span>
   </a>
-  <small><time datetime="2021-05-19T00:00:00+09:00">
-    19 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -373,11 +373,11 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
 
 
 <li class="h4">
-  <a href="/algorithmpractice/2021/05/17/ap_post1/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 행렬의 덧셈</span>
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post1/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 직사각형 별찍기</span>
   </a>
-  <small><time datetime="2021-05-17T00:00:00+09:00">
-    17 May 2021
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
   </time></small>
 </li>
 
@@ -402,7 +402,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 가운데 글자 가져오기",this.page.identifier="/algorithmpractice/2021/05/15/ap_post1",this.page.url="http://localhost:4000/algorithmpractice/2021/05/15/ap_post1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 정수 제곱근 판별",this.page.identifier="/algorithmpractice/2021/05/20/ap_pg_post1",this.page.url="http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
@@ -460,6 +460,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -477,6 +479,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              <li>
                <a class="sidebar-nav-subitem" href="/tag/devlog-data-structure/">Data Structure</a>
              </li>
+           
+         
            
          
            
@@ -502,6 +506,12 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
              </li>
            
          
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
+             </li>
+           
+         
      </ul>
     </li>
 
@@ -515,6 +525,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            

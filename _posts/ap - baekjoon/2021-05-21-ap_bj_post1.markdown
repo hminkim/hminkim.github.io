@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[백준 / 2501] 약수 구하기"
-subtitle:  "프로그래머스 lv.1"
+subtitle:  "백준 Bronze.2"
 categories: algorithmpractice
 tags: baekjoon
 ---
@@ -9,7 +9,7 @@ tags: baekjoon
 날짜: 2021년 5월 21일  
 소요 시간: 3분 32초  
 카테고리: 수학 문제  
-태그: `2501`, `파이썬`  
+태그: `Bronze.2`, `2501`, `파이썬`  
 
 
 [백준 2501 - 약수 구하기](https://www.acmicpc.net/problem/2501)
