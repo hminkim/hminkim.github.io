@@ -6,8 +6,8 @@ categories: algorithmpractice
 tags: baekjoon
 ---
 
-날짜: 2021년 5월 21일  
-소요 시간: 46분 36초  
+날짜: 2021년 5월 22일  
+소요 시간: 56분 36초  
 카테고리: 수학 문제  
 태그: `silver.5`, `1475`, `파이썬`  
 
