@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="Data Structure">
+<meta property="og:title" content="[백준 / 1475] 방 번호">
 <meta property="og:type" content="article">
 
 
@@ -46,13 +46,21 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>Data Structure &middot; KkoHMa's Coding Diary</title>
+  <title>[백준 / 1475] 방 번호 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="
+<meta name="description" content="날짜: 2021년 5월 22일
+소요 시간: 56분 39초
+카테고리: 수학 문제
+태그: silver.5, 1475, 파이썬
+
 ">
-<meta property="og:description" content="
+<meta property="og:description" content="날짜: 2021년 5월 22일
+소요 시간: 56분 39초
+카테고리: 수학 문제
+태그: silver.5, 1475, 파이썬
+
 ">
 
 
@@ -60,15 +68,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/tag/devlog-data-structure/">
-<meta property="og:url" content="http://localhost:4000/tag/devlog-data-structure/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/22/ap_bj_post1/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/22/ap_bj_post1/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/21/ap_pg_post3/">
 
 
-  <link rel="next" href="http://localhost:4000/tag/algorithmpractice-baekjoon/">
+
+  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/24/ap_bj_post1/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -159,16 +169,244 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
+<article id="post-algorithmpractice/2021/05/22/ap_bj_post1" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        [백준 / 1475] 방 번호
+        
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-05-22T00:00:00+09:00">22 May 2021</time>
+      
 
 
-<h2 class="sr-only">Pagination</h2>
-<center>
 
-</center>
+
+
+
+
+
+
+in <a href="/category/algorithmpractice/" data-flip="title">Algorithm Practice</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/algorithmpractice-baekjoon/" data-flip="title">BaekJoon</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  
+  <div class="markdown-body">
+
+    <!--  -->
+
+    <br />
+    <p>날짜: 2021년 5월 22일<br />
+소요 시간: 56분 39초<br />
+카테고리: 수학 문제<br />
+태그: <code class="language-plaintext highlighter-rouge">silver.5</code>, <code class="language-plaintext highlighter-rouge">1475</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
+
+<p><a href="https://www.acmicpc.net/problem/1475">백준 1475 - 방 번호</a></p>
+
+<h3 id="입출력-예시">입출력 예시</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>예제 입력</th>
+      <th>예제 출력</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>9999</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="내가-적은-코드">내가 적은 코드</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">()))</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">Y</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<span class="n">Y</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">N</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="풀이-과정">풀이 과정</h3>
+
+<p>먼저 <strong>정수형</strong>으로 입력된 값 <code class="language-plaintext highlighter-rouge">N</code>을 <strong>문자열</strong>로 변환시킨 뒤<br />
+<strong>문자열</strong>인 <code class="language-plaintext highlighter-rouge">N</code>의 숫자로 된 원소 0 부터 8까지의 개수를 카운트 해서 <strong>리스트</strong> <code class="language-plaintext highlighter-rouge">Y</code>에 삽입한다.</p>
+
+<p>그랬을 때 <code class="language-plaintext highlighter-rouge">Y[i] = '문자열 N에서 숫자 i의 개수'</code>가 된다.</p>
+
+<p>6과 9는 같은 수로 취급하기 위해 9의 개수를 따로 리스트 Y의 6번째 원소(숫자 6의 개수)에 더해준다.</p>
+
+<p>그랬을 때 리스트 <code class="language-plaintext highlighter-rouge">Y</code>의 원소의 최대값을 출력하면 된다.</p>
+
+<h3 id="베스트-코드">베스트 코드</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">=</span><span class="nb">input</span><span class="p">().</span><span class="n">count</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="s">'01234578'</span><span class="p">))),(</span><span class="n">c</span><span class="p">(</span><span class="s">'6'</span><span class="p">)</span><span class="o">+</span><span class="n">c</span><span class="p">(</span><span class="s">'9'</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="반성">반성</h3>
+
+<ul>
+  <li>자료형이 계속 변하게 코드를 짜다보니 자료형이 헷갈려 오류를 많이 내서 시간을 많이 잡아먹었다.</li>
+  <li>반복문 하나 없이 같은 정답을 출력하는 베스트 코드처럼 시간복잡도를 줄일 수 있도록 노력하면서 코딩해야한다.</li>
+</ul>
+
+
+    <br />
+    <br />
+  </div>
+  
+
+</article>
+
+<hr class="dingbat" />
+<br />
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="KkoHMa"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/algorithmpractice/2021/05/24/ap_bj_post1/" data-flip="title">
+    <span>[백준 / 1259] 팰린드롬수</span>
+  </a>
+  <small><time datetime="2021-05-24T00:00:00+09:00">
+    24 May 2021
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post3/" data-flip="title">
+    <span>[프로그래머스 / lv.1] 약수의 합</span>
+  </a>
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/algorithmpractice/2021/05/21/ap_pg_post2/" data-flip="title">
+    <span>[프로그래머스 / lv.1] x만큼 간격이 있는 n개의 숫자</span>
+  </a>
+  <small><time datetime="2021-05-21T00:00:00+09:00">
+    21 May 2021
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
 
 
     <main id="_main">
     
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[백준 / 1475] 방 번호",this.page.identifier="/algorithmpractice/2021/05/22/ap_bj_post1",this.page.url="http://localhost:4000/algorithmpractice/2021/05/22/ap_bj_post1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
 
       
       
@@ -232,17 +470,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <li>
       <input type="checkbox" id="list-item-2"/>
       <div  class="list-wrapper">
-      <a class="sidebar-nav-item" href="/category/devlog/">Devlog</a>
+      <a class="sidebar-nav-item" href="/category/computerscience/">Computer Science</a>
        <label class="folder" for="list-item-2">▾</label>
     </div>
      <ul class="list-body">
        
            
-             <li>
-               <a class="sidebar-nav-subitem active" href="/tag/devlog-data-structure/">Data Structure</a>
-             </li>
-           
          
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/computerscience-datastructure/">Data Structure</a>
+             </li>
            
          
            
@@ -261,11 +499,11 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
      <ul class="list-body">
        
            
-         
-           
              <li>
                <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-programers/">Programers</a>
              </li>
+           
+         
            
          
            
