@@ -134,3 +134,13 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+
+tipue_search:
+    include:
+        pages: false
+        collections: []
+    exclude:
+        files: [search.html, index.html, tags.html]
+        categories: []
+        tags: []
+
