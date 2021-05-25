@@ -41,20 +41,21 @@
   <p class="read-more"><a class="heading" href="{{ post.url | relative_url }}" data-flip="title">Continue reading </a>
   </p>
   {% endunless %}
-  
-  <div>
-    <script src="https://utteranc.es/client.js"
-        repo="hminkim/hminkim.github.io"
-        issue-term="pathname"
-        label="comments"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-    </script>
-  </div>
 
 </article>
 {% unless include.link_title %}
 <hr class="dingbat" />
 <br />
 {% endunless %}
+
+ 
+<div>
+  <script src="https://utteranc.es/client.js"
+      repo="hminkim/hminkim.github.io"
+      issue-term="pathname"
+      label="comments"
+      theme="github-light"
+      crossorigin="anonymous"
+      async>
+  </script>
+</div>
