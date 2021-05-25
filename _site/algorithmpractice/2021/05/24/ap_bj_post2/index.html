@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 가운데 글자 가져오기">
+<meta property="og:title" content="[백준 / 1990] 소수인팰린드롬">
 <meta property="og:type" content="article">
 
 
@@ -46,20 +46,20 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 가운데 글자 가져오기 &middot; KkoHMa's Coding Diary</title>
+  <title>[백준 / 1990] 소수인팰린드롬 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 5월 15일
-소요 시간: 5분 48초
-카테고리: 인덱싱
-태그: 레벨1, 파이썬
+<meta name="description" content="날짜: 2021년 5월 24일
+소요 시간: 2시간 35분 22초
+카테고리: 수학 문제
+태그: gold.5, 1990, 파이썬
 
 ">
-<meta property="og:description" content="날짜: 2021년 5월 15일
-소요 시간: 5분 48초
-카테고리: 인덱싱
-태그: 레벨1, 파이썬
+<meta property="og:description" content="날짜: 2021년 5월 24일
+소요 시간: 2시간 35분 22초
+카테고리: 수학 문제
+태그: gold.5, 1990, 파이썬
 
 ">
 
@@ -72,17 +72,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post1/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post1/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/24/ap_bj_post2/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/24/ap_bj_post2/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/05/ap_pg_post1/">
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/24/ap_bj_post1/">
 
 
-
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post2/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -173,16 +171,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/05/15/ap_pg_post1" class="post" role="article">
+<article id="post-algorithmpractice/2021/05/24/ap_bj_post2" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        [프로그래머스 / lv.1] 가운데 글자 가져오기
+        [백준 / 1990] 소수인팰린드롬
         
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-05-15T00:00:00+09:00">15 May 2021</time>
+      <time datetime="2021-05-24T00:00:00+09:00">24 May 2021</time>
       
 
 
@@ -205,7 +203,7 @@ in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice
 
 
 
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
+on <a href="/tag/algorithmpractice-baekjoon/" data-flip="title">BaekJoon</a>
 
     </p>
 
@@ -222,62 +220,156 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <!--  -->
 
     <br />
-    <p>날짜: 2021년 5월 15일<br />
-소요 시간: 5분 48초<br />
-카테고리: 인덱싱<br />
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
+    <p>날짜: 2021년 5월 24일<br />
+소요 시간: 2시간 35분 22초<br />
+카테고리: 수학 문제<br />
+태그: <code class="language-plaintext highlighter-rouge">gold.5</code>, <code class="language-plaintext highlighter-rouge">1990</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
 
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12903">코딩테스트 연습 - 가운데 글자 가져오기</a></p>
+<p><a href="https://www.acmicpc.net/problem/1990">백준 1990 - 소수인팰린드롬</a></p>
 
 <h3 id="입출력-예시">입출력 예시</h3>
 
 <table>
   <thead>
     <tr>
-      <th>s</th>
-      <th>return</th>
+      <th>예제 입력</th>
+      <th>예제 출력</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>“abcde”</td>
-      <td>“c”</td>
+      <td>5 550</td>
+      <td>5</td>
     </tr>
     <tr>
-      <td>“qwer”</td>
-      <td>“we”</td>
+      <td> </td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>131</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>151</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>181</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>191</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>313</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>353</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>373</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>383</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>-1</td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="내가-적은-코드">내가 적은 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">half_s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">half_s</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">palin</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">half_s</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">half_s</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">answer</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nb">int</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mf">0.5</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">break</span>        
+    <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">" "</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">10000000</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mf">10000000.</span>    <span class="c1">#임의로 지정해준 값
+</span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">palin</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">prime</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+            <span class="k">print</span> <span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="풀이-과정">풀이 과정</h3>
 
-<p><code class="language-plaintext highlighter-rouge">s</code> 길이를 반으로 나누었을 때<br />
-나머지가 1이면(문자열의 길이가 홀수이면) ‘길이의 반’번째 있는 문자(하나)를 가져왔고<br />
-나머지가 0이면(문자열의 길이가 짝수이면) ‘길이의 반-1’~’길이의 반’번째 있는 문자(둘)를 가져왔다.</p>
+<p>팰린드롬을 찾는 함수를 정의하고, 소수를 찾는 함수를 정의하여 <code class="language-plaintext highlighter-rouge">a</code>와<code class="language-plaintext highlighter-rouge">b</code> 범위 안에 두가지를 충족하는 수를 찾는 방식<br />
+소수를 찾는 함수에서 소요 시간이 길어져서 줄이기 위해 별 방법을 다 쓰다가 결국 10000000 이상의 소수인팰린드롬이 없다는 전제를 넣어서야 비로소 제한 시간 내에 풀 수 있었다.<br />
+<del>애초에 이걸 파이썬으로 풀 수는 있는 건가…</del></p>
 
 <h3 id="베스트-코드">베스트 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">string_middle</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">isp</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">ln</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ln</span><span class="p">,</span> <span class="n">lm</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">lll</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">now</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">lll</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">lll</span><span class="p">):</span>
+            <span class="n">nttn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+            <span class="n">nini</span> <span class="o">=</span> <span class="n">nttn</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nttn</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">nownum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nini</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nownum</span> <span class="o">&gt;=</span> <span class="n">nn</span> <span class="ow">and</span> <span class="n">nownum</span> <span class="o">&lt;=</span> <span class="n">mm</span> <span class="ow">and</span> <span class="n">isp</span><span class="p">(</span><span class="n">nownum</span><span class="p">):</span>
+                <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">nini</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lll</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">now</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">lll</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">lll</span><span class="p">):</span>
+            <span class="n">nttn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+            <span class="n">nini</span> <span class="o">=</span> <span class="n">nttn</span> <span class="o">+</span> <span class="n">nttn</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">nownum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nini</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nownum</span> <span class="o">&gt;=</span> <span class="n">nn</span> <span class="ow">and</span> <span class="n">nownum</span> <span class="o">&lt;=</span> <span class="n">mm</span> <span class="ow">and</span> <span class="n">isp</span><span class="p">(</span><span class="n">nownum</span><span class="p">):</span>
+                <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">nini</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"-1"</span><span class="p">)</span>
 </code></pre></div></div>
+<p>풀 수 있었다…<br />
+유일하게 임의로 수를 지정해 주지 않고 푼 코드<br />
+파이썬으로 시간 내에 코드를 돌아가게 하려면 파이썬 특성 상 이해도를 높여서 코드를 효율적으로 짜는 능력을 상당히 많이 끌어올려야 될 것 같다.<br />
+이걸 봐도 어떤 부분에서 내 코드보다 시간을 아낄 수 있었는지를 찾을 수 없다… 더 공부를 해야겠다고 느꼈다.</p>
 
 <h3 id="반성">반성</h3>
 
 <ul>
-  <li>인덱스 슬라이싱의 개념을 확실하게 잡지 못해 s[a:b] 부분을 헷갈려서 시간이 많이 소요되었다.</li>
-  <li><del>사실 다시 코드 짜라고 해도 베스트 코드는 생각 못해낼 것 같긴하다.</del></li>
+  <li>알고리즘이 어렵진 않았다. 다만 실행 시간을 줄이기 위해 2시간을 고민했다.</li>
 </ul>
 
 
@@ -340,21 +432,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
       
       
         
-        
           
-
-
-<li class="h4">
-  <a href="/algorithmpractice/2021/05/24/ap_bj_post2/" data-flip="title">
-    <span>[백준 / 1990] 소수인팰린드롬</span>
-  </a>
-  <small><time datetime="2021-05-24T00:00:00+09:00">
-    24 May 2021
-  </time></small>
-</li>
-
-        
-      
+          
         
         
           
@@ -389,6 +468,19 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
       
         
         
+          
+
+
+<li class="h4">
+  <a href="/algorithmpractice/2021/05/22/ap_bj_post1/" data-flip="title">
+    <span>[백준 / 1475] 방 번호</span>
+  </a>
+  <small><time datetime="2021-05-22T00:00:00+09:00">
+    22 May 2021
+  </time></small>
+</li>
+
+        
       
     
   </ul>
@@ -406,7 +498,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 가운데 글자 가져오기",this.page.identifier="/algorithmpractice/2021/05/15/ap_pg_post1",this.page.url="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[백준 / 1990] 소수인팰린드롬",this.page.identifier="/algorithmpractice/2021/05/24/ap_bj_post2",this.page.url="http://localhost:4000/algorithmpractice/2021/05/24/ap_bj_post2/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
