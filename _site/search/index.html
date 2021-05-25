@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="Language Grammar">
+<meta property="og:title" content="Search">
 <meta property="og:type" content="article">
 
 
@@ -46,27 +46,36 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>Language Grammar &middot; KkoHMa's Coding Diary</title>
+  <title>Search &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="컴퓨터 언어 문법 정리 노트
+<meta name="description" content="검색한 단어를 포함한 포스트입니다.
 ">
-<meta property="og:description" content="컴퓨터 언어 문법 정리 노트
+<meta property="og:description" content="검색한 단어를 포함한 포스트입니다.
 ">
 
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+
+<center>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+</center>
 
 
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/category/4-languagegrammar/">
-<meta property="og:url" content="http://localhost:4000/category/4-languagegrammar/">
+<link rel="canonical" href="http://localhost:4000/search/">
+<meta property="og:url" content="http://localhost:4000/search/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
-
-  <link rel="prev" href="http://localhost:4000/category/3-algorithmpractice/">
 
 
 
@@ -157,25 +166,32 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <div id="_yPushState">
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
-      
-
-
-
-  <header>
-    <h1 class="page-title">Language Grammar</h1>
+      <article class="page" role="article">
+  <header style="margin-bottom:2rem">
+    <h1 class="page-title">Search</h1>
     
   
   
-<p class="message">컴퓨터 언어 문법 정리 노트</p>
+<p class="message">검색한 단어를 포함한 포스트입니다.</p>
 
 
 
 
   </header>
-  <hr class="sr-only"/>
 
+  <div id="tipue_search_content"></div>
 
+<script>
+$(document).ready(function() {
+  $('#tipue_search_input').tipuesearch({
+    'wholeWords' : false,
+    'showTime' : false,
+    'minimumLength' : 1
+  });
+});
+</script>
 
+</article>
 
     <main id="_main">
     
@@ -244,8 +260,33 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <li>
       <input type="checkbox" id="list-item-2"/>
       <div  class="list-wrapper">
-      <a class="sidebar-nav-item" href="/category/2-computerscience/">Computer Science</a>
+      <a class="sidebar-nav-item" href="/category/2-languagegrammar/">Language Grammar</a>
        <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/laguagegrammar-python/">Python</a>
+             </li>
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/3-computerscience/">Computer Science</a>
+       <label class="folder" for="list-item-3">▾</label>
     </div>
      <ul class="list-body">
        
@@ -267,10 +308,10 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   
   
     <li>
-      <input type="checkbox" id="list-item-3"/>
+      <input type="checkbox" id="list-item-4"/>
       <div  class="list-wrapper">
-      <a class="sidebar-nav-item" href="/category/3-algorithmpractice/">Algorithm Practice</a>
-       <label class="folder" for="list-item-3">▾</label>
+      <a class="sidebar-nav-item" href="/category/4-algorithmpractice/">Algorithm Practice</a>
+       <label class="folder" for="list-item-4">▾</label>
     </div>
      <ul class="list-body">
        
@@ -288,31 +329,6 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
              <li>
                <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
              </li>
-           
-         
-     </ul>
-    </li>
-
-  
-  
-    <li>
-      <input type="checkbox" id="list-item-4"/>
-      <div  class="list-wrapper">
-      <a class="sidebar-nav-item active" href="/category/4-languagegrammar/">Language Grammar</a>
-       <label class="folder" for="list-item-4">▾</label>
-    </div>
-     <ul class="list-body">
-       
-           
-         
-           
-         
-           
-             <li>
-               <a class="sidebar-nav-subitem" href="/tag/laguagegrammar-python/">Python</a>
-             </li>
-           
-         
            
          
      </ul>
@@ -343,6 +359,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 </ul>
 
       </nav>
+      <br/>
+      <form action="/search">
+        <div class="tipue_search_left">
+          <img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+        </div>
+        <div class="tipue_search_right">
+          <input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+        <div style="clear: both;"></div>
+      </form>
+      
     <br/>
     <br/>
       <div class="sidebar-box">

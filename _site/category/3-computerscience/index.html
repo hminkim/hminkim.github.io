@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 약수의 개수와 덧셈">
+<meta property="og:title" content="Computer Science">
 <meta property="og:type" content="article">
 
 
@@ -46,21 +46,13 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 약수의 개수와 덧셈 &middot; KkoHMa's Coding Diary</title>
+  <title>Computer Science &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 5월 15일
-소요 시간: 30분 21초
-카테고리: 수학 
-태그: 레벨1, 파이썬
-
+<meta name="description" content="Computer Science
 ">
-<meta property="og:description" content="날짜: 2021년 5월 15일
-소요 시간: 30분 21초
-카테고리: 수학 
-태그: 레벨1, 파이썬
-
+<meta property="og:description" content="Computer Science
 ">
 
 
@@ -72,17 +64,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post2/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post2/">
+<link rel="canonical" href="http://localhost:4000/category/3-computerscience/">
+<meta property="og:url" content="http://localhost:4000/category/3-computerscience/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post1/">
+  <link rel="prev" href="http://localhost:4000/category/2-languagegrammar/">
 
 
 
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/05/16/ap_pg_post1/">
+  <link rel="next" href="http://localhost:4000/category/4-algorithmpractice/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -173,262 +165,26 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/05/15/ap_pg_post2" class="post" role="article">
+
+
   <header>
-    <h1 class="post-title">
-      
-        [프로그래머스 / lv.1] 약수의 개수와 덧셈
-        
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2021-05-15T00:00:00+09:00">15 May 2021</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
-
-    </p>
-
+    <h1 class="page-title">Computer Science</h1>
     
-  <div class="hr" style="padding-bottom:0"></div>
+  
+  
+<p class="message">Computer Science</p>
+
+
 
 
   </header>
-  
-
-  
-  <div class="markdown-body">
-
-    <!--  -->
-
-    <br />
-    <p>날짜: 2021년 5월 15일<br />
-소요 시간: 30분 21초<br />
-카테고리: 수학 
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
-
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/77884">코딩테스트 연습 - 약수의 개수와 덧셈</a></p>
-
-<h3 id="입출력-예시">입출력 예시</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>left</th>
-      <th>right</th>
-      <th>result</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>13</td>
-      <td>17</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <td>24</td>
-      <td>27</td>
-      <td>52</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="내가-적은-코드">내가 적은 코드</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">measure_count</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">measure_check</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">measure_check</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">measure_count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">measure_count</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">+=</span> <span class="n">num</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">-=</span> <span class="n">num</span>
-    <span class="k">return</span> <span class="n">answer</span>
-</code></pre></div></div>
-
-<h3 id="풀이-과정">풀이 과정</h3>
-
-<p><code class="language-plaintext highlighter-rouge">left</code>에서 <code class="language-plaintext highlighter-rouge">right</code>까지의 수를 반복문을 활용해서 하나씩 약수의 개수를 체크했다.<br />
-1부터 <code class="language-plaintext highlighter-rouge">num</code>까지 차례차례 <code class="language-plaintext highlighter-rouge">num</code>을 나누었을 때 나머지가 0이 되면 <code class="language-plaintext highlighter-rouge">measure_count</code>를 1 증가시켜
-<code class="language-plaintext highlighter-rouge">measure_count</code>를 2로 나눈 나머지를 통해 약수의 개수가 짝수개인지 홀수개인지를 판별했다.</p>
-
-<h3 id="베스트-코드">베스트 코드</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">==</span><span class="n">i</span><span class="o">**</span><span class="mf">0.5</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">-=</span> <span class="n">i</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">+=</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="n">answer</span>
-</code></pre></div></div>
-
-<h3 id="반성">반성</h3>
-
-<ul>
-  <li>
-    <ul>
-      <li>알고리즘 문제를 많이 풀지 않아서 익숙하지 않은 탓인지 기본적인 수학문제임에도 시간을 많이 썼다.</li>
-    </ul>
-  </li>
-  <li>range(a,b)의 이해도가 낮아 +1을 놓쳐 해맸다.</li>
-  <li><del>베스트 코드 짜는 애들은 약수의 개수가 홀수개면 0.5제곱하면 정수로 떨어진다는 걸 어떻게 생각을 해내지…</del></li>
-</ul>
-
-    <br />
-    <br />
-  </div>
-  
-
-</article>
-
-<hr class="dingbat" />
-<br />
+  <hr class="sr-only"/>
 
 
-
-
-
-
-  <aside class="author" role="complementary">
-    <div class="author">
-  <h2 class="page-title hr">
-    About
-  </h2>
-<div class="author-body">
-  
-    
-  
-
-  
-
-  <img
-    src="/assets/img/me.jpeg"
-    class="me"
-    alt="KkoHMa"
-    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
-    
-  />
-
-
-  
-  <div class="author-body-description">
-    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
-
-  </div>
-</div>
-</div>
-
-  </aside>
-
-
-
-
-
-<aside class="related" role="complementary">
-  <h2 class="hr">Related Posts</h2>
-
-  <ul class="related-posts">
-    
-      
-      
-      
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/algorithmpractice/2021/05/24/ap_bj_post1/" data-flip="title">
-    <span>[백준 / 1259] 팰린드롬수</span>
-  </a>
-  <small><time datetime="2021-05-24T00:00:00+09:00">
-    24 May 2021
-  </time></small>
-</li>
-
-        
-      
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/algorithmpractice/2021/05/22/ap_bj_post1/" data-flip="title">
-    <span>[백준 / 1475] 방 번호</span>
-  </a>
-  <small><time datetime="2021-05-22T00:00:00+09:00">
-    22 May 2021
-  </time></small>
-</li>
-
-        
-      
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/algorithmpractice/2021/05/21/ap_pg_post3/" data-flip="title">
-    <span>[프로그래머스 / lv.1] 약수의 합</span>
-  </a>
-  <small><time datetime="2021-05-21T00:00:00+09:00">
-    21 May 2021
-  </time></small>
-</li>
-
-        
-      
-        
-        
-      
-    
-  </ul>
-</aside>
 
 
     <main id="_main">
     
-
-      
-        <aside class="comments" role="complementary">
-  <h2>Comments</h2>
-  <hr/>
-
-  <div id="disqus_thread"></div>
-
-  <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="[프로그래머스 / lv.1] 약수의 개수와 덧셈",this.page.identifier="/algorithmpractice/2021/05/15/ap_pg_post2",this.page.url="http://localhost:4000/algorithmpractice/2021/05/15/ap_pg_post2/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//KkoHMa-Blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
-
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</aside>
 
       
       
@@ -519,7 +275,7 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <li>
       <input type="checkbox" id="list-item-3"/>
       <div  class="list-wrapper">
-      <a class="sidebar-nav-item" href="/category/3-computerscience/">Computer Science</a>
+      <a class="sidebar-nav-item active" href="/category/3-computerscience/">Computer Science</a>
        <label class="folder" for="list-item-3">▾</label>
     </div>
      <ul class="list-body">

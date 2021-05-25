@@ -1,0 +1,118 @@
+---
+layout: post
+title: "[백준 / 1990] 소수인팰린드롬"
+subtitle:  "백준 gold.5"
+categories: algorithmpractice
+tags: baekjoon
+---
+
+날짜: 2021년 5월 24일  
+소요 시간: 2시간 35분 22초  
+카테고리: 수학 문제  
+태그: `gold.5`, `1990`, `파이썬`  
+
+
+[백준 1990 - 소수인팰린드롬](https://www.acmicpc.net/problem/1990)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|5 550|5|
+||7|
+||11|  
+||101|
+||131|
+||151|
+||181|
+||191|
+||313|
+||353|
+||373|
+||383|
+||-1|  
+
+  
+### 내가 적은 코드
+
+```python
+def palin(x):
+    a = str(x)
+    b = a[::-1]
+    if a == b:
+        return True
+    else:
+        return False
+
+def prime(x):
+    for num in range(2,int((x**0.5))+1):
+        if x % num == 0:
+            return False
+            break        
+    return True
+
+a, b = map(int, input().split(" "))
+if b > 10000000:
+    b = 10000000.    #임의로 지정해준 값
+for num in range(a, b+1):
+    if palin(num):
+        if prime(num):
+            print (num)
+print (-1)
+```
+
+### 풀이 과정  
+
+팰린드롬을 찾는 함수를 정의하고, 소수를 찾는 함수를 정의하여 `a`와`b` 범위 안에 두가지를 충족하는 수를 찾는 방식  
+소수를 찾는 함수에서 소요 시간이 길어져서 줄이기 위해 별 방법을 다 쓰다가 결국 10000000 이상의 소수인팰린드롬이 없다는 전제를 넣어서야 비로소 제한 시간 내에 풀 수 있었다.
+<span style="color:f0f0f0">아니 이걸 C말고 파이썬으로 풀 수 있긴 한가</span>
+
+
+  
+### 베스트 코드
+
+```python
+import sys
+def isp(n):
+    if n == 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 2):
+        if n % i == 0:
+            return False
+    return True
+n, m = input().split()
+nn = int(n)
+mm = int(m)
+ln = len(n)
+lm = len(m)
+for i in range(ln, lm + 1):
+    if i % 2:
+        lll = i // 2 + 1
+        for now in range(10 ** (lll - 1), 10 ** lll):
+            nttn = str(now)
+            nini = nttn[:-1] + nttn[::-1]
+            nownum = int(nini)
+            if nownum >= nn and nownum <= mm and isp(nownum):
+                sys.stdout.write(nini)
+                sys.stdout.write("\n")
+    else:
+        lll = i // 2
+        for now in range(10 ** (lll - 1), 10 ** lll):
+            nttn = str(now)
+            nini = nttn + nttn[::-1]
+            nownum = int(nini)
+            if nownum >= nn and nownum <= mm and isp(nownum):
+                sys.stdout.write(nini)
+                sys.stdout.write("\n")
+sys.stdout.write("-1")
+```
+<span style="color:f0f0f0">풀 수 있었다...</span>
+유일하게 임의로 수를 지정해 주지 않고 푼 코드  
+파이썬으로 시간 내에 코드를 돌아가게 하려면 파이썬 특성 상 이해도를 높여서 코드를 효율적으로 짜는 능력을 상당히 많이 끌어올려야 될 것 같다.  
+이걸 봐도 어떤 부분에서 내 코드보다 시간을 아낄 수 있었는지를 찾을 수 없다... 더 공부를 해야겠다고 느꼈다.
+
+### 반성
+
+- 알고리즘이 어렵진 않았다. 다만 실행 시간을 줄이기 위해 2시간을 고민했다.
+- ~~애초에 이걸 파이썬으로 풀 수는 있는 건가...~~
+  
