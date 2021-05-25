@@ -41,7 +41,10 @@
   <p class="read-more"><a class="heading" href="{{ post.url | relative_url }}" data-flip="title">Continue reading </a>
   </p>
   {% endunless %}
-  
+
+</article>
+{% unless include.link_title %}
+<hr class="dingbat" />
   <div>
     <script src="https://utteranc.es/client.js"
         repo="hminkim/hminkim.github.io"
@@ -52,9 +55,5 @@
         async>
     </script>
   </div>
-
-</article>
-{% unless include.link_title %}
-<hr class="dingbat" />
 <br />
 {% endunless %}
