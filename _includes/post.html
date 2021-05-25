@@ -34,7 +34,8 @@
     <br />
     {{ post.content }}
     <br />
-    <div>
+  </div>
+      <div>
       <script src="https://utteranc.es/client.js"
         repo="hminkim/hminkim.github.io"
         issue-term="pathname"
@@ -45,7 +46,6 @@
       </script>
     </div>
     <br />
-  </div>
   {% else %}
   {{ post.excerpt }}
   <p class="read-more"><a class="heading" href="{{ post.url | relative_url }}" data-flip="title">Continue reading </a>
