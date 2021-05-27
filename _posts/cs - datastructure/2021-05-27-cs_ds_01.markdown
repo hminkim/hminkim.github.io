@@ -17,11 +17,9 @@ tags: datastructure
 - 정적 배열  
 - 지역성을 가짐  
 - 탐색에 효율적   
-  
-**ㅇ**
-  
-C의 Array  
-Java의 Array  
+    
+> - C의 Array  
+- Java의 Array  
   
 **장점**  
   
@@ -36,16 +34,14 @@ Java의 Array
 - 선언시 지정한 배열의 크기를 변동 불가  
   
   
-###List 리스트  
+### List 리스트  
   
 - 불연속 적으로 메모리 공간을 할당  
 - 포인터를 통한 접근  
 - 동적 배열  
 - 추가, 삭제에 효율적  
-  
-**ㅇ**  
-  
-- Python의 List  
+   
+> - Python의 List  
 - Java의 ArrayList  
 
 **장점**  
