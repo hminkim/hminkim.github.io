@@ -8,7 +8,7 @@ tags: baekjoon
 
 날짜: 2021년 5월 26일  
 소요 시간: 2시간 초과  
-카테고리: 브루트포스 알고리즘  
+카테고리: 구현, 문자열  
 태그: `silver.4`, `1213 `, `파이썬`, `time out`  
 
 
@@ -18,7 +18,7 @@ tags: baekjoon
 
 |예제 입력|예제 출력|
 |---|---|
-|abab|5|
+|AABB|ABBA|
 
   
 ### 내가 적은 코드
@@ -35,32 +35,32 @@ tags: baekjoon
 ### 베스트 코드
 
 ```python
-def check(s):
-  isPelin = True
-  for i in range(len(s)//2):
-    if s[i] != s[len(s)-1-i]:
-      isPelin = False
-      break
-  return isPelin
+err = lambda:print("I'm Sorry Hansoo")
+s=list(input())
+s.sort()
+d={}
+for i in s:
+	if d.get(i) != None:
+		d[i]+=1
+	else:
+		d[i]=1
+last=''
+for k,v in d.items():
+	if (v%2==1 and last!=''):
+		err()
+		exit(0)
+	if v%2==1:
+		last=k
 
-s = list(input())
-front = list(s)
-back = []
-count = 0
+o=""
+for k,v in d.items():
+	o+=k*(v//2)
 
-for i in range(len(s)):
-  if check(s):
-    print(len(s)+count)
-    break
-  else:
-    count += 1
-    back.insert(0, front[i])
-    if check(front+back):
-      print(len(s)+count)
-      break
-```
+
+print(o+last+o[::-1])
 
 ### 반성
 
-- 처음으로 제한 시간 2시간 안에 다 풀지 못한 문제
-- 정답을 봤을 때 이해가 된다는 건 내가 문제를 많이 풀어보지 않아서 로직은 알지만 코드로 구현을 못하는 거라고 생각한다. 더 많이 풀어서 경험을 늘리는 게 중요하다.
+- lambda 함수와 dictionary의 get함수에 대한 이해도가 낮아 정답 코드를 보고도 코드를 이해하는 데 시간이 걸렸다.  
+- 파이썬에 대한 이해도도 높일 필요가 있고, 알고리즘 이론적인 부분도 공부할 필요를 느꼈다.
+- 알고리즘 문제를 푸는 비중보다 이론적인 부분을 공부하는 비중을 더 높여야겠다.
