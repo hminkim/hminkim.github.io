@@ -1,0 +1,66 @@
+---
+layout: post
+title: "[프로그래머스 / lv.2] 주식가격"
+subtitle:  "프로그래머스 lv.2"
+categories: algorithmpractice
+tags: programers
+---
+
+날짜: 2021년 5월 27일  
+소요 시간: 22분 04초  
+카테고리: 스택/큐  
+태그: `레벨2`, `파이썬`  
+
+
+[코딩테스트 연습 - 주식가격](https://programmers.co.kr/learn/courses/30/lessons/42584)
+
+### 입출력 예시  
+
+|n|return|
+|---|---|---|
+|[1,2,3,2,3]|[4,3,1,1,0]|   
+  
+  
+### 내가 적은 코드
+
+```python
+def solution(prices):
+    answer = []
+    for i in range(0,len(prices)):
+        j = 0
+        while prices[i] <= prices[i + j] and i+j != len(prices)-1:
+            j += 1
+        answer.append(j)
+    return answer
+```
+
+### 풀이 과정  
+
+  
+  
+### 베스트 코드
+
+```python
+def solution(p):
+    ans = [0] * len(p)
+    stack = [0]
+    for i in range(1, len(p)):
+        if p[i] < p[stack[-1]]:
+            for j in stack[::-1]:
+                if p[i] < p[j]:
+                    ans[j] = i-j
+                    stack.remove(j)
+                else:
+                    break
+        stack.append(i)
+    for i in range(0, len(stack)-1):
+        ans[stack[i]] = len(p) - stack[i] - 1
+    return ans
+```
+
+### 반성
+
+- 
+  
+
+
