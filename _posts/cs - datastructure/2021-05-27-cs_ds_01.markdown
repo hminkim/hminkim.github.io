@@ -19,7 +19,7 @@ tags: datastructure
 - 탐색에 효율적   
     
 > - C의 Array  
-- Java의 Array  
+> - Java의 Array  
   
 **장점**  
   
@@ -42,7 +42,7 @@ tags: datastructure
 - 추가, 삭제에 효율적  
    
 > - Python의 List  
-- Java의 ArrayList  
+> - Java의 ArrayList  
 
 **장점**  
   
