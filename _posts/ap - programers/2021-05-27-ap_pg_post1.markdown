@@ -16,7 +16,7 @@ tags: programers
 
 ### 입출력 예시  
 
-|n|return|
+|prices|return|
 |---|---|---|
 |[1,2,3,2,3]|[4,3,1,1,0]|   
   
