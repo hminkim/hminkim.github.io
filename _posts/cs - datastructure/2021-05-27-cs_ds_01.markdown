@@ -5,10 +5,10 @@ subtitle:  "array & list"
 categories: computerscience
 tags: datastructure
 ---
-  
 ## Array 배열  
   
 -----
+  
   
 #### 특징
 
@@ -30,6 +30,7 @@ tags: datastructure
 - 정적이므로 배열의 크기를 정해주어야 함  
 - 삽입 삭제 시 요소들을 이동해야 해서 비효율적  
 - 선언시 지정한 배열의 크기를 변동 불가  
+  
   
   
 ## List 리스트  
