@@ -6,9 +6,9 @@ categories: computerscience
 tags: datastructure
 ---
   
-## Array & List  
+## Array 배열  
   
-### Array 배열  
+-----
   
 #### 특징
 
@@ -34,7 +34,9 @@ tags: datastructure
 - 선언시 지정한 배열의 크기를 변동 불가  
   
   
-### List 리스트  
+## List 리스트  
+  
+-----
   
 - 불연속 적으로 메모리 공간을 할당  
 - 포인터를 통한 접근  
@@ -57,7 +59,7 @@ tags: datastructure
 - 검색이 비효율적  
 - 포인터를 통해 다음 데이터의 위치를 가르키고 있어 추가적인 메모리 공간 발생  
   
--------
+-----
   
 **Array (배열)**  
   
