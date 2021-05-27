@@ -28,15 +28,16 @@ def solution(prices):
     answer = []
     for i in range(0,len(prices)):
         j = 0
-        while prices[i] <= prices[i + j] and i+j != len(prices)-1:
+        while prices[i] <= prices[i + j] and i + j != len(prices) - 1:
             j += 1
         answer.append(j)
     return answer
 ```
 
 ### 풀이 과정  
-
   
+`prices[i+j]`(비교 주식 가격)이 `prices[i]`(현재 주식 가격)보다 작아질 때까지 `j`가 1씩 증가하게 하여  
+비교 주식 가격이 현재 주식 가격보다 작아지면 `j`를 `answer` 리스트 원소로 추가한다.  
   
 ### 베스트 코드
 
