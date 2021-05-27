@@ -1,0 +1,66 @@
+---
+layout: post
+title: "[백준 / 1213] 팰린드롬 만들기"
+subtitle:  "백준 silver.4"
+categories: algorithmpractice
+tags: baekjoon
+---
+
+날짜: 2021년 5월 26일  
+소요 시간: 2시간 초과  
+카테고리: 브루트포스 알고리즘  
+태그: `silver.4`, `1213 `, `파이썬`, `time out`  
+
+
+[백준 1213 - 팰린드롬 만들기](https://www.acmicpc.net/problem/1213)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|abab|5|
+
+  
+### 내가 적은 코드
+
+```python
+# 문제를 풀지 못하였다.
+```
+
+### 풀이 과정  
+
+문제를 풀지 못하였다.
+
+  
+### 베스트 코드
+
+```python
+def check(s):
+  isPelin = True
+  for i in range(len(s)//2):
+    if s[i] != s[len(s)-1-i]:
+      isPelin = False
+      break
+  return isPelin
+
+s = list(input())
+front = list(s)
+back = []
+count = 0
+
+for i in range(len(s)):
+  if check(s):
+    print(len(s)+count)
+    break
+  else:
+    count += 1
+    back.insert(0, front[i])
+    if check(front+back):
+      print(len(s)+count)
+      break
+```
+
+### 반성
+
+- 처음으로 제한 시간 2시간 안에 다 풀지 못한 문제
+- 정답을 봤을 때 이해가 된다는 건 내가 문제를 많이 풀어보지 않아서 로직은 알지만 코드로 구현을 못하는 거라고 생각한다. 더 많이 풀어서 경험을 늘리는 게 중요하다.
