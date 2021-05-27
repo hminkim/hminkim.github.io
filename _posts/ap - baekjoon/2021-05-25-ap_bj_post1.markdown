@@ -9,7 +9,7 @@ tags: baekjoon
 날짜: 2021년 5월 25일  
 소요 시간: 2시간 초과  
 카테고리: 브루트포스 알고리즘  
-태그: `silver.1`, `1254 `, `파이썬`, `time_out`  
+태그: `silver.1`, `1254`, `파이썬`, `time out`  
 
 
 [백준 1254 - 팰린드롬 만들기](https://www.acmicpc.net/problem/1254)
