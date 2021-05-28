@@ -58,6 +58,7 @@ for k,v in d.items():
 
 
 print(o+last+o[::-1])
+```
 
 ### 반성
 
