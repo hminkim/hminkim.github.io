@@ -37,8 +37,8 @@ while len(arr) != 0:
 print('<' + ', '.join(map(str,que)) + '>')
 ```
   
-```
-#나름 큐로 풀어보겠다고 풀었던 코드  
+```python
+# 나름 큐로 풀어보겠다고 풀었던 코드  
 
 N,K = map(int, input().split())
 
