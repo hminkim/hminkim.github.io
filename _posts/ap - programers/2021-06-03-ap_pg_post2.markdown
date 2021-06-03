@@ -25,7 +25,6 @@ tags: programers
 
 ```python
 # 문제를 풀지 못하였다.
-
 ```
 
 ### 풀이 과정  
@@ -37,7 +36,6 @@ tags: programers
 ```python
 def solution(strings, n):
     return sorted(strings, key=lambda x: x[n])
-
 ```
 
 ### 반성
