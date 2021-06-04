@@ -13,7 +13,7 @@ tags: datastructure
   
 <center><img src="/assets/img/cs_ds_210605_1.jpg" width="50%" height="50%"></center>  
 <center>출처 : https://gohighbrow.com/stacks-and-queues/</center>  
-스택과 큐의 구조를 가장 잘 보여주는 예시  
+<center>스택과 큐의 구조를 가장 잘 보여주는 예시</center>  
   
   
 ## Stack 스택  
@@ -22,26 +22,26 @@ tags: datastructure
   
 ```python
 class Stack:
-	def __init__(self):
-			self.items = [].  #데이터 저장을 위한 리스트 준비
+    def __init__(self):
+        self.items = [].  #데이터 저장을 위한 리스트 준비
+    
+    def push(self, val):
+        self.items.append(val)
 
-	def push(self, val):
-		self.items.append(val)
+    def pop(self):
+	try:
+	    return self.items.pop()   #pop할 item이 없으면
+	except IndexError:
+	    print("Stack is empty")   #indexError 발생
+    
+    def top(self):
+        try:
+	    return self.items[-1]
+	except IndexError:
+	    print("Stack is empty")
 
-	def pop(self):
-		try:
-				return self.items.pop()   #pop할 item이 없으면
-		except IndexError:
-			print("Stack is empty")   #indexError 발생
-
-	def top(self):
-		try:
-			return self.items[-1]
-		except IndexError:
-			print("Stack is empty")
-
-	def __len__(self):
-		return len(self.items)   #len()로 호출하면 Stack의 item 수 반환
+    def __len__(self):
+        return len(self.items)   #len()로 호출하면 Stack의 item 수 반환
 ```
 <center>파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.</center>  
   
@@ -65,19 +65,19 @@ class Stack:
   
 ```python
 class Queue:
-	def __init__(self):
-		self.items = []   #빈 리스트
-		self.front_index = 0
-	def enqueue(self, val):
-		self.item.append(val)
-	def dequeue(self):
-		if self.front_index == len(self.items):
-			print(“Queue is empty”)
-			return None
-		else:
-			x = self.items[front_index]
-			self.front_index +=1
-			return x
+    def __init__(self):
+        self.items = []   #빈 리스트
+	self.front_index = 0
+    def enqueue(self, val):
+	self.item.append(val)
+    def dequeue(self):
+	if self.front_index == len(self.items):
+	    print(“Queue is empty”)
+	    return None
+	else:
+	    x = self.items[front_index]
+	    self.front_index +=1
+	    return x
 ```
 <center>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</center>  
 
