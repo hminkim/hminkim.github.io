@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="Home">
+<meta property="og:title" content="Stack & Queue">
 <meta property="og:type" content="article">
 
 
@@ -46,13 +46,49 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>Home &middot; KkoHMa's Coding Diary</title>
+  <title>Stack & Queue &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="글이든지 그림이든지 코드든지 무엇이든 끄적이는 것을 좋아하고 깔끔하게 완성하는 것을 좋아하는 꼬마 개발 꿈나무 입니다.
+<meta name="description" content="Sequential List 순차 리스트
+
+
+
+제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
+
+
+스택과 큐의 구조를 가장 잘 보여주는 예시
+출처 : https://gohighbrow.com/stacks-and-queues/
+
+Stack 스택
+
+
+
+```Python
+class Stack:
+	def init(self):
+			self.items = [].  #데이터 저장을 위한 리스트 준비
+
 ">
-<meta property="og:description" content="글이든지 그림이든지 코드든지 무엇이든 끄적이는 것을 좋아하고 깔끔하게 완성하는 것을 좋아하는 꼬마 개발 꿈나무 입니다.
+<meta property="og:description" content="Sequential List 순차 리스트
+
+
+
+제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
+
+
+스택과 큐의 구조를 가장 잘 보여주는 예시
+출처 : https://gohighbrow.com/stacks-and-queues/
+
+Stack 스택
+
+
+
+```Python
+class Stack:
+	def init(self):
+			self.items = [].  #데이터 저장을 위한 리스트 준비
+
 ">
 
 
@@ -64,11 +100,13 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/page-6/">
-<meta property="og:url" content="http://localhost:4000/page-6/">
+<link rel="canonical" href="http://localhost:4000/computerscience/2021/06/05/cs_ds_01/">
+<meta property="og:url" content="http://localhost:4000/computerscience/2021/06/05/cs_ds_01/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
+
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/06/04/ap_pg_post2/">
 
 
 
@@ -170,18 +208,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
-  
 
-<article id="post-algorithmpractice/2021/05/20/ap_pg_post2" class="post mb6" role="article">
+<article id="post-computerscience/2021/06/05/cs_ds_01" class="post" role="article">
   <header>
     <h1 class="post-title">
-      <a href="/algorithmpractice/2021/05/20/ap_pg_post2/" data-flip="title">
-        [프로그래머스 / lv.1] 최대공약수와 최소공배수
-        </a>
+      
+        Stack & Queue
+        
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-05-20T00:00:00+09:00">20 May 2021</time>
+      <time datetime="2021-06-05T00:00:00+09:00">05 Jun 2021</time>
       
 
 
@@ -192,7 +229,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
+in <a href="/category/3-computerscience/" data-flip="title">Computer Science</a>
 
       
 
@@ -204,7 +241,7 @@ in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice
 
 
 
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
+on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structure</a>
 
     </p>
 
@@ -216,310 +253,218 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
   
 
   
-  <p>날짜: 2021년 5월 20일<br />
-소요 시간: 27분 9초<br />
-카테고리: 수학 문제<br />
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
+  <div class="markdown-body">
+
+    <!--  -->
+
+    <br />
+    <h2 id="sequential-list-순차-리스트">Sequential List 순차 리스트</h2>
+
+<hr />
+
+<p>제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)</p>
+
+<center><img src="/assets/img/cs_ds_210605_1.jpg" width="50%" height="50%" /></center>
+<p>스택과 큐의 구조를 가장 잘 보여주는 예시<br />
+출처 : https://gohighbrow.com/stacks-and-queues/</p>
+
+<h2 id="stack-스택">Stack 스택</h2>
+
+<hr />
+
+<pre><code class="language-Python">class Stack:
+	def __init__(self):
+			self.items = [].  #데이터 저장을 위한 리스트 준비
+
+	def push(self, val):
+		self.items.append(val)
+
+	def pop(self):
+		try:
+				return self.items.pop()   #pop할 item이 없으면
+		except IndexError:
+			print("Stack is empty")   #indexError 발생
+
+	def top(self):
+		try:
+			return self.items[-1]
+		except IndexError:
+			print("Stack is empty")
+
+	def __len__(self):
+		return len(self.items)   #len()로 호출하면 Stack의 item 수 반환
+</code></pre>
+<p>파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.</p>
+
+<h4 id="특징">특징</h4>
+
+<ul>
+  <li>LIFO : Last In First Out</li>
+  <li>가장 최근에 push된 요소가 먼저 pop된다 (후입선출)</li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>append → push</li>
+    <li>pop → pop</li>
+  </ul>
+</blockquote>
+
+<p>** 활용 예시 **</p>
+
+<ul>
+  <li>웹 브라우저 뒤로 가기 : 가장 최근에 열린 페이지부터 다시 보여줌</li>
+  <li>실행 취소 (Ctrl + Z) : 가장 나중에 실행된 작업을 되돌려줌</li>
+</ul>
+
+<h2 id="queue-큐">Queue 큐</h2>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1">#빈 리스트
+</span>		<span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">):</span>
+			<span class="k">print</span><span class="p">(</span><span class="err">“</span><span class="n">Queue</span> <span class="ow">is</span> <span class="n">empty</span><span class="err">”</span><span class="p">)</span>
+			<span class="k">return</span> <span class="bp">None</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">front_index</span><span class="p">]</span>
+			<span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">+=</span><span class="mi">1</span>
+			<span class="k">return</span> <span class="n">x</span>
+</code></pre></div></div>
+<p>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="n">que</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="n">que</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="n">que</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div></div>
+<p>파이썬에 내장되어 있는 queue 모듈을 활용하여 보다 쉽게 코드를 작성할 수 있다.</p>
+
+<h4 id="특징-1">특징</h4>
+
+<ul>
+  <li>FIFO : First In First Out</li>
+  <li>enqueue된 순서대로 dequeue된다 (선입선출)</li>
+  <li>front에서 dequeue되고 Rear에서 enqueue된다.</li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>append → enqueue → put</li>
+    <li>pop → dequeue → get</li>
+  </ul>
+</blockquote>
+
+<p>queue 모듈의 Queue 클래스에 대한 자세한 내용은 여기 <a href="https://docs.python.org/ko/3.7/library/queue.html">파이썬 공식 레퍼런스</a> 참고</p>
+
+<p>** 활용 예시 **</p>
+
+<ul>
+  <li>은행 번호표 : 가장 먼저 온 사람의 번호를 먼저 띄워 줌</li>
+  <li>프린터 인쇄 대기열 : 우선 순위가 같은 작업 중 가장 먼저 들어 온 문서부터 인쇄함</li>
+</ul>
+
+<hr />
 
 
-  <p class="read-more"><a class="heading" href="/algorithmpractice/2021/05/20/ap_pg_post2/" data-flip="title">Continue reading </a>
-  </p>
+    <br />
+  </div>
+
   
 
 </article>
 
+<hr class="dingbat" />
 
 
-  
 
-<article id="post-algorithmpractice/2021/05/20/ap_pg_post1" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithmpractice/2021/05/20/ap_pg_post1/" data-flip="title">
-        [프로그래머스 / lv.1] 정수 제곱근 판별
-        </a>
-    </h1>
 
-    <p class="post-date heading">
-      <time datetime="2021-05-20T00:00:00+09:00">20 May 2021</time>
-      
 
 
-
-
-
-
-
-
-
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  
-  <p>날짜: 2021년 5월 20일<br />
-소요 시간: 6분 51초<br />
-카테고리: 수학 문제
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
-
-
-  <p class="read-more"><a class="heading" href="/algorithmpractice/2021/05/20/ap_pg_post1/" data-flip="title">Continue reading </a>
-  </p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithmpractice/2021/05/19/ap_pg_post1" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithmpractice/2021/05/19/ap_pg_post1/" data-flip="title">
-        [프로그래머스 / lv.1] 짝수와 홀수
-        </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2021-05-19T00:00:00+09:00">19 May 2021</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  
-  <p>날짜: 2021년 5월 19일<br />
-소요 시간: 53초<br />
-카테고리: 수학 문제<br />
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
-
-
-  <p class="read-more"><a class="heading" href="/algorithmpractice/2021/05/19/ap_pg_post1/" data-flip="title">Continue reading </a>
-  </p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithmpractice/2021/05/17/ap_pg_post1" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithmpractice/2021/05/17/ap_pg_post1/" data-flip="title">
-        [프로그래머스 / lv.1] 행렬의 덧셈
-        </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2021-05-17T00:00:00+09:00">17 May 2021</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  
-  <p>날짜: 2021년 5월 17일<br />
-소요 시간: 6분 11초<br />
-카테고리: 행렬<br />
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
-
-
-  <p class="read-more"><a class="heading" href="/algorithmpractice/2021/05/17/ap_pg_post1/" data-flip="title">Continue reading </a>
-  </p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithmpractice/2021/05/16/ap_pg_post4" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithmpractice/2021/05/16/ap_pg_post4/" data-flip="title">
-        [프로그래머스 / lv.1] 핸드폰 번호 가리기
-        </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2021-05-16T00:00:00+09:00">16 May 2021</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  
-  <p>날짜: 2021년 5월 16일<br />
-소요 시간: 15분 5초<br />
-카테고리: 인덱싱<br />
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
-
-
-  <p class="read-more"><a class="heading" href="/algorithmpractice/2021/05/16/ap_pg_post4/" data-flip="title">Continue reading </a>
-  </p>
-  
-
-</article>
-
-
-
-
-<h2 class="sr-only">Pagination</h2>
-<center>
-
-<div class="pagination">
-  
-    <a href="/page-5/">&laquo; Prev</a>
-  
-
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
   
     
-      <a href="/">1</a>
-    
-  
-    
-      <a href="/page-2/">2</a>
-    
-  
-    
-      <a href="/page-3/">3</a>
-    
-  
-    
-      <a href="/page-4/">4</a>
-    
-  
-    
-      <a href="/page-5/">5</a>
-    
-  
-    
-      <em>6</em>
-    
-  
-    
-      <a href="/page-7/">7</a>
-    
-  
-    
-      <a href="/page-8/">8</a>
-    
   
 
   
-    <a href="/page-7/">Next &raquo;</a>
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="KkoHMa"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
   
+  <div class="author-body-description">
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
+
+  </div>
+</div>
 </div>
 
-</center>
+  </aside>
 
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/computerscience/2021/05/27/cs_ds_01/" data-flip="title">
+    <span>Array & List</span>
+  </a>
+  <small><time datetime="2021-05-27T00:00:00+09:00">
+    27 May 2021
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+<aside>
+  <h2 class="hr">Comments</h2>
+    <script src="https://utteranc.es/client.js"
+        repo="hminkim/hminkim.github.io"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+</aside>
 
     <main id="_main">
     
