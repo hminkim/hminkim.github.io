@@ -11,7 +11,7 @@ tags: datastructure
   
 제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)  
   
-<center><img src="/assets/img/cs_ds_210605_1.jpg" width="50%" height="50%"></center>  
+<center><img src="/assets/img/cs_ds_210605_1.png" width="50%" height="50%"></center>  
 <center>출처 : https://gohighbrow.com/stacks-and-queues/</center>  
 <center>스택과 큐의 구조를 가장 잘 보여주는 예시</center>  
   
