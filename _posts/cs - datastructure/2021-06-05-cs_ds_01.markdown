@@ -43,7 +43,7 @@ class Stack:
 	def __len__(self):
 		return len(self.items)   #len()로 호출하면 Stack의 item 수 반환
 ```
-파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.
+<center>파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.</center>  
   
 ### 특징
   
@@ -79,7 +79,7 @@ class Queue:
 			self.front_index +=1
 			return x
 ```
-List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.  
+<center>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</center>  
 
 ```python
 from queue import Queue
@@ -88,7 +88,7 @@ que = Queue()
 que.put(val)
 que.get()
 ```
-파이썬에 내장되어 있는 queue 모듈을 활용하여 보다 쉽게 코드를 작성할 수 있다.
+<center>파이썬에 내장되어 있는 queue 모듈을 활용하여 보다 쉽게 코드를 작성할 수 있다.</center>  
   
   
 ### 특징
