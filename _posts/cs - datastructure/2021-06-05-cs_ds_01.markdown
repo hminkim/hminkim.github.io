@@ -112,8 +112,44 @@ queue 모듈의 Queue 클래스에 대한 자세한 내용은 여기 [파이썬 
   
 - 은행 번호표 : 가장 먼저 온 사람의 번호를 먼저 띄워 줌   
 - 프린터 인쇄 대기열 : 우선 순위가 같은 작업 중 가장 먼저 들어 온 문서부터 인쇄함  
-   
------  
   
- 
+----  
+    
+    
+## Dequeue (double-end-queue) 덱  
+  
+-----
+  
+```python
+from collections import deque
+
+makeDeque()   #덱 생성
+appendleft()   #맨 앞(왼쪽)에 자료 추가
+pop()   #맨 앞(왼쪽)에 자료 삭제
+append()   #맨 뒤(오른쪽)에 자료 추가
+popleft()   #맨 뒤(오른쪽)에 자료 삭제deque(maxlen=n)
+reverse()   #deque의 순서 뒤집음
+count(x)   #deque에 포함된 x의 개수 반환
+clear()   #deque 값 모두 삭제
+```
+<center>덱은 collections 모듈의 deque 클래스를 활용하면 보다 쉽게 코드를 작성할 수 있다.</center>  
+  
+### 특징
+    
+- Stack과 Queue를 합친 형태  
+- 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료구조  
+  
+   
+**list와 deque 비교**
+  
+|시간 복잡도|insert, remove, popleft|indexing, slicing|
+|---|---|
+|list|O(n)|O(1)|
+|deque|O(n)|O(n)|  
+  
+고정된 길이 내에서 접근, 검색, 슬라이싱을 하는 데에는 list가 유리  
+데이터를 추가 or 삭제할 땐 deque이 유리  
+  
+  
+----
 
