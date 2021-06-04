@@ -42,7 +42,7 @@ print (a,b, sep='/')
 
 ### 풀이 과정  
   
-<center><img src="/assets/img/ap_bj_post2.jpg" width="50%" height="50%"></center>  
+<center><img src="/assets/img/ap_bj_210521_1.jpg" width="50%" height="50%"></center>  
   
 그림의 빨간색 화살표와 같은 순서로 순차적으로 진행되었을 때 `X`번째 분수를 구하기 위해서 단락을 나누어 `count`로 저장하였다.  
 (처음 X를 저장한 `k`는 단락이 넘어갈 때 마다 `count`만큼 차감된다.)  

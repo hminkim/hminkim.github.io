@@ -1,6 +1,16 @@
 var tipuesearch = {"pages": [{
+    "title": "[프로그래머스 / lv.2] 124 나라의 숫자",
+    "text": "날짜: 2021년 6월 4일 소요 시간: 1시간 10분 48초 카테고리: 수학문제 태그: 레벨1, 파이썬 코딩테스트 연습 - 124 나라의 숫자 입출력 예시 10진법 124 나라 10진법 124 나라 1 1 6 14 2 2 7 21 3 4 8 22 4 11 9 24 5 12 10 41 내가 적은 코드 def solution(n): arr = [] while n != 0: n -= 1 i = n % 3 arr.append('124'[i]) n //= 3 return \"\".join(arr[::-1]) 풀이 과정 3진법 만드는 로직과 비슷하게 작동하나 1의 자리 수가 0이 없다는 점을 감안해서 n-1을 하여 풀어줘야 한다. 0 대신 1 / 1 대신 2 / 2 대신 4 이렇게 들어가게끔 문자열 인덱싱을 해 주었고, 리스트에 append해서 마지막에 거꾸로 뒤집은 리스트를 join함수로 문자열화 시켰다. 사실 그냥 처음부터 문자열로 풀었으면 훨씬 간단했을 코드이다. 베스트 코드 # 베스트 코드 1 def change124(n): num = ['1','2','4'] answer = \"\" while n &gt; 0: n -= 1 answer = num[n % 3] + answer n //= 3 return answer 나와 같은 방식으로 풀었으나 나는 리스트로 풀었고 이 분은 문자열으로 풀었다. 문자열이 좀더 효율적인 것 같긴 하다. 대신 이 분은 1,2,4를 리스트에 넣어서 인덱싱 해줘서 나와 반대로 바보같은 짓을 했다. # 베스트 코드 2 def change124(n): if n&lt;=3: return '124'[n-1] else: q, r = divmod(n-1, 3) return change124(q) + '124'[r] 재귀함수로 풀어 훨씬 깔끔해진 코드. 재귀함수도 익숙해 질 필요가 있을 것 같다. 반성 로직을 생각해 내는데 너무 많은 시간을 허비하였다. 말이 level.2 이지 사실 로직이 조금 복잡한 1정도 수준의 문제였다.",
+    "tags": "programers algorithmpractice",
+    "url": "/algorithmpractice/2021/06/04/ap_pg_post2/"
+  },{
+    "title": "[프로그래머스 / lv.1] 3진법 뒤집기",
+    "text": "날짜: 2021년 6월 4일 소요 시간: 16분 16초 카테고리: 인덱싱 태그: 레벨1, 파이썬 코딩테스트 연습 - 3진법 뒤집기 입출력 예시 n return 45 7 125 229 내가 적은 코드 def solution(n): answer = 0 num = [] while n != 0: m = n % 3 n = n // 3 num.append(m) num = num[::-1] for i in range(0,len(num)): answer += num[i] * (3**i) return answer 풀이 과정 정수형 n을 0이 될 때까지 나눈 나머지를 num에 저장한다. (기본적인 진수 변환 법) 그리고 num의 원소를 거꾸로 뒤집은 각 원소를 3의 i승씩 곱해준다. 베스트 코드 def solution(n): tmp = '' while n: tmp += str(n % 3) n = n // 3 answer = int(tmp, 3) return answer 반성 문자열 인덱싱을 통하지 않고 바로 정수형으로 풀 수 있는 문제였다. 좀 더 머리를 굴렸으면 보다 빠른 코드를 짤 수 있었다. int()함수를 통해 진법을 바꿀 수 있다는 사실을 알았다.",
+    "tags": "programers algorithmpractice",
+    "url": "/algorithmpractice/2021/06/04/ap_pg_post1/"
+  },{
     "title": "[프로그래머스 / lv.1] 문자열 내 마음대로 정렬하기",
-    "text": "날짜: 2021년 6월 3일 소요 시간: 2시간 초과 카테고리: 인덱싱 태그: 레벨1, 파이썬,time_out 코딩테스트 연습 - 문자열 내 마음대로 정렬하기 입출력 예시 strings n return [“sun”, “bed”, “car”] 1 [“car”, “bed”, “sun”] [“abce”, “abcd”, “cdx”] 2 [“abcd”, “abce”, “cdx”] 내가 적은 코드 # 문제를 풀지 못하였다. 풀이 과정 문제를 풀지 못하였다. 베스트 코드 def solution(strings, n): return sorted(strings, key=lambda x: x[n]) 반성 sort 함수에 key 값을 넣어 정렬하는 것과, `lambda의 이해도가 낮아서 이런 풀이를 생각조차 하지 못했다. 3중 반복문으로 어떻게든 풀어보려했었던 내가 자괴감이든다….",
+    "text": "날짜: 2021년 6월 3일 소요 시간: 2시간 초과 카테고리: 인덱싱 태그: 레벨1, 파이썬,time_out 코딩테스트 연습 - 문자열 내 마음대로 정렬하기 입출력 예시 strings n return [“sun”, “bed”, “car”] 1 [“car”, “bed”, “sun”] [“abce”, “abcd”, “cdx”] 2 [“abcd”, “abce”, “cdx”] 내가 적은 코드 # 문제를 풀지 못하였다. 풀이 과정 문제를 풀지 못하였다. 베스트 코드 def solution(strings, n): return sorted(strings, key=lambda x: x[n]) 반성 sort 함수에 key 값을 넣어 정렬하는 것과, lambda의 이해도가 낮아서 이런 풀이를 생각조차 하지 못했다. 3중 반복문으로 어떻게든 풀어보려했었던 내가 자괴감이든다….",
     "tags": "programers algorithmpractice",
     "url": "/algorithmpractice/2021/06/03/ap_pg_post2/"
   },{
