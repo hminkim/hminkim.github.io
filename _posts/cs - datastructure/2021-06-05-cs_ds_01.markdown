@@ -143,7 +143,7 @@ clear()   #deque 값 모두 삭제
 **list와 deque 비교**
   
 |시간 복잡도|insert, remove, popleft|indexing, slicing|
-|---|---|
+|---|---|---|
 |list|O(n)|O(1)|
 |deque|O(n)|O(n)|  
   
