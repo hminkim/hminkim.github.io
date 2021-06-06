@@ -82,7 +82,7 @@ class Queue:
 	    return None
 	else:
 	    x = self.items[front_index]
-	    self.front_index +=1
+	    self.front_index += 1
 	    return x
 ```
 <center>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</center>  
