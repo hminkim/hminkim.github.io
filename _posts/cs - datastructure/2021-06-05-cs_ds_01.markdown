@@ -150,6 +150,7 @@ clear()   #deque 값 모두 삭제
 |list|O(n)|O(1)|
 |deque|O(n)|O(n)|  
   
+  
 고정된 길이 내에서 접근, 검색, 슬라이싱을 하는 데에는 list가 유리  
 데이터를 추가 or 삭제할 땐 deque이 유리  
   
