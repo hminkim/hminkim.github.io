@@ -78,7 +78,7 @@ class Queue:
 	self.item.append(val)
     def dequeue(self):
 	if self.front_index == len(self.items):
-	    print(“Queue is empty”)
+	    print("Queue is empty")
 	    return None
 	else:
 	    x = self.items[front_index]
