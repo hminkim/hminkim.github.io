@@ -9,7 +9,7 @@ tags: programers
 날짜: 2021년 6월 4일  
 소요 시간: 1시간 10분 48초   
 카테고리: 수학문제  
-태그: `레벨1`, `파이썬`  
+태그: `레벨2`, `파이썬`  
 
 
 [코딩테스트 연습 - 124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899)
