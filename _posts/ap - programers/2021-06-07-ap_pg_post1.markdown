@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[프로그래머스 / lv.2] 예산"
-subtitle:  "프로그래머스 lv.2"
+title: "[프로그래머스 / lv.1] 예산"
+subtitle:  "프로그래머스 lv.1"
 categories: algorithmpractice
 tags: programers
 ---
