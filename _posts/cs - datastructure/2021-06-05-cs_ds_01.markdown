@@ -16,7 +16,7 @@ tags: datastructure
 <center>스택과 큐의 구조를 가장 잘 보여주는 예시</center>  
   
 ----  
-    
+  
     
 ## Stack 스택  
   
