@@ -186,7 +186,8 @@ class DoublyLinkedList:
 - 마지막 노드를 참조하는 last가 단순연결리스트의 head 역할을 함  
 - 마지막 노드와 첫 노드를 O(1) 시간에 방문할 수 있음  
 - 빈 리스트가 아니면 어떤 노드도 None을 가지고 있지 않아서 프로그램에서 None 조건을 검사하지 않아도 됨  
-- 비슷한 원리로 Circularly Doubly Linked List도 구현 가능
+- 비슷한 원리로 Circularly Doubly Linked List도 구현 가능  
+  
   
 <center><img src="/assets/img/cs_ds_210609_3.png" width="100%" height="100%"></center>  
 <center>출처 : https://en.wikipedia.org/wiki/Linked_list</center>  
