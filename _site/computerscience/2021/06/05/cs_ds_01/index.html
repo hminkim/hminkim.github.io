@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="Stack & Queue">
+<meta property="og:title" content="Stack & Queue & Deque">
 <meta property="og:type" content="article">
 
 
@@ -46,48 +46,52 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>Stack & Queue &middot; KkoHMa's Coding Diary</title>
+  <title>Stack & Queue & Deque &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="Sequential List 순차 리스트
+<meta name="description" content="제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
 
 
-
-제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
-
-
-스택과 큐의 구조를 가장 잘 보여주는 예시
 출처 : https://gohighbrow.com/stacks-and-queues/
+스택과 큐의 구조를 가장 잘 보여주는 예시
+
+
 
 Stack 스택
 
 
 
-```Python
+```python
 class Stack:
-	def init(self):
-			self.items = [].  #데이터 저장을 위한 리스트 준비
+    def init(self):
+        self.items = [].  #데이터 저장을 위한 리스트 준비
+
+def push(self, val):
+    self.items.append(val)
+
 
 ">
-<meta property="og:description" content="Sequential List 순차 리스트
+<meta property="og:description" content="제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
 
 
-
-제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)
-
-
-스택과 큐의 구조를 가장 잘 보여주는 예시
 출처 : https://gohighbrow.com/stacks-and-queues/
+스택과 큐의 구조를 가장 잘 보여주는 예시
+
+
 
 Stack 스택
 
 
 
-```Python
+```python
 class Stack:
-	def init(self):
-			self.items = [].  #데이터 저장을 위한 리스트 준비
+    def init(self):
+        self.items = [].  #데이터 저장을 위한 리스트 준비
+
+def push(self, val):
+    self.items.append(val)
+
 
 ">
 
@@ -109,6 +113,8 @@ class Stack:
   <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/06/04/ap_pg_post2/">
 
 
+
+  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/06/07/ap_pg_post1/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -213,7 +219,7 @@ class Stack:
   <header>
     <h1 class="post-title">
       
-        Stack & Queue
+        Stack & Queue & Deque
         
     </h1>
 
@@ -258,45 +264,43 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
     <!--  -->
 
     <br />
-    <h2 id="sequential-list-순차-리스트">Sequential List 순차 리스트</h2>
+    <p>제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)</p>
+
+<center><img src="/assets/img/cs_ds_210605_1.png" width="100%" height="100%" /></center>
+<center>출처 : https://gohighbrow.com/stacks-and-queues/</center>
+<center>스택과 큐의 구조를 가장 잘 보여주는 예시</center>
 
 <hr />
-
-<p>제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)</p>
-
-<center><img src="/assets/img/cs_ds_210605_1.jpg" width="50%" height="50%" /></center>
-<p>스택과 큐의 구조를 가장 잘 보여주는 예시<br />
-출처 : https://gohighbrow.com/stacks-and-queues/</p>
 
 <h2 id="stack-스택">Stack 스택</h2>
 
 <hr />
 
-<pre><code class="language-Python">class Stack:
-	def __init__(self):
-			self.items = [].  #데이터 저장을 위한 리스트 준비
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Stack</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[].</span>  <span class="c1">#데이터 저장을 위한 리스트 준비
+</span>    
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
-	def push(self, val):
-		self.items.append(val)
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="k">try</span><span class="p">:</span>
+	    <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>   <span class="c1">#pop할 item이 없으면
+</span>	<span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">"Stack is empty"</span><span class="p">)</span>   <span class="c1">#indexError 발생
+</span>    
+    <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+	    <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+	<span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">"Stack is empty"</span><span class="p">)</span>
 
-	def pop(self):
-		try:
-				return self.items.pop()   #pop할 item이 없으면
-		except IndexError:
-			print("Stack is empty")   #indexError 발생
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">)</span>   <span class="c1">#len()로 호출하면 Stack의 item 수 반환
+</span></code></pre></div></div>
+<center>파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.</center>
 
-	def top(self):
-		try:
-			return self.items[-1]
-		except IndexError:
-			print("Stack is empty")
-
-	def __len__(self):
-		return len(self.items)   #len()로 호출하면 Stack의 item 수 반환
-</code></pre>
-<p>파이썬에서 스택은 범용 자료구조인 List를 활용하여 사용할 수 있다.</p>
-
-<h4 id="특징">특징</h4>
+<h3 id="특징">특징</h3>
 
 <ul>
   <li>LIFO : Last In First Out</li>
@@ -310,33 +314,37 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
   </ul>
 </blockquote>
 
-<p>** 활용 예시 **</p>
+<p><strong>활용 예시</strong></p>
 
 <ul>
   <li>웹 브라우저 뒤로 가기 : 가장 최근에 열린 페이지부터 다시 보여줌</li>
   <li>실행 취소 (Ctrl + Z) : 가장 나중에 실행된 작업을 되돌려줌</li>
 </ul>
 
+<hr />
+
 <h2 id="queue-큐">Queue 큐</h2>
 
 <hr />
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="bp">self</span><span class="p">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1">#빈 리스트
-</span>		<span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">=</span> <span class="mi">0</span>
-	<span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-		<span class="bp">self</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-	<span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">):</span>
-			<span class="k">print</span><span class="p">(</span><span class="err">“</span><span class="n">Queue</span> <span class="ow">is</span> <span class="n">empty</span><span class="err">”</span><span class="p">)</span>
-			<span class="k">return</span> <span class="bp">None</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">front_index</span><span class="p">]</span>
-			<span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">+=</span><span class="mi">1</span>
-			<span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1">#빈 리스트
+</span>	<span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">=</span> <span class="mi">0</span>
+	
+    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+	<span class="bp">self</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+	
+    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">):</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">"Queue is empty"</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="bp">None</span>
+	<span class="k">else</span><span class="p">:</span>
+	    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">front_index</span><span class="p">]</span>
+	    <span class="bp">self</span><span class="p">.</span><span class="n">front_index</span> <span class="o">+=</span> <span class="mi">1</span>
+	    <span class="k">return</span> <span class="n">x</span>
 </code></pre></div></div>
-<p>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</p>
+<center>List를 활용해서 큐를 사용할 수 있는 클래스를 만들 수도 있다.</center>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
 
@@ -344,9 +352,9 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 <span class="n">que</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 <span class="n">que</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
 </code></pre></div></div>
-<p>파이썬에 내장되어 있는 queue 모듈을 활용하여 보다 쉽게 코드를 작성할 수 있다.</p>
+<center>파이썬에 내장되어 있는 queue 모듈을 활용하여 보다 쉽게 코드를 작성할 수 있다.</center>
 
-<h4 id="특징-1">특징</h4>
+<h3 id="특징-1">특징</h3>
 
 <ul>
   <li>FIFO : First In First Out</li>
@@ -363,7 +371,7 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 
 <p>queue 모듈의 Queue 클래스에 대한 자세한 내용은 여기 <a href="https://docs.python.org/ko/3.7/library/queue.html">파이썬 공식 레퍼런스</a> 참고</p>
 
-<p>** 활용 예시 **</p>
+<p><strong>활용 예시</strong></p>
 
 <ul>
   <li>은행 번호표 : 가장 먼저 온 사람의 번호를 먼저 띄워 줌</li>
@@ -372,6 +380,64 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 
 <hr />
 
+<h2 id="dequeue-double-end-queue-덱">Dequeue (double-end-queue) 덱</h2>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="n">makeDeque</span><span class="p">()</span>   <span class="c1">#덱 생성
+</span><span class="n">appendleft</span><span class="p">()</span>   <span class="c1">#맨 앞(왼쪽)에 자료 추가
+</span><span class="n">pop</span><span class="p">()</span>   <span class="c1">#맨 앞(왼쪽)에 자료 삭제
+</span><span class="n">append</span><span class="p">()</span>   <span class="c1">#맨 뒤(오른쪽)에 자료 추가
+</span><span class="n">popleft</span><span class="p">()</span>   <span class="c1">#맨 뒤(오른쪽)에 자료 삭제deque(maxlen=n)
+</span><span class="n">reverse</span><span class="p">()</span>   <span class="c1">#deque의 순서 뒤집음
+</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1">#deque에 포함된 x의 개수 반환
+</span><span class="n">clear</span><span class="p">()</span>   <span class="c1">#deque 값 모두 삭제
+</span></code></pre></div></div>
+<center>덱은 collections 모듈의 deque 클래스를 활용하면 보다 쉽게 코드를 작성할 수 있다.</center>
+
+<h3 id="특징-2">특징</h3>
+
+<ul>
+  <li>Stack과 Queue를 합친 형태</li>
+  <li>양쪽 끝에서 삽입과 삭제가 모두 가능한 자료구조</li>
+</ul>
+
+<p><strong>list와 deque 비교</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>시간 복잡도</th>
+      <th>insert, remove, popleft</th>
+      <th>indexing, slicing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>list</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+    </tr>
+    <tr>
+      <td>deque</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>고정된 길이 내에서 접근, 검색, 슬라이싱을 하는 데에는 list가 유리<br />
+데이터를 추가 or 삭제할 땐 deque이 유리</p>
+
+<hr />
+
+<p>###참고</p>
+
+<p><a href="https://www.youtube.com/user/cssin829">신찬수 교수님 유튜브</a></p>
+
+<hr />
 
     <br />
   </div>
@@ -429,6 +495,22 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
     
       
       
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/computerscience/2021/06/09/cs_ds_01/" data-flip="title">
+    <span>Linked List</span>
+  </a>
+  <small><time datetime="2021-06-09T00:00:00+09:00">
+    09 Jun 2021
+  </time></small>
+</li>
+
+        
       
         
           
