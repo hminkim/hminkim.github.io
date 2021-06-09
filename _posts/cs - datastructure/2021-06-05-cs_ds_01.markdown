@@ -5,9 +5,7 @@ subtitle:  "Stack & Queue & Deque"
 categories: computerscience
 tags: datastructure
 ---
-## Sequential List 순차 리스트
   
-----  
   
 제한된 접근(삽입, 삭제)만 허용 (Stack, Queue, Dequeue 모두 동일)  
   
