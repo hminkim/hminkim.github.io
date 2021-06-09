@@ -192,7 +192,7 @@ class DoublyLinkedList:
   
 ----  
   
-###참고  
+### 참고  
   
 [위키피디아](https://en.wikipedia.org/wiki/Linked_list)  
 [잔재미코딩](https://www.fun-coding.org/Chapter07-linkedlist-live.html)  
