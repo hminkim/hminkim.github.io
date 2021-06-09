@@ -13,10 +13,10 @@ tags: datastructure
 - 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌  
   
   
->노드(Node) 
->>데이터 저장 단위 (데이터값, 포인터) 로 구성  
+>-노드(Node) 
+>-데이터 저장 단위 (데이터값, 포인터) 로 구성  
 >포인터(pointer)  
->>각 노드 안에서, 다음이나 이전의 노드와의 연결 정보를 가지고 있는 공간  
+>-각 노드 안에서, 다음이나 이전의 노드와의 연결 정보를 가지고 있는 공간  
   
 <center><img src="/assets/img/cs_ds_210609_1.png" width="100%" height="100%"></center>  
 <center>출처 : https://en.wikipedia.org/wiki/Linked_list</center>  
