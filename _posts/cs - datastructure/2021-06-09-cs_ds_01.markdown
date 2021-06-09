@@ -11,6 +11,7 @@ tags: datastructure
   
 - 순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조  
 - 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌  
+- Node = key + link  
   
   
 >노드(Node) 
@@ -98,7 +99,8 @@ class SinglyLinkedList:
 ----  
   
 - 양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능  
-- 단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능
+- 단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능  
+- Node = key + next_link + prev_link  
   
   
 <center><img src="/assets/img/cs_ds_210609_2.png" width="100%" height="100%"></center>  
