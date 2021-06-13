@@ -216,5 +216,6 @@ class DoublyLinkedList:
 [잔재미코딩](https://www.fun-coding.org/Chapter07-linkedlist-live.html)  
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
   
-----
+----  
+  
 
