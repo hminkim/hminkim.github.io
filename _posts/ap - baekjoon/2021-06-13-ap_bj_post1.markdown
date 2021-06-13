@@ -9,7 +9,7 @@ tags: baekjoon
 날짜: 2021년 6월 13일  
 소요 시간: 19분 27초  
 카테고리: 수학문제  
-태그: `bronze.1`, `1546 `, `파이썬`   
+태그: `bronze.1`, `1546`, `파이썬`   
 
 
 [백준 1546 - 평균](https://www.acmicpc.net/problem/1546)
