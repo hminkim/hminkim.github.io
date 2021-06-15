@@ -31,7 +31,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
 <meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
-<meta property="og:title" content="[프로그래머스 / lv.1] 수박수박수박수박수박수?">
+<meta property="og:title" content="[백준 / 4673] 셀프 넘버">
 <meta property="og:type" content="article">
 
 
@@ -46,20 +46,20 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[프로그래머스 / lv.1] 수박수박수박수박수박수? &middot; KkoHMa's Coding Diary</title>
+  <title>[백준 / 4673] 셀프 넘버 &middot; KkoHMa's Coding Diary</title>
 
 
 
-<meta name="description" content="날짜: 2021년 6월 1일
-소요 시간: 05분 03초
-카테고리: 인덱싱 
-태그: 레벨1, 파이썬
+<meta name="description" content="날짜: 2021년 6월 15일
+소요 시간: 1시간 26분 34초
+카테고리: 수학문제
+태그: silver.5, 4673, 파이썬
 
 ">
-<meta property="og:description" content="날짜: 2021년 6월 1일
-소요 시간: 05분 03초
-카테고리: 인덱싱 
-태그: 레벨1, 파이썬
+<meta property="og:description" content="날짜: 2021년 6월 15일
+소요 시간: 1시간 26분 34초
+카테고리: 수학문제
+태그: silver.5, 4673, 파이썬
 
 ">
 
@@ -72,17 +72,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/06/01/ap_pg_post1/">
-<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/06/01/ap_pg_post1/">
+<link rel="canonical" href="http://localhost:4000/algorithmpractice/2021/06/15/ap_bj_post1/">
+<meta property="og:url" content="http://localhost:4000/algorithmpractice/2021/06/15/ap_bj_post1/">
 
 <link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/05/31/ap_pg_post2/">
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/06/14/ap_bj_post1/">
 
 
-
-  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/06/03/ap_pg_post1/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -183,16 +181,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
 
-<article id="post-algorithmpractice/2021/06/01/ap_pg_post1" class="post" role="article">
+<article id="post-algorithmpractice/2021/06/15/ap_bj_post1" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        [프로그래머스 / lv.1] 수박수박수박수박수박수?
+        [백준 / 4673] 셀프 넘버
         
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2021-06-01T00:00:00+09:00">01 Jun 2021</time>
+      <time datetime="2021-06-15T00:00:00+09:00">15 Jun 2021</time>
       
 
 
@@ -215,7 +213,7 @@ in <a href="/category/4-algorithmpractice/" data-flip="title">Algorithm Practice
 
 
 
-on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
+on <a href="/tag/algorithmpractice-baekjoon/" data-flip="title">BaekJoon</a>
 
     </p>
 
@@ -232,62 +230,106 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
     <!--  -->
 
     <br />
-    <p>날짜: 2021년 6월 1일<br />
-소요 시간: 05분 03초<br />
-카테고리: 인덱싱 
-태그: <code class="language-plaintext highlighter-rouge">레벨1</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
+    <p>날짜: 2021년 6월 15일<br />
+소요 시간: 1시간 26분 34초<br />
+카테고리: 수학문제<br />
+태그: <code class="language-plaintext highlighter-rouge">silver.5</code>, <code class="language-plaintext highlighter-rouge">4673</code>, <code class="language-plaintext highlighter-rouge">파이썬</code></p>
 
-<p><a href="https://programmers.co.kr/learn/courses/30/lessons/12922">코딩테스트 연습 - 수박수박수박수박수박수?</a></p>
+<p><a href="https://www.acmicpc.net/problem/4673">백준 4673 - 셀프 넘버</a></p>
 
 <h3 id="입출력-예시">입출력 예시</h3>
 
 <table>
   <thead>
     <tr>
-      <th>n</th>
-      <th>return</th>
+      <th>예제 출력</th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>3</td>
-      <td>“수박수”</td>
+      <td>1</td>
+      <td> </td>
     </tr>
     <tr>
-      <td>4</td>
-      <td>“수박수박”</td>
+      <td>3</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>a lot more numbers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9971</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9982</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9993</td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="내가-적은-코드">내가 적은 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">watermelon</span> <span class="o">=</span> <span class="p">[</span><span class="s">"수"</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">watermelon</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"수"</span><span class="p">:</span>
-            <span class="n">watermelon</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"박"</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">watermelon</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"수"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">watermelon</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">))</span>
+<span class="n">del_arr</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">del_arr</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">arr</span> <span class="o">-</span> <span class="n">del_arr</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">answer</span><span class="p">)))</span>
 </code></pre></div></div>
 
 <h3 id="풀이-과정">풀이 과정</h3>
 
-<p>문자열의 이전 원소가 “수”일 경우 다음 원소로 “박”을 추가하고<br />
-이전 원소가 “박”일 경우 다음 원소로 “수”를 추가하는 동작을 n번 반복한다.</p>
+<p><code class="language-plaintext highlighter-rouge">arr</code>에 10000까지 저장하고 <code class="language-plaintext highlighter-rouge">del_arr</code>에 생성자가 존재하는 수를 저장한 뒤,<br />
+<code class="language-plaintext highlighter-rouge">set</code>함수를 통해 <code class="language-plaintext highlighter-rouge">answer</code>에 <code class="language-plaintext highlighter-rouge">arr</code>에서 <code class="language-plaintext highlighter-rouge">del_arr</code>을 제외하는 방식으로 셀프 넘버의 배열을 구하는 방식으로 풀었다.</p>
 
 <h3 id="베스트-코드">베스트 코드</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">water_melon</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">"수박"</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">"수"</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">self_num</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="n">a</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">:</span>
+                <span class="k">return</span>
+        <span class="n">check</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">self_num</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+            
+<span class="n">check</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="mi">10001</span>
+ 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
+    <span class="n">self_num</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span><span class="bp">False</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="반성">반성</h3>
-<ul>
-  <li>O(1)으로 짤 수 있는 코드를 O(n)로 짰다.</li>
-</ul>
 
+<ul>
+  <li>이제 브론즈 문제는 쉽게 풀겠는데 실버 문제에 대해서는 아직 시간이 너무 오래걸리는 것 같다. 실버 문제 또한 30분 안에 풀 정도로 알고리즘 문제에 익숙해 질 필요가 있다.</li>
+  <li>재귀 함수로 풀고 싶었으나 재귀 함수에 이해도가 낮아서 포기하고 다른 방식으로 풀었다. 다양한 방식으로 문제를 풀 수 있을 정도로 문제를 많이 풀어봐야겠다.</li>
+  <li><del>재귀 함수로 풀고 싶어서 베스트 코드로 재귀함수를 들고 오긴 했으나 아이러니하게도 재귀 함수로 풀면 시간이 45배 정도 더 걸린다. 사실 베스트 코드는 아닌걸로…</del></li>
+</ul>
 
     <br />
   </div>
@@ -347,21 +389,8 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
       
       
         
-        
           
-
-
-<li class="h4">
-  <a href="/algorithmpractice/2021/06/15/ap_bj_post1/" data-flip="title">
-    <span>[백준 / 4673] 셀프 넘버</span>
-  </a>
-  <small><time datetime="2021-06-15T00:00:00+09:00">
-    15 Jun 2021
-  </time></small>
-</li>
-
-        
-      
+          
         
         
           
@@ -395,6 +424,19 @@ on <a href="/tag/algorithmpractice-programers/" data-flip="title">Programers</a>
         
       
         
+        
+          
+
+
+<li class="h4">
+  <a href="/algorithmpractice/2021/06/12/ap_bj_post1/" data-flip="title">
+    <span>[백준 / 1158] 더하기 사이클</span>
+  </a>
+  <small><time datetime="2021-06-12T00:00:00+09:00">
+    12 Jun 2021
+  </time></small>
+</li>
+
         
       
     
