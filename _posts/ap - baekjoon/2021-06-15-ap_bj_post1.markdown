@@ -21,7 +21,7 @@ tags: baekjoon
 3  
 5  
 7  
- |       <-- a lot more numbers  
+a lot more numbers  
 9971  
 9982  
 9993|   
