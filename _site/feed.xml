@@ -2,13 +2,346 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>KkoHMa's Coding Diary</title>
-    <description>글이든지 그림이든지 코드든지&lt;br/&gt; 무엇이든 끄적이는 것을 좋아하고&lt;br/&gt; 깔끔하게 완성하는 것을 좋아하는&lt;br/&gt; 꼬마 개발 꿈나무 입니다.
+    <description>글이든 그림이든 코드든&lt;br/&gt; 끄적이는 것을 좋아하고&lt;br/&gt; 깔끔하게 정리된 것을 좋아하는&lt;br/&gt; 꼬마 개발 꿈나무 입니다.
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Jun 2021 14:42:57 +0900</pubDate>
-    <lastBuildDate>Wed, 09 Jun 2021 14:42:57 +0900</lastBuildDate>
+    <pubDate>Mon, 14 Jun 2021 22:42:09 +0900</pubDate>
+    <lastBuildDate>Mon, 14 Jun 2021 22:42:09 +0900</lastBuildDate>
     <generator>Jekyll v3.9.1</generator>
+    
+      <item>
+        <title>[백준 / 4344] 평균은 넘겠지</title>
+        <description>&lt;p&gt;날짜: 2021년 6월 14일&lt;br /&gt;
+소요 시간: 50분 26초&lt;br /&gt;
+카테고리: 수학문제&lt;br /&gt;
+태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bronze.1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4344&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/4344&quot;&gt;백준 4344 - 평균은 넘겠지&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;예제 입력&lt;/th&gt;
+      &lt;th&gt;예제 출력&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5 50 50 70 80 100&lt;/td&gt;
+      &lt;td&gt;40.000%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7 100 95 90 80 70 60 50&lt;/td&gt;
+      &lt;td&gt;57.143%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3 70 90 80&lt;/td&gt;
+      &lt;td&gt;33.333%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3 70 90 81&lt;/td&gt;
+      &lt;td&gt;66.667%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9 100 99 98 97 96 95 94 93 91&lt;/td&gt;
+      &lt;td&gt;55.556%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;avg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;avg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map&lt;/code&gt;을 활용해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;리스트에 성적 값을 입력하고, 리스트 슬라이싱을 통해 평균값을 구한다.&lt;br /&gt;
+구한 평균값을 기준으로 평균보다 높은 점수가 몇 개가 있는지 반복문을 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt;에 저장하고,&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answer&lt;/code&gt;에 그 비율을 저장한다.&lt;/p&gt;
+
+&lt;p&gt;마지막에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answer&lt;/code&gt;을 float형으로 소수점 셋째자리까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;f-string&lt;/code&gt;을 통해 출력&lt;/p&gt;
+
+&lt;p&gt;왜 정답률이 40%가 되지않는지 의아할 정도로 쉬운 문제이지만 자료형에 대한 이해도가 낮으면 계속 오류가 날 수도 있겠다는 생각을 했다.&lt;br /&gt;
+&lt;del&gt;물론 나 또한 그거 때문에 한참을 헤매었다.&lt;/del&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변수 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N&lt;/code&gt;의 타입을 파이참에서는 자동으로 정수형으로 지정 해 주었으나 백준 인터프리터에서는 문자열로 받았던지 뭔진 모르겠지만 파이참에서는 잘 실행되는 코드가 왜 백준에서는 TypeError가 나는지 계속 못찾아서 한참을 헤매었다.&lt;/li&gt;
+  &lt;li&gt;타입 선언을 확실하게 잡아야 된다…&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 14 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/algorithmpractice/2021/06/14/ap_bj_post1/</link>
+        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/06/14/ap_bj_post1/</guid>
+        
+        <category>baekjoon</category>
+        
+        
+        <category>algorithmpractice</category>
+        
+      </item>
+    
+      <item>
+        <title>[백준 / 1546] 평균</title>
+        <description>&lt;p&gt;날짜: 2021년 6월 13일&lt;br /&gt;
+소요 시간: 19분 27초&lt;br /&gt;
+카테고리: 수학문제&lt;br /&gt;
+태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bronze.1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1546&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1546&quot;&gt;백준 1546 - 평균&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;예제 입력&lt;/th&gt;
+      &lt;th&gt;예제 출력&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;40 80 60&lt;/td&gt;
+      &lt;td&gt;75.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1 2 4 8 16&lt;/td&gt;
+      &lt;td&gt;38.75&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3 10&lt;/td&gt;
+      &lt;td&gt;65.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
+
+&lt;p&gt;입력된 값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;num&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;float&lt;/code&gt;값으로 저장한 뒤 (평균값의 소수점까지 연산하기 위해) 반복문을 통해서 각 원소의 연산을 진행한다.&lt;br /&gt;
+그 후 원소의 각 연산된 값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt;에 저장 한 뒤&lt;br /&gt;
+평균값을 구하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt;의 원소의 합을 그 원소의 길이만큼 나눈다.&lt;/p&gt;
+
+&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map&lt;/code&gt;의 타입과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list&lt;/code&gt;의 타입의 개념을 확실히 잡지 못해서 런타임를 내고 시간을 많이 잡아 먹었다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;input()&lt;/code&gt; 보다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sys.stdin.readline()&lt;/code&gt;을 활용하는 연습을 더 많이 해야겠다.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 13 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/algorithmpractice/2021/06/13/ap_bj_post1/</link>
+        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/06/13/ap_bj_post1/</guid>
+        
+        <category>baekjoon</category>
+        
+        
+        <category>algorithmpractice</category>
+        
+      </item>
+    
+      <item>
+        <title>[백준 / 1158] 더하기 사이클</title>
+        <description>&lt;p&gt;날짜: 2021년 6월 12일&lt;br /&gt;
+소요 시간: 34분 17초&lt;br /&gt;
+카테고리: 수학문제&lt;br /&gt;
+태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bronze.1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1110 &lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1110&quot;&gt;백준 1110 - 더하기 사이클&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;예제 입력&lt;/th&gt;
+      &lt;th&gt;예제 출력&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;55&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;60&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;check&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;new_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;new_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_num&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
+
+&lt;p&gt;새로 만들어진 숫자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new_num&lt;/code&gt;이 처음 입력된 숫자인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;check&lt;/code&gt;와 같아질 때까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;while&lt;/code&gt;문을 반복한다.&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;temp&lt;/code&gt;에 10의 자리 숫자와 1의 자리 숫자를 더한 수를 저장하고 그 수로 새로운 수를 만들어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new_num&lt;/code&gt;에 저장한다.&lt;br /&gt;
+그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;num&lt;/code&gt;을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new_num&lt;/code&gt;으로 바꾼다.&lt;/p&gt;
+
+&lt;p&gt;이 과정을 반복하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new_num&lt;/code&gt;이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;check&lt;/code&gt;와 같아질 때까지 돈 사이클의 횟수를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt;에 저장하고 출력한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;숫자를 10으로 나눈 나머지와, 10으로 나눈 몫을 활용하면 (입력은 99이하의 자연수) 쉬운 걸 처음에 문자열로 변환하여 슬라이싱한 후에 다시 정수형으로 변환하여 계산한다고 자료형 왔다갔다 하는 데 헷갈려서 시간이 많이 지났다.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 12 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/algorithmpractice/2021/06/12/ap_bj_post1/</link>
+        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/06/12/ap_bj_post1/</guid>
+        
+        <category>baekjoon</category>
+        
+        
+        <category>algorithmpractice</category>
+        
+      </item>
+    
+      <item>
+        <title>210610 Essay</title>
+        <description>&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+&lt;p&gt;이 블로그를 만든 지 한 달 만에 처음 에세이를 써 본다. 새벽에 일기 쓰듯 글을 쓰는 것을 좋아하는 편이긴 한데, 요즘 피곤하다는 핑계로 이리 미루고 저리 미루다가 결국 한달이나 되어서야 처음 글을 쓴다. 어찌 되었던 블로그에 게시하는 첫 에세이다보니 나에 대해 길지는 않지만, 짧지도 않게 한번 소개를 해 보려 한다.&lt;br /&gt;
+이 글 자체가 자기 만족일 수도 있다. 지금 내 블로그에 들어오는 방문자 유입 수를 보면 이 글은 정말 잘 도달 해 봐야 10명 정도에게 노출 될 것이며, 그 중 이 글을 다 읽는 사람은 한두명 정도 될 거라고 예상한다. 1년 뒤, 그때도 내가 하루에 한 포스팅을 이어간다면, 100명 정도에게 노출되고, 10명 정도가 보게되지 않을까. 어찌되었건 글을 끄적이는 걸 좋아하는 나니까, &lt;del&gt;그리고 얼마 전 보글보글 거리는 타건감이 좋은  무접점 키보드도 비싼 돈 주고 구매 했으니까&lt;/del&gt; 한번 끄적여 보려 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;13학번-컴공생&quot;&gt;13학번 컴공생&lt;/h3&gt;
+&lt;p&gt;나는 13학번으로 대구의 한 대학교에 입학을 했다. 내가 고등학생 때 ‘유령’이라는 드라마를 너무 재밌게 본 나머지 “나도 보안 공부를 해서 해커가 될거야!” 하는 허황된 꿈을 꾸며 컴퓨터공학과에 입학을 해야겠다고 생각을 했다. 취직을 하려면 공대가 좋긴 한데, 흔히들 말하는 전,화,기 (전자공학, 화학공학, 기계공학)을 가기에는 4대 역학을 공부하기가 너무 싫었던 이유도 있었다.&lt;br /&gt;
+모든 신입생들이 그렇듯 나 역시도 ‘Hello World’를 출력할 때 까지만 해도 컴퓨터가 재미있고, 내가 무언가 대단한 것을 한 것 같았다. 동기들과 자취방에서 밤을 새워가며 교수님께서 내 준 문제를 풀며 (사실 밤새 과제만 하진 않았다. 게임을 한 시간이 더 많을 것이다.) 출력창에 원하는 결과물이 띄어졌을 때의 희열은, 물론 그건 지금도 그렇지만, 여튼 그때는 컴퓨터가 내겐 천직일 것만 같았다. 2학년 때 자료구조를 배우기 전 까지는.&lt;/p&gt;
+
+&lt;p&gt;2학년 때 자료구조라는 과목을 공부 할 때 그 놈의 ‘링크드 리스트’가 이해가 되지 않아 공부에 흥미를 잃고 게임에 더 빠졌던 것 같다. 몇년도 더 된 일이라 정확하게는 기억이 나지 않지만, 그렇게 점점 학교 공부는 소홀해 져 갔고, 그러다보니 아예 수업은 빠지고 결국 기말때는 출석조차 하지 않았다. ‘C++(C++로 자료구조를 구현하는 수업이었다.)은 C+ 맞아야지~’ 하는 우스갯 소리와 함께 정말 C+을 맞게되고, 다른 과목도 성적이 더하면 더했지 덜하지는 않아 그렇게 2학년 1학기는 학고를 맞게 된다.&lt;br /&gt;
+1학년 때는 학고 맞는 친구들은 어지간히 공부를 안했나보다, 그냥 교수님 하라는거 하고 보라는거 보면 B는 나오는데 좀만 열심히 하면 A가 나올텐데 D,F를 맞아서 학고 받는 애들은 뭐하는 애들이야 했었는데, 내가 그 학사경고를 받은 놈이 되어있었다. 이맘때 즘 부터 컴퓨터로 전공을 살리지 않고 취직해야겠다는 생각을 하게 되었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;휴학과-다른-진로-탐색&quot;&gt;휴학과 다른 진로 탐색&lt;/h3&gt;
+&lt;p&gt;우리 학교는 특이하게도 학고를 맞으면 집으로 경고장이 날아오게 되어있다. 애석하게도 나는 그 사실을 몰랐고, 불행하게도 그 등기 우편물은 내가 아닌 어머니가 먼저 보시게 되었다. 그래도 나는 고등학생 때 사고 한번 치지 않고 조신히 학교 다니던 나름 모범생(…?) 이었고 학사경고장을 받아올 줄은 꿈에도 생각치 않으셨던 어머니께서는 휴학하고 군대를 다녀와서 다시 공부하자고 말씀 해 주셨고, 큰 화는 내지 않으셨다. 이제 성인이라시며 니 인생을 이제 니가 책임 질 줄 알아야 한다는 말씀만 하셨다. (지금 생각하면 21살이면 아무것도 못하는 어린애지…)&lt;br /&gt;
+그렇게 군대를 가기 위해 휴학을 하고 이런 저런 경험들을 하다가 영상 제작에 재미를 붙이게 되고 유튜브가 지금처럼 잘 되어 있지 않던 그 당시 페이스북 채널로 영상인 커뮤니티를 통해 많은 사람들을 알게되었다. 지금 꽤나 큰 규모의 유튜브 채널을 운영하고 있는 유튜버들도 몇 있었다. 그 때 친하게 지내 놓을걸…  어찌되었건 영상에 빠져 이런 저런 영상 기획을 하고 촬영도 해보고 했던 경험은 나름 재밌는 경험으로 남아있다. 이때 이야기까지 하게되면 글이 너무 길어질 것 같아 각설하고 넘어가도록 하겠다.&lt;/p&gt;
+
+&lt;h3 id=&quot;제대-후-학교-선배와의-창업&quot;&gt;제대 후 학교 선배와의 창업&lt;/h3&gt;
+&lt;p&gt;보통 남자들은 제대 후 복학 한 첫 학기는 성적이 좋다고들 하는데, 이미 전공을 포기한 나는 크게 학교 공부에도 재미를 못 붙이고, 적당히 학고만 맞지 않을 정도로만 해야지 하는 마음가짐이었다. 그렇게 하고 싶은 것들을 찾다보니 노래를 좋아하던 나에게 음악활동을 하는 단체에 들게되었고, 거기서 마음 맞는 학교 선배와 음악 사업을 함께 하게 되었다. 아이템은 간단했다. 좋은 노래지만 낮은 인지도로 세상에 빛 한번 못보고 사라지는 음원과, 그럭저럭한 노래지만, 높은 인지도로 각종 차트 순위권에 들어버리는 노래들 사이에서 아무런 배경 지식 없이 오로지 음악으로만 내 취향의 노래를 찾는 서비스를 만들었었다. 일종의 블라인드 오디션을 모바일 서비스로 하는 아이템을 기획하고 실제 서비스 런칭까지 했었지만, 그때 마침 네이버의 ‘바이브’를 시작으로 다른 유명 스트리밍 사이트에서 이러한 같은 기능들을 넣기 시작했다. 지금 생각해도 나쁘지 않은 아이템이었다고 생각한다. 다만 좀더 공격적으로 유저를 모으고 홍보를 해서 먼저 시장 점유를 했으면 어땠을까 하는 아쉬움은 있는 그런 아이템이었다.&lt;br /&gt;
+그렇게 첫 사업이 좋지 못하게 끝이나고 피버팅을 해서 다른 사업으로 회사에 매출이 나기 시작했다.&lt;/p&gt;
+
+&lt;h3 id=&quot;코딩-교육-사업&quot;&gt;코딩 교육 사업&lt;/h3&gt;
+&lt;p&gt;그렇게 시작한 사업 아이템이 교육 사업이었다. 특히 코딩 교육이 메가 트렌드로 뜨고 너도나도 아이들 코딩 교육을 하려는 붐이 일던 찰나, 우리는 교육이 가능한 공대생 3명이 있었고, 과 동기 후배 선배라는 강사 풀이 있었고, 대구에서 나름 네임밸류가 있는 대학의 학생들이었다.&lt;br /&gt;
+그렇게 아무것도 없이 밑바닥에서 시작한 사업이 지금은 20명 가량이 되는 직원의 월급을 줄 수 있을 정도의 회사로 성장했다. 나 또한 작년까지만 해도 회사에서 나름 중요한 역할을 하던 창립 맴버였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;퇴사&quot;&gt;퇴사&lt;/h3&gt;
+&lt;p&gt;아무것도 없이 월세 30의 지하사무실에서 시작해 매출이 없으니 월급도 없이 일 했던 다섯명의 맴버들이 번듯하게 직원들 월급을 줄 수 있는 회사로 성장했다는 스토리는 겉으로만 봐서는 정말 큰 인간 승리로 보일 수 있다. 물론 열심히 일한 만큼 회사가 성장하는 모습이 눈에 띄게 보이니까 일하는 맛도 났고, 내가 이 회사의 처음부터 함께 했다는 자부심에 뿌듯하게 일을 할 수 있었다. 물론 대표님은 나보다 5배는 더 열심히 일 했을 것이다. 회사에서는 대표님이지만 사석에서는 형님이니까 함께 개인적인 자리에서 밥을 먹을 자리가 많았는데, 항상 예전 힘들었던 시절을 회상하며 우리 정말 열심히 했다고 자랑스러워 하며 더더욱 열심히 할 수 있는 힘이 된 적이 많았었다.&lt;br /&gt;
+그게 3년 정도 지났을 때 체력도 멘탈도 약한 내게 번아웃이 왔고, 정신적으로 많이 힘든 시점이 왔다. 무작정 회사의 눈에 보이는 성장이 좋아서 살다보니 나도 모르게 심적인 여유가 없었던 것일까. 대표님께 내 ‘회사라고 생각하고 열심히 일했는데, 그게 내게 부담으로 다가왔던 것 같다, 이제는 내 회사가 아닌 남의 회사에서 일하고 싶다’며 두달간의 인수인계 후 좀 쉬고 싶다고 말씀드렸고, 대표님도 내 의견을 존중 해 주셨다. 그렇게 3년간의 나를 한층 크게 성장시켜주었던, 인생의 전환점이 되어 주었던 내 첫 회사를 퇴사하게 되었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;취준&quot;&gt;취준&lt;/h3&gt;
+&lt;p&gt;몇 달간 아무 생각 없이 모아 놓은 돈 펑펑 써대며 놀고 먹고 하다보니 이제 슬슬 취준을 해야겠다는 생각이 들었고, 어떤 분야로 취직을 할 것인가에 대한 고민 후 내린 결정은 웃기게도 21살에 그만 둔 컴퓨터였다.&lt;br /&gt;
+솔직하게 말해서 처음에는 ‘요즘 개발자가 취직이 잘 된다더라’, ‘개발자가 돈을 많이 번다더라’가 시작이었다. 부정하지 않겠다. 다만 내가 공부 하고 싶었던 분야인 광고쪽으로 학부때 신문방송학을 부전공하며 공부할 때 데이터 마케팅을 공부하려 했다는 것이 생각이 나 처음에는 그쪽으로 공부를 시작했다. 지금처럼 웹 개발을 공부하지는 않았다. 데이터공학을 공부하기 위해 파이썬을 다시 공부했고, 데이터 전처리를 공부하던 도중 백엔드에 관심을 갖게 되었고, 웹을 공부해보자는 마음으로 일단 프론트를 공부해보자고 시작한 게 이 블로그다. 이렇게 보니까 되게 의식의 흐름이 내 쪼대로 흘러가고 있긴 한데, 애초에 나란 녀석이 인생은 내 하고싶은거 하고 살자는 마음이라, 내 좌우명대로 현재를 즐기기 위해 노력하며 살고있다. 20살때부터 8년간 장래희망이 4번 바뀌었다. 돌고 돌아 처음으로 돌아왔으니 뭐 3번이라고 하자. 2년 뒤 내가 갑자기 배우가 하고 싶을지, 인생을 어떻게 알겠는가. 어찌되었건 현재의 나는 내년 하반기 판교 입성을 목표로 학부 2학년 때로 돌아가 다시 공부하며 지내고 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;끝맺으며&quot;&gt;끝맺으며&lt;/h3&gt;
+&lt;p&gt;아무 생각 없이 내 인생을 회상하며 글을 끄적여 내려가다보니 30분이 넘도록 글을 쓰고 있다. 이렇게 옛날을 회상하며 글을 끄적이다보니 짧지도 그렇다고 길지도 않은 세월을 살았지만 그 사이에 많은 우여곡절이 있었구나 하며 내 인생을 돌이켜 볼 수 있는 나름 소중한 시간이었다. 처음 시작할 때는 아무도 안 볼 글인데(아마 내 여자친구가 보지 않을까 싶긴 하지만) 대충 적다가 잠이나 자자는 생각이었는데, 내 인생 그래도 헛 살진 않았구나 하며 내 스스로를 토닥여 줄 수 있는 생각보다 굉장히 뜻깊은 시간이었다.&lt;br /&gt;
+이 긴 글을 여기까지 보는 사람이 몇이나 될지는 모르지만 그대들은 대한민국 7천만 인구 중, 한 명의 20대 청년의 인생 요약본을 보았다. 이 글을 다 읽는데 5분은 걸릴텐데 과연 이 5분이 그대들에게 어떤 시간이었을지 모르겠다. 그저 세상엔 저런 애도 있구나, 했을 수도, 인생 즐기면서 살다가 나락가는거지, 했을 수도, 도전 하는 모습이 멋있다, 했을 수도. 어떤 반응이던 나라는 사람의 인생을 보는데 5분이라는 시간을 투자한 그대들이, 나를 한심하게 보았다면 반면교사로, 나 대단하게 보았다면 롤모델으로, 어찌되었건 이 5분이 값진 시간이 되었으면 한다. 내가 아무 생각없이 끄적이다보니 생각보다 뜻깊은 시간이 되었던 것 처럼.&lt;br /&gt;
+오랜만에 사색에 잠겨 끄적였더니 새벽감성도 느끼고 좋은 시간이었던 것 같다. 앞으로 종종 일기처럼 생각 정리하는 시간도 갖곤 해야겠다.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 10 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/essay/2021/06/10/essay/</link>
+        <guid isPermaLink="true">http://localhost:4000/essay/2021/06/10/essay/</guid>
+        
+        
+        <category>essay</category>
+        
+      </item>
     
       <item>
         <title>Linked List</title>
@@ -19,8 +352,10 @@
 &lt;ul&gt;
   &lt;li&gt;순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조&lt;/li&gt;
   &lt;li&gt;파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌&lt;/li&gt;
-  &lt;li&gt;Node = key + link&lt;/li&gt;
+  &lt;li&gt;Node = data + link&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;노드(Node)&lt;/p&gt;
@@ -34,9 +369,14 @@
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;center&gt;&lt;img src=&quot;/assets/img/cs_ds_210609_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;출처 : https://en.wikipedia.org/wiki/Linked_list&lt;/center&gt;
 &lt;center&gt; 일반적인 단일 연결 리스트의 형태 &lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
@@ -93,6 +433,8 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;center&gt; 단순 연결 리스트 메소드 구현 &lt;/center&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;미리 데이터 공간을 할당 해야 하는 배열과 달리 데이터 공간을 미리 할당하지 않아도 됨&lt;/li&gt;
@@ -105,6 +447,8 @@
   &lt;li&gt;중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야 하는 부가적인 작업 필요&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;doubly-linked-list-이중-연결-리스트&quot;&gt;Doubly Linked List 이중 연결 리스트&lt;/h2&gt;
@@ -114,12 +458,18 @@
 &lt;ul&gt;
   &lt;li&gt;양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능&lt;/li&gt;
   &lt;li&gt;단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능&lt;/li&gt;
-  &lt;li&gt;Node = key + next_link + prev_link&lt;/li&gt;
+  &lt;li&gt;Node = data + next_link + prev_link&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/img/cs_ds_210609_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;출처 : https://en.wikipedia.org/wiki/Linked_list&lt;/center&gt;
 &lt;center&gt; 이중 연결 리스트의 형태 &lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
@@ -187,6 +537,8 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;center&gt; 이중 연결 리스트 메소드 구현 &lt;/center&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;circular-linked-list-원형-연결-리스트&quot;&gt;Circular Linked List 원형 연결 리스트&lt;/h2&gt;
@@ -194,13 +546,19 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능&lt;/li&gt;
-  &lt;li&gt;단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능&lt;/li&gt;
+  &lt;li&gt;마지막 노드를 참조하는 last가 단순연결리스트의 head 역할을 함&lt;/li&gt;
+  &lt;li&gt;마지막 노드와 첫 노드를 O(1) 시간에 방문할 수 있음&lt;/li&gt;
+  &lt;li&gt;빈 리스트가 아니면 어떤 노드도 None을 가지고 있지 않아서 프로그램에서 None 조건을 검사하지 않아도 됨&lt;/li&gt;
+  &lt;li&gt;비슷한 원리로 Circularly Doubly Linked List도 구현 가능&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/img/cs_ds_210609_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;출처 : https://en.wikipedia.org/wiki/Linked_list&lt;/center&gt;
 &lt;center&gt; 원형 연결 리스트의 형태 &lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -1175,8 +1533,8 @@ y나 Y가 나오면 &lt;code class=&quot;language-plaintext highlighter-rouge&qu
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 31 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithmpractice/2021/05/31/ap_bj_post1/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/31/ap_bj_post1/</guid>
+        <link>http://localhost:4000/algorithmpractice/2021/05/31/ap_bj_post1-%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%84%87%E1%85%A9%E1%86%AB/</link>
+        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/31/ap_bj_post1-%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%84%87%E1%85%A9%E1%86%AB/</guid>
         
         <category>baekjoon</category>
         
@@ -2508,313 +2866,6 @@ j는 board의 열을 의미한다.&lt;br /&gt;
         <pubDate>Thu, 20 May 2021 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post4/</link>
         <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post4/</guid>
-        
-        <category>programers</category>
-        
-        
-        <category>algorithmpractice</category>
-        
-      </item>
-    
-      <item>
-        <title>[프로그래머스 / lv.1] 콜라츠 추측</title>
-        <description>&lt;p&gt;날짜: 2021년 5월 20일&lt;br /&gt;
-소요 시간: 4분 8초&lt;br /&gt;
-카테고리: 수학 문제&lt;br /&gt;
-태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;레벨1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12943&quot;&gt;코딩테스트 연습 - 콜라츠 추측&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;n&lt;/th&gt;
-      &lt;th&gt;result&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;6&lt;/td&gt;
-      &lt;td&gt;8&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;16&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;626331&lt;/td&gt;
-      &lt;td&gt;-1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
-
-&lt;p&gt;문제 설명을 그대로 코드로 옮겼다. 한국말을 그대로 파이썬으로 옮긴거라 크게 풀이 과정이라고 할 게 없다.&lt;/p&gt;
-
-&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;collatz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;처음부터 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;while&lt;/code&gt;을 썼다면 쉬웠을 텐데  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt;로 돌리려고 하다가 시간을 많이 잡아먹었다.&lt;/li&gt;
-  &lt;li&gt;문법을 확실하게 익히고 이해하지 못해 벌어진 일인 것 같다.&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 20 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post3/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post3/</guid>
-        
-        <category>programers</category>
-        
-        
-        <category>algorithmpractice</category>
-        
-      </item>
-    
-      <item>
-        <title>[프로그래머스 / lv.1] 최대공약수와 최소공배수</title>
-        <description>&lt;p&gt;날짜: 2021년 5월 20일&lt;br /&gt;
-소요 시간: 27분 9초&lt;br /&gt;
-카테고리: 수학 문제&lt;br /&gt;
-태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;레벨1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12940&quot;&gt;코딩테스트 연습 - 최대공약수와 최소공배수&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;n&lt;/th&gt;
-      &lt;th&gt;m&lt;/th&gt;
-      &lt;th&gt;return&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;12&lt;/td&gt;
-      &lt;td&gt;[3, 12]&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;[1, 10]&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-        
-    &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
-
-&lt;p&gt;유클리드 호제법을 활용하여 최소공배수를 구했고, 두개의 인자와 최소공배수 사이의 관계를 활용하여 최대공약수를 구했다.&lt;/p&gt;
-
-&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lcm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gcdlcm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lcm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;최대공약수와 최소공배수 계산을 모두 해야해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;과&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;m&lt;/code&gt;을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;로 치환해서 계산하였는데, 베스트 코드는 함수를 여러개 만들었다.&lt;/li&gt;
-  &lt;li&gt;로직은 모두 비슷한데 어떤 방식으로 푸는 것이 가장 효율적인지를 알고 코드를 짜는 능력을 기를 필요가 있을 것 같다.&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 20 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post2/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post2/</guid>
-        
-        <category>programers</category>
-        
-        
-        <category>algorithmpractice</category>
-        
-      </item>
-    
-      <item>
-        <title>[프로그래머스 / lv.1] 정수 제곱근 판별</title>
-        <description>&lt;p&gt;날짜: 2021년 5월 20일&lt;br /&gt;
-소요 시간: 6분 51초&lt;br /&gt;
-카테고리: 수학 문제
-태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;레벨1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12934&quot;&gt;코딩테스트 연습 - 정수 제곱근 판별&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;n&lt;/th&gt;
-      &lt;th&gt;return&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;121&lt;/td&gt;
-      &lt;td&gt;144&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;-1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
-
-&lt;p&gt;제곱근을 정수 1로 나누었을 때 나머지가 0이면 정수라는 로직으로 접근했다.&lt;/p&gt;
-
-&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;nextSqure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'no'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;처음엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;으로 문제를 접근 했다가 정수가 나와도 float로 출력되어 오류가 나서 시간을 많이 잡아먹었다.&lt;/li&gt;
-  &lt;li&gt;베스트 코드와 같은 로직으로 접근한 첫 알고리즘 문제 인 것 같다.&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 20 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post1/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/20/ap_pg_post1/</guid>
-        
-        <category>programers</category>
-        
-        
-        <category>algorithmpractice</category>
-        
-      </item>
-    
-      <item>
-        <title>[프로그래머스 / lv.1] 짝수와 홀수</title>
-        <description>&lt;p&gt;날짜: 2021년 5월 19일&lt;br /&gt;
-소요 시간: 53초&lt;br /&gt;
-카테고리: 수학 문제&lt;br /&gt;
-태그: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;레벨1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;파이썬&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12937&quot;&gt;코딩테스트 연습 - 짝수와 홀수&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;입출력-예시&quot;&gt;입출력 예시&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;nums&lt;/th&gt;
-      &lt;th&gt;return&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;“Odd”&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;“Even”&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;내가-적은-코드&quot;&gt;내가 적은 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Odd&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Even&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;풀이-과정&quot;&gt;풀이 과정&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;num&lt;/code&gt;을 2로 나누어 나머지가 1이면 홀수인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Odd&lt;/code&gt;출력, 이외는 짝수인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Even&lt;/code&gt;을 출력했다.&lt;/p&gt;
-
-&lt;h3 id=&quot;베스트-코드&quot;&gt;베스트 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;evenOrOdd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Even&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Odd&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;반성&quot;&gt;반성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;난이도 적으로는 제일 쉬운 문제였지만 과연 고민을 덜 하고 풀이 시간을 줄이는 것이 먼저인지, 고민을 좀 더 하더라도 시간복잡도를 줄이는 것이 먼저인지, 고민을 많이 하게 한 문제 인 것 같다.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Wed, 19 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithmpractice/2021/05/19/ap_pg_post1/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithmpractice/2021/05/19/ap_pg_post1/</guid>
         
         <category>programers</category>
         

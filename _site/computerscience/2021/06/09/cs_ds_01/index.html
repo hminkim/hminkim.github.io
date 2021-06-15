@@ -50,8 +50,8 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-<meta name="description" content="Singly Linked List 단일 연결 리스트 순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌 Node = key + link 노드(Node) 데이터 저장 단위 (데이터값, 포인터) 로 구성 포인터(pointer) 각 노드 안에서, 다음이나...">
-<meta property="og:description" content="Singly Linked List 단일 연결 리스트 순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌 Node = key + link 노드(Node) 데이터 저장 단위 (데이터값, 포인터) 로 구성 포인터(pointer) 각 노드 안에서, 다음이나...">
+<meta name="description" content="Singly Linked List 단일 연결 리스트 순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌 Node = data + link 노드(Node) 데이터 저장 단위 (데이터값, 포인터) 로 구성 포인터(pointer) 각 노드 안에서, 다음이나...">
+<meta property="og:description" content="Singly Linked List 단일 연결 리스트 순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌 Node = data + link 노드(Node) 데이터 저장 단위 (데이터값, 포인터) 로 구성 포인터(pointer) 각 노드 안에서, 다음이나...">
 
 
 
@@ -71,6 +71,8 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/06/07/ap_pg_post1/">
 
 
+
+  <link rel="next" href="http://localhost:4000/essay/2021/06/10/essay/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -227,8 +229,10 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 <ul>
   <li>순차적으로 연결된 공간에 데이터를 나열하는 배열과 달리 링크드 리스트는 떨어진 곳에 존재하는 데이터를 연결해서 관리하는 데이터 구조</li>
   <li>파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원해 줌</li>
-  <li>Node = key + link</li>
+  <li>Node = data + link</li>
 </ul>
+
+<p><br /></p>
 
 <blockquote>
   <p>노드(Node)</p>
@@ -242,9 +246,14 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
   </ul>
 </blockquote>
 
+<p><br /></p>
+
 <center><img src="/assets/img/cs_ds_210609_1.png" width="100%" height="100%" /></center>
 <center>출처 : https://en.wikipedia.org/wiki/Linked_list</center>
 <center> 일반적인 단일 연결 리스트의 형태 </center>
+
+<p><br />
+<br /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -301,6 +310,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 </code></pre></div></div>
 <center> 단순 연결 리스트 메소드 구현 </center>
 
+<p><br /></p>
+
 <p><strong>장점</strong></p>
 <ul>
   <li>미리 데이터 공간을 할당 해야 하는 배열과 달리 데이터 공간을 미리 할당하지 않아도 됨</li>
@@ -313,6 +324,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
   <li>중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야 하는 부가적인 작업 필요</li>
 </ul>
 
+<p><br /></p>
+
 <hr />
 
 <h2 id="doubly-linked-list-이중-연결-리스트">Doubly Linked List 이중 연결 리스트</h2>
@@ -322,12 +335,18 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 <ul>
   <li>양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능</li>
   <li>단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능</li>
-  <li>Node = key + next_link + prev_link</li>
+  <li>Node = data + next_link + prev_link</li>
 </ul>
+
+<p><br />
+<br /></p>
 
 <center><img src="/assets/img/cs_ds_210609_2.png" width="100%" height="100%" /></center>
 <center>출처 : https://en.wikipedia.org/wiki/Linked_list</center>
 <center> 이중 연결 리스트의 형태 </center>
+
+<p><br />
+<br /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">prev</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -395,6 +414,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 </code></pre></div></div>
 <center> 이중 연결 리스트 메소드 구현 </center>
 
+<p><br /></p>
+
 <hr />
 
 <h2 id="circular-linked-list-원형-연결-리스트">Circular Linked List 원형 연결 리스트</h2>
@@ -402,13 +423,19 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 <hr />
 
 <ul>
-  <li>양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능</li>
-  <li>단순연결리스트와는 다르게 상수시간 내 역방향 연산이 가능</li>
+  <li>마지막 노드를 참조하는 last가 단순연결리스트의 head 역할을 함</li>
+  <li>마지막 노드와 첫 노드를 O(1) 시간에 방문할 수 있음</li>
+  <li>빈 리스트가 아니면 어떤 노드도 None을 가지고 있지 않아서 프로그램에서 None 조건을 검사하지 않아도 됨</li>
+  <li>비슷한 원리로 Circularly Doubly Linked List도 구현 가능</li>
 </ul>
+
+<p><br /></p>
 
 <center><img src="/assets/img/cs_ds_210609_3.png" width="100%" height="100%" /></center>
 <center>출처 : https://en.wikipedia.org/wiki/Linked_list</center>
 <center> 원형 연결 리스트의 형태 </center>
+
+<p><br /></p>
 
 <hr />
 
@@ -754,7 +781,7 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
 
         
       </div>
-      <p>글이든지 그림이든지 코드든지<br /> 무엇이든 끄적이는 것을 좋아하고<br /> 깔끔하게 완성하는 것을 좋아하는<br /> 꼬마 개발 꿈나무 입니다.</p>
+      <p>글이든 그림이든 코드든<br /> 끄적이는 것을 좋아하고<br /> 깔끔하게 정리된 것을 좋아하는<br /> 꼬마 개발 꿈나무 입니다.</p>
 
       
       
