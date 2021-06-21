@@ -31,6 +31,7 @@ tags: baekjoon
 
 ```python
 import sys
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -53,13 +54,16 @@ class Stack:
         return is_empty
 
 arr = []
+
 while True:
     line = sys.stdin.readline().rstrip()
     if line == '.':
         break
     else:
         arr.append(line)
+
 stack = Stack()
+
 for j in arr:
     stack = Stack()
     for i in str(j):
@@ -126,4 +130,4 @@ for string in strings:
 
 ### 반성
 
-- 
+- 스택에 대해서 이론적으로 이해하고 있다고 생각해서 크게 신경쓰지 않았는데 막상 코드로 구현하려고 했을 때 오류가 많이 나서 버벅였다. 앞으로 다른 자료구조를 공부해도 보다 확실히 체득할 때 까지 코드로 구현해 볼 필요가 있다.
