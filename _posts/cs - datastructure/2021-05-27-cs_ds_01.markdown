@@ -76,7 +76,7 @@ tags: datastructure
   
 ----
   
-###참고  
+### 참고  
   
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
   
