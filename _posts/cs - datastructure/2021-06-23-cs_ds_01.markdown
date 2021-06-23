@@ -176,8 +176,7 @@ cluster size는 해시 함수, 충돌 해결 함수, 로드 팩터의 영향을 
   
 ### 참고  
   
-[위키피디아](https://en.wikipedia.org/wiki/Linked_list)  
-[잔재미코딩](https://www.fun-coding.org/Chapter07-linkedlist-live.html)  
+[잔재미코딩](https://www.fun-coding.org/DS&AL1-6.html)  
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
   
 ----  
