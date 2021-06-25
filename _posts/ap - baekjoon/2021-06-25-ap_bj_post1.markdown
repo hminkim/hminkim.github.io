@@ -1,0 +1,143 @@
+---
+layout: post
+title: "[백준 / 1342] 행운의 문자열"
+subtitle:  "백준 gold.5"
+categories: algorithmpractice
+tags: baekjoon
+---
+
+날짜: 2021년 6월 25일  
+소요 시간: 2시간 초과  
+카테고리: 문자열, 브루트포스 알고리즘, 백트래킹  
+태그: `gold.5`, `1342`, `파이썬`, `time out`  
+
+
+[백준 1342 - 행운의 문자열](https://www.acmicpc.net/problem/1254)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|aabbbaa|1|
+
+  
+### 내가 적은 코드
+
+```python
+import sys
+num = str(sys.stdin.readline().strip())
+dic = dict()
+
+def solution(pre_word, word):
+    if word == len(num):
+        return 1
+
+    answer = 0
+    for key in dic.keys():
+        if pre_word == key:   #이전 문자와 중복될 때
+            continue
+        if dic[key] == 0:   #더이상 문자가 남아있지 않을 때 
+            continue
+        dic[key] -= 1
+        answer += solution(key, word+1)
+        dic[key] += 1
+    return answer
+
+for i in list(set(num)):
+    dic[i] = num.count(i)
+
+answer = solution('', 0)
+print(answer)
+
+```
+
+### 풀이 과정  
+
+2시간가량 문제의 접근법조차 감을 잡지 못하고 있다가 구글링해서 나온 유일하게 파이썬으로 구현한 코드를 보며 간신히 풀었다.  
+~~해설을 보고도 이해가 잘 되지 않아서 한참을 쳐다보고 있었다.~~
+  
+재귀 함수를 활용해서 `pre_word`가 아닌 문자가 들어왔을 때 함수를 재귀하는 방식으로  
+문자열이 완성되었을 때 그 문자는 행운의 문자열임으로 `word`를 증가시키는 방식  
+
+이 방식 마저도 Python3으로 실행 시 시간초과가 나서 PyPy3로 실행해서 간신히 성공하였다.
+Python3과 PyPy3의 실행 속도 차이의 이유는 [여기](https://ralp0217.tistory.com/entry/Python3-%EC%99%80-PyPy3-%EC%B0%A8%EC%9D%B4)를 참조하면 좋을 것 같다.
+  
+  
+### 베스트 코드
+
+```python
+s=input()
+lens=len(s)
+d={}
+answer=[]
+count=0
+notonly=[]
+import math
+def ncr(n,r):
+    f = math.factorial
+    return f(n) / f(r) / f(n-r)
+for l in s:
+    if l in d:
+        if d[l]==1:
+            notonly.append(l)
+        d[l]+=1        
+    else:
+        d[l]=1
+def next(s,d,notonly):
+    global count
+    global answer
+    global lens
+    for l,n in d.items():
+        no=list(notonly)
+        if n==0:
+            continue
+        k=dict(d)
+        if len(no)==1:
+            only=0
+            for i in d.values():
+                if i==1:
+                    only+=1
+            if only==0:
+                return
+            if s=='':
+                if k[notonly[0]]>only+1:
+                    return
+                count+=math.factorial(only)*ncr(only+1,k[notonly[0]])
+                return
+            elif s[-1]==notonly[0]:
+                if only>k[notonly[0]]:
+                    return
+                p=math.factorial(only)
+                count+=p*ncr(only,k[notonly[0]])
+            else:
+                if only+1<k[notonly[0]]:
+                    return
+                count+=(only-1)*math.factorial(only-1)*ncr(only+1,k[notonly[0]])+math.factorial(only-1)*(ncr(only,k[notonly[0]]-1) if k[notonly[0]]>1 else 1)
+            return
+        elif len(no)==0:
+            only=0
+            for i in k.values():
+                if i==1:
+                    only+=1
+            count+=math.factorial(only)
+            return
+        if not s=='' and s[-1]==l:
+            continue
+        k[l]-=1
+        if k[l]==1:
+            no.remove(l)
+        if k[l]>((lens-len(s)-1)/2):
+            continue          
+        next(s+l,k,no)
+    if len(s)==lens:
+        count+=1
+next('',d,notonly)
+print(int(count))
+
+```
+
+### 반성
+
+- 베스트 코드로 풀었을 때 Python3으로 실행했음에도 PyPy3로 실행한 내 코드보다 무려 3배나 더 빨랐다.  
+- 하지만 베스트 코드를 아무리 봐도 도저히 이해가 잘 가지 않는다....  
+- 혹시나 지나가다 이 포스팅과 저 코드를 본 개발자님들이 계신다면 코드 리뷰 댓글로 부탁드리겠습니다...ㅠ
