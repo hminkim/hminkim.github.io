@@ -47,7 +47,7 @@ tags: datastructure
   
 <br>  
    
-<center><img src="/assets/img/cs_ds_210702_2.png" width="100%" height="100%"></center>  
+<center><img src="/assets/img/cs_ds_210702_2.png" width="70%" height="70%"></center>  
 <center>출처 : https://velog.io/@adam2/TREE</center>  
 <center> 이진 트리의 종류 </center> 
   
@@ -75,9 +75,9 @@ tags: datastructure
   
 **단점**  
 - 균형이 잡혀 있을 때 기준 시간복잡도는 O(logn)이지만 편향 트리에서는 링크드 리스트등과 동일한 성능을 보여줄 수도 있음  
-- 이를 해결하기 위해 [균형 이진 탐색 트리](#균형-이진-탐색-트리)를 활용 함  
+- 이를 해결하기 위해 [균형 이진 탐색 트리](#균형-이진-탐색-트리-balanced-bst)를 활용 함  
    
-<center><img src="/assets/img/cs_ds_210623_5.png" width="100%" height="100%"></center>  
+<center><img src="/assets/img/cs_ds_210702_5.png" width="70%" height="70%"></center>  
 <center>출처 : https://www.fun-coding.org/Chapter10-tree.html</center>  
 <center> 편향 트리 </center>  
 
