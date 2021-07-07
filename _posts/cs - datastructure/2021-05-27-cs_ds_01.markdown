@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Array & List"
+title: "[Data Structure] Array & List"
 subtitle:  "array & list"
 categories: computerscience
 tags: datastructure

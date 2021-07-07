@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Heap"
+title: "[Data Structure] Heap"
 subtitle:  "Heap"
 categories: computerscience
 tags: datastructure

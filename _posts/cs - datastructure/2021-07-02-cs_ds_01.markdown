@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tree"
+title: "[Data Structure] Tree"
 subtitle:  "Tree"
 categories: computerscience
 tags: datastructure

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stack & Queue & Deque"
+title: "[Data Structure] Stack & Queue & Deque"
 subtitle:  "Stack & Queue & Deque"
 categories: computerscience
 tags: datastructure

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linked List"
+title: "[Data Structure] Linked List"
 subtitle:  "Linked List"
 categories: computerscience
 tags: datastructure
