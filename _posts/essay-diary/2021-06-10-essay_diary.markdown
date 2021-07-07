@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "210610 Essay"
-subtitle:  "210610 Essay"
+title: "210610 Diary"
+subtitle:  "210610 Diary"
 categories: essay
 tags: diary
 ---
