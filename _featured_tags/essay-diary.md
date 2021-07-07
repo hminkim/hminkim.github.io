@@ -1,6 +1,6 @@
 ---
 layout: tag-blog
-title: diary
+title: Diary
 slug: diary
 category: essay
 menu: false
