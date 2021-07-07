@@ -3,7 +3,7 @@ layout: post
 title: "210610 Essay"
 subtitle:  "210610 Essay"
 categories: essay
-tags: 
+tags: diary
 ---
   
 ### 들어가며  
