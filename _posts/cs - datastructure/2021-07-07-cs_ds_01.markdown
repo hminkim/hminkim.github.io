@@ -63,7 +63,7 @@ tags: datastructure
 <br>  
    
 <center><img src="/assets/img/cs_ds_210707_4.png" width="100%" height="100%"></center>  
-<center>출처 : https://www.mathwarehouse.com/programming/gifs/binary-search-tree.php#binary-search-tree-insertion-node</center>  
+<center>출처 : https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html</center>  
 <center> 힙의 삭제 (최대/최소값) </center> 
     
 <br>  
