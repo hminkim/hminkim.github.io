@@ -174,10 +174,10 @@ class Heap:
 |힙 연산|시간 복잡도|
 |---|---|
 |make-heap|O(nlogn)|
-|리프 레벨까지 도달|O(logn)|
 |find-max|O(1)|
 |insert|O(logn)|
-|delete-max|O(logn)|  
+|delete-max|O(logn)|
+|리프 레벨까지 도달|O(logn)|  
   
 - Search를 효율적으로 할 수 있는 자료구조가 아니기 때문에 굳이 구현하지 않음  
 - 가장 큰(작은) 값을 찾거나 지우는 연산이 많은 곳에 효율적  
@@ -191,8 +191,8 @@ class Heap:
   
 [잔재미코딩](https://www.fun-coding.org/Chapter11-heap.html)  
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
-[위키 백과](https://ko.wikipedia.org/wiki/%ED%9E%99_(%EC%9E%90%EB%A3%8C_%EA%B5%AC%EC%A1%B0))
-[Heee's Development Blog](https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html)
+[위키 백과](https://ko.wikipedia.org/wiki/%ED%9E%99_(%EC%9E%90%EB%A3%8C_%EA%B5%AC%EC%A1%B0))  
+[Heee's Development Blog](https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html)  
   
 ----  
   
