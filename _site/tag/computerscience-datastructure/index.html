@@ -74,7 +74,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <link rel="next" href="http://localhost:4000/tag/laguagegrammar-javascript/">
+  <link rel="next" href="http://localhost:4000/tag/essay-diary/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -174,6 +174,299 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
       
+
+
+  
+
+<article id="post-computerscience/2021/07/07/cs_ds_01" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/computerscience/2021/07/07/cs_ds_01/" data-flip="title">
+        Heap
+        </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-07-07T00:00:00+09:00">07 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/3-computerscience/" data-flip="title">Computer Science</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structure</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  
+  <h2 id="heap-힙">Heap 힙</h2>
+
+<hr />
+
+<ul>
+  <li>데이터에서 최대값이나 최소값을 빠르게 찾기 위해 고안된 완전 이진 트리</li>
+  <li>배열에 데이터를 넣고 최대값이나 최소값을 찾으려면 O(n)의 시간이 걸리지만, 힙에서는 O(logn)이 걸림</li>
+  <li>우선순위 큐와 같이 최대값 또는 최소값을 빠르게 찾아야 하는 자료구조 및 알고리즘 등에 활용됨</li>
+  <li>힙에는 부모노드의 키 값이 자식노드의 키 값보다 항상 큰 ‘최대 힙’과 부모노드의 키 값이 자식노드의 키 값보다 항상 작은 ‘최소 힙’ 두가지의 종류가 있음</li>
+</ul>
+
+<p><br /></p>
+
+<center><img src="/assets/img/cs_ds_210707_1.png" width="130%" height="130%" /></center>
+<center>출처 : https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html</center>
+<center> 힙의 형태 </center>
+
+<p><br /></p>
+
+<ul>
+  <li>일반적으로 힙을 저장하는 자료구조로는 배열로 구현</li>
+  <li>구현의 편의성을 위해 배열의 첫번째 인덱스(0)은 None으로 비워 둠
+    <ul>
+      <li>(부모 노드 인덱스) = (자식 노드 인덱스) // 2</li>
+      <li>(왼쪽 자식 노드 인덱스) = (부모 노드 인덱스) * 2</li>
+      <li>(오른쪽 자식 노드 인덱스) = (부모 노드 인덱스) * 2 + 1</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<center><img src="/assets/img/cs_ds_210707_2.png" width="70%" height="70%" /></center>
+<center>출처 : https://www.fun-coding.org/Chapter11-heap.html</center>
+<center> 힙과 이진 탐색 트리의 차이점 </center>
+
+<p><br /></p>
+
+<ul>
+  <li>완전 이진 트리인 힙과 이진 탐색 트리는 여러 차이점이 있음
+    <ul>
+      <li>힙은 각 노드의 값이 자식 노드보다 크거나 같음 (최대 힙일 경우 / 최소 힙이면 반대)</li>
+      <li>이진 탐색 트리는 왼쪽 자식 노드의 값이 가장 작고 오른쪽 자식 노드가 가장 크지만, 힙은 작은 값은 왼쪽, 큰 값은 오른쪽이라는 조건은 없음</li>
+      <li>이진 탐색 트리는 탐색을 위한 구조이고 힙은 최대,최소값 검색을 위한 구조 중 하나</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="힙-구현">힙 구현</h3>
+
+
+  <p class="read-more"><a class="heading" href="/computerscience/2021/07/07/cs_ds_01/" data-flip="title">Continue reading </a>
+  </p>
+  
+
+</article>
+
+
+
+  
+
+<article id="post-computerscience/2021/07/02/cs_ds_01" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/computerscience/2021/07/02/cs_ds_01/" data-flip="title">
+        Tree
+        </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-07-02T00:00:00+09:00">02 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/3-computerscience/" data-flip="title">Computer Science</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structure</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  
+  <h2 id="tree-트리">Tree 트리</h2>
+
+<hr />
+
+<ul>
+  <li>일반적으로 대상 정보의 각 항목들을 계층적으로 연관되도록 구조화시키고자 할 때 사용하는 비선형 자료구조</li>
+  <li>Node와 Branch를 이용해서, 사이클을 이루지 않도록 구성한 데이터 구조</li>
+  <li>한 개의 루트 노드만이 존재하며, 모든 자식 노드는 한 개의 부모 노드만을 가짐 (즉, 루트에서 어떤 노드로 가는 경로는 유일)</li>
+  <li>보통 이진 트리(Binary Tree) 형태의 구조로, 탐색(검색) 알고리즘 구현을 위해 많이 사용됨</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="트리-관련-용어">트리 관련 용어</h3>
+
+<ul>
+  <li>노드 (Node) : 트리에서 데이터를 저장하는 기본 요소 (데이터와 다른 연결된 노드에 대한 Branch 정보 포함)</li>
+  <li>간선 (Branch) : 노드를 연결하는 선 (edge, link라고도 부름)</li>
+  <li>내부 노드 (Internal Node) : 말단 노드가 아닌 노드</li>
+  <li>루트 노드 (Root Node) : 트리 맨 위에 있는 노드</li>
+  <li>말단 노드 (Leaf Node) : 자식 노드가 하나도 없는 노드 (단말 노드, 잎 노드)</li>
+  <li>부모 노드 (Parent Node) : 어떤 노드의 다음 레벨에 연결된 노드</li>
+  <li>자식 노드 (Child Node) : 어떤 노드의 하위 레벨에 연결된 노드</li>
+  <li>형제 노드 (Brother Node) : 동일한 부모 노드를 가진 노드 (Sibling)</li>
+  <li>노드의 레벨 (Level): 최상위 노드를 Level 0으로 하였을 때, 하위 Branch로 연결된 노드의 깊이를 나타냄</li>
+  <li>노드의 크기 (Size) : 자신을 포함한 모든 자손 노드의 개수</li>
+  <li>노드의 깊이 (Depth) : 트리에서 노드가 가질 수 있는 최대 레벨</li>
+  <li>노드의 높이 (height) : 루트 노드에서 가장 깊숙히 있는 노드의 깊이</li>
+</ul>
+
+<p><br /></p>
+
+<center><img src="/assets/img/cs_ds_210702_1.png" width="100%" height="100%" /></center>
+<center>출처 : https://www.fun-coding.org/Chapter10-tree.html</center>
+<center> 트리 관련 용어 정리 </center>
+
+<h3 id="트리의-종류">트리의 종류</h3>
+
+<ul>
+  <li>이진 트리 (Binary Tree) : 노드의 최대 Branch가 2인 트리</li>
+  <li>완전 이진 트리 (Complete Binary Tree) : 노드를 삽입할 때 왼쪽부터 차례대로 추가하는 이진 트리</li>
+  <li>전 이진 트리 (Full Binary Tree) : 모든 노드가 0개 또는 2개의 자식 노드를 갖는 트리</li>
+  <li>포화 이진 트리 (Perfect Binary Tree) : 모든 내부 노드가 두 개의 자식 노드를 가지며 모든 잎 노드가 동일한 깊이 또는 레벨을 갖는 트리</li>
+  <li>편향 트리 (Skewed Tree) : 한쪽으로 기울어진 트리, 사향 트리라고도 부름</li>
+</ul>
+
+<p><br /></p>
+
+<center><img src="/assets/img/cs_ds_210702_2.png" width="70%" height="70%" /></center>
+<center>출처 : https://velog.io/@adam2/TREE</center>
+<center> 이진 트리의 종류 </center>
+
+<hr />
+
+<h3 id="이진-탐색-트리-binary-search-tree-bst">이진 탐색 트리 (Binary Search Tree, BST)</h3>
+
+<p>왼쪽 노드는 해당 노드보다 작거나 같은 값, 오른쪽 노드는 해당 노드보다 큰 값을 가지는 추가적인 조건이 있는 이진 트리</p>
+
+<center><img src="/assets/img/cs_ds_210702_3.gif" width="100%" height="100%" /></center>
+<center>출처 : https://www.mathwarehouse.com/programming/gifs/binary-search-tree.php#binary-search-tree-insertion-node</center>
+<center> 이진 탐색 트리 </center>
+
+
+  <p class="read-more"><a class="heading" href="/computerscience/2021/07/02/cs_ds_01/" data-flip="title">Continue reading </a>
+  </p>
+  
+
+</article>
+
+
+
+  
+
+<article id="post-computerscience/2021/06/23/cs_ds_01" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/computerscience/2021/06/23/cs_ds_01/" data-flip="title">
+        Hash Table
+        </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-06-23T00:00:00+09:00">23 Jun 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/3-computerscience/" data-flip="title">Computer Science</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structure</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  
+  <h2 id="hash-table-해시-테이블">Hash Table 해시 테이블</h2>
+
+<hr />
+
+<ul>
+  <li>키(Key)에 데이터(Value)를 저장하는 데이터 구조</li>
+  <li>Key를 통해 바로 데이터를 받아올 수 있으므로, 속도가 획기적으로 빨라짐</li>
+  <li>보통 배열로 미리 Hash Table 사이즈만큼 생성 후에 사용 (공간과 탐색 시간을 맞바꾸는 기법)</li>
+  <li>캐쉬를 구현하는 등의 검색, 저장, 삭제, 읽기가 많이 필요한 경우 사용</li>
+  <li>파이썬에서는 dictionary 타입으로 해시 테이블을 구현 가능</li>
+</ul>
+
+
+  <p class="read-more"><a class="heading" href="/computerscience/2021/06/23/cs_ds_01/" data-flip="title">Continue reading </a>
+  </p>
+  
+
+</article>
+
 
 
   
@@ -490,6 +783,12 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
            
          
            
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/essay-diary/">diary</a>
+             </li>
+           
+         
+           
          
            
          
@@ -510,6 +809,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            
@@ -556,6 +857,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
            
          
            
+         
+           
              <li>
                <a class="sidebar-nav-subitem" href="/tag/computerscience-algorithm/">Algorithm</a>
              </li>
@@ -587,6 +890,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
            
          
            
+         
+           
              <li>
                <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
              </li>
@@ -609,6 +914,8 @@ on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structur
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            

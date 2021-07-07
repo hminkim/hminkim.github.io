@@ -2,6 +2,134 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://localhost:4000/computerscience/2021/07/07/cs_ds_01/</loc>
+      
+        <lastmod>2021-07-07T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/computerscience/2021/07/02/cs_ds_01/</loc>
+      
+        <lastmod>2021-07-02T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/algorithmpractice/2021/06/29/ap_pg_post1/</loc>
+      
+        <lastmod>2021-06-29T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/algorithmpractice/2021/06/25/ap_bj_post1/</loc>
+      
+        <lastmod>2021-06-25T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/computerscience/2021/06/23/cs_ds_01/</loc>
+      
+        <lastmod>2021-06-23T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/algorithmpractice/2021/06/21/ap_pg_post1/</loc>
+      
+        <lastmod>2021-06-21T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/algorithmpractice/2021/06/21/ap_bj_post1/</loc>
+      
+        <lastmod>2021-06-21T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/algorithmpractice/2021/06/17/ap_bj_post1/</loc>
+      
+        <lastmod>2021-06-17T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+  
+    <url>
       <loc>http://localhost:4000/algorithmpractice/2021/06/15/ap_bj_post1/</loc>
       
         <lastmod>2021-06-15T00:00:00+09:00</lastmod>

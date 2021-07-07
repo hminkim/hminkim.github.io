@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="5ad0a17f13ac28237289ad40ac384290fa39ae62" />
+<meta name="google-site-verification" content="gqmKS4xJNGfqV-5IsA91EEAigKqTf8G_mV04JnbuyPE" />
+<meta property="og:title" content="Hash Table">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Hash Table &middot; KkoHMa's Coding Diary</title>
+
+
+
+<meta name="description" content="Hash Table 해시 테이블 키(Key)에 데이터(Value)를 저장하는 데이터 구조 Key를 통해 바로 데이터를 받아올 수 있으므로, 속도가 획기적으로 빨라짐 보통 배열로 미리 Hash Table 사이즈만큼 생성 후에 사용 (공간과 탐색 시간을 맞바꾸는 기법) 캐쉬를 구현하는 등의 검색, 저장, 삭제, 읽기가 많이 필요한 경우 사용 파이썬에서는 dictionary 타입으로 해시 테이블을 구현...">
+<meta property="og:description" content="Hash Table 해시 테이블 키(Key)에 데이터(Value)를 저장하는 데이터 구조 Key를 통해 바로 데이터를 받아올 수 있으므로, 속도가 획기적으로 빨라짐 보통 배열로 미리 Hash Table 사이즈만큼 생성 후에 사용 (공간과 탐색 시간을 맞바꾸는 기법) 캐쉬를 구현하는 등의 검색, 저장, 삭제, 읽기가 많이 필요한 경우 사용 파이썬에서는 dictionary 타입으로 해시 테이블을 구현...">
+
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/computerscience/2021/06/23/cs_ds_01/">
+<meta property="og:url" content="http://localhost:4000/computerscience/2021/06/23/cs_ds_01/">
+
+<link rel="alternate" type="application/atom+xml" title="KkoHMa's Coding Diary Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/algorithmpractice/2021/06/21/ap_pg_post1/">
+
+
+
+  <link rel="next" href="http://localhost:4000/algorithmpractice/2021/06/25/ap_bj_post1/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+
+
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXTH4V0GHH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FXTH4V0GHH');
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:0.5rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630";font-size:3rem}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/back.jpeg">
+      
+
+<article id="post-computerscience/2021/06/23/cs_ds_01" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Hash Table
+        
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-06-23T00:00:00+09:00">23 Jun 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/3-computerscience/" data-flip="title">Computer Science</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/computerscience-datastructure/" data-flip="title">Data Structure</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  
+  <div class="markdown-body">
+
+    <!--  -->
+
+    <br />
+    <h2 id="hash-table-해시-테이블">Hash Table 해시 테이블</h2>
+
+<hr />
+
+<ul>
+  <li>키(Key)에 데이터(Value)를 저장하는 데이터 구조</li>
+  <li>Key를 통해 바로 데이터를 받아올 수 있으므로, 속도가 획기적으로 빨라짐</li>
+  <li>보통 배열로 미리 Hash Table 사이즈만큼 생성 후에 사용 (공간과 탐색 시간을 맞바꾸는 기법)</li>
+  <li>캐쉬를 구현하는 등의 검색, 저장, 삭제, 읽기가 많이 필요한 경우 사용</li>
+  <li>파이썬에서는 dictionary 타입으로 해시 테이블을 구현 가능</li>
+</ul>
+
+<blockquote>
+  <p>순차적으로 배열에 저장되어있는 자료를 삽입, 삭제, 탐색을 할 때는 일반적으로 시간복잡도가 O(n)이 되는데<br />
+해시 테이블로 자료를 저장한다면 일반적으로 삽입, 삭제, 탐색에 상수 시간 O(1) 밖에 걸리지 않음<br />
+(모든 경우에 충돌이 발생하는 최악의 경우 O(n)의 시간 복잡도가 듦)</p>
+</blockquote>
+
+<p><br /></p>
+
+<p><strong>장점</strong></p>
+<ul>
+  <li>데이터 저장/읽기 속도가 빠름 (검색 속도가 빠름)</li>
+  <li>해시는 키에 대한 데이터가 있는지(중복) 확인이 쉬움</li>
+</ul>
+
+<p><strong>단점</strong></p>
+<ul>
+  <li>연결을 위한 별도 데이터 공간이 필요하므로 저장 공간 효율이 높지 않음</li>
+  <li>데이터를 찾는 시간이 필요하므로 접근 속도가 느림</li>
+  <li>중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야 하는 부가적인 작업 필요</li>
+  <li>순서와 상관없이 key만을 가지고 hash를 찾아 저장하기 때문에 상하관계가 있거나, 순서가 중요한 데이터의 경우 Hash Table은 어울리지 않음<br />
+(파이썬 3.7 부터 표준 딕셔너리 dict 가 삽입 순서를 보존)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="해시-관련-용어">해시 관련 용어</h3>
+
+<ul>
+  <li>해시(Hash): 임의 값을 고정 길이로 변환하는 것</li>
+  <li>해시 테이블(Hash Table): 키 값의 연산에 의해 직접 접근이 가능한 데이터 구조</li>
+  <li>해싱 함수(Hashing Function): Key에 대해 산술 연산을 이용해 데이터 위치를 찾을 수 있는 함수</li>
+  <li>해시 값(Hash Value) 또는 해시 주소(Hash Address): Key를 해싱 함수로 연산해서, 해시 값을 알아내고, 이를 기반으로 해시 테이블에서 해당 Key에 대한 데이터 위치를 일관성있게 찾을 수 있음</li>
+  <li>슬롯(Slot): 한 개의 데이터를 저장할 수 있는 공간</li>
+</ul>
+
+<p><br /></p>
+
+<center><img src="/assets/img/cs_ds_210623_1.png" width="100%" height="100%" /></center>
+<center>출처 : https://www.fun-coding.org/DS&amp;AL1-6.html</center>
+<center> 일반적인 해시 테이블의 프로세스 </center>
+
+<hr />
+
+<h3 id="충돌-hash-collision">충돌 (Hash collision)</h3>
+
+<p>충돌 해결 함수 (collision resolution method)를 통해서 충돌을 해결</p>
+
+<p>해시 테이블을 구성함에 있어서 고려해야 할 사항</p>
+<ol>
+  <li>table (list)</li>
+  <li>Hash function</li>
+  <li>Hash collision resolution method</li>
+</ol>
+
+<h3 id="해시-함수-hash-function">해시 함수 (Hash function)</h3>
+
+<p><strong>Division hash function</strong><br />
+나머지 연산으로 key 값을 정하는 해시 함수</p>
+
+<p><strong>Perfect hash function</strong> <br />
+충돌이 일어나지 않고 1 to 1 으로 각각 다른 슬롯에 자료가 저장될 수 있게끔 하는 해시 함수<br />
+이상적인 해시 함수 (비현실적)</p>
+
+<p><strong>Universial hash function</strong><br />
+두개의 서로 다른 키 값이 같은 슬롯에 저장 될 확률이 해시 테이블 사이즈에 반비례하는 함수</p>
+
+<p>그 외에도<br />
+Multiplication, Folding, Mid squares, Extraction와<br />
+key 값이 string일 때의 Additive, Rotating 등 다양한 해시 함수들이 있다.</p>
+
+<p>해시 테이블의 평균 데이터 처리의 시간 복잡도는 O(1)이지만, 이는 해시 함수의 연산을 고려하지 않는 결과<br />
+해시 함수가 매우 복잡하다면 해시테이블의 모든 연산의 시간 효율성은 증가<br />
+ -&gt; 해시 함수의 선택도 중요</p>
+
+<p><br /></p>
+
+<h3 id="충돌-회피-함수-hash-collision-resolution-method">충돌 회피 함수 (Hash collision resolution method)</h3>
+
+<p><strong>open addressing</strong></p>
+
+<ul>
+  <li>linear probing
+    <ul>
+      <li>폐쇄 해싱 또는 Close Hashing 기법 중 하나: 해쉬 테이블 저장공간 안에서 충돌 문제를 해결하는 기법</li>
+      <li>충돌이 일어나면, 해당 hash address의 다음 address부터 맨 처음 나오는 빈공간에 저장하는 기법</li>
+      <li>저장공간 활용도를 높이기 위한 기법</li>
+      <li>linear probing으로 충돌을 회피할 때 클러스터(저장된 자료가 모여있는 군집)가 적어야 시간 복잡도가 줄어듦</li>
+    </ul>
+  </li>
+  <li>quadratic probing
+    <ul>
+      <li>k -&gt; k + 1^2 -&gt; k + 2^2 -&gt; k + 3^2 -&gt; …</li>
+    </ul>
+  </li>
+  <li>double hashing
+    <ul>
+      <li>해시 함수를 두개 사용하는 기법</li>
+      <li>f(key) -&gt; f(key) + g(key) -&gt; f(key) + 2g(key) -&gt; f(key) + 3g(key) -&gt; …</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>장점</strong></p>
+<ul>
+  <li>또 다른 저장공간 없이 해시테이블 내에서 데이터 저장 및 처리가 가능</li>
+  <li>또 다른 저장공간에서의 추가적인 작업이 없음</li>
+</ul>
+
+<p><strong>단점</strong></p>
+<ul>
+  <li>해시 함수(Hash Function)의 성능에 전체 해시테이블의 성능이 결정됨</li>
+  <li>데이터의 길이가 늘어나면 그에 해당하는 저장소를 마련해 두어야 함</li>
+</ul>
+
+<center><img src="/assets/img/cs_ds_210623_2.png" width="100%" height="100%" /></center>
+<center>출처 : https://www.geeksforgeeks.org/</center>
+<center> linear probing 예시 </center>
+
+<p><br /></p>
+
+<p><strong>chaining</strong></p>
+
+<ul>
+  <li>개방 해싱 또는 Open Hashing 기법 중 하나: 해시 테이블 저장공간 외의 공간을 활용하는 기법</li>
+  <li>충돌이 일어나면, 링크드 리스트라는 자료 구조를 사용해서, 링크드 리스트로 데이터를 추가로 뒤에 연결시켜서 저장하는 기법</li>
+</ul>
+
+<p><strong>장점</strong></p>
+<ul>
+  <li>한정된 저장소(Bucket)을 효율적으로 사용 가능</li>
+  <li>해시 함수(Hash Function)을 선택하는 중요성이 상대적으로 적음</li>
+  <li>상대적으로 적은 메모리를 사용하여 미리 공간을 잡아 놓을 필요가 없음</li>
+</ul>
+
+<p><strong>단점</strong></p>
+<ul>
+  <li>한 Hash에 자료들이 계속 연결된다면(쏠림 현상) 검색 효율을 낮출 수 있음</li>
+  <li>외부 저장 공간을 사용하여 외부 저장 공간 작업을 추가로 해야 함</li>
+</ul>
+
+<center><img src="/assets/img/cs_ds_210623_3.png" width="100%" height="100%" /></center>
+<center>출처 : https://velog.io/@cyranocoding/</center>
+<center> chaining 예시 </center>
+
+<p><br /></p>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HashTable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">hash_table</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)])</span>
+        
+    <span class="k">def</span> <span class="nf">get_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">hash_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="mi">8</span>
+    
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">hash_value</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">hash_function</span><span class="p">(</span><span class="n">get_key</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_value</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">hash_function</span><span class="p">(</span><span class="n">get_key</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">hash_table</span><span class="p">)</span>
+</code></pre></div></div>
+<center> 해시 테이블을 파이썬으로 구현 </center>
+
+<p><br /></p>
+
+<p>삽입 삭제 탐색 연산은 cluster size에 영향을 받음<br />
+cluster size는 해시 함수, 충돌 해결 함수, 로드 팩터의 영향을 받음<br />
+(로드 팩터 : (테이블에 저장된 아이템의 갯수) / (슬롯의 갯수))</p>
+
+<p>로드 팩터와 충돌 비율을 통해서 해시 테이블에 관련된 연산들의 수행시간, 성능 등을 평가 가능</p>
+
+<p>클러스터의 빈 슬롯이 평균적으로 50% 이상을 유지한다면 해시 테이블의 연산의 시간 복잡도가 평균 O(1)으로 수렴</p>
+
+<hr />
+
+<h3 id="참고">참고</h3>
+
+<p><a href="https://www.fun-coding.org/DS&amp;AL1-6.html">잔재미코딩</a><br />
+<a href="https://www.youtube.com/user/cssin829">신찬수 교수님 유튜브</a></p>
+
+<hr />
+
+
+    <br />
+  </div>
+
+  
+
+</article>
+
+<hr class="dingbat" />
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="KkoHMa"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Carpe Diem을 좌우명으로 갖고 언제나 긍정적으로 현재를 즐기려고 노력하는, 28살이 되어서 개발 공부를 해보려 하고 있는 늦깎이 개발 꿈나무 입니다.</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/computerscience/2021/07/07/cs_ds_01/" data-flip="title">
+    <span>Heap</span>
+  </a>
+  <small><time datetime="2021-07-07T00:00:00+09:00">
+    07 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/computerscience/2021/07/02/cs_ds_01/" data-flip="title">
+    <span>Tree</span>
+  </a>
+  <small><time datetime="2021-07-02T00:00:00+09:00">
+    02 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/computerscience/2021/06/09/cs_ds_01/" data-flip="title">
+    <span>Linked List</span>
+  </a>
+  <small><time datetime="2021-06-09T00:00:00+09:00">
+    09 Jun 2021
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+<aside>
+  <h2 class="hr">Comments</h2>
+    <script src="https://utteranc.es/client.js"
+        repo="hminkim/hminkim.github.io"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+</aside>
+
+    <main id="_main">
+    
+
+      
+      
+      <br>
+      <br>
+      <br>
+      <footer>
+  <hr>
+  
+    <p>© 2021. by hminkim</p>
+
+  
+</footer>
+
+    </main>
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/back.jpeg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">KkoHMa's Coding Diary</a></h1>
+        <p>데이터 사이언티스트를 꿈꾸는, 개발 꿈나무 입니다.</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/1-essay/">Essay</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/essay-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/2-language/">Language</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/laguagegrammar-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/laguagegrammar-javascript/">Javascript</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/3-computerscience/">Computer Science</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/computerscience-datastructure/">Data Structure</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/computerscience-algorithm/">Algorithm</a>
+             </li>
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/4-algorithmpractice/">Algorithm Practice</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-programers/">Programers</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/algorithmpractice-baekjoon/">BaekJoon</a>
+             </li>
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+      <br/>
+      <form action="/search">
+        <div class="tipue_search_left">
+          <img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+        </div>
+        <div class="tipue_search_right">
+          <input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+        <div style="clear: both;"></div>
+      </form>
+      
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="KkoHMa"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>글이든 그림이든 코드든<br /> 끄적이는 것을 좋아하고<br /> 깔끔하게 정리된 것을 좋아하는<br /> 꼬마 개발 꿈나무 입니다.</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCP92a_ZkJzIxAagKxR_Oz_w">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/hminkim2">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/hminkim">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:hminkim2@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'G-FXTH4V0GHH', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
