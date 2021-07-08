@@ -134,8 +134,8 @@ tags: datastructure
   
 <br>
   
-<center><img src="/assets/img/cs_ds_210708_6.png" width="70%" height="70%"></center>  
-<center><img src="/assets/img/cs_ds_210708_7.png" width="100%" height="100%"></center>  
+<center><img src="/assets/img/cs_ds_210708_6.png" width="60%" height="60%"></center>  
+<center><img src="/assets/img/cs_ds_210708_7.png" width="120%" height="120%"></center>  
 <center>출처 : https://www.youtube.com/user/cssin829</center>  
 <center> 인접 행렬 vs 인접 리스트 </center> 
   
