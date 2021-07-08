@@ -57,7 +57,7 @@ tags: datastructure
 **무방향 그래프 vs 방향 그래프**  
 <br>
   
-<center><img src="/assets/img/cs_ds_210708_2.png" width="70%" height="70%"></center>  
+<center><img src="/assets/img/cs_ds_210708_2.png" width="55%" height="55%"></center>  
 <center>출처 : https://velog.io/@roro/</center>  
 <center> 무방향 그래프 vs 방향 그래프 </center> 
   
