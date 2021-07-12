@@ -197,9 +197,9 @@ tags: datastructure
   
 ### 참고  
   
-[잔재미코딩](https://www.fun-coding.org/Chapter10-tree.html)  
+[잔재미코딩](https://www.fun-coding.org/Chapter17-graph-live.html)  
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
-[위키 백과](https://ko.wikipedia.org/wiki/%ED%8A%B8%EB%A6%AC_%EA%B5%AC%EC%A1%B0)  
+[위키 백과](https://ko.wikipedia.org/wiki/%EA%B7%B8%EB%9E%98%ED%94%84_(%EC%9E%90%EB%A3%8C_%EA%B5%AC%EC%A1%B0))  
 [Heee's Development Blog](https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html)  
 [janjanlog](https://velog.io/@roro/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B7%B8%EB%9E%98%ED%94%84-DFS-BFS)  
   
