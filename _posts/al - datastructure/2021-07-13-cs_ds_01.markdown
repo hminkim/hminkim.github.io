@@ -28,11 +28,11 @@ tags: algorithm
 - in-place 제자리 정렬  
     - 추가적인 메모리 공간을 많이 필요로 하지 않는 혹은 전혀 필요하지 않는 알고리즘을 의미  
     - 통상적으로, 공간은 O(logn)이고 O(n)이 될 때도 있음  
-    > Selection Sort 버블 정렬  
-    > Selection Sort 선택 정렬  
-    > Insertion Sort 삽입 정렬  
-    > Heap Sort 힙 정렬  
-    > Quick Sort 퀵 정렬  
+        > Selection Sort 버블 정렬  
+        > Selection Sort 선택 정렬  
+        > Insertion Sort 삽입 정렬  
+        > Heap Sort 힙 정렬  
+        > Quick Sort 퀵 정렬  
   
 <br>  
   
