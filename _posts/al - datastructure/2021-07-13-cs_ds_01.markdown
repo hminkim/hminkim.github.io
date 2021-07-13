@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Data Structure] Sort Algorithm 1"
+title: "[Algorithm] Sort Algorithm 1"
 subtitle:  "Sort Algorithm"
 categories: computerscience
 tags: algorithm
