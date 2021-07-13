@@ -73,8 +73,8 @@ def bubblesort(data):
         if swap == False:
             break
     return data
-<center> 버블 정렬을 파이썬으로 구현 </center>
 ```
+<center> 버블 정렬을 파이썬으로 구현 </center>
   
 <br>  
   
