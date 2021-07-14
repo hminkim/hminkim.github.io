@@ -71,6 +71,7 @@ def quick_sort(data):
   
 <br>
   
+```python
 def quick_sort(data):
     def sort(left, right):
         if right <= left:
