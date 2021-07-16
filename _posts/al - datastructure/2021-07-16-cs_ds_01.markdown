@@ -1,0 +1,75 @@
+---
+layout: post
+title: "[Algorithm] Recursion"
+subtitle:  "Recursion"
+categories: computerscience
+tags: algorithm
+---
+## Recursion 재귀
+  
+- 정의 단계에서 자신을 재참조 하는 함수  
+- 하나의 함수에서 자신을 다시 호출하여 작업을 수행하는 방식  
+- 재귀 호출이나 되부름 이라고도 함  
+
+
+### 재귀 함수 특징  
+  
+- 무한 루프 방지를 위해 함수가 끝날 때 까지 함수 호출 이후의 명령문이 수행되지 않는다는 사실과 종료 조건이 꼭 포함되어야 한다는 부분을 인지하고 작성  
+- 파이썬에서 재귀 함수는 한번에 호출되는 정도가 1000회 이하가 되어야 함  
+  
+  
+### 대표적인 재귀 함수 예시  
+  
+```python
+def factorial(n):
+    if n <= 1:
+        return n
+    else:
+        return n * factorial(n-1)
+    
+```
+<center> 팩토리얼을 재귀함수로 구현 </center>
+  
+<br>
+
+```python
+def fibonacci(n):
+    list = list()
+    for i in range(0,n):
+        if i < 2:
+            list.append(1)
+        else:
+            list.append(list[i-1] + list[i-2])
+    return list
+```
+<center> 피보나치 수열을 재귀함수로 구현 </center>
+
+<br>
+  
+```python
+def gcd(m, n):
+    if m < n:
+        m, n = n, m
+    if m % n == 0:
+        return n
+    else:
+        return gcd(n, m%n)
+```
+<center> 유클리드 호제법을 재귀함수로 구현 </center>
+  
+> 유클리드 호제법  
+> 두 자연수 m, n에 대하여 (m > n) m을 n으로 나눈 나머지를 l이라 했을 때,
+> m과 n의 최대공약수는 n과 l의 최대공약수와 같다는 성질
+  
+<br>
+    
+----   
+  
+### 참고  
+  
+[잔재미코딩](https://www.fun-coding.org/Chapter13-recursive.html)  
+[신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
+  
+----  
+  
+
