@@ -34,15 +34,12 @@ def factorial(n):
 
 ```python
 def fibonacci(n):
-    list = list()
-    for i in range(0,n):
-        if i < 2:
-            list.append(1)
-        else:
-            list.append(list[i-1] + list[i-2])
-    return list
+    if n < 2:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
 ```
-<center> 피보나치 수열을 재귀함수로 구현 </center>
+<center> 피보나치 수열의 인자를 재귀함수로 구현 </center>
 
 <br>
   

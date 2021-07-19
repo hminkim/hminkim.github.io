@@ -40,7 +40,7 @@ tags: algorithm
 
 ### 분할 정복 vs 동적 계획법  
 - 문제를 잘게 쪼개서, 가장 작은 단위로 분할하여 문제를 해결한다는 공통점이 있음  
-- [동적 계획법](https://hminkim.github.io/computerscience/2021/07/19/cs_ds_02/)은 분할 정복과는 다르게 Memoization 기법을 사용하여 부분 문제는 중복되어, 상위 문제 해결 시 재활용될 수 있음 (부분 문제의 해답을 저장해서 재활용하는 최적화 기법으로 사용)  
+- [동적 계획법](https://hminkim.github.io/computerscience/2021/07/19/cs_ds_02/)은 중복되는 부분이 없는 분할 정복과는 다르게 Memoization 기법을 사용하여 부분 문제는 중복되며, 상위 문제 해결 시 재활용될 수 있음 (부분 문제의 해답을 저장해서 재활용하는 최적화 기법으로 사용)  
   
   
 <br>
@@ -51,8 +51,8 @@ tags: algorithm
   
 [잔재미코딩](https://www.fun-coding.org/Chapter14-dp_divide.html)  
 [신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
-[Cristoval Blog](https://data-make.tistory.com/232)
-[나무 위키](https://namu.wiki/w/%EB%B6%84%ED%95%A0%20%EC%A0%95%EB%B3%B5%EB%B2%95)
+[Cristoval Blog](https://data-make.tistory.com/232)  
+[나무 위키](https://namu.wiki/w/%EB%B6%84%ED%95%A0%20%EC%A0%95%EB%B3%B5%EB%B2%95)  
   
 ----  
   
