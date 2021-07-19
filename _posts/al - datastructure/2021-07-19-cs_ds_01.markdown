@@ -1,0 +1,58 @@
+---
+layout: post
+title: "[Algorithm] Divide and conquer"
+subtitle:  "Divide and conquer"
+categories: computerscience
+tags: algorithm
+---
+## Divide and conquer 분할 정복
+  
+- 분할정복법은 주어진 문제를 작은 사례로 나누고 각각의 작은 문제들을 해결하여 정복 (Conquer)하는 방법  
+- 분할 정복 패러다임을 차용한 알고리즘들은 주어진 문제를 둘 이상의 부분 문제로 나눈 뒤 각 문제에 대한 답을 재귀 호출을 이용해 계산, 각 부분 문제의 답으로부터 전체 문제의 답을 계산   
+- 주로 재귀함수를 이용하여 구현하는 것이 일반적이나, 재귀호출을 사용하지 않고 스택, 큐 등의 자료구조를 이용하여 구현하기도 함  
+- 대표적인 분할 정복법을 활용한 알고리즘으로는 [퀵 정렬과 병합 정렬](https://hminkim.github.io/computerscience/2021/07/14/cs_ds_01/)이 있음  
+  
+### 분할 정복 프로세스  
+  
+1. Divide (분할) : 문제를 동일한 유형의 여러 하위 문제로 분할  
+2. Conquer (정복) : 가장 작은 단위의 하위 문제들을 해결하며 정복  
+3. Combine (조합) : 하위 문제에 대한 결과를 원래 문제에 대한 결과로 조합  
+  
+  > 문제를 제대로 분할하면 정복하는 것은 쉽기 때문에 제대로 분할하는 것이 중요  
+  > 분할 정복법은 재귀 호출이 자주 사용되는데, 이 부분에서 분할 정복법의 효율성이 떨어질 수도 있음  
+  
+### 분할 정복의 장단점  
+  
+**장점**  
+- 문제를 나누어 해결함으로써 어려운 문제를 보다 쉽게 해결할 수 있음  
+- 문제를 나누어 해결한다는 특징상 병렬적으로 문제를 해결하는 데 큰 강점이 있음  
+  
+**단점**  
+- 함수를 재귀적으로 호출하게 되면 함수 호출로 인한 오버헤드가 발생하며, 스택에 다양한 데이터를 보관하고 있어야 하므로 스택 오버플로우가 발생하거나 과도한 메모리 사용을 하게 됨  
+  
+### 분할 정복 vs 재귀 호출
+- 일반적인 [재귀 호출](https://hminkim.github.io/computerscience/2021/07/16/cs_ds_01/)과의 차이점은 항상 문제를 한 조각과 나머지로 쪼개는 방식인 재귀 호출과는 달리 분할정복법은 항상 문제를 절반씩으로 나누어 문제를 해결  
+<br>    
+<center><img src="/assets/img/cs_al_210719_1.png" width="80%" height="80%"></center>  
+<center>출처 : https://data-make.tistory.com/232</center>  
+<center> 일반적인 재귀와 분할 정복의 차이 </center> 
+<br>  
+
+### 분할 정복 vs 동적 계획법  
+- 문제를 잘게 쪼개서, 가장 작은 단위로 분할하여 문제를 해결한다는 공통점이 있음  
+- [동적 계획법](https://hminkim.github.io/computerscience/2021/07/19/cs_ds_02/)은 분할 정복과는 다르게 Memoization 기법을 사용하여 부분 문제는 중복되어, 상위 문제 해결 시 재활용될 수 있음 (부분 문제의 해답을 저장해서 재활용하는 최적화 기법으로 사용)  
+  
+  
+<br>
+    
+----   
+  
+### 참고  
+  
+[잔재미코딩](https://www.fun-coding.org/Chapter14-dp_divide.html)  
+[신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
+[Cristoval Blog](https://data-make.tistory.com/232)
+[나무 위키](https://namu.wiki/w/%EB%B6%84%ED%95%A0%20%EC%A0%95%EB%B3%B5%EB%B2%95)
+  
+----  
+  

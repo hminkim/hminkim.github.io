@@ -1,0 +1,23 @@
+---
+layout: post
+title: "[Algorithm] Dynamic Programing"
+subtitle:  "Dynamic Programing"
+categories: computerscience
+tags: algorithm
+---
+## Dynamic Programing 동적 계획법
+  
+- 
+  
+  
+<br>
+    
+----   
+  
+### 참고  
+  
+[잔재미코딩](https://www.fun-coding.org/Chapter14-dp_divide.html)  
+[신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
+  
+----  
+  
