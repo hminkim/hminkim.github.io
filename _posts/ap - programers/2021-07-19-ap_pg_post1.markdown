@@ -53,7 +53,7 @@ def solution(answers):
 count 1, 2, 3을 `arr` 배열에 저장한 뒤 `arr`의 최댓값과 값이 같은 인덱스에 +1한 값(배열의 인덱스는 0부터 시작하기 때문)을 `answer`에 저장하고 리턴한다.  
 (변수 이름 설정을 헷갈리게 잘못 설정했는데 `answer`과 `answers` 다름 주의)  
   
-### 베스트 코드
+### 베스트 코드 1
   
 ```python
 def solution(answers):
@@ -78,7 +78,29 @@ def solution(answers):
     return result
 ```
   
+### 베스트 코드 2
+  
+```python
+from itertools import cycle
+
+def solution(answers):
+    giveups = [
+        cycle([1,2,3,4,5]),
+        cycle([2,1,2,3,2,4,2,5]),
+        cycle([3,3,1,1,2,2,4,4,5,5]),
+    ]
+    scores = [0, 0, 0]
+    for num in answers:
+        for i in range(3):
+            if next(giveups[i]) == num:
+                scores[i] += 1
+    highest = max(scores)
+
+    return [i + 1 for i, v in enumerate(scores) if v == highest]
+```
+  
   
 ### 반성
-- 전반적인 로직은 같지만 count 변수를 +1씩하여 arr에 append하는 것 보다 베스트 코드처럼 애초에 배열형태로 만들고 +1을 하는 게 좀 더 간편하다.  
+- 베스트 코드 1과 전반적인 로직은 같지만 count 변수를 +1씩하여 arr에 append하는 것 보다 베스트 코드처럼 애초에 배열형태로 만들고 +1을 하는 게 좀 더 간편하다.  
+- 베스트 코드 2의 배열을 무한히 반복할 때 사용하는 `intertools` 라이브러리의 `cycle`함수는 처음 봤는데 기억해 둬야겠다.
   
