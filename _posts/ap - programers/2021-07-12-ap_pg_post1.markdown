@@ -15,10 +15,9 @@ tags: programers
 [코딩테스트 연습 - 숫자 문자열과 영단어](https://programmers.co.kr/learn/courses/30/lessons/81301)
 
 ### 입출력 예시  
-
-|매개변수|값|
-|---|---|
+  
 |s|result|
+|---|---|
 |"one4seveneight"|1478|
 |"23four5six7"|234567|
 |"2three45sixseven"|234567|
