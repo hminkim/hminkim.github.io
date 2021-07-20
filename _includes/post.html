@@ -71,7 +71,13 @@
     <br />
     <br />
   </div>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8358147121924966"
+  {% else %}
+  {{ post.excerpt }}
+  <p class="read-more"><a class="heading" href="{{ post.url | relative_url }}" data-flip="title">Continue reading </a>
+  </p>
+  {% endunless %}
+</article>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8358147121924966"
      crossorigin="anonymous"></script>
 <!-- post bottom ads -->
 <ins class="adsbygoogle"
@@ -83,12 +89,6 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-  {% else %}
-  {{ post.excerpt }}
-  <p class="read-more"><a class="heading" href="{{ post.url | relative_url }}" data-flip="title">Continue reading </a>
-  </p>
-  {% endunless %}
-</article>
 {% unless include.link_title %}
 <hr class="dingbat" />
 {% endunless %}
