@@ -22,7 +22,7 @@
 
   &::after {
     content: "\2630"; // ☰
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   @media screen and (min-width: $break-point-2) {
