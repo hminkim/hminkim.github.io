@@ -5,7 +5,9 @@ subtitle:  "Recursion"
 categories: computerscience
 tags: algorithm
 ---
-## Recursion 재귀
+## Recursion 재귀  
+  
+----  
   
 - 정의 단계에서 자신을 재참조 하는 함수  
 - 하나의 함수에서 자신을 다시 호출하여 작업을 수행하는 방식  

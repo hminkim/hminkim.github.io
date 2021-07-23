@@ -5,7 +5,9 @@ subtitle:  "Divide and conquer"
 categories: computerscience
 tags: algorithm
 ---
-## Divide and conquer 분할 정복
+## Divide and conquer 분할 정복  
+  
+----  
   
 - 분할정복법은 주어진 문제를 작은 사례로 나누고 각각의 작은 문제들을 해결하여 정복 (Conquer)하는 방법  
 - 분할 정복 패러다임을 차용한 알고리즘들은 주어진 문제를 둘 이상의 부분 문제로 나눈 뒤 각 문제에 대한 답을 재귀 호출을 이용해 계산, 각 부분 문제의 답으로부터 전체 문제의 답을 계산   
