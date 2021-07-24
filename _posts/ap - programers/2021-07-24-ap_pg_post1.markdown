@@ -54,7 +54,7 @@ def solution(n, lost, reserve):
 그렇게 반복을 통해 모두 비교한 뒤, `lost_student`에 남은 원소는 체육복을 빌리지 못한 학생의 번호가 된다.  
 전체 학생의 수 `n`에서 체육복을 빌리지 못한 학생의 수 `len(lost_student)`를 뺀 값은 체육 수업을 들을 수 있는 학생의 수가 된다.  
   
-### 베스트 코드 1
+### 베스트 코드  
   
 ```python
 def solution(n, lost, reserve):
