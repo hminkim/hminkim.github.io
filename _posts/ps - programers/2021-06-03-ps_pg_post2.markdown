@@ -1,0 +1,46 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 문자열 내 마음대로 정렬하기"
+subtitle:  "프로그래머스 lv.1"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 6월 3일  
+소요 시간: 2시간 초과   
+카테고리: 인덱싱 
+태그: `레벨1`, `파이썬`,`time_out`  
+
+
+[코딩테스트 연습 - 문자열 내 마음대로 정렬하기](https://programmers.co.kr/learn/courses/30/lessons/12915)
+
+### 입출력 예시  
+
+|strings|n|return|
+|---|---|---|
+|["sun", "bed", "car"]|1|["car", "bed", "sun"]|
+|["abce", "abcd", "cdx"]|2|["abcd", "abce", "cdx"]|  
+    
+### 내가 적은 코드
+
+```python
+# 문제를 풀지 못하였다.
+```
+
+### 풀이 과정  
+  
+문제를 풀지 못하였다.
+  
+### 베스트 코드
+
+```python
+def solution(strings, n):
+    return sorted(strings, key=lambda x: x[n])
+```
+
+### 반성
+- `sort` 함수에 `key` 값을 넣어 정렬하는 것과, `lambda`의 이해도가 낮아서 이런 풀이를 생각조차 하지 못했다.
+- ~~3중 반복문으로 어떻게든 풀어보려했었던 내가 자괴감이든다....~~
+  
+
+

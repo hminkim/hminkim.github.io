@@ -1,0 +1,85 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 비밀지도"
+subtitle:  "프로그래머스 lv.1"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 6월 29일  
+소요 시간: 32분 53초   
+카테고리: 수학문제  
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 비밀지도](https://programmers.co.kr/learn/courses/30/lessons/17681)
+
+### 입출력 예시  
+
+|매개변수|값|
+|---|---|
+|n|5|
+|arr1|[9, 20, 28, 18, 11]|
+|arr2|[30, 1, 21, 17, 28]|
+|출력|["#####","# # #", "### #", "# ##", "#####"]|  
+    
+|매개변수|값|
+|---|---|
+|n|6|
+|arr1|[46, 33, 33 ,22, 31, 50]|
+|arr2|[27 ,56, 19, 14, 14, 10]|
+|출력|	["######", "### #", "## ##", " #### ", " #####", "### # "]|  
+  
+### 내가 적은 코드
+  
+```python
+def solution(n, arr1, arr2):
+    answer = []
+    map2 = [[0 for col in range(n)] for row in range(n)]
+    map1 = [[0 for col in range(n)] for row in range(n)]
+    for i in range(n):
+            map1[i] = [j for j in str(format(arr1[i],'b').zfill(n))]
+    for i in range(n):
+            map2[i] = [j for j in str(format(arr2[i],'b').zfill(n))]
+    for i in range(n):
+        str_answer = ''
+        for j in range(n):
+            if map1[i][j] == '1' or map2[i][j] == '1':
+                str_answer += '#'
+            else:
+                str_answer += ' '
+        answer.append(str_answer)
+    return answer
+```
+  
+### 풀이 과정  
+  
+`map1`과 `map2`에 n x n 의 정사각형 2차원 행렬을 만들어 놓는다.  
+~~(사실 이렇게까지 할 필요 없었다.)~~  
+  
+그리고 10진법으로 표현 된 `arr1`,`arr2`의 원소들을 n자리 수까지의 2진수로 변환한 후 각각 `map1`과 `map2`에 저장한다.  
+그리고 `map1[i][j]`와 `map2[i][j]`이 둘 중 하나만이라도 1이라면 #을 추가하고 둘다 0이라면 공백을 추가한다.  
+  
+그렇게 만들어진 문자열 `str_answer`을 리스트 `answer`에 저장한다.  
+  
+### 베스트 코드
+  
+```python
+def solution(n, arr1, arr2):
+    answer = []
+    for i,j in zip(arr1,arr2):
+        a12 = str(bin(i|j)[2:])
+        a12=a12.rjust(n,'0')
+        a12=a12.replace('1','#')
+        a12=a12.replace('0',' ')
+        answer.append(a12)
+    return answer
+```
+  
+  
+### 반성
+- 파이썬의 다양한 기본 내장 함수들만 제대로 알아도 코드가 훨씬 간결하고 깔끔 해 질 수 있는 문제였는데, 너무 곧이곧대로 문제만 풀었다. 역시 다양한 문제를 풀어가면서 다양한 파이썬 함수들을 알아가야겠다.  
+  
+<center><img src="/assets/img/ap_pg_210629_1.png" width="80%" height="80%"></center>  
+<center>내가 베스트 코드 보면서 느낀 감정.png</center>  
+

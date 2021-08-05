@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 수박수박수박수박수박수?"
+subtitle:  "프로그래머스 lv.1"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 6월 1일  
+소요 시간: 05분 03초  
+카테고리: 인덱싱 
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 수박수박수박수박수박수?](https://programmers.co.kr/learn/courses/30/lessons/12922)
+
+### 입출력 예시  
+
+|n|return|
+|---|---|
+|3|"수박수"|
+|4|"수박수박"|  
+  
+  
+### 내가 적은 코드
+
+```python
+def solution(n):
+    watermelon = ["수"]
+    for i in range(0,n-1):
+        if watermelon[i] == "수":
+            watermelon.append("박")
+        else:
+            watermelon.append("수")
+    return "".join(watermelon)
+```
+
+### 풀이 과정  
+  
+문자열의 이전 원소가 "수"일 경우 다음 원소로 "박"을 추가하고  
+이전 원소가 "박"일 경우 다음 원소로 "수"를 추가하는 동작을 n번 반복한다.  
+  
+### 베스트 코드
+
+```python
+def water_melon(n):
+    return "수박"*(n//2) + "수"*(n%2)
+```
+
+### 반성
+- O(1)으로 짤 수 있는 코드를 O(n)로 짰다.
+  
+
+

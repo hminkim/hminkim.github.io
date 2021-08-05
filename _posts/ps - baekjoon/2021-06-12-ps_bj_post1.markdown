@@ -1,0 +1,68 @@
+---
+layout: post
+title: "[백준 / 1158] 더하기 사이클"
+subtitle:  "백준 bronze.1"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 6월 12일  
+소요 시간: 34분 17초  
+카테고리: 수학문제  
+태그: `bronze.1`, `1110 `, `파이썬`   
+
+
+[백준 1110 - 더하기 사이클](https://www.acmicpc.net/problem/1110)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|26|4|
+|55|3|
+|1|60|
+|0|1|  
+
+  
+### 내가 적은 코드
+
+```python
+num = int(input())
+check = num
+new_num = 0
+temp = 0
+count = 0
+while True:
+    temp = num//10 + num%10
+    new_num = (num%10)*10 + temp%10
+    count += 1
+    num = new_num
+    if new_num == check:
+        break
+print(count)
+```
+   
+### 풀이 과정   
+  
+새로 만들어진 숫자 `new_num`이 처음 입력된 숫자인 `check`와 같아질 때까지 `while`문을 반복한다.  
+`temp`에 10의 자리 숫자와 1의 자리 숫자를 더한 수를 저장하고 그 수로 새로운 수를 만들어 `new_num`에 저장한다.  
+그리고 `num`을 `new_num`으로 바꾼다.    
+  
+이 과정을 반복하여 `new_num`이 `check`와 같아질 때까지 돈 사이클의 횟수를 `count`에 저장하고 출력한다.  
+  
+### 베스트 코드
+
+```python
+N = int(input())
+n = -1
+t = 0
+while n != N:
+	if n == -1: n = N
+	n = (n//10 + n%10)%10 + (n%10)*10
+	t += 1
+print(t)
+```
+
+### 반성
+
+- 숫자를 10으로 나눈 나머지와, 10으로 나눈 몫을 활용하면 (입력은 99이하의 자연수) 쉬운 걸 처음에 문자열로 변환하여 슬라이싱한 후에 다시 정수형으로 변환하여 계산한다고 자료형 왔다갔다 하는 데 헷갈려서 시간이 많이 지났다.

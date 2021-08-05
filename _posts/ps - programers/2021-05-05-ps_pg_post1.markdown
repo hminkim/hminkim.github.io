@@ -1,0 +1,60 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 폰켓몬"
+subtitle:  "프로그래머스 lv.1"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 5월 5일  
+소요 시간: 10분 32초  
+카테고리: 배열, 인덱스  
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 폰켓몬](https://programmers.co.kr/learn/courses/30/lessons/1845)
+
+### 입출력 예시  
+
+|nums|result|
+|---|---|
+|[3,1,2,3]|2|
+|[3,3,3,2,2,4]|3|
+|[3,3,3,2,2,2]|2|  
+
+  
+### 내가 적은 코드
+
+```python
+def solution(nums):
+    array = []
+    for x in nums:
+        if x not in array:
+            array.append(x)
+        else:
+            continue
+    if len(nums)/2 < len(array):
+        answer = len(nums)/2
+    else:
+        answer = len(array)
+    return answer
+```
+
+### 풀이 과정  
+
+`nums`안의 중복되지 않은 원소 찾기위해 `for문`을 돌려 새로운 배열을 만들어 그 곳에 원소를 저장하였고  
+남은 폰켓몬의 길이가 N/2마리의 폰켓몬 보다 크면 가질 수 있는 폰켓몬의 수가 정답이고,
+반대이면 `array`의 길이가 정답이다.  
+  
+### 베스트 코드
+
+```python
+def solution(ls):
+    return min(len(ls)/2, len(set(ls)))
+```
+
+### 반성
+
+- set()에 대한 이해도가 낮아서 굳이 for과 if를 하나 더 넣어서 복잡도를 높였다.
+- return값이 굳이 answer이 아니어도 된다는 것을 깨달았다.  
+  

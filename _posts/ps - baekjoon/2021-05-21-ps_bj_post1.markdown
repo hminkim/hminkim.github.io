@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[백준 / 2501] 약수 구하기"
+subtitle:  "백준 Bronze.2"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 5월 21일  
+소요 시간: 3분 32초  
+카테고리: 수학 문제  
+태그: `Bronze.2`, `2501`, `파이썬`  
+
+
+[백준 2501 - 약수 구하기](https://www.acmicpc.net/problem/2501)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|6 3|3|  
+  
+  
+### 내가 적은 코드
+
+```python
+N, K = map(int, input().split(' '))
+arr = []
+for i in range(1,N+1):
+    if N%i == 0:
+        arr.append(i)
+if len(arr) >= K:
+    print(arr[K-1])
+else:
+    print(0)
+```
+
+### 풀이 과정  
+
+반복문을 활용해서 1부터 `N`까지의 수들로 `N`을 나누었을 때 나머지가 0이되는 수들을 `arr`의 원소로 추가했다.  
+그리고 `K`가 `arr`의 길이보다 길 때는 0을, `K`가 `arr`의 길이보다 작을 때 `K`번째 원소를 출력하게 했다.
+  
+### 베스트 코드
+
+```python
+a, b = map(int, input().split())
+c = [i for i in range(1, a+1) if a%i==0]
+print(0 if len(c)<b else c[b-1])
+```
+
+### 반성
+
+- 더 어렵고 복잡한 난이도의 코드로 넘어가기 전 코드를 짧게 줄이는 연습을 해야되겠다고 생각했다. 
+  

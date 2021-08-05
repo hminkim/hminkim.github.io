@@ -1,0 +1,67 @@
+---
+layout: post
+title: "[백준 / 1213] 팰린드롬 만들기"
+subtitle:  "백준 silver.4"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 5월 26일  
+소요 시간: 2시간 초과  
+카테고리: 구현, 문자열  
+태그: `silver.4`, `1213 `, `파이썬`, `time out`  
+
+
+[백준 1213 - 팰린드롬 만들기](https://www.acmicpc.net/problem/1213)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|AABB|ABBA|
+
+  
+### 내가 적은 코드
+
+```python
+# 문제를 풀지 못하였다.
+```
+
+### 풀이 과정  
+
+문제를 풀지 못하였다.
+
+  
+### 베스트 코드
+
+```python
+err = lambda:print("I'm Sorry Hansoo")
+s=list(input())
+s.sort()
+d={}
+for i in s:
+	if d.get(i) != None:
+		d[i]+=1
+	else:
+		d[i]=1
+last=''
+for k,v in d.items():
+	if (v%2==1 and last!=''):
+		err()
+		exit(0)
+	if v%2==1:
+		last=k
+
+o=""
+for k,v in d.items():
+	o+=k*(v//2)
+
+
+print(o+last+o[::-1])
+```
+
+### 반성
+
+- lambda 함수와 dictionary의 get함수에 대한 이해도가 낮아 정답 코드를 보고도 코드를 이해하는 데 시간이 걸렸다.  
+- 파이썬에 대한 이해도도 높일 필요가 있고, 알고리즘 이론적인 부분도 공부할 필요를 느꼈다.
+- 알고리즘 문제를 푸는 비중보다 이론적인 부분을 공부하는 비중을 더 높여야겠다.

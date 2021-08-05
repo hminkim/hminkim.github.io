@@ -1,0 +1,76 @@
+---
+layout: post
+title: "[프로그래머스 / lv.1] 체육복"
+subtitle:  "프로그래머스 lv.1"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 7월 24일  
+소요 시간: 19분 21초   
+카테고리: 그리디 알고리즘  
+태그: `레벨1`, `파이썬`  
+
+
+[코딩테스트 연습 - 체육복](https://programmers.co.kr/learn/courses/30/lessons/42862)
+
+### 입출력 예시  
+  
+|n|lost|reserve|return|
+|---|---|---|---|
+|5|[2,4]|[1,3,5]|5|
+|5|[2,4]|[3]|4|
+|3|[3]|[1]|2|  
+  
+### 내가 적은 코드
+  
+```python
+def solution(n, lost, reserve):
+    lost_student = []
+    for j in lost:
+        if j in reserve:
+            reserve.remove(j)
+        else:
+            lost_student.append(j)
+
+    for i in reserve:
+        if i-1 in lost_student:
+            lost_student.remove(i-1)
+        elif i+1 in lost_student:
+            lost_student.remove(i+1)
+
+    answer = n - len(lost_student)
+    return answer
+```
+  
+### 풀이 과정  
+  
+여벌 체육복을 가져왔지만 도난 당한 학생을 중복 제거하여 자신의 체육복이 없는 학생들을 `lost_student`에 리스트 형태로 저장한다.  
+  
+이후 여벌 체육복을 가져온 학생들을 의미하는 `reserve` 리스트의 원소들에 +1 또는 -1을 한 값을 `lost_student` 원소와 비교한다.  
+만약 `reserve` 원소에 -1을 한 값이 `lost_student`에 있다면 그 값을 리스트에서 제거하고  
+-1 한 값이 없다면 +1 한 값이 있는지 확인 한 뒤 +1한 값이 있으면 그 값을 리스트에서 제거한다.  
+  
+그렇게 반복을 통해 모두 비교한 뒤, `lost_student`에 남은 원소는 체육복을 빌리지 못한 학생의 번호가 된다.  
+전체 학생의 수 `n`에서 체육복을 빌리지 못한 학생의 수 `len(lost_student)`를 뺀 값은 체육 수업을 들을 수 있는 학생의 수가 된다.  
+  
+### 베스트 코드  
+  
+```python
+def solution(n, lost, reserve):
+    _reserve = [r for r in reserve if r not in lost]
+    _lost = [l for l in lost if l not in reserve]
+    for r in _reserve:
+        f = r - 1
+        b = r + 1
+        if f in _lost:
+            _lost.remove(f)
+        elif b in _lost:
+            _lost.remove(b)
+    return n - len(_lost)
+```
+  
+  
+### 반성
+- 이제 파이썬 내장 함수들, 라이브러리 함수 등의 시간 복잡도를 생각하며 알고리즘을 더 효율적으로 짜는 연습 또한 필요하다.  
+- 내가 적은 코드는 반복문 안에 `in` 함수를 활용 하여 O(n^2)의 시간 복잡도를 가지는 코드라는 것을 의식하는 버릇을 들여야겠다.    

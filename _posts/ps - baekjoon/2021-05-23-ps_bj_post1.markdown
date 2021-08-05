@@ -1,0 +1,64 @@
+---
+layout: post
+title: "[백준 / 1259] 팰린드롬수"
+subtitle:  "백준 bronze.1"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 5월 23일  
+소요 시간: 13분 28초  
+카테고리: 수학 문제  
+태그: `bronze.1`, `1259`, `파이썬`  
+
+
+[백준 1259 - 팰린드롬수](https://www.acmicpc.net/problem/1259)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|121|yes|
+|1231|no|
+|12421|yes|  
+|0||  
+  
+### 내가 적은 코드
+
+```python
+while True:
+    N = input()
+    if N == '0':
+      break
+    for i in range(len(N)//2):
+      if N[i] != N[len(N)-1-i]:
+        print('no')
+      else:
+        print('yes')
+```
+
+### 풀이 과정  
+
+`N`이 0이 나올 때 까지 이 동작을 계속 반복한다.  
+(여기서 0은 문자열로 선언 해 주어야 한다.)  
+  
+입력된 `N`의 길이의 절반만큼 반복하여  
+앞에서 i번째 숫자와 뒤에서 i번째 숫자가 다르면 'no'를 같으면 'yes'를 출력한다.  
+
+
+  
+### 베스트 코드
+
+```python
+n=input()
+while n!='0':
+    if n==n[::-1]: print('yes')
+    else: print('no')
+    n=input()
+```
+
+### 반성
+
+- `input`으로 입력한 값의 자료형이 문자열이라는 생각을 하지 못해서 코드 수정하는 데 시간이 너무 많이 걸렸다.
+- 이번 문제는 더 쉽게 풀 수 있었는데 내가 생각이 짧아서 문자열을 뒤집는다는 생각을 하지 못하였다.
+  
