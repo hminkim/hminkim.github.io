@@ -146,7 +146,7 @@ def dfs_recursive(graph, start_node, visited=[]):
 <br>
    
 <center><img src="/assets/img/cs_al_210805_5.gif" width="80%" height="80%"></center>  
-<center>출처 : https://namu.wiki/w/%EB%84%88%EB%B9%84%20%EC%9A%B0%EC%84%A0%20%ED%83%90%EC%83%89?from=%EB%84%93%EC%9D%B4%20%EC%9A%B0%EC%84%A0%20%ED%83%90%EC%83%89/</center>  
+<center>출처 : https://namu.wiki/w/BFS</center>  
 <center> BFS vs DFS </center>  
    
 <br>
