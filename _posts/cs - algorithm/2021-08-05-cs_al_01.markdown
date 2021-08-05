@@ -67,7 +67,8 @@ def dfs(graph, start_node):
   
 <br>  
   
-- 시간 복잡도가 O(n)인 `list.pop()`대신 `collection` 라이브러리의 `deque`의 `queue.popleft()`를 사용함
+- 시간 복잡도가 O(n)인 `list.pop()`대신 `collection` 라이브러리의 `deque`의 `queue.popleft()`를 사용함  
+  
 ---  
   
 ## DFS (Depth First Search) 깊이 우선 탐색  
@@ -158,14 +159,10 @@ def dfs_recursive(graph, start_node, visited=[]):
     - 미로 찾기 등 최단거리를 구해야 할 경우, BFS가 유리  
     - 깊이 우선 탐색으로 경로를 검색할 경우 처음으로 발견되는 해답이 최단거리가 아닐 수 있지만, 너비 우선 탐색으로 현재 노드에서 가까운 곳부터 찾기 때문에경로를 탐색 시 먼저 찾아지는 해답이 곧 최단거리기 때문  
 - 검색 대상 그래프의 규모가 크다면 DFS를 고려  
-- 검색 대상의 규모가 크지 않고, 검색 시작 지점으로부터 원하는 대상이 별로 멀지 않다면 BFS가 유리  
-- 검색 속도 자체는 DFS가 BFS에 비해 비교적 느림
+- 검색 대상의 규모가 작고, 검색 시작 지점으로부터 원하는 대상이 별로 멀지 않다면 BFS가 유리  
+- 검색 속도 자체는 DFS가 BFS에 비해 비교적 느림  
   
-<br>
-   
-### BFS와 DFS의 시간복잡도
-
-<br>
+### BFS와 DFS의 시간복잡도  
   
 - 일반적인 BFS와 DFS의 시간 복잡도
     - 노드 수 : V / 간선 수 : E
