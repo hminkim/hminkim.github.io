@@ -61,7 +61,7 @@ tags: algorithm
    
 <center><img src="/assets/img/cs_al_210810_2.png" width="100%" height="100%"></center>  
 <center>출처 : https://shnoh.tistory.com/15</center>  
-<center> 우선순위 큐 방삭의 다익스트라 알고리즘 로직 </center>  
+<center> 우선순위 큐 방식의 다익스트라 알고리즘 로직 </center>  
    
 <br>
    
