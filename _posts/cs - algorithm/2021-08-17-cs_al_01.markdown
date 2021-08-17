@@ -1,0 +1,25 @@
+---
+layout: post
+title: "[Algorithm] Union-Find Algorithm"
+subtitle:  "Union-Find Algorithm"
+categories: computerscience
+tags: algorithm
+---
+  
+## Union-Find Algorithme 유니온 파인드 알고리즘  
+  
+- 대표적 그래프 알고리즘으로 합집합 찾기 라는 의미를 가지고 있음
+ 
+  
+<br>
+   
+----  
+  
+### 참고  
+  
+[잔재미코딩](https://www.fun-coding.org/Chapter21-backtracking-live.html)  
+[신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
+[나무 위키](https://namu.wiki/w/%EB%B0%B1%ED%8A%B8%EB%9E%98%ED%82%B9#rfn-1)  
+  
+----  
+  
