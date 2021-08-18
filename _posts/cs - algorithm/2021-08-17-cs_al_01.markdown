@@ -43,7 +43,7 @@ tags: algorithm
     - 각 트리에 대해 높이(rank)를 기억해 두고, Union시 두 트리의 높이(rank)가 다르면, 높이가 작은 트리를 높이가 큰 트리에 붙임 (즉, 높이가 큰 트리의 루트 노드가 합친 집합의 루트 노드가 되게 함)  
     <br>  
    
-    <center><img src="/assets/img/cs_al_210817_3.png" width="60%" height="60%"></center>  
+    <center><img src="/assets/img/cs_al_210817_3.png" width="80%" height="80%"></center>  
     <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
     <center> 두개의 트리가 같을 때의 union 연산  </center>  
    
@@ -51,7 +51,7 @@ tags: algorithm
     - 높이가 같은 두 개의 트리를 합칠 때는 한 쪽의 트리 높이를 1 증가시켜주고, 다른 쪽의 트리를 해당 트리에 붙여줌  
     <br>  
    
-    <center><img src="/assets/img/cs_al_210817_4.png" width="60%" height="60%"></center>  
+    <center><img src="/assets/img/cs_al_210817_4.png" width="80%" height="80%"></center>  
     <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
     <center> 두개의 트리가 다를 때의 union 연산  </center>  
    
@@ -67,7 +67,7 @@ tags: algorithm
     - Find를 실행하는 과정 가운데에서 경로 상의 모든 노드들을 곧바로 루트 노드 아래에 달아주는 최적화  
     <br>  
    
-    <center><img src="/assets/img/cs_al_210817_3.png" width="60%" height="60%"></center>  
+    <center><img src="/assets/img/cs_al_210817_5.png" width="60%" height="60%"></center>  
     <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
     <center> Path compression 연산 </center>  
    
