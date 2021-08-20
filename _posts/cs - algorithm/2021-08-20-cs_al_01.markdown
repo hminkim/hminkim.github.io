@@ -1,0 +1,228 @@
+---
+layout: post
+title: "[Algorithm] Minimum Spanning Tree"
+subtitle:  "Minimum Spanning Tree"
+categories: computerscience
+tags: algorithm
+---
+  
+## Spanning Tree 신장 트리 
+  
+- 원래의 그래프의 모든 노드가 연결되어 있으면서 트리의 속성을 만족하는 최소 연결 부분 그래프  
+    - n개의 정점을 가지는 그래프의 최소 간선의 수는 (n-1)개이고, (n-1)개의 간선으로 연결되어 있으면 필연적으로 트리 형태가 됨  
+- 신장 트리의 조건  
+    - 본래의 그래프의 모든 노드를 포함  
+    - 모든 노드가 서로 연결  
+    - 사이클이 존재하지 않음  
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_1.png" width="60%" height="60%"></center>  
+<center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
+<center> 하나의 그래프에서 나올 수 있는 신장트리 형태의 예시  </center>  
+   
+<br>
+  
+---  
+      
+## Minimum Spanning Tree 최소 신장 트리  
+
+- 가능한 Spanning Tree 중 간선의 가중치 합이 최소인 Spanning Tree  
+- 각 간선의 가중치가 동일하지 않을 때는 단순히 가장 적은 간선을 사용한다고 해서 최소 비용이 얻어지는 것은 아님  
+- 대표적인 최소 신장 트리의 사용 예시에는 통신망, 도로망, 유통망에서 길이, 구축 비용, 전송 시간 등을 최소로 구축하려는 경우 등이 있음  
+- 대표적인 최소 신장 트리 알고리즘에는 크루스칼 알고리즘과 프림 알고리즘이 있음  
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_2.png" width="60%" height="60%"></center>  
+<center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
+<center> 그래프 예시와 최소 신장 트리의 예시  </center>  
+   
+<br>
+  
+---  
+      
+## Kruskal's algorithm 크루스칼 알고리즘  
+  
+- 그리디 알고리즘을 기반으로 Union-Find 알고리즘을 활용하여 가중치 그래프의 모든 정점을 최소 비용으로 연결하는 최적 해답을 구하는 알고리즘  
+- 최소 비용 신장 트리가 최소 비용의 간선으로 구성된다는 점과 사이클을 포함하지 않는다는 조건에 근거하여 각 단계에서 사이클을 이루지 않는 최소 비용 간선을 선택  
+  
+### 크루스칼 알고리즘 로직  
+  
+1. 모든 정점을 독립적인 집합으로 만듦  
+2. 모든 간선을 가중치의 오름차순으로 정렬하고, 비용이 작은 간선부터 양 끝의 두 정점을 비교  
+3. 사이클을 형성하는 간선을 제외하기 위해 두 정점의 최상위 정점을 확인하고, 서로 다를 경우 두 정점을 연결  
+    - 사이클 생성 여부를 확인하기 위해 추가하고자 하는 간선의 양끝 정점이 같은 집합에 속해 있는지를 Union-Find 알고리즘을 통해 체크  
+4. 모든 정점이 연결될 때 까지 2번 3번 반복
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_3.png" width="100%" height="100%"></center>  
+<center>출처 : https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html</center>  
+<center> 크루스칼 알고리즘 로직 예시  </center>  
+   
+<br>
+   
+### 크루스칼 알고리즘 구현  
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_4.png" width="60%" height="60%"></center>  
+<center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
+<center> 최소 신장 트리 예시  </center>  
+   
+<br>
+  
+```python
+mygraph = {
+    'vertices': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+    'edges': [
+        (7, 'A', 'B'),
+        (5, 'A', 'D'),
+        (7, 'B', 'A'),
+        (8, 'B', 'C'),
+        (9, 'B', 'D'),
+        (7, 'B', 'E'),
+        (8, 'C', 'B'),
+        (5, 'C', 'E'),
+        (5, 'D', 'A'),
+        (9, 'D', 'B'),
+        (7, 'D', 'E'),
+        (6, 'D', 'F'),
+        (7, 'E', 'B'),
+        (5, 'E', 'C'),
+        (7, 'E', 'D'),
+        (8, 'E', 'F'),
+        (9, 'E', 'G'),
+        (6, 'F', 'D'),
+        (8, 'F', 'E'),
+        (11, 'F', 'G'),
+        (9, 'G', 'E'),
+        (11, 'G', 'F')
+    ]
+}
+
+parent = dict()
+rank = dict()
+
+
+def find(node):
+    # path compression 기법
+    if parent[node] != node:
+        parent[node] = find(parent[node])
+    return parent[node]
+
+
+def union(node_v, node_u):
+    root1 = find(node_v)
+    root2 = find(node_u)
+    
+    # union-by-rank 기법
+    if rank[root1] > rank[root2]:
+        parent[root2] = root1
+    else:
+        parent[root1] = root2
+        if rank[root1] == rank[root2]:
+            rank[root2] += 1
+    
+    
+def make_set(node):
+    parent[node] = node
+    rank[node] = 0
+
+def kruskal(graph):
+    mst = list()
+    
+    # 1. 초기화
+    for node in graph['vertices']:
+        make_set(node)
+    
+    # 2. 간선 weight 기반 sorting
+    edges = graph['edges']
+    edges.sort()
+    
+    # 3. 간선 연결 (사이클 없는)
+    for edge in edges:
+        weight, node_v, node_u = edge
+        if find(node_v) != find(node_u):
+            union(node_v, node_u)
+            mst.append(edge)
+    
+    return mst
+
+```
+<center> 크루스칼 알고리즘 구현 </center>
+  
+<br>
+   
+### 크루스칼 알고리즘 시간 복잡도  
+  
+- 모든 정점을 독립적인 집합으로 만드는 데 걸리는 시간 복잡도 **O(V)**
+- 모든 간선을 가중치의 오름차순으로 정렬하고, 비용이 작은 간선부터 양 끝의 두 정점을 비교하는 데 걸리는 시간 복잡도 **O(ElogE)**  
+    - 팀소트(파이썬 `sort`함수의 표준 정렬 알고리즘)를 사용한다면 시간 복잡도는 O(nlogn) 이며, n은 간선을 나타냄
+- 사이클을 형성하는 간선을 제외하기 위해 두 정점의 최상위 정점을 확인하고 두 정점을 연결하는 데 걸리는 시간 복잡도 **O(1)**
+    - union-by-rank 와 path compression 기법 사용시 시간 복잡도가 결국 상수값에 수렴함  
+    - 이에 대한 자세한 내용은 [여기](https://www.secmem.org/blog/2021/04/19/Union-Find-Time-Complexity-Proof/)참조  
+- O(V + ElogE + 1)에 대하여 최대 V^2 = E를 만족하기에 크루스칼 알고리즘은 **O(ElogE)**의 시간복잡도를 가짐  
+
+<br>
+  
+---  
+      
+## Prim's Algorithm 프림 알고리즘  
+  
+-  
+  
+### 프림 알고리즘 로직  
+  
+1.  
+2. 
+
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_3.png" width="100%" height="100%"></center>  
+<center>출처 : https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html</center>  
+<center> 프림 알고리즘 로직 예시  </center>  
+   
+<br>
+   
+### 프림 알고리즘 구현  
+  
+<br>  
+   
+<center><img src="/assets/img/cs_al_210820_4.png" width="60%" height="60%"></center>  
+<center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
+<center> 최소 신장 트리 예시  </center>  
+   
+<br>
+  
+```python
+
+```
+<center> 프림 알고리즘 구현 </center>
+  
+<br>
+   
+### 프림 알고리즘 시간 복잡도  
+  
+- 
+  
+<br>
+  
+---  
+      
+## 크루스칼 알고리즘 vs 프림 알고리즘  
+  
+- 
+  
+----  
+  
+### 참고  
+  
+[잔재미코딩](https://www.fun-coding.org/Chapter20-kruskal-live.html)  
+[신찬수 교수님 유튜브](https://www.youtube.com/user/cssin829)  
+[Heee's Development Blog](https://gmlwjd9405.github.io/2018/08/28/algorithm-mst.html)  
+  
+----  
+  
