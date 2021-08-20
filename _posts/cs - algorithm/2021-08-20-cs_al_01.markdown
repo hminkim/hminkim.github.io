@@ -17,7 +17,7 @@ tags: algorithm
   
 <br>  
    
-<center><img src="/assets/img/cs_al_210820_1.png" width="60%" height="60%"></center>  
+<center><img src="/assets/img/cs_al_210820_1.png" width="80%" height="80%"></center>  
 <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
 <center> 하나의 그래프에서 나올 수 있는 신장트리 형태의 예시  </center>  
    
@@ -34,7 +34,7 @@ tags: algorithm
   
 <br>  
    
-<center><img src="/assets/img/cs_al_210820_2.png" width="60%" height="60%"></center>  
+<center><img src="/assets/img/cs_al_210820_2.png" width="70%" height="70%"></center>  
 <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
 <center> 그래프 예시와 최소 신장 트리의 예시  </center>  
    
@@ -57,7 +57,7 @@ tags: algorithm
   
 <br>  
    
-<center><img src="/assets/img/cs_al_210820_3.png" width="100%" height="100%"></center>  
+<center><img src="/assets/img/cs_al_210820_3.png" width="130%" height="130%"></center>  
 <center>출처 : https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html</center>  
 <center> 크루스칼 알고리즘 로직 예시  </center>  
    
@@ -67,7 +67,7 @@ tags: algorithm
   
 <br>  
    
-<center><img src="/assets/img/cs_al_210820_4.png" width="60%" height="60%"></center>  
+<center><img src="/assets/img/cs_al_210820_4.png" width="40%" height="40%"></center>  
 <center>출처 : https://www.fun-coding.org/Chapter20-kruskal-live.html</center>  
 <center> 최소 신장 트리 예시  </center>  
    
