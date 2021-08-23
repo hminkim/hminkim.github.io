@@ -1,0 +1,68 @@
+---
+layout: post
+title: "[leetcode / 5]  Longest Palindromic Substring"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 23일  
+카테고리: 문자열  
+태그: `Medium`, `5`, `파이썬`  
+
+
+[leetcode 5 - Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|s = "babad"|"bab"|
+|s = "cbbd"|"bb"|
+|s = "a"|"a"|
+|s = "ac"|"a"|  
+  
+### 코드
+  
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+
+        def expand(left: int, right: int) -> str:
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return s[left +1:right]
+
+        if len(s) < 2 or s == s[::-1]:
+            return s
+
+        result = ''
+        for i in range(len(s)-1):
+            result = max(result, expand(i, i+1), expand(i, i+2), key = len)
+
+        return result
+```
+<center> 파이썬 알고리즘 인터뷰 6-5 </center>
+  
+### 풀이 과정  
+  
+투 포인터를 사용하여 팰린드롬의 길이가 홀수일 때와 짝수일 때를 나누어 추적  
+
+길이가 2거나 3인 팰린드롬을 찾았을 때 양 옆에 한 칸씩 늘렸을 때에도 팰린드롬이 유지되는지 확인하기 위한 `expand()` 함수를 정의  
+
+`s`의 길이가 2보다 작거나 `s` 그 자체로서 팰린드롬일 때에 `s`를 그대로 출력하도록 예외 설정  
+
+- `s`의 길이의 -2만큼 빼준 만큼 반복  
+    - 홀수 길이의 팰린드롬 확인을 위한 `expand(i, i+2)`에서 `out of range` 오류가 나지 않게 하기 위함  
+    - `len()`함수는 0부터 시작하기 때문에 -1을 하면 실제로 -2  
+
+- `result`에 `result`, `expand(i, i+2)`(홀수 길이의 팰린드롬), `expand(i, i+2)`(짝수 길이의 팰린드롬) 중 길이가 가장 긴 문자열을 저장  
+    - `result`의 초기값은 빈 문자열, 반복이 진행되면 될 수록 `result` 값 갱신  
+
+가장 마지막에 갱신 된 `result`가 문자열 `s`에서 나올 수 있는 가장 긴 팰린드롬  
+
+  
+### 반성
+  
+- 가장 긴 팰린드롬을 찾는 문제는 프로그래머스에서도 본 기억이 난다. 코드를 이해하는데서 그치는 것이 아니라 내가 다음에도 이 로직을 기억해 낼 수 있도록 많이 풀어보는 것이 중요하다고 느낀다.      
