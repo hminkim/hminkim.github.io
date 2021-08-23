@@ -7,9 +7,8 @@ tags: leetcode
 ---
 
 날짜: 2021년 8월 23일  
-소요 시간: 시간 초과  
 카테고리: 문자열  
-태그: `easy`, `819`, `파이썬`, `time out`  
+태그: `easy`, `819`, `파이썬`  
 
 
 [leetcode 819 - Most Common Word](https://leetcode.com/problems/most-common-word/)
@@ -20,19 +19,9 @@ tags: leetcode
 |---|---|
 |paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."|"ball"|
 |banned = ["hit"]||  
-
-### 풀이 과정  
   
-문자열 전처리를 위해 정규식을 활용하여 특수문자를 제거하고 띄어쓰기로 문자간 구분을 하고, `banned` 리스트에 있는 문자열을 제외  
+### 코드
   
-`collection` 라이브러리의 `Counter` 클래스를 활용하여 단어별 사용 횟수를 체크  
-가장 흔한 단어를 `most_common(1)` 함수를 사용하여 추출  
-  
-`[['ball',2]]` 형태로 출력된 값 중 가장 흔한 단어를 출력하기 위해 첫 번째 인덱스 키를 추출하여 리턴하기 위해  
-`return counts.most_common(1)[0][0]` 형태로 리턴  
-  
-### 베스트 코드
-
 ```python
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
@@ -44,9 +33,19 @@ class Solution:
         return counts.most_common(1)[0][0]
 ```
 <center> 파이썬 알고리즘 인터뷰 6-4 </center>
-
+  
+### 풀이 과정  
+  
+문자열 전처리를 위해 정규식을 활용하여 특수문자를 제거하고 띄어쓰기로 문자간 구분을 하고, `banned` 리스트에 있는 문자열을 제외  
+  
+`collection` 라이브러리의 `Counter` 클래스를 활용하여 단어별 사용 횟수를 체크  
+가장 흔한 단어를 `most_common(1)` 함수를 사용하여 추출  
+  
+`[['ball',2]]` 형태로 출력된 값 중 가장 흔한 단어를 출력하기 위해 첫 번째 인덱스 키를 추출하여 리턴하기 위해  
+`return counts.most_common(1)[0][0]` 형태로 리턴  
+  
 ### 반성
-
+  
 - 정규 표현식 형태에 좀 더 익숙해 져서 자유롭게 활용할 수 있을 정도로 연습해야 할 필요가 있다.  
 - 파이썬 표준 라이브러리들 중 자주 활용할 수 있는 라이브러리와 모듈들에 익숙해 질 필요가 있다.  
 - 가장 많이 사용된 단어를 찾기위해 `collection` 라이브러리의 `Counter` 클래스의 `most_common(n)`함수를 기억해두자.  
