@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[leetcode / 819] Group Anagrams"
+title: "[leetcode / 49] Group Anagrams"
 subtitle:  "leetcode Medium"
 categories: problemsolving
 tags: leetcode
