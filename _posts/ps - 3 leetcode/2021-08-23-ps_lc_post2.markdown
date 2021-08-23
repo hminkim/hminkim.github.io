@@ -1,0 +1,46 @@
+---
+layout: post
+title: "[leetcode / 819] Group Anagrams"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 23일  
+카테고리: 문자열  
+태그: `Medium`, `49`, `파이썬`  
+
+
+[leetcode 49 - Most Common Word](https://leetcode.com/problems/group-anagrams/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|strs = ["eat","tea","tan","ate","nat","bat"]|[["bat"],["nat","tan"],["ate","eat","tea"]]|
+|strs = [""]|[[""]]|
+|strs = ["a"]|[["a"]]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagrams = collections.defaultdict(list)
+        
+        for word in strs:
+            anagrams[''.join(sorted(word))].append(word)
+            
+        return list(anagrams.values())
+```
+<center> 파이썬 알고리즘 인터뷰 6-5 </center>
+  
+### 풀이 과정  
+  
+존재하지 않는 key를 삽입하려 할 때 생기는 KeyError를 방지하기 위해 `collections`라이브러리의 `defaultdict()`를 활용하여 빈 리스트 선언  
+  
+정렬된 단어를 key 값으로 갖는 단어들은 애너그램 관계인 단어이므로 같은 key 값을 같는 value들을 리스트로 묶어 놓은 인자를 가지는 리스트를 반환  
+  
+### 반성
+  
+- 기본적으로 다 아는 표현식임에도 로직이 머리속에 쉽게 그려지지 않는다는 건 이해가 부족하다는 뜻이다. 더 완벽히 이해할 수 있도록 하자.    

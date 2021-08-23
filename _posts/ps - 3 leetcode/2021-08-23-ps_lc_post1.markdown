@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "[leetcode / 819] Most Common Word"
-subtitle:  "leetcode easy"
+subtitle:  "leetcode Easy"
 categories: problemsolving
 tags: leetcode
 ---
 
 날짜: 2021년 8월 23일  
 카테고리: 문자열  
-태그: `easy`, `819`, `파이썬`  
+태그: `Easy`, `819`, `파이썬`  
 
 
 [leetcode 819 - Most Common Word](https://leetcode.com/problems/most-common-word/)
