@@ -6,7 +6,7 @@ categories: problemsolving
 tags: leetcode
 ---
 
-날짜: 2021년 8월 23일  
+날짜: 2021년 8월 24일  
 카테고리: 배열  
 태그: `Hard`, `42`, `파이썬`  
 
