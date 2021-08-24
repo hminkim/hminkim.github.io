@@ -1,0 +1,52 @@
+---
+layout: post
+title: "[leetcode / 1] Two Sum"
+subtitle:  "leetcode Easy"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 23일  
+카테고리: 배열  
+태그: `Easy`, `1`, `파이썬`  
+
+
+[leetcode 1 - Two Sum](https://leetcode.com/problems/two-sum/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|nums = [2,7,11,15], target = 9|[0,1]|
+|nums = [3,2,4], target = 6|[1,2]|
+|nums = [3,3], target = 6|[0,1]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_dic = {}      
+        for idx, num in enumerate(nums):
+            num_dic[num] = idx
+        
+        for idx, num in enumerate(nums):
+            if target - num in num_dic and idx != num_dic[target - num]:
+                return [idx, num_dic[target - num]]
+```
+<center> 파이썬 알고리즘 인터뷰 7-1 </center>
+  
+### 풀이 과정  
+
+- 책으로 공부하기 전 나였다면 브루트포스라던지 `target`에서 `nums`의 원소 값을 뺀 값이 `nums`안에 있는지 부터 생각했을 것이다. ~~(실제로 책에서도 소개된 풀이 방법)~~  
+- 책에서는 위의 두가지 방법을 포함 한 다양한 풀이 방법을 설명 해 주었으나 딕셔너리를 통한 접근이 O(n^2)의 시간 복잡도를 갖는 위의 두가지 방법에 비해 O(1)의 시간 복잡도를 가져 훨씬 효율이 좋다.  
+  
+`num_dic` 딕셔너리안에 `enumerate()`를 활용하여 `nums`안의 원소 값을 key로 인덱스를 value로 딕셔너리 `num_dic`에 저장  
+   
+`target - num`값이 `num_dic`에 존재하고, 그 인덱스 값이 `num_dic`에서 `target - num`의 key 값을 갖는 value가 아닐 때,  
+인덱스 값과 `num_dic`에서 `target - num`의 key 값을 갖는 value를 원소로 하는 배열(원소 값의 합이 `target`인 두 원소의 인덱스 값) 출력  
+
+  
+### 반성
+  
+- key값을 통해 value로 접근하는 딕셔너리를 자유자재로 활용할 정도로 이해도를 높일 필요가 있다.        
