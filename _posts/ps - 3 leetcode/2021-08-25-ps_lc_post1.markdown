@@ -41,7 +41,7 @@ class Solution:
   
 ### 풀이 과정  
   
-<center><img src="/assets/img/ps_lc_210825_1.jpg" width="50%" height="50%"></center>  
+<center><img src="/assets/img/ps_lc_210825_1.jpg" width="100%" height="100%"></center>  
   
 `if (not l1) or (l2 and (l1.val > l2.val))`    
 - `l1.val`이 `l2.val`보다 크고, `l2`가 None이 아니거나  
