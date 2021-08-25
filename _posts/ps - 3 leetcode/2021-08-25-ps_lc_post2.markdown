@@ -1,0 +1,67 @@
+---
+layout: post
+title: "[leetcode / 206] Reverse Linked List"
+subtitle:  "leetcode Easy"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 25일  
+카테고리: 연결 리스트  
+태그: `Easy`, `206`, `파이썬`  
+
+
+[leetcode 206 - Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|head = [1,2,3,4,5]|[5,4,3,2,1]|
+|head = [1,2]|[2,1]|
+|head = []|[]|  
+  
+### 코드
+  
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        
+        while head:
+            curr= head
+            head = head.next
+            curr.next = prev
+            prev = curr
+            
+        return prev
+```
+<center> 파이썬 알고리즘 인터뷰 8-3 </center>
+  
+### 풀이 과정  
+  
+<br>
+   
+<center><img src="/assets/img/ps_lc_210825_2.gif" width="100%" height="100%"></center>  
+<center>출처 : https://www.geeksforgeeks.org/reverse-a-linked-list/</center>  
+<center> 위의 코드 로직을 그림으로 표현 </center>  
+   
+<br>  
+  
+가장 먼저 `prev`에 None을 저장  
+  
+- 현재 노드를 가리키는 역할을 하는 `curr`에 `head`정보를 저장하고  
+- `head`에는 다음에 올 노드 정보를 저장 (원래의 순서대로)  
+- `curr`의 다음에 올 노드 정보에 `prev`를 넣어 역순으로 방향을 변환  
+- `prev`에는 현재 `curr`의 정보를 저장  
+  
+위의 절차를 `head`가 None이 될 때까지 반복하여 포인터의 방향이 역순으로 변환 된 연결 리스트 `prev`를 반환  
+
+### 반성
+   
+-    
