@@ -1,0 +1,93 @@
+---
+layout: post
+title: "[leetcode / 2] Add Two Numbers"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 25일  
+카테고리: 연결 리스트  
+태그: `Medium`, `2`, `파이썬`  
+
+
+[leetcode 2 - Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|l1 = [2,4,3], l2 = [5,6,4]|[7,0,8]|
+|l1 = [0], l2 = [0]|[0]|
+| l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]|[8,9,9,9,0,0,0,1]|  
+  
+### 코드
+  
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseLinkedList(self, linked_list: ListNode) -> ListNode:
+        prev = None
+        
+        while linked_list:
+            curr= linked_list
+            linked_list = linked_list.next
+            curr.next = prev
+            prev = curr
+            
+        return prev
+
+    def linkedListToList(self, linked_list: ListNode) -> List:
+        str_arr: List = []
+
+        while linked_list:
+            str_arr.append(linked_list.val)
+            linked_list = linked_list.next
+
+        return str_arr
+
+    def stringToLinkedList(self, answer: str) -> ListNode:
+        prev: ListNode = None
+
+        for i in answer:
+            linked_list = ListNode(i)
+            linked_list.next = prev
+            prev = linked_list
+
+        return linked_list
+
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        
+        a = self.linkedListToList(self.reverseLinkedList(l1))
+        b = self.linkedListToList(self.reverseLinkedList(l2))
+        
+        
+        answer = int(''.join(str(l) for l in a)) + int(''.join(str(l) for l in b))
+        
+        return self.stringToLinkedList(str(answer))
+```
+<center> 파이썬 알고리즘 인터뷰 8-4 </center>
+  
+### 풀이 과정  
+  
+코드가 길어서 그렇지 복잡하진 않은 로직  
+
+- `reverseLinkedList()`에 [연결 리스트를 역순으로 나열하는 함수](https://hminkim.github.io/problemsolving/2021/08/25/ps_lc_post2/) 정의  
+- `linkedListToList()`에 연결 리스트를 배열로 변환하는 함수 정의  
+- `stringToLinkedList()`에 문자열을 연결 리스트로 변환하는 함수 정의  
+  
+- `addTwoNumbers()`에서 위의 세 함수를 활용해서  
+    - 연결 리스트를 역순으로 나열하고
+    - 역순으로 나열된 연결 리스트를 리스트로 만들고  
+    - 리스트화 시킨 배열을 `join()`함수를 활용해서 문자열로 변환한 뒤, 다시 정수형으로 변환해서 연산 후  
+    - 연산된 정수형 `answer`을 문자열로 변환하고 연결 리스트로 변환
+
+연결 리스트로 변환 된 `answer`을 반환  
+
+### 반성
+   
+- 로직만 따지고 보면 어렵지 않은 문제였는데 자료형의 잦은 변환에 중간에 실수로 자료형에 틀려 오류를 잡는다고 시간을 너무 오래 끌었다.  
