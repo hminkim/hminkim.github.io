@@ -80,6 +80,6 @@ def solution(n, arr1, arr2):
 ### 반성
 - 파이썬의 다양한 기본 내장 함수들만 제대로 알아도 코드가 훨씬 간결하고 깔끔 해 질 수 있는 문제였는데, 너무 곧이곧대로 문제만 풀었다. 역시 다양한 문제를 풀어가면서 다양한 파이썬 함수들을 알아가야겠다.  
   
-<center><img src="/assets/img/ap_pg_210629_1.png" width="80%" height="80%"></center>  
+<center><img src="/assets/img/ps_pg_210629_1.png" width="80%" height="80%"></center>  
 <center>내가 베스트 코드 보면서 느낀 감정.png</center>  
 
