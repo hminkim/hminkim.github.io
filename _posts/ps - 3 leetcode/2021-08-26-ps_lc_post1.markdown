@@ -11,7 +11,7 @@ tags: leetcode
 태그: `Medium`, `316`, `파이썬`  
 
 
-[leetcode 21 - Remove Duplicate Letters](https://leetcode.com/problems/remove-duplicate-letters/)
+[leetcode 316 - Remove Duplicate Letters](https://leetcode.com/problems/remove-duplicate-letters/)
 
 ### 입출력 예시  
 
@@ -41,7 +41,7 @@ class Solution:
 
         return ''.join(stack)
 ```
-<center> 파이썬 알고리즘 인터뷰 9-2 </center>
+<center> 파이썬 알고리즘 인터뷰 9-3 </center>
   
 ### 풀이 과정  
   

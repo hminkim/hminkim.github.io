@@ -1,0 +1,59 @@
+---
+layout: post
+title: "[leetcode / 739] Daily Temperatures"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 27일  
+카테고리: 스택  
+태그: `Medium`, `739`, `파이썬`  
+
+
+[leetcode 739 - Daily Temperatures](https://leetcode.com/problems/daily-temperatures/submissions/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|temperatures = [73,74,75,71,69,72,76,73]|[1,1,4,2,1,1,0,0]|
+|temperatures = [30,40,50,60]|[1,1,1,0]|
+|temperatures = [30,60,90]|[1,1,0]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def dailyTemperatures(self, temperatures):
+        answer = [0] * len(temperatures)
+        stack = list()
+        for index, temp in enumerate(temperatures):
+            while stack and temp > temperatures[stack[-1]]:
+                last = stack.pop()
+                answer[last] = index - last
+            stack.append(index)
+
+        return answer
+```
+<center> 파이썬 알고리즘 인터뷰 9-3 </center>
+  
+### 풀이 과정  
+  
+`temperatures`의 길이만큼 0이 들어간 배열 `answer`과 `stack` 생성  
+  
+`enumerate()`를 활용하여 `temperatures`의 인덱스와 그에 따른 원소를 값으로 받음  
+  
+`stack`에 원소가 있거나  
+`temperatures`에서 받은 원소 값인 온도가  `temperature`에서 `stack`의 가장 마지막 값 인덱스의 값을 비교하여 온도 값이 더 크다면  
+- `last`에 `stack`에서 pop한 원소 저장 후  
+- 배열 `answer`의 `last` 인덱스에 `index`에서 `last`를 뺀 값을 저장  
+(며칠을 기다렸는지의 값을 알아내기 위해 `temperatures`에서 더 높은 온도가 나올 때 까지 인덱스에서 비교 대상인 인덱스를 뺌)  
+  
+그리고 `index`를 스택에 push  
+
+위의 반복이 끝나면 배열 `answer` 반환  
+
+### 반성
+   
+- 가장 기본이 되는 자료구조인 스택을 쉽게만 생각했었는데 스택을 활용한 문제를 어렵게 내면 이렇게까지 어려워 질 수 있단 점에 더 확실히 공부해야겠다는 생각이 들었다.  
