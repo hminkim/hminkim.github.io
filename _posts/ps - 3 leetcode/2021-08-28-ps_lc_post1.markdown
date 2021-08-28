@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "[leetcode / 23] Merge k Sorted Lists"
-subtitle:  "leetcode Easy"
+subtitle:  "leetcode Hard"
 categories: problemsolving
 tags: leetcode
 ---
 
 날짜: 2021년 8월 28일  
 카테고리: 우선순위 큐  
-태그: `Easy`, `23`, `파이썬`  
+태그: `Hard`, `23`, `파이썬`  
 
 
 [leetcode 739 - Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
@@ -55,8 +55,14 @@ class Solution:
   
 ### 풀이 과정  
   
-
+`root`와 `answer`이라는 연결 리스트와 `heap`이라는 리스트를 하나 생성   
+  
+입력 받은 `lists`의 길이만큼 반복하여 `heapq.heappush()` 함수를 활용하여 `heap`에 노드 정보를 push  
+(중복되는 값에 대한 에러를 방지하기 위한 형태)  
+  
+이제 `heapq.heappop()`으로 pop하면 가장 작은 값의 노드부터 차례로 연결 리스트 `answer`에 차례로 노드 정보를 push  
+힙에 아무 값도 남지 않을 때까지 반복하여 `root.next`를 반환  
 
 ### 반성
    
-- 
+- 내가 이 문제를 보고 바로 우선순위 큐를 활용하기 위해 `heapq`라이브러리를 import할 생각이 들 수 있을까...
