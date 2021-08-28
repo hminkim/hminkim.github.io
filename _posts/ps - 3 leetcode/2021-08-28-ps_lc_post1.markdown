@@ -1,0 +1,62 @@
+---
+layout: post
+title: "[leetcode / 23] Merge k Sorted Lists"
+subtitle:  "leetcode Easy"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 28일  
+카테고리: 우선순위 큐  
+태그: `Easy`, `23`, `파이썬`  
+
+
+[leetcode 739 - Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|lists = [[1,4,5],[1,3,4],[2,6]]|[1,1,2,3,4,4,5,6]|
+|lists = []|[]|
+|lists = [[]]|[]|  
+  
+### 코드
+  
+```python
+import heapq
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        root = answer = ListNode(None)
+        heap = list()
+        
+        for i in range(len(lists)):
+            if lists[i]:
+                heapq.heappush(heap, (lists[i].val, i ,lists[i]))
+        
+        while heap:
+            node = heapq.heappop(heap)
+            index = node[1]
+            answer.next = node[2]
+            
+            answer = answer.next
+            if answer.next:
+                heapq.heappush(heap, (answer.next.val, index, answer.next))
+                
+        return root.next
+```
+<center> 파이썬 알고리즘 인터뷰 10-2 </center>
+  
+### 풀이 과정  
+  
+
+
+### 반성
+   
+- 
