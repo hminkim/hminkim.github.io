@@ -18,3 +18,31 @@ order: 10
 
 공부하면서 정리하는 자료들이라 잘못된 정보가 있을 수도 있습니다.  
 말씀 해주시면 바로 수정할 수 있도록 하겠습니다.
+  
+<script
+  src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"
+></script>
+
+<!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
+<link
+   rel="stylesheet"
+   href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+/>
+
+<div>
+    <!-- Prepare a container for your calendar. -->
+    <div style="text-align: center;"><strong>나의 GitHub Contribution 그래프</strong></div> 
+    <div class="calendar">
+        <!-- Loading stuff -->
+        Loading data ...
+    </div>
+</div>
+
+<script>
+    GitHubCalendar(".calendar", "hminkim", { responsive: true, tooltips: false, global_stats: false}).then(function() {
+        // delete the space underneath the module bar which is caused by minheight 
+        document.getElementsByClassName('calendar')[0].style.minHeight = "100px";
+        // hide more and less legen below the contribution graph
+        document.getElementsByClassName('contrib-legend')[0].style.display = "none";
+    });
+</script>
