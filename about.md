@@ -19,27 +19,7 @@ order: 10
 공부하면서 정리하는 자료들이라 잘못된 정보가 있을 수도 있습니다.  
 말씀 해주시면 바로 수정할 수 있도록 하겠습니다.
   
-<br/>
+<br>
   
-<!-- Include the library. -->
-<script
-  src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"
-></script>
-
-<!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
-<link
-   rel="stylesheet"
-   href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-/>
-
-<!-- Prepare a container for your calendar. -->
-<div class="calendar">
-    <!-- Loading stuff -->
-    Loading the data just for you.
-</div>
-
-<script>
-    GitHubCalendar(".calendar", "hminkim");
-    // or enable responsive functionality
-    GitHubCalendar(".calendar", "hminkim", { responsive: true });
-</script>
+### 깃허브 잔디  
+<img src="https://ghchart.rshah.org/219138/hminkim"/>
