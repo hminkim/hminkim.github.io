@@ -19,7 +19,7 @@ order: 10
 공부하면서 정리하는 자료들이라 잘못된 정보가 있을 수도 있습니다.  
 말씀 해주시면 바로 수정할 수 있도록 하겠습니다.
   
-</br>
+<br>
   
 <!-- Include the library. -->
 <script
@@ -39,18 +39,10 @@ order: 10
 </div>
 
 <script>
-    GitHubCalendar(".calendar", "hminkim");
-    // or enable responsive functionality
-    GitHubCalendar(".calendar", "hminkim", { responsive: true });
-</script>
-
-
-
-<!-- <script>
     GitHubCalendar(".calendar", "hminkim", { responsive: true, tooltips: true, global_stats: true}).then(function() {
         // delete the space underneath the module bar which is caused by minheight 
         document.getElementsByClassName('calendar')[0].style.minHeight = "70px";
         // hide more and less legen below the contribution graph
         document.getElementsByClassName('contrib-legend')[0].style.display = "none";
     });
-</script> -->
+</script>
