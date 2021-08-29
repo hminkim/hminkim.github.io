@@ -1,0 +1,62 @@
+---
+layout: post
+title: "[leetcode / 3] Longest Substring Without Repeating Characters"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 29일  
+카테고리: 해시  
+태그: `Medium`, `3`, `파이썬`  
+
+
+[leetcode 3 - Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|s = "abcabcbb"|3|
+|s = "bbbbb"|1|
+|s = "pwwkew"|3|  
+  
+### 코드
+  
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        used = {}
+        max_length = start = 0
+        for index, char in enumerate(s):
+            if char in used and start <= used[char]:
+                start = used[char] + 1
+            else:
+                max_length = max(max_length, index - start + 1)
+            
+            used[char] = index
+        
+        return max_length
+```
+<center> 파이썬 알고리즘 인터뷰 10-2 </center>
+  
+### 풀이 과정  
+  
+`used` 딕셔너리와 `max_length`와 `start` 변수 생성  
+
+`s`의 인덱스와 값을 `enumerate()`를 활용하여 `index`와 `char`에 저장  
+  
+- 만약 `char`이 `used`에 존재하거나, `start`가 `used`에서 `char` key를 가진 값 보다 작거나 같을 때  
+    - `start`에 `used`에서 `char` key를 가진 값에 1을 더한 값을 저장  
+    - (중복값이 발견되어서 왼쪽 포인터를 오른쪽 포인터로 이동)  
+- 아니면 (중복 값이 발견되지 않았을 때)
+    - `max_lengh` 값보다 포인터들의 거리가 더 멀 경우 그 거리를 `max_length`에 저장  
+  
+`used`에서 `char` key를 가진 값에 `index` 저장  
+(가장 오른쪽에 있는 `char`문자의 인덱스를 `used` 딕셔너리에 저장)  
+  
+`max_length`를 반환  
+
+### 반성
+   
+- 굳이 해시로 풀지 않고 그냥 투포인터로 풀어도 될 거 같긴 한데 내가 구현하려고 하니 계속 오류가 나는데 어디서 잘 못 된 것인지 찾지를 못하겠다...  

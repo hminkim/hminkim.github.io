@@ -11,7 +11,7 @@ tags: leetcode
 태그: `Hard`, `23`, `파이썬`  
 
 
-[leetcode 739 - Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+[leetcode 23 - Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
 
 ### 입출력 예시  
 
