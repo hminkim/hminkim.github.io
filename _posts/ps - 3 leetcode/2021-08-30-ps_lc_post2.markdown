@@ -1,0 +1,79 @@
+---
+layout: post
+title: "[leetcode / 17]  Letter Combinations of a Phone Number"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 8월 30일  
+카테고리: 그래프  
+태그: `Medium`, `17`, `파이썬`  
+
+
+[leetcode 17 -  Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|digits = "23"|["ad","ae","af","bd","be","bf","cd","ce","cf"]|
+|digits = ""|[]|
+|digits = "2"|["a","b","c"]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        def dfs(idx, path):
+            if len(path) == len(digits):
+                answer.append(path)
+                return
+        
+            for i in range(idx, len(digits)):
+                for j in dic[digits[i]]:
+                    dfs(i + 1, path + j)
+                    
+        dic = {
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
+        answer = list()
+        dfs(0,'')
+                    
+        if not digits:
+            return []
+                
+            
+        return answer
+```
+<center> 파이썬 알고리즘 인터뷰 12-2 </center>
+  
+### 풀이 과정  
+  
+함수 내에 `dfs`함수 전체를 중첩 함수로 생성  
+`path`의 길이가 `digits`의 길이와 같아질 때까지 아래의 반복문을 반복  
+같아진다면 `answer`리스트에 `path`를 추가하고 return하여 함수를 종료  
+`idx`부터 `digits`의 길이만큼 `i` 생성을 반복하고  
+그 안에 또 `i`를 인덱스로 하는 `digits`의 원소를 key로 하는 `dic`의 값을 반복  
+(번호키 안에 있는 문자열을 반복)  
+`i`(인덱스)를 1씩 늘려가고, `path`에 문자열 요소인 `j`를 추가해가며 차례차례 재귀  
+  
+번호키를 key로 하고 문자열을 값으로 저장한 `dic`이라는 딕셔너리 생성  
+마지막에 답으로 반환 할 `answer` 리스트 생성  
+`dfs(0,'')`으로 재귀 반복   
+  
+`digit`이 빈 문자열일 경우 예외 처리   
+  
+재귀가 끝나면 문자열을 값으로 재귀적으로 추가한 `answer` 반환  
+
+### 반성
+   
+-    
