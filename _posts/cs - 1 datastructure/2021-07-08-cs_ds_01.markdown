@@ -189,7 +189,7 @@ tags: datastructure
  - 깊이 우선 탐색 (Depth-First Search)  
  - 너비 우선 탐색 (Breadth-First Search)  
   
-여기에 관련해서는 [다음에 포스팅 할 글] 참고
+여기에 관련해서는 [BFS / DFS](https://hminkim.github.io/computerscience/2021/08/05/cs_al_01/) 참고
   
 <br>
   

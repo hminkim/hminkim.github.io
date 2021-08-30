@@ -38,7 +38,7 @@ class Solution:
         
         return max_length
 ```
-<center> 파이썬 알고리즘 인터뷰 10-2 </center>
+<center> 파이썬 알고리즘 인터뷰 11-3 </center>
   
 ### 풀이 과정  
   
