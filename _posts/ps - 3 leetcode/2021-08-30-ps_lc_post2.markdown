@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[leetcode / 17]  Letter Combinations of a Phone Number"
+title: "[leetcode / 17] Letter Combinations of a Phone Number"
 subtitle:  "leetcode Medium"
 categories: problemsolving
 tags: leetcode
