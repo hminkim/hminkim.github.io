@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[leetcode / 78] Subsets"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 9월 1일  
+카테고리: 그래프  
+태그: `Medium`, `78`, `파이썬`  
+
+
+[leetcode 78 -  Subsets](https://leetcode.com/problems/subsets/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|nums = [1,2,3]|[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]|
+|nums = [0]|[[],[0]]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        answer = list()
+        
+        def dfs(idx, path):
+            answer.append(path)
+            
+            for i in range(idx, len(nums)):
+                dfs(i+1, path + [nums[i]])
+                
+        dfs(0,[])
+        
+        return answer
+```
+<center> 파이썬 알고리즘 인터뷰 12-6 </center>
+  
+### 풀이 과정  
+  
+가장 기본적인 재귀를 활용한 DFS 문제가 아닐까 싶다  
+  
+인덱스와 리스트를 패러미터로 받는 `dfs`라는 중첩 함수를 생성하고  
+그 안에서 인덱스에서 배열의 길이만큼 반복하고  
+`i+1`과 `path + [num[i]]`를 패러미터를 받는 `dfs` 함수를 재귀  
+
+0과 빈리스트를 받는 `dfs` 초기 선언 해주고 재귀가 끝났을 때 부분 집합을 `path`를 통해 원소로 저장된 `answer`를 반환  
+
+### 반성
+   
+- 이제 재귀를 활용한 DFS문제들의 유형이 눈에 조금씩 보이는 듯하다.  
