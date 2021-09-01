@@ -1,0 +1,64 @@
+---
+layout: post
+title: "[leetcode / 39] Combination Sum"
+subtitle:  "leetcode Medium"
+categories: problemsolving
+tags: leetcode
+---
+
+날짜: 2021년 9월 1일  
+카테고리: 그래프  
+태그: `Medium`, `39`, `파이썬`  
+
+
+[leetcode 39 -  Combination Sum](https://leetcode.com/problems/combination-sum/)
+
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|candidates = [2,3,6,7], target = 7|[[2,2,3],[7]]|
+|candidates = [2,3,5], target = 8|[[2,2,2,2],[2,3,3],[3,5]]|
+|candidates = [2], target = 1|[]|
+|candidates = [1], target = 1|[[1]]|
+|candidates = [1], target = 2|[[1,1]]|  
+  
+### 코드
+  
+```python
+class Solution:
+    def combinationSum(self, candidates, target):
+        answer = list()
+        def dfs(csum, idx, path):
+            if csum < 0:
+                return
+            if csum == 0:
+                answer.append(path)
+                return
+
+            for i in range(idx, len(candidates)):
+                dfs(csum - candidates[i], i, path + [candidates[i]])
+
+        dfs(target,0,[])
+
+        return answer
+```
+<center> 파이썬 알고리즘 인터뷰 12-4 </center>
+  
+### 풀이 과정  
+  
+전형적인 재귀를 활용한 DFS 문제  
+  
+`dfs` 중첩 함수를 생성하여  
+- `csum`이 0보다 작아진다면 그대로 리턴하고  
+- `csum`이 정확히 0이 되면 `path`를 `answer`에 추가  
+  
+`csum`에서 `candidates`의 `i`번째 원소를 뺀 값에대해 `i`의 인덱스부터 `path`에 `candidates`의 `i`번째 원소를 append한 리스트를 재귀  
+  
+`target`을 `csum`으로 하고 인덱스 0부터 하는 빈리스트를 가지는 dfs를 처음으로 호출  
+  
+합을 `target`으로 갖는 `path`들이 추가된 리스트 `answer` 반환  
+
+### 반성
+   
+- 이제 재귀를 활용한 DFS문제들의 유형이 눈에 조금씩 보이는 듯하다.  
