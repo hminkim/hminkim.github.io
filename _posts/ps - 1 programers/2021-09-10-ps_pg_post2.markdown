@@ -1,0 +1,76 @@
+---
+layout: post
+title: "[프로그래머스 / lv.2] 오픈채팅방"
+subtitle:  "프로그래머스 lv.2"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 9월 10일  
+소요 시간: 33분 46초   
+카테고리: 구현  
+태그: `레벨2`, `파이썬`  
+
+
+[코딩테스트 연습 - 오픈채팅방](https://programmers.co.kr/learn/courses/30/lessons/42888)
+
+### 입출력 예시  
+  
+|record|result|  
+|---|---|  
+|["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]|["Prodo님이 들어왔습니다.", "Ryan님이 들어왔습니다.", "Prodo님이 나갔습니다.", "Prodo님이 들어왔습니다."]|  
+  
+### 내가 적은 코드
+  
+```python
+def solution(record):
+    answer = list()
+    user = dict()
+    for order in record:
+        if order.split()[0] == 'Enter':
+            user[order.split()[1]] = order.split()[2]
+        if order.split()[0] == 'Change':
+            user[order.split()[1]] = order.split()[2]
+    
+    for printing in record:
+        if printing.split()[0] == 'Enter':
+            answer.append('{}님이 들어왔습니다.'.format(user[printing.split()[1]]))
+        if printing.split()[0] == 'Leave':
+            answer.append('{}님이 나갔습니다.'.format(user[printing.split()[1]]))
+    
+    return answer
+```
+  
+### 풀이 과정  
+  
+두번의 반복으로 출입 로그를 출력  
+
+첫번째 반복  
+- `record`의 원소로 들어온 문자열 데이터를 슬라이싱하여 가공해서 `user` 딕셔너리에 `uid` 값을 key로 `닉네임`을 value로 저장  
+  
+두번째 반복  
+- 문자열 첫번째 문자로 들어오는 `Enter`, `Leave`, `Change` 주문을 통해  
+- `user` 딕셔너리에 저장되어 있는 `uid`를 key로 받아 value인 `닉네임`의 입출입을 문자열 포맷을 통해 출력  
+
+  
+### 베스트 코드  
+  
+```python
+def solution(record):
+    answer = []
+    namespace = {}
+    printer = {'Enter':'님이 들어왔습니다.', 'Leave':'님이 나갔습니다.'}
+    for r in record:
+        rr = r.split(' ')
+        if rr[0] in ['Enter', 'Change']:
+            namespace[rr[1]] = rr[2]
+
+    for r in record:
+        if r.split(' ')[0] != 'Change':
+            answer.append(namespace[r.split(' ')[1]] + printer[r.split(' ')[0]])
+
+    return answer
+```
+  
+### 반성
+- 베스트 코드에서는 `uid`값 뿐만 아니라 들어오는 주문도 딕셔너리 형태로 저장하여 접근 속도를 줄였다.  
