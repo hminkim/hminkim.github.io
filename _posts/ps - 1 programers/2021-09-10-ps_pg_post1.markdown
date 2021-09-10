@@ -1,0 +1,54 @@
+---
+layout: post
+title: "[프로그래머스 / lv.2] 최솟값 만들기"
+subtitle:  "프로그래머스 lv.2"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 9월 10일  
+소요 시간: 5분 13초   
+카테고리: 문자열  
+태그: `레벨2`, `파이썬`  
+
+
+[코딩테스트 연습 - 최솟값 만들기](https://programmers.co.kr/learn/courses/30/lessons/12941)
+
+### 입출력 예시  
+  
+|A|B|answer|  
+|---|---|---|  
+|[1,4,2]|[5,4,4]|29|
+|[1,2]|[3,4]|10|  
+  
+### 내가 적은 코드
+  
+```python
+def solution(A,B):
+    sortA = sorted(A, reverse=True)
+    sortB = sorted(B, reverse=False)
+    answer = 0
+    for idx, a in enumerate(sortA):
+        answer += sortB[idx]*a
+
+    return answer
+```
+  
+### 풀이 과정  
+  
+상식적으로 작은 값과 큰 값을 곱한 것들을 더해야 가장 작은 값이 나올 것이기 때문에  
+  
+`A`는 내림차순으로 정렬하고 `B`는 오름차순으로 정렬하여  
+같은 인덱스의 원소끼리 곱한 값을 `answer`에 반복하여 더해줌    
+  
+### 베스트 코드  
+  
+```python
+def getMinSum(A,B):
+    return sum(a*b for a, b in zip(sorted(A), sorted(B, reverse = True)))
+```
+  
+  
+### 반성
+- 베스트 코드도 `zip`을 써서 코드가 간략해졌을 뿐이지 같은 로직으로 풀었다.  
+- 이게 왜 level.2인지 잘 모르겠을 정도로 쉬운 문제  
