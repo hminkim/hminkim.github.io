@@ -1,0 +1,189 @@
+---
+layout: post
+title: "[백준 / 2529] 부등호"
+subtitle:  "백준 silver.2"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 9월 29일  
+소요 시간: 2시간 39분 35초  
+카테고리: 브루트포스 알고리즘, 백트래킹  
+태그: `silver.2`, `2529`, `파이썬`  
+
+
+[백준 2529 - 부등호](https://www.acmicpc.net/problem/2529)  
+  
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|2|897|
+|< >|021|
+|9|9567843012|
+|> < < < > > > < <|1023765489|  
+
+  
+### 내가 적은 코드
+
+```python
+import sys
+
+k = int(sys.stdin.readline())
+inequality = list(map(str, sys.stdin.readline().split()))
+
+num_for_max = ['0','1','2','3','4','5','6','7','8','9']
+num_for_min = ['9','8','7','6','5','4','3','2','1','0']
+
+stack_for_max = list()
+stack_for_min = list()
+
+pre_inequality = ''
+max = ''
+min = ''
+
+# code for min
+count = k + 1
+for i in inequality:
+    if i == '<':
+        if pre_inequality == i:
+            min += num_for_min.pop()
+            count -= 1
+        else: # pre_inequality != i
+            stack_for_min.append(num_for_min.pop())
+            for _ in range(len(stack_for_min)):
+                min += stack_for_min.pop()
+                count -= 1
+    else: # '>'
+        if pre_inequality == i:
+            stack_for_min.append(num_for_min.pop())
+        else: # pre_inequality != i
+            for _ in range(len(stack_for_min)):
+                min += stack_for_min.pop()
+                count -= 1
+            stack_for_min.append(num_for_min.pop())
+    pre_inequality = i
+
+while count > 0:
+    if pre_inequality == '>':
+        if stack_for_min:
+            stack_for_min.append(num_for_min.pop())
+            for _ in range(len(stack_for_min)):
+                min += stack_for_min.pop()
+                count -= 1
+        else:
+            min += num_for_min.pop()
+            count -= 1
+    else:
+        if stack_for_min:
+            for _ in range(len(stack_for_min)):
+                min += stack_for_min.pop()
+                count -= 1
+            stack_for_min.append(num_for_min.pop())
+        else:
+            min += num_for_min.pop()
+            count -= 1
+
+#code for max
+count = k + 1
+for i in inequality:
+    if i == '<':
+        if pre_inequality == i:
+            stack_for_max.append(num_for_max.pop())
+        else: # pre_inequality != i
+            for _ in range(len(stack_for_max)):
+                max += stack_for_max.pop()
+                count -= 1
+            stack_for_max.append(num_for_max.pop())
+    else: # '>'
+        if pre_inequality == i:
+            if num_for_max:
+                max += num_for_max.pop()
+                count -= 1
+        else: # pre_inequality != i
+            stack_for_max.append(num_for_max.pop())
+            for _ in range(len(stack_for_max)):
+                max += stack_for_max.pop()
+                count -= 1
+    pre_inequality = i
+
+while count > 0:
+    if pre_inequality == '>':
+        if num_for_max:
+            max += num_for_max.pop()
+            count -= 1
+        else:
+            for _ in range(len(stack_for_max)):
+                max += stack_for_max.pop()
+                count -= 1
+            stack_for_max.append(num_for_max.pop())
+    else:
+        if stack_for_max:
+            stack_for_max.append(num_for_max.pop())
+            for _ in range(len(stack_for_max)):
+                max += stack_for_max.pop()
+                count -= 1
+        else:
+            max += num_for_max.pop()
+            count -= 1
+
+print(max)
+print(min)
+```
+
+### 풀이 과정  
+  
+<center><img src="/assets/img/ps_bj_210929_1.jpg" width="80%" height="80%"></center>  
+    
+그림에서 보이듯 부등호가 바뀌었을 때를 기점으로 `min`과 `max`의 오르내림의 방향이 전환됨  
+
+그 기점이 바뀌었을 때인지 바로 바뀌고 나서 다음 번인지는 `min`과 `max` 마다, 부등호의 방향 마다 그 규칙이 다 다름  
+  
+그 기점을 기준으로  
+오르내림이 반대 방향이라면 `stack` 리스트에 저장 후 `pop()`하여 문자열에 추가하고  
+오르내림이 정방향이라면 `num` 리스트에서 `pop()`하여 문자열에 추가하는 방식  
+  
+### 베스트 코드
+
+```python
+opList = []
+maxVal = ''
+minVal = ''
+
+def sortByInqeuality(n,inputList):
+    global opList
+    
+    if n < 0:
+        return
+    if opList[n] == '>' and inputList[n] > inputList[n+1]:
+        return
+    if opList[n] == '<' and inputList[n] < inputList[n+1]:
+        return
+    
+    tmp = inputList[n]
+    inputList[n] = inputList[n+1]
+    inputList[n+1] = tmp
+    
+    sortByInqeuality(n-1,inputList)
+    
+opNum = int(input())
+opList = list(map(str,input().split()))
+
+maxList = [9,8,7,6,5,4,3,2,1,0]
+minList = [0,1,2,3,4,5,6,7,8,9]
+    
+for o in range(opNum):
+    sortByInqeuality(o,maxList)
+    sortByInqeuality(o,minList)
+
+for v in range(opNum+1):
+    maxVal += str(maxList[v])
+    minVal += str(minList[v])
+
+print(maxVal)
+print(minVal)
+```
+  
+### 반성  
+  
+- 코드도 길고 시간도 오래걸리는 내 코드에 비해 베스트 코드는 버블 정렬 방식과 비슷한 방식을 활용하여 수를 스위칭하는 함수를 선언하여 문제를 풀이하여 훨씬 효율적인 코드를 짰다.   
