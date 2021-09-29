@@ -133,7 +133,7 @@ print(min)
 
 ### 풀이 과정  
   
-<center><img src="/assets/img/ps_bj_210929_1.jpg" width="80%" height="80%"></center>  
+<center><img src="/assets/img/ps_bj_210929_1.png" width="80%" height="80%"></center>  
     
 그림에서 보이듯 부등호가 바뀌었을 때를 기점으로 `min`과 `max`의 오르내림의 방향이 전환됨  
 
