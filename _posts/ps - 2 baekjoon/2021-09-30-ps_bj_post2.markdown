@@ -1,0 +1,88 @@
+---
+layout: post
+title: "[백준 / 1011] Fly me to the Alpha Centauri"
+subtitle:  "백준 gold.5"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 9월 30일  
+소요 시간: 1시간 7분 40초  
+카테고리: 수학  
+태그: `gold.5`, `1011`, `파이썬`  
+
+
+[백준 1011 - Fly me to the Alpha Centauri](https://www.acmicpc.net/problem/1011)  
+  
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|3|3|
+|0 3|3|
+|1 5|4|
+|45 50|  
+
+  
+### 내가 적은 코드
+
+```python
+import sys
+
+T = int(sys.stdin.readline())
+
+for _ in range(T):
+    x, y = map(int, sys.stdin.readline().split())
+
+    distance = y - x
+    standard = 0
+    sum = 0
+
+    while distance > standard:
+        standard += sum
+        sum += 2
+
+    if (standard - ((sum-2)/2)) >= distance:
+        print((sum-2)-1)
+    else:
+        print(sum-2)
+```
+
+  
+### 풀이 과정  
+  
+<center><img src="/assets/img/ps_bj_210930_1.png" width="80%" height="80%"></center>  
+
+사진에서 보듯 기준이 되는 `standard`는 2의 배수만큼 증가  
+매번 더해주는 양을 변수 `sum`에 저장하고  
+y와 x 사이의 거리 `distance`가 기준점 `standard`를 초과할 때까지 `standard`와`sum`의 증가 반복  
+  
+(`distance`가 기준점 `standard`를 초과 할 때 바로 반복문이 끝나는 것이 아니기 때문에 아래 연산에서는 `sum-2`를 대입)  
+  
+만약 `standard`에서 `sum-2`를 반으로 나눈 값을 뺀 값이 `distance`보다 크거나 같으면  
+`sum-2`에서 1을 뺀 값을 출력
+아니라면  
+`sum-2`를 출력  
+  
+
+### 베스트 코드
+
+```python
+import sys
+read = lambda: sys.stdin.readline().rstrip()
+d = {}
+for _ in range(int(read())):
+    a, b = map(int, read().split())
+    c = b-a
+    if c in d: print(d[c]);continue
+    k = int(c**0.5)
+    if c - k*k > 0:
+        if c - k*k <= k: print(2*k);d[c] = 2*k
+        else: print(2*k+1);d[c] = 2*k+1
+    else: print(2*k-1); d[c] = 2*k-1
+```
+  
+### 반성  
+  
+- 베스트코드는 기준을 제곱을 통해 찾아내었는데 내 코드보다 8배 가량 효율이 더 좋았다.  
+- 이건 사실 코딩 실력보다는 효율적인 규칙을 잘 찾아 낸 케이스에 가까울 것 같다.  
