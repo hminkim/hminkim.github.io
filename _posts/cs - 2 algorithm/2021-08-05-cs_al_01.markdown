@@ -50,7 +50,7 @@ graph = {
     'J' : ['I']
 }
 
-def dfs(graph, start_node):
+def bfs(graph, start_node):
     visited = list()
     queue = deque()
     queue.append(start_node)
