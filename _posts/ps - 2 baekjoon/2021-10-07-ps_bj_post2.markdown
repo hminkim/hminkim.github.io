@@ -1,0 +1,143 @@
+---
+layout: post
+title: "[백준 / 7569] 토마토"
+subtitle:  "백준 silver.1"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 10월 7일  
+소요 시간: 3시간 52분 26초  
+카테고리: 그래프 탐색, BFS  
+태그: `silver.1`, `7569`, `파이썬`  
+
+
+[백준 7569 - 토마토](https://www.acmicpc.net/problem/7569)  
+  
+### 입출력 예시  
+
+링크 참조  
+
+  
+### 내가 적은 코드  
+
+```python
+import sys
+from collections import deque
+
+M, N, H = map(int, sys.stdin.readline().split())
+graph = list()
+
+for floor in range(H):
+    graph.append([])
+    for _ in range(N):
+        graph[floor].append(list(map(int, sys.stdin.readline().split())))
+
+def bfs(graph, limit):
+    queue = deque()
+    h, n, m = limit
+    max_day = 0
+
+    dx = [1, -1, 0, 0, 0, 0]
+    dy = [0, 0, 1, -1, 0, 0]
+    dz = [0, 0, 0, 0, 1, -1]
+
+    for i in range(H):
+        for j in range(N):
+            for k in range(M):
+                if graph[i][j][k] == 1:
+                    queue.append([i, j, k])
+
+    while queue:
+        z, x, y = queue.popleft()
+
+        for i in range(6):
+            nz = z + dz[i]
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx and nx < n and 0 <= ny and ny < m and 0 <= nz and nz < h and graph[nz][nx][ny] == 0:
+                graph[nz][nx][ny] = graph[z][x][y] + 1
+                queue.append([nz, nx, ny])
+
+    for a in range(H):
+        for b in range(N):
+            for c in range(M):
+                # 익지 않은 토마토가 하나라도 있는 경우
+                if graph[a][b][c] == 0:
+                    return -1
+                else:
+                    max_day = max(max_day, graph[a][b][c])
+
+    # 저장될 때부터 모든 토마토가 익어있는 상태
+    if max_day == 0:
+        return 0
+    else:
+        return max_day - 1
+
+print(bfs(graph, [H, N, M]))
+```
+  
+### 풀이 과정  
+  
+전형적인 넓이 우선 탐색을 통해 익지 않은 토마토가 익어가는 과정에서 몇번의 탐색 사이클이 돌았는지를 체크하고  
+익지 않은 토마토가 있는지,  
+저장될 때 부터 모든 토마토가 익어 있었는지,  
+등의 예외처리를 해주면 되는 문제  
+
+### 베스트 코드
+
+```python
+import sys
+input = sys.stdin.readline
+
+def solution():
+
+    n, m, h = map(int, input().split())
+    board = [[[*map(int, input().split())] for _ in range(m)] for _ in range(h)]
+    cnt = 0
+    tomatoes = []
+    depth = -1
+
+    for k in range(h):
+        for i in range(m):
+            for j in range(n):
+                if board[k][i][j] == 0:
+                    cnt += 1
+                elif board[k][i][j] == 1:
+                    tomatoes.append((k, i, j))
+
+    while tomatoes:
+        depth += 1
+        temp = []
+        for k, i, j in tomatoes:
+            if k > 0 and board[k-1][i][j] == 0:
+                board[k-1][i][j] = 1
+                temp.append((k-1,i,j))
+            if i > 0 and board[k][i-1][j] == 0:
+                board[k][i-1][j] = 1
+                temp.append((k,i-1,j))
+            if j > 0 and board[k][i][j-1] == 0:
+                board[k][i][j-1] = 1
+                temp.append((k,i,j-1))
+            if k < h-1 and board[k+1][i][j] == 0:
+                board[k+1][i][j] = 1
+                temp.append((k+1,i,j))
+            if i < m-1 and board[k][i+1][j] == 0:
+                board[k][i+1][j] = 1
+                temp.append((k,i+1,j))
+            if j < n-1 and board[k][i][j+1] == 0:
+                board[k][i][j+1] = 1
+                temp.append((k,i,j+1))
+        cnt -= len(temp)
+        tomatoes = temp
+
+    return -1 if cnt else depth
+                
+print(solution())
+```
+  
+### 반성  
+  
+- 베스트 코드는 내가 처음 생각했던 1차 탐색에서 추가된 좌표의 개수를 카운트해서 그 카운트가 지워질 때 하루를 추가하는 식으로 총 며칠이 걸렸는지를 체크하는 풀이로 풀었다.  
+- 처음 저 알고리즘을 생각을 하긴했었는데 구현과정에서 계속 오류가 나서 방향을 수정했었는데 다시 구현하라고 해도 머리가 복잡해져서 그냥 포기...  
