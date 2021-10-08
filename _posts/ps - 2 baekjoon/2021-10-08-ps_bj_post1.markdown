@@ -1,0 +1,164 @@
+---
+layout: post
+title: "[백준 / 14503] 로봇청소기"
+subtitle:  "백준 Gold.5"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 10월 8일  
+소요 시간: 1시간 22분 47초  
+카테고리: 구현  
+태그: `Gold.5`, `14503`, `파이썬`  
+
+
+[백준 14503 - 로봇청소기](https://www.acmicpc.net/problem/14503)   
+  
+### 입출력 예시  
+
+링크 참조  
+  
+  
+### 내가 적은 코드  
+
+```python
+import sys
+
+N, M = map(int, sys.stdin.readline().strip().split())
+r, c, d = map(int, sys.stdin.readline().strip().split())
+graph = list()
+for _ in range(N):
+    graph.append(list(map(int, sys.stdin.readline().split())))
+
+location = [r, c, d]
+clean_count = 0
+
+def search_left(loc1, graph): # 바라보는 방향에서 왼쪽을 탐색 후 그 좌표의 원소 반환
+    if loc1[2] == 0:
+        return graph[loc1[0]][loc1[1]-1]
+    elif loc1[2] == 1:
+        return graph[loc1[0]-1][loc1[1]]
+    elif loc1[2] == 2:
+        return graph[loc1[0]][loc1[1]+1]
+    else:
+        return graph[loc1[0]+1][loc1[1]]
+
+def search_back(loc2, graph):  # 바라보는 방향에서 뒷쪽을 탐색 후 그 좌표의 원소 반환
+    if loc2[2] == 0:
+        return graph[loc2[0]+1][loc2[1]]
+    elif loc2[2] == 1:
+        return graph[loc2[0]][loc2[1]-1]
+    elif loc2[2] == 2:
+        return graph[loc2[0]-1][loc2[1]]
+    else:
+        return graph[loc2[0]][loc2[1]+1]
+
+def move_forward(loc3): # 앞으로 전진 후 그 좌표와 방향을 반환
+    if loc3[2] == 0:
+        loc3[0] -= 1
+    elif loc3[2] == 1:
+        loc3[1] += 1
+    elif loc3[2] == 2:
+        loc3[0] += 1
+    else:
+        loc3[1] -= 1
+
+    return loc3
+
+def move_backward(loc4):  # 뒤으로 전진 후 그 좌표와 방향을 반환
+    if loc4[2] == 0:
+        loc4[0] += 1
+    elif loc4[2] == 1:
+        loc4[1] -= 1
+    elif loc4[2] == 2:
+        loc4[0] -= 1
+    else:
+        loc4[1] += 1
+
+    return loc4
+
+def turn(loc5): # 바라보는 방향에서 왼쪽으로 회전
+    if loc5[2] == 0:
+        loc5[2] = 3
+    else:
+        loc5[2] -= 1
+
+    return loc5
+
+
+graph[location[0]][location[1]] = 2
+clean_count += 1
+
+while True:
+    direction_count = 4
+    while direction_count > 0: # 동서남북 한바퀴를 돌 때까지 반복
+        # a
+        if search_left(location, graph) == 0:
+            turn(location)
+            move_forward(location)
+            graph[location[0]][location[1]] = 2
+            clean_count += 1
+            direction_count = 4
+        # b
+        else:
+            turn(location)
+            direction_count -= 1
+    # c
+    if search_back(location, graph) != 1:
+        move_backward(location)
+    # d
+    else:
+        print(clean_count)
+        break
+```
+  
+### 풀이 과정  
+  
+`search_left()` `search_back()` 바라보는 방향에서 왼쪽과 뒷쪽을 탐색하여 그 좌표의 원소를 반환하는 함수 생성  
+`move_forward()` `move_backward()` 앞으로, 뒤로 한칸 움직여서 좌표를 반환하는 함수 생성  
+`turn()` 바라보는 방향에서 왼쪽으로 방향을 전환하는 함수 생성  
+  
+`location`에 로봇 청소기의 현재 x축 좌표, y축 좌표와 바라보는 방향을 리스트로 저장  
+  
+로봇의 움직임을 모두 함수로 정의 해 놓은 다음  
+문제에서 정의해 준 로직을 그대로 코드로 구현  
+  
+
+### 베스트 코드
+
+```python
+n,m=map(int, input().split())
+r,c,d=map(int, input().split())
+dr=[-1, 0, 1, 0]
+dc=[0, 1, 0, -1]
+wall=[list(map(int, input().split())) for _ in range(n)]
+ans=1
+wall[r][c]=2
+while True:
+    turn=0
+    while turn < 4:
+        d=(d+3)%4
+        nr = r + dr[d]
+        nc = c + dc[d]
+        if wall[nr][nc] == 0:
+            r=nr
+            c=nc
+            wall[r][c]=2
+            ans+=1
+            break
+        turn+=1
+    if turn == 4:
+        nr=r+dr[(d+2)%4]
+        nc=c+dc[(d+2)%4]
+        if wall[nr][nc] == 1:
+            break
+        else:
+            r=nr
+            c=nc
+print(ans)
+```
+  
+### 반성  
+  
+- 베스트 코드와 로직은 같으나 베스트 코드는 방향을 따로 지정해 주지않고 그때그때 계산해주었다.  
+- 로직을 구현함에 있어서 이제 머리속으로 로직은 그려지는데 중간중간 실수로 인한 오류를 줄일 수 있도록 노력해야겠다.  
