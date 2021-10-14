@@ -1,0 +1,70 @@
+---
+layout: post
+title: "[백준 / 2606] 바이러스"
+subtitle:  "백준 Silver.3"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 10월 14일  
+소요 시간: 28분 10초  
+카테고리: 그래프 탐색  
+태그: `Silver.3`, `2606`, `파이썬`  
+
+
+[백준 2606 - 바이러스](https://www.acmicpc.net/problem/2606)   
+  
+### 입출력 예시  
+
+링크 참조  
+  
+### 내가 적은 코드  
+
+```python
+import sys
+from collections import deque
+
+N = int(sys.stdin.readline().strip())
+M = int(sys.stdin.readline().strip())
+graph = dict()
+
+for i in range(1, N+1):
+    graph[i] = []
+
+for _ in range(M):
+    key, value = map(int, sys.stdin.readline().split())
+    graph[key].append(value)
+    if not key in graph[value]:
+        graph[value].append(key)
+
+def bfs(graph):
+    visit = list()
+    queue = deque()
+    queue.append(1)
+
+    while queue:
+        node = queue.popleft()
+        if node not in visit:
+            visit.append(node)
+            queue.extend(graph[node])
+    if visit:
+        return len(visit)-1
+    else:
+        return 0
+
+print(bfs(graph))
+```
+  
+### 풀이 과정  
+
+딕셔너리 타입의 `graph`를 구현해서 전형적인 bfs로 풀이  
+  
+### 베스트 코드
+
+```python
+```
+  
+### 반성  
+  
+- 그래프를 만듦에 있어서 무방향 그래프를 구현해야 하는데 방향 그래프를 구현해서 반례 찾는데 시간이 걸렸다.  
+- 데이터를 그래프화하는 과정 말고는 어렵지 않은 전형적인 그래프 탐색 문제이다.  
