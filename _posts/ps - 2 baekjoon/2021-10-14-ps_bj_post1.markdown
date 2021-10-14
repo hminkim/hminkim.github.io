@@ -1,0 +1,90 @@
+---
+layout: post
+title: "[백준 / 2812] 크게 만들기"
+subtitle:  "백준 Gold.5"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 10월 14일  
+소요 시간: 1시간 7분 23초  
+카테고리: 스택  
+태그: `Gold.5`, `2812`, `파이썬`  
+
+
+[백준 2812 - 크게 만들기](https://www.acmicpc.net/problem/2812)   
+  
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|4 2|94|
+|1924||
+|7 3|3234|
+|1231234||
+|10 4|775841|
+|4177252841||  
+  
+  
+### 내가 적은 코드  
+
+```python
+import sys
+
+N , K = map(int, sys.stdin.readline().split())
+num = list(sys.stdin.readline().strip())
+count = K
+
+number = []
+
+for i in range(N):
+    while count > 0 and number and number[-1] < num[i]:
+        number.pop()
+        count -= 1
+    number.append(num[i])
+
+answer = "".join(number[:N-K])
+
+print(answer)
+```
+  
+### 풀이 과정  
+
+`number`이라는 스택 리스트를 만들어서  
+`num`의 `i`번째 수를 `number`에 계속 추가하는 작업을 반복  
+  
+`number`에 원소가 있다면  
+`num`의 `i`번째 수와 비교하여 더 작다면 `pop()`하고  
+`count`를 1씩 뺌  
+  
+`count`가 0이 될 때까지 반복 한 후  
+
+`number`을 `N-K`의 길이만큼 출력  
+  
+### 베스트 코드
+
+```python
+def remove_k_digits(num, k):
+    num_stack = []
+
+    for digit in num:
+        while k and num_stack and num_stack[-1] < digit:
+            num_stack.pop()
+            k -= 1
+
+        num_stack.append(digit)
+
+    final_stack = num_stack[:-k] if k else num_stack
+
+    return "".join(final_stack) or "0"
+
+
+N, K = map(int, input().split())
+number = input()
+
+print(remove_k_digits(number, K))
+```
+  
+### 반성  
+  
+- 베스트 코드는 내 코드와 같은 로직에서 함수를 통해 풀었다.   
