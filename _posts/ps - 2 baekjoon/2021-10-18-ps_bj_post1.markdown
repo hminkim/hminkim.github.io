@@ -1,0 +1,137 @@
+---
+layout: post
+title: "[백준 / 1926] 그림"
+subtitle:  "백준 silver.1"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2021년 10월 18일  
+소요 시간: 28분 42초  
+카테고리: 그래프 탐색  
+태그: `silver.1`, `1926`, `파이썬`  
+
+
+[백준 1926 - 그림](https://www.acmicpc.net/problem/1926)  
+  
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|6 5|4|
+|1 1 0 1 1|9|
+|0 1 1 0 0||
+|0 0 0 0 0||
+|1 0 1 1 1||
+|0 0 1 1 1||
+|0 0 1 1 1||  
+
+  
+### 내가 적은 코드
+
+```python
+import sys
+sys.setrecursionlimit(10**6)
+
+n, m = map(int, sys.stdin.readline().split())
+pic = list()
+count = 0
+area = 0
+
+def dfs(i, j):
+    if i < 0 or i >= n or j < 0 or j >= m or pic[i][j] == 0:
+        return
+
+    global zone
+
+    zone += 1
+    pic[i][j] = 0
+
+    dfs(i + 1, j)
+    dfs(i - 1, j)
+    dfs(i, j + 1)
+    dfs(i, j - 1)
+
+for _ in range(n):
+    pic.append([])
+
+for i in range(n):
+    for j in list(sys.stdin.readline().split()):
+        pic[i].append(int(j))
+
+for i in range(n):
+    for j in range(m):
+        zone = 0
+        if pic[i][j] == 1:
+            dfs(i, j)
+            count += 1
+        area = max(area, zone)
+
+print(count)
+print(area)
+```
+
+  
+### 풀이 과정  
+  
+얼마 전 풀었던 [백준 1012 - 유기농 배추](https://hminkim.github.io/problemsolving/2021/09/02/ps_bj_post1/)와 [leetcode -Number of Islands](https://hminkim.github.io/problemsolving/2021/08/30/ps_lc_post1/) 같은 재귀형태의 DFS로 풀이  
+  
+달랐던 점은 가장 넓은 부분의 넓이도 함께 출력해야 한다는 점  
+
+global로 재귀가 되어도 변함이 없는 변수 `zone`을 선언해 주고  
+`dfs()` 함수를 통해 탐색 한 1이 0으로 변해주기 전에 `zone`을 1씩 늘려줌  
+  
+`max()`를 통해 return 후 `zone`의 최댓값을 `area`에 저장  
+  
+마지막으로 그림의 갯수를 담은 `count`와 최대 넓이를 담은 `area`를 출력  
+  
+### 베스트 코드
+
+```python
+import sys
+from collections import deque
+ipt=sys.stdin.readline
+
+def bfs(i,j):
+    num = 0
+    wait = deque([(i,j)])
+    land[i][j] = '0'
+    while len(wait)>0:
+        i,j = wait.popleft()
+        num += 1
+        if i-1 >= 0 and land[i-1][j]=='1':
+            land[i-1][j] = '0'
+            wait.append((i-1,j))
+        if j-1 >= 0 and land[i][j-1]=='1':
+            land[i][j-1] = '0'
+            wait.append((i,j-1))
+        if i+1 < n and land[i+1][j]=='1':
+            land[i+1][j] = '0'
+            wait.append((i+1,j))
+        if j+1 < m and land[i][j+1]=='1':
+            land[i][j+1] = '0'
+            wait.append((i,j+1))
+    area.append(num)
+
+n,m=map(int,ipt().split())
+land=[]
+for i in range(n):
+    land.append(ipt().split())
+
+picture=0
+area=[]
+
+for i in range(n):
+    for j in range(m):
+        if land[i][j]=='1':
+            picture += 1
+            bfs(i,j)
+
+print(picture)
+print(max(area) if len(area)>0 else 0)
+```
+  
+### 리뷰  
+  
+- 베스트 코드에서는 bfs를 통해 그림의 갯수를 풀었고 넓이를 구하기 위해 배열 `area`에 그림 픽셀 하나하나를 저장하여 area의 길이를 통해 최대값을 저장하여 풀었다.
+- 재귀를 통해 풀어서 queue를 통한 bfs보다 시간이 조금 더 걸리긴 했으나 영 틀린 풀이는 아닌 것 같다.
