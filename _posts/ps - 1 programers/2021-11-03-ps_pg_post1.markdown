@@ -1,0 +1,81 @@
+---
+layout: post
+title: "[프로그래머스 / lv.2] 기능개발"
+subtitle:  "프로그래머스 lv.2"
+categories: problemsolving
+tags: programers
+---
+
+날짜: 2021년 11월 3일  
+소요 시간: 29분 21초   
+카테고리: 스택/큐  
+태그: `레벨2`, `파이썬`  
+
+
+[코딩테스트 연습 - 기능개발](https://programmers.co.kr/learn/courses/30/lessons/42586)
+
+### 입출력 예시  
+  
+|progresses|speeds|return|
+|---|---|  
+|[93, 30, 55]|[1, 30, 5]|[2, 1]|
+|[95, 90, 99, 99, 80, 99]|[1, 1, 1, 1, 1, 1]|[1, 3, 2]|  
+  
+### 내가 적은 코드
+  
+```python
+import copy
+from collections import deque
+
+def solution(progresses, speeds):
+    answer = []
+    progresses = deque(progresses)
+    speeds = deque(speeds)
+
+    while progresses:
+        cnt = 0
+
+        for idx in range(len(progresses)):
+            progresses[idx] = progresses[idx] + speeds[idx]
+
+        for work in copy.deepcopy(progresses):
+            if progresses.index(work) == 0 and work >= 100:
+                progresses.popleft()
+                speeds.popleft()
+                cnt += 1
+        if cnt != 0:
+            answer.append(cnt)
+
+    return answer
+```
+  
+### 풀이 과정  
+  
+하루하루 업무를 진행하여 만약 `progresses`의 원소 중 인덱스가 0인 process가 100을 넘긴다면 일이 마무리 되었다는 이야기므로  
+`progresses`와 `speeds`의 왼쪽 원소를 `popleft()`하고 `cnt`에 1을 추가  
+만약 그 다음 업무 역시 100을 넘긴다면 그 업무 또한 마무리 되었다는 의미이므로
+`progresses`와 `speeds`의 왼쪽 원소를 `popleft()`를 반복하고 `cnt`에 1을 플러스  
+  
+그렇게 한 싸이클이 끝난다면 그날 배포한 업무의 갯수인 `cnt`를 배열 `answer`에 `appned()`
+
+모든 반복이 끝난다면 `progresses`의 원소가 비었을 것이므로 `answer` 반환
+
+  
+### 베스트 코드  
+  
+```python
+def solution(progresses, speeds):
+    Q=[]
+    for p, s in zip(progresses, speeds):
+        if len(Q)==0 or Q[-1][0]<-((p-100)//s):
+            Q.append([-((p-100)//s),1])
+        else:
+            Q[-1][1]+=1
+    return [q[1] for q in Q]
+```
+  
+### 리뷰
+- `zip()`을 활용해서 코드 간결성을 높였다. 나도 `zip()`의 이해도를 높여서 코드에 활용할 줄 알아야한다.  
+- 사실 나의 코드는 업무 진행 정도가 100을 넘겨도 계속 연산하기 때문에 쓸떼없이 연산량이 많다. 알면서도 냅둔건 일단 돌아가게 만들었다는 의미이므로 사실 좋은 코드라고는 할 수 없다.  
+- 베스트 코드에서는 남은 업무량에서 속도를 나누어서 업무를 마무리하기 위해 남은 일수를 계산하여 보다 효율적으로 계산했다고 할 수 있다.
+- 이런건 사실 센스적인 문제라서 내가 좀 더 효율적인 코드에 대해 고민을 많이 해 보는 습관을 들여야겠다.  
