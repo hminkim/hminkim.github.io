@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "210708 Diary"
-subtitle:  "210708 Diary"
+title: "210708 취준에 대한 고찰"
+subtitle:  "210708 취준에 대한 고찰"
 categories: essay
 tags: diary
 ---

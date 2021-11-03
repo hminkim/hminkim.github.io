@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "210610 Diary"
-subtitle:  "210610 Diary"
+title: "210610 첫 에세이 - 나란 사람"
+subtitle:  "210610 첫 에세이 - 나란 사람"
 categories: essay
 tags: diary
 ---

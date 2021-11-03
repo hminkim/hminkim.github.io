@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "210924 Diary"
-subtitle:  "210924 Diary"
+title: "210924 스터디 - 전설의 시작 (아마도...?)"
+subtitle:  "210924 스터디 - 전설의 시작 (아마도...?)"
 categories: essay
 tags: diary
 ---
