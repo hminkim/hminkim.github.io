@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
-title: Python
-slug: python
+title: Java
+slug: Java
 category: language
 menu: false
 order: 1
