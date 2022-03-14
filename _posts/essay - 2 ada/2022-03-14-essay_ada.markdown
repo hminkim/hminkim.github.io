@@ -1,8 +1,7 @@
-
 ---
 layout: post
-title: "220314 애플 아카데미 첫 날
-subtitle:  "220314 애플 아카데미 첫 “날
+title: "220314 애플 아카데미 첫 날"
+subtitle:  "220314 애플 아카데미 첫 날"
 categories: essay
 tags: ada
 ---
