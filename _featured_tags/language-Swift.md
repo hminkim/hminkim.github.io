@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
-title: Java
-slug: Java
+title: Swift
+slug: Swift
 category: language
 menu: false
 order: 1
