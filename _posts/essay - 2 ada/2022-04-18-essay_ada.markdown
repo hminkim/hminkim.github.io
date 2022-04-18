@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "220314 첫 프로젝트 후 회고"
-subtitle:  "220314 첫 프로젝트 후 회고"
+title: "220418 첫 프로젝트 후 회고"
+subtitle:  "220418 첫 프로젝트 후 회고"
 categories: essay
 tags: ada
 ---
