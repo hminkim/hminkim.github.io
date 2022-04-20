@@ -199,11 +199,11 @@ var name = a > 0 ? “스티브 잡스” : “팀” 쿡
 - 배열의 서브스크립트 문법과 함께 사용
 
 ```swift
-Let range1 = 1…5 // 1 이상 5 이하
-Let range1 = 1…   // 1 이상
-Let range1 = …5  // 5 이하
-Let range1 = 1…<5 // 1 이상 5 미만
-Let range1 = …<5  // 5 미만
+let range1 = 1…5 // 1 이상 5 이하
+let range1 = 1…   // 1 이상
+let range1 = …5  // 5 이하
+let range1 = 1…<5 // 1 이상 5 미만
+let range1 = …<5  // 5 미만
 ```
   
   
