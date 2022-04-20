@@ -80,13 +80,13 @@ let number = Int(str)
   
 ```swift
 if 조건 {
-    수행
+    print("수행")
 }
 else if 조건 {
-    수행
+    print("수행")
 }
 else {
-    수행
+    print("수행")
 }
 ```
   
@@ -94,10 +94,10 @@ else {
   
 ```swift
 if 조건 && 조건 {
-    and 일 때 수행
+    print("and 일 때 수행")
 } 
 if 조건 || 조건 {
-    or 일 때 수행
+    print("or 일 때 수행")
 }
 ```
   
@@ -106,11 +106,11 @@ if 조건 || 조건 {
 ```swift
 switch 표현식 {
 case 조건1 :
-	수행1
+	print("수행1")
 case 조건2 :
-	수행2
+	print("수행2")
 default :
-	기본 수행
+	print("기본 수행")
 }
 ```
   
