@@ -294,10 +294,10 @@ OUTER: for i in 0...3 {
 이번주 내로 스위프트 기본 문법을 끝내고 주말부터는 중급 단계로 넘어가는 게 작은 목표다.  
   
 
-</br>
+<br>
 <center><img src="/assets/img/la_sw_220420_1.png" width="70%" height="70%"></center>  
 <center> 빨리 다 채워나가버리자 </center> 
-</br>  
+<br>  
     
 ----   
   
@@ -307,4 +307,3 @@ OUTER: for i in 0...3 {
   
 ----  
   
-
