@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Swift Basic"
 subtitle:  "Swift Basic"
-categories: lang
+categories: language
 tags: swift
 ---
 ## Swift 기본 문법 정리
@@ -80,13 +80,13 @@ let number = Int(str)
   
 ```swift
 if 조건 {
-	수행
+    수행
 }
 else if 조건 {
-	수행
+    수행
 }
 else {
-	수행
+    수행
 }
 ```
   
@@ -94,10 +94,10 @@ else {
   
 ```swift
 if 조건 && 조건 {
-	and 일 때 수행
+    and 일 때 수행
 } 
 if 조건 || 조건 {
-	or 일 때 수행
+    or 일 때 수행
 }
 ```
   
