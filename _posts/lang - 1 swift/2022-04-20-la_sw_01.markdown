@@ -9,7 +9,7 @@ tags: swift
   
 ----  
   
-이번 포스팅은 인프런의 [Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)를 보고 Swift의 기본적인 부분을 정리하기 위해 한 포스팅이다.  
+이번 포스팅은 인프런의 [Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)를 보고 스위프트의 기본적인 문법 부분을 정리 기록하기 위해 한 포스팅이다.  
 나를 포함해서 Swift 이외의 다른 언어로 알고리즘 문제를 푼 경험이 있다면 그냥 모든 언어에 존재하는 문법이지만 스위프트에서는 이렇게 표현했구나 정도로만 가볍게 보고 넘어가도 될 내용이다.  
   
   
@@ -56,13 +56,14 @@ var j: Double = 4
 // i는 4, j는 4.0
 ```
   
+
 굳이 타입을 지정하지 않아도 Swift에서는 타입 추론을 통해 컴파일러가 타입을 유추해서 알맞은 타입으로 저장한다.  
    
 **타입 변환**  
   
 ```swift
-Let Str = “123”
-Let number = Int(str)
+let Str = “123”
+let number = Int(str)
 
 //123 
 ```
@@ -287,12 +288,16 @@ OUTER: for i in 0...3 {
     
 }
 ```
+   
   
-
 아직까지는 1.5배속으로 들을만큼 워낙 기본적인 내용이고 다 아는 내용이라서 스위프트라는 언어가 처음이니까 하는 느낌으로 강의를 들었다.  
 이번주 내로 스위프트 기본 문법을 끝내고 주말부터는 중급 단계로 넘어가는 게 작은 목표다.  
   
-  
+
+</br>
+<center><img src="/assets/img/la_sw_220420_1.png" width="70%" height="70%"></center>  
+<center> 빨리 다 채워나가버리자 </center> 
+</br>  
     
 ----   
   
