@@ -16,38 +16,28 @@ tags: swift
   
 ## 옵셔널 타입  
   
-<br>
-  
 ```swift
 let num1: Int? = 2  // 간편 표기
 let num2: Optional<Int> = 2  // 정식  문법
 ```
-
-<br>
   
 옵셔널은 nil이거나 nil이 아닌 값만 가질 수 있다.  
 - nil : 값이 할당되지 않아 오류가 발생했을 때  
 - nil 아닌 값 : 오류가 발생하지 않았을 때 반환하려는 값이 옵셔널로 래핑된 형태의 값  
   
-<br>
-
 Int (정수형 타입) / Int? (옵셔널 정수형 타입) / Double (실수형) / Double? (옵셔널 실수형 타입)  
   
 -> 각각 서로 다른 타입이다.  
-
-<br>
-
+  
 > nil은 실제로 값이 없는 것은 아니고 값이 없음을 표현하는 키워드  
 > 실제로 값이 없는 다른 언어의 null과는 실제로 값이 없는 것이 아니라서 다른 것  
   
-<br>  
 
 ```swift
 var num1: Int = nil  // 에러
 var num2: Int? = nil  
 // nil을 넣는다고 해도 옵셔널 타입은 타입 추론으로 자동으로 할당되지않아서 지정 해 줘야 한다.
 ```
-<br>
 
 ```swift
 var optionalNum : Int?
@@ -78,7 +68,7 @@ print(optionalNum!)  // 10
 
 ```swift
 if str != nil {
-	print(str!)
+    print(str!)
 }
 ```
   
@@ -92,8 +82,7 @@ if let s = str {
 	print(s)
 }
 ```
-
-
+  
 ```swift
 func doSomething(name: String?) {
     guard let n = name else { return }
@@ -104,7 +93,7 @@ doSomething(name: "hello")
 ```
 실제로 앱을 만들때는 guard let 바인딩 패턴을 많이 사용
   
-
+  
 ### 4 닐 코얼레싱 연산자를 사용하는 방법
 - 옵셔널 타입에 대하여, 디폴트 값을 제시할 수 있을 때 사용
 - 직접 값을 벗겨서 사용하는 것이 아니고, 디폴트 값 제시를 통해 옵셔널 가능성을 없애는 방법
@@ -118,7 +107,8 @@ var userName = serverName ?? "미인증사용자"    // String타입
 optionalName != nil ? optionalName! : “홍길동”
 //삼항연산자를 이용한 풀이
 ```
-
+  
+  
 ### + 옵셔널 체이닝  
   
 - 옵셔널타입에 대해, "접근연산자"를 사용할때, ?(물음표)를 붙여서, 앞의 타입이 값이 nil을 가질 수도 있음을 표시
@@ -136,7 +126,8 @@ doSomePrint(with: "레이블", name: nil)
 doSomePrint(with: "레이블")
 // 모두 에러없이 실행 됨
 ```
-
+  
+  
 ### + IUO(Implicitly Unwrapped Optional)  
 - 옵셔널 묵시적 추출
 - 굉장히 많이 사용되는 방식
