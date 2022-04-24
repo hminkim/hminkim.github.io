@@ -1,0 +1,323 @@
+---
+layout: post
+title: "[Swift] Enumeration"
+subtitle:  "Enumeration"
+categories: language
+tags: swift
+---
+## Swift Enumeration
+  
+----  
+  
+## Enumeration 열거형
+  
+연관된 상수(케이스)들을 하나의 이름으로 묶은 자료형 (클래스)   
+케이스가 선택가능한 (한정된) 가지 수로 정해져 있을 때 정의  
+
+### 열거형의 기본 포맷  
+```swift
+enum Weekday { // 타입 이름은 대문자로 시작
+    case monday  // 각 케이스 이름은 소문자로 시작 
+    case tuesday  // 이전 스위프트 버전은 대문자도 있음
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+}
+```
+  
+> 열거형을 사용하면 미리 정의해둔 타입에 케이스에서 벗어날 수 없으므로 코드의 가독성과 안정성이 높아짐  
+(명확한 분기 처리 가능)  
+    
+### 열거형 타입  
+
+```swift
+var weekday: Weekday = Weekday.monday
+var today: Weekday = .monday  // 앞에서 명시적으로 타입을 지정해 주고 있기 때문에 생략 가능
+
+today = .tuesday  // 위에서 today의 타입을 지정해 주었기 때문에 아래에서도 생략 가능
+```
+
+열거형 분기 처리
+```swift
+// if문으로 열거형 분기처리
+if today == .monday {
+    print("월요일")
+} else if today == .tuesday {
+    print("화요일")
+} else if today == .wednesday{
+    print("수요일")
+} else if today == .thursday{
+    print("목요일")
+} else if today == .friday{
+    print("금요일")
+} else if today == .saturday{
+    print("토요일")
+} else {
+    print("일요일")
+}
+
+//switch문으로 분기처리 (주로 switch문을 사용)
+switch today {
+case .monday:
+    print("월요일")
+case .tuesday:
+    print("화요일")
+case .wednesday:
+    print("수요일")
+case .thursday:
+    print("목요일")
+case .friday:
+    print("금요일")
+case .saturday:
+    print("토요일")
+case .sunday:
+    print("일요일")
+}
+```
+
+### 열거형의 원시값 (Raw Values)  
+  
+열거형의 원시값은 매칭되는 기본값(정수, 문자열등 Hashable한 타입이면 모두 가능)을 정해, 열거형을 좀 더 쉽게 활용 가능  
+
+```swift
+enum Alignment1: Int {
+    case left
+    case center
+    case right
+}
+// 원시값을 입력하지 않으면 0부터 정수값이 하나씩 증가하며 자동으로 저장됨
+
+enum Alignment2: String {
+    case left = "L"
+    case center = "C"
+    case right = "R"
+}
+// 가능하긴 하지만 문자열 방식으로는 잘 사용하진 않음
+
+let align1 = Alignment1(rawValue: 0)  // left
+let alignment1 = Alignment1.center.rawValue // 1
+let align2 = Alignment2(rawValue: : "C")  // center
+let alignment2 = Alignment2.center.rawValue  // "C"
+// 인스턴스 생성 시 - 옵셔널 타입으로 리턴
+```
+  
+### 열거형의 원시값 활용  
+  
+숫자 또는 문자열과 매칭시켜 자유롭게 활용 가능  
+
+```swift
+enum RpsGame: Int {
+    case rock
+    case paper
+    case scissors
+}
+
+let number = Int.random(in: 0...2)
+
+if let r = RpsGame(rawValue: number) {
+    print(r)  // 0: rock / 1: paper / 2: scissors
+}
+// 옵셔널 타입으로 리턴하기 때문에 옵셔널 바인딩으로 벗겨내 줘야함
+```
+
+### 열거형의 연관값 (Associated Values)  
+  
+열거형의 연관값은 구체적인 추가정보를 저장하기 위해 사용
+- 각 케이스별로 상이한 특징이 있고, 그것을 저장, 활용할 필요가 있을 때
+- 개별케이스마다 저장할 형식을 따로 정의 (자료형에 제한이 없음, 튜플의 형태)
+- 하나의 케이스에 서로 다른 연관값을 저장할 수 있음
+    - 선언시점이 아니라, 새로운 열거형 값을 생성할때 저장
+  
+
+```swift
+enum Computer {
+    case cpu(core: Int, ghz: Double)
+    case ram(Int, String)
+    case hardDisk(gb: Int)
+}
+
+let myChip1 = Computer.cpu(core: 8, ghz: 3.5)
+let myChip2 = Computer.cpu(core: 4, ghz: 2.0)
+
+let myChip3 = Computer.ram(16, "DRAM")
+let myChip4 = Computer.ram(4, "SRAM")
+let myChip5 = Computer.ram(32, "DRAM")
+
+let myChip6 = Computer.hardDisk(gb: 128)
+let myChip7 = Computer.hardDisk(gb: 512)
+
+// 연관값을 가진 케이스를 패턴 매칭시키기
+switch chip {
+case let .cpu(a, b):
+    print("CPU \(a)코어 \(b)GHz입니다.")
+case let .ram(a, _):
+    print("램 \(a)기가램 입니다.")
+case let .hardDisk(a) :
+    print("하드디스크 \(a)기가 용량입니다.")
+}
+```
+  
+### 원시값(Raw Values)과 연관값(Associated Values)의 차이
+
+||원시값|연관값|  
+|:---:|:---:|:---:|  
+|사용목적|열거형 타입의 각 케이스에 정수 또는 문자열을 매칭시켜, **타입을 생성하거나 다룰때** 조금 더 편하게 사용|열거형 타입의 각 케이스의 카테고리에는 해당하지만, **보다 구체적인 정보를 저장**해서 사용하려고 할때|  
+|선언 방법|**선언 타입이 제한** </br>Int, String 주로 사용</br>원칙적으로는 Hashable 프로토콜을 준수하는 타입 모두 가능|**선언 타입에 제한없이 자유롭게 정의 가능**<br>연관된 정보를 추가적으로 저장하는 개념이기 때문에|  
+|값의 저장|열거형의 선언 시점<br>선언시에 case마다 값이 매칭|인스턴스 생성시|  
+|값의 변경|선언 시에 정의 개념이기에 불가능|하나의 케이스에 서로 다른 값들을 저장 가능|  
+  
+주의) 하나의 열거형에서 원시값과 연관값을 동시에 사용하는 것은 불가능
+  
+### Optional 타입의 정확한 이해
+  
+[옵셔널 타입](https://hminkim.github.io/language/2022/04/21/la_sw_01/)은 내부에서 열거형으로 이루어져 있음  
+  
+```swift
+enum Optional<Wrapped> {     // 제네릭 문법
+    case some(Wrapped)
+    case none  // .none은 nil과 완전히 동일
+}
+```
+
+### 옵셔널 열거형 패턴 (Enumeration Case Pattern)
+
+열거형 안에 옵셔널이 존재할 때  
+
+```swift
+enum SomeEnum {
+    case left
+    case right
+}
+
+let x: SomeEnum? = .left
+
+// 원칙
+switch x {
+case .some(let value):      // Optional.some(let value) = Optional.some(SomeEnum.left)
+    switch value {
+    case .left:
+        print("왼쪽으로 돌기")
+    case .right:
+        print("오른쪽으로 돌기")
+    }
+case .none:
+    print("계속 전진")
+}
+
+// 편의적 기능 제공
+switch x {
+case .some(.left):
+    print("왼쪽으로 돌기")
+case .some(.right):
+    print("오른쪽으로 돌기")
+case .none:
+    print("계속 전진")
+}
+```
+열거형은 한정된 사례로 만든 타입이고, 스위치문은 표현식에 대한 분기처리에 최적화 되어 있기 때문에 활용하기 적합하다.  
+(switch문은 옵셔널을 쉽게 사용이 가능하게 편의적 기능도 제공함)
+  
+### 열거형에 연관값이 있는 경우  
+  
+특정 케이스만 뽑아서 다양하게 활용이 가능함
+  
+```swift
+// 값 하나를 사용하기 위해 switch문 전체를 다 써야하는 불편
+switch chip {
+case Computer.hardDisk(gb: let gB):      // let gB = 연관값
+    print("\(gB)기가 바이트 하드디스크")
+default:
+    break
+}
+
+// if case를 통해 간편하게 표현 가능
+if case Computer.hardDisk(gb: let gB) = chip {
+    print("\(gB)기가 바이트 하드디스크")
+}
+// 조건을 줘서 처리를 다양하게 활용 가능
+if case Computer.hardDisk(gb: let gB) = chip, gB == 256 {
+    print("256기가 바이트 하드디스크")
+}
+
+// 다양한 chip을 원소로 하는 chiplists라는 배열 생성
+let chiplists: [Computer] = [
+    .cpu(core: 4, ghz: 3.0),
+    .cpu(core: 8, ghz: 3.5),
+    .ram(16, "SRAM"),
+    .ram(32, "DRAM"),
+    .cpu(core: 8, ghz: 3.5),
+    .hardDisk(gb: 500),
+    .hardDisk(gb: 256)
+]
+
+// for case를 통해 배열 중에서 특정 케이스만 뽑아서 활용 가능
+for case let .cpu(core: c, ghz: h) in chiplists {
+    print("CPU칩: \(c)코어, \(h)헤르츠")
+}
+```
+### 옵셔널 패턴  
+  
+열거형 케이스 패턴을 좀 더 간소화시킨 패턴
+
+```swift
+let a: Int? = 1
+
+// 열거형 케이스 패턴
+switch a {
+case .some(let z):
+    print(z)
+case .none:  // nil이라고 써도됨
+    print("nil")
+}
+
+// 옵셔널 패턴
+switch a {
+case let z?:      // .some을 조금 더 간소화하는 문법
+    print(z)
+case nil:         // .none 이라고 써도됨
+    print("nil")
+}
+```
+
+### @unknown 키워드
+  
+만약 열거형이 Non-frozen 열거형이라서 케이스가 늘어나는 경우에 대한 안정성은 보장할 수 없음  
+에러는 나지 않을 수 있지만 로직이 옳다고는 할 수 없음  
+
+@unknown 키워드를 default블럭에 추가 한다면
+   
+switch문에서 열거형의 모든 케이스를 다루지 않는 경우, 스위치문에서 모든 열거형의 케이스를 다루지 않았다고 경고를 통해 알려줌 -> 개발자의 실수 가능성을 컴파일 시점에 알려줌
+ - "Switch must be exhatstive"로 경고 표시
+
+```swift
+enum LoginProvider: String {      // 3가지 케이스 -> 4가지 케이스
+    case email
+    case facebook
+    case google
+    case kakaotalk  // 추가된 케이스
+}
+
+let userLogin = LoginProvider.email
+
+switch userLogin {
+case .email:
+    print("이메일 로그인")
+case .facebook:
+    print("페이스북 로그인")
+case .google:
+    print("구글 로그인")  // 구글에 대한 케이스가 사라진다면 경고를 통해 알려줌
+@unknown default:
+    print("그 외의 모든 경우")
+}
+```
+
+----   
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
