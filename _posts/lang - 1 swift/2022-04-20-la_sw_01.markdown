@@ -16,11 +16,11 @@ tags: swift
 ## 문자열 보간법
 
 ```swift
-var name = “KkoHma”
+var name = "KkoHma"
 var age = 20
-var job = “학생”
+var job = "학생"
 
-print(“저는 /(name)입니다. /(age)살이고, /(job)입니다.”)
+print("저는 /(name)입니다. /(age)살이고, /(job)입니다.")
 // 저는 KkoHMa입니다 20살이고 학생입니다.
 ```
 
@@ -62,7 +62,7 @@ var j: Double = 4
 **타입 변환**  
   
 ```swift
-let Str = “123”
+let Str = "123"
 let number = Int(str)
 
 //123 
@@ -161,8 +161,8 @@ default:
 
 ```swift
 let twoNumbers: (Int, Int) = (1, 2)
-let theeValues = (“문자열1”, 12, ”문자열2”)
-let namedValues = (name1: “문자열”, name2: 12)
+let theeValues = ("문자열1", 12, "문자열2")
+let namedValues = (name1: "문자열", name2: 12)
 
 // 멤버(데이터의 종류 및 갯수)는 튜플을 만들때 결정되므로 "추가"/"삭제" 불가
 ```
@@ -176,12 +176,12 @@ let namedValues = (name1: “문자열”, name2: 12)
 ```swift
 // if/else문
 if a > 0 {
-	name = “스티브 잡스”	
+	name = "스티브 잡스"	
 } else {
-	name = “팀 쿡”
+	name = "팀 쿡"
 
 // 삼항 연산자
-var name = a > 0 ? “스티브 잡스” : “팀” 쿡
+var name = a > 0 ? "스티브 잡스" : "팀" 쿡
 ```
   
   
@@ -228,7 +228,7 @@ If num ~= 0…50 {
   
 ```swift
 for _ in 0…10 {
-	print(“hi, Swift”)
+	print("hi, Swift")
 }
 // _(언더바)는 와일드 카드 패턴
 // 반복문 내부에서 반복상수를 사용하고 싶지 않을 때 활용
