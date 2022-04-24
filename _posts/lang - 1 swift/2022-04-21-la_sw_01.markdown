@@ -104,7 +104,7 @@ var serverName: String? = "홍길동"
 var userName = serverName ?? "미인증사용자"    // String타입
 //nil인 경우 “미인증사용자”를 출력
 
-optionalName != nil ? optionalName! : “홍길동”
+optionalName != nil ? optionalName! : "홍길동"
 //삼항연산자를 이용한 풀이
 ```
   
