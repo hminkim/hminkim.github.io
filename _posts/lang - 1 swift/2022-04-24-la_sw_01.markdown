@@ -24,9 +24,9 @@ tags: swift
   
 ### 스위프트 함수 이름 규칙
 - Mutating : 컬렉션을 직접적으로 변경할 때는 동사 원형으로 사용
-    - (`sort()`,`reverse()`,`shuffle()`)
+    - (`sort()` , `reverse()` , `shuffle()`)
 - Non-Mutating : 컬렉션을 변경하지 않고, 리턴형으로 다른 컬렉션을 반환할 때는 분사 형태(-ing, -ed)로 사용
-    - (`sorted()`,`reversed()`,`shuffled()`)
+    - (`sorted()` ,`reversed()` , `shuffled()`)
 
 ## Array 배열
 
@@ -37,8 +37,8 @@ var numsArray: Array<Int> = [1, 2, 3, 4, 5]
 // 단축문법
 let numsArray: [Int] = [1, 2, 3, 4, 5]
 var numsArray = [1, 2, 3, 4, 5]
-let stringArray = [“apple”, “swift”, “iOS”]
-let data = [[“a”, “b”],[“c”, “d”],[“e”, “f”]]
+let stringArray = ["apple", "swift", "iOS"]
+let data = [["a", "b"],["c", "d"],["e", "f"]]
 ```
 
 - [] 대괄호로 묶는다. 배열의 인덱스의 시작은 0부터 (모든 프로그래밍 언어 공통 사항)
@@ -66,7 +66,7 @@ numsArray.swapAt(0, 1)  // 파라미터의 인덱스 원소 위치를 바꿈
 ### 배열 인덱싱
   
 ```swift
-var stringArray = [“apple”, “swift”, “iOS”]
+var stringArray = ["apple", "swift", "iOS"]
 
 stringArray[0]  // 대괄호 안의 인덱스 원소 값
 stringArray[0…1] = []  // 대괄호 안의 인덱스 원소들 여러개를 삭제
@@ -94,14 +94,14 @@ var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
 alphabet.insert("c", at: 2)
 
 // 원소 여러개 삽입
-alphabet.insert(contentsOf: [“c”, ”d”], at: 2)  
+alphabet.insert(contentsOf: ["c", "d"], at: 2)  
 
 // 원소 하나 교체
-alphabet[0] = “c”
+alphabet[0] = "c"
 
 // 원소 여러개 교체
 alphabet.replaceSubrange(0...2, with: ["a", "b", "c"])
-alphabet[0...2] = [“a”, “b”, “c”]
+alphabet[0...2] = ["a", "b", "c"]
 
 // 서브 스크립트를 이용한 삽입하기는 없고, 교체하기만 있다.
 
@@ -111,8 +111,8 @@ alphabet += ["H"]
 
 // 원소 여러개 추가
 alphabet.append(contentsOf: ["H", "I"])
-alphabet.insert(contentsOf: [“H”, ”I”], at: alphabet.endIndex)
-alphabet += [“H”, ”I”]
+alphabet.insert(contentsOf: ["H", "I"], at: alphabet.endIndex)
+alphabet += ["H", "I"]
 
 // 원소 한개 삭제
 alphabet.remove(at: 2)  // 삭제하고, 삭제된 원소 리턴
@@ -150,8 +150,8 @@ nums.shuffled()  // 원소의 순서를 랜덤으로 바꾸고 배열 리턴
 ### 배열의 비교
   
 ```swift
-let a = [“a”, "B", “c"]
-let b = [“A”, "b", “C”]
+let a = ["a", "B", "c"]
+let b = ["A", "b", "C"]
 
 a == b   // false
 a != b   // true
@@ -164,10 +164,10 @@ a != b   // true
 
 ```swift
 // 정식문법
-let words1: Dictionary<Int, String> = [1: ”Apple”, 2:”Banana”]
+let words1: Dictionary<Int, String> = [1: "Apple", 2:"Banana"]
 
 // 단축문법
-var words2: [String: String] = [“A”:”Apple”, ”B”:”Banana”]
+var words2: [String: String] = ["A":"Apple", "B":"Banana"]
 ```
 
 - 키 값은 유일해야함. 밸류 값은 중복 가능  
@@ -200,12 +200,12 @@ dic.values  // 밸류의 묶음을 배열 형태로 리턴
 딕셔너리는 기본적으로 서브스크립트를 활용한 문법을 주로 사용
 
 ```swift
-dic = [“A”:”Apple”, ”B”:”Banana”]
+dic = ["A": "Apple", "B": "Banana"]
 
-dic[“A”]  // Apple
-print(dic[“A”])  // Optional(“Apple”)  (옵셔널 바인딩을 통해 벗겨줘야 함)
+dic["A"]  // Apple
+print(dic["A"])  // Optional("Apple")  (옵셔널 바인딩을 통해 벗겨줘야 함)
 
-dic[“A”, default: “Empty”]  // nil의 발생 확률을 없앰으로 옵셔널 바인딩을 해주지 않아도 됨
+dic["A", default: "Empty"]  // nil의 발생 확률을 없앰으로 옵셔널 바인딩을 해주지 않아도 됨
 ```
   
 ### 딕셔너리에서 원소 업데이트 (삽입, 교체, 추가)
@@ -213,11 +213,11 @@ dic[“A”, default: “Empty”]  // nil의 발생 확률을 없앰으로 옵�
 ```swift
 word = [:]
 
-word[“A”] = “Apple”  // “A”라는 키에 밸류를 “Apple”로 삽입
-word[“B”] = ”Banana”  // “B”라는 키에 밸류를 “Banana”로 추가
-word[“B”] = “Blue”  // “B”라는 키의 밸류를 “Blue”로 교체
+word["A"] = "Apple"  // "A"라는 키에 밸류를 "Apple"로 삽입
+word["B"] = "Banana"  // "B"라는 키에 밸류를 "Banana"로 추가
+word["B"] = "Blue"  // "B"라는 키의 밸류를 "Blue"로 교체
 
-word.updateValue(“City”, forKey: “C”)  // “C”라는 키에 밸류를 리턴 (값이 없다면 nil) 후 밸류를 “City”로 교체
+word.updateValue("City", forKey: "C")  // "C"라는 키에 밸류를 리턴 (값이 없다면 nil) 후 밸류를 "City"로 교체
 ```
   
 딕셔너리는 `append()`를 제공하지 않음
@@ -226,20 +226,20 @@ word.updateValue(“City”, forKey: “C”)  // “C”라는 키에 밸류를
 ### 딕셔너리에서 원소 삭제
 
 ```swift
-dic = [“A”:”Apple”, ”B”:”Banana”,  “C”: ”City”]
+dic = ["A": "Apple", "B": "Banana",  "C": "City"]
 
-dic[“B”] = nil  // “B”라는 키와 밸류 삭제
-dic[“D”] = nil  // 존재하지 않는 키와 밸류 삭제 -> 아무일도 일어나지 않음 (에러 아님)
+dic["B"] = nil  // "B"라는 키와 밸류 삭제
+dic["D"] = nil  // 존재하지 않는 키와 밸류 삭제 -> 아무일도 일어나지 않음 (에러 아님)
 
-dic.removeValue(forKey: "A")   // “A”라는 키와 밸류 삭제후, 삭제된 밸류 리턴
-dic.removeValue(forKey: “D”)   // 존재하지 않는 키와 밸류 삭제 -> nil리턴
+dic.removeValue(forKey: "A")   // "A"라는 키와 밸류 삭제후, 삭제된 밸류 리턴
+dic.removeValue(forKey: "D")   // 존재하지 않는 키와 밸류 삭제 -> nil리턴
 ```
   
 ### 딕셔너리의 비교
   
 ```swift
-let dic1 = [“A”:”Apple”, ”B”:”Banana”,  “C”: ”City”]
-let dic2 = [“A”:”Apple”,  “C”: ”City”, ”B”:”Banana”]
+let dic1 = ["A": "Apple", "B": "Banana",  "C": "City"]
+let dic2 = ["A": "Apple",  "C": "City", "B": "Banana"]
 
 a == b   // true
 a != b   // false
@@ -297,10 +297,10 @@ set.update(with: 1)
 ### 셋에서 원소 삭제
 
 ```swift
-var stringSet: Set<String> = [“apple”, “swift”, “iOS”]
+var stringSet: Set<String> = ["apple", "swift", "iOS"]
 
-stringSet.remove(“apple”)  // “apple” 삭제한 원소를 리턴
-stringSet.remove(“banana”)  // 없는 원소를 삭제하려 하면 nil 리턴 (에러는 발생하지 않음)
+stringSet.remove("apple")  // "apple" 삭제한 원소를 리턴
+stringSet.remove("banana")  // 없는 원소를 삭제하려 하면 nil 리턴 (에러는 발생하지 않음)
 ```
 
 ### 셋의 비교
@@ -385,7 +385,7 @@ var newArray: Array = newSet.sorted()
 - 코드상에서 값을 복사해서 담든다 하더라도, 실제 값이 바뀌기 전까지는 그냥 하나의 메모리 값을 공유해서 사용  
 - 메모리를 적게 차지하기 위해서 스위프트 언어가 알아서 내부에서 처리하는 메커니즘
   
-  
+
     
 ----   
   
