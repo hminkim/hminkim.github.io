@@ -209,9 +209,9 @@ func doSomethging(value1: String, value2: Int) {
 > 실제 애플에서 만들어놓은 함수들에도 오버로딩을 사용한 함수들이 많음
 >
 > ex) print()  
-> print(<`items: Any...`, to: &`TextOutputStream`)  
+> print(`items: Any...`, to: &`TextOutputStream`)  
 > print(`items: Any...`, separator: `String`, terminator: `String`)  
-> print(<`items: Any...`, separator: `String`, terminator: `String`, to: &`TextOutputStream`)  
+> print(`items: Any...`, separator: `String`, terminator: `String`, to: &`TextOutputStream`)  
   
   
 ## 함수 실행의 메모리 구조
