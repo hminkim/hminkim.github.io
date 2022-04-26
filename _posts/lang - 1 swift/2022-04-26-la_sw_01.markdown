@@ -1,0 +1,292 @@
+---
+layout: post
+title: "[Swift] Function"
+subtitle:  "Function"
+categories: language
+tags: swift
+---
+## Swift Function
+  
+----  
+  
+## Function 함수
+  
+1. 함수 정의  
+2. 함수 호출(실행)  
+ - 반복되는 동작을 단순화해서 재사용 가능  
+ - 코드를 논리적 단위로 구분 가능  
+ - 코드 길이가 긴 것을 단순화해서 사용 가능  
+ - 미리 함수를 잘 만들어 놓으면, 개발자는 사용만 하면 됨 (내부적 내용을 몰라도 사용 가능)  
+### 함수의 기본 포맷
+  
+```swift
+func doSomething(name: String /*파라미터*/) -> String { // 함수 정의
+    var comment = "\(name)! do something!"
+    return comment
+}
+
+var name = "Kkoma"
+print(doSomething(name: name /*아규먼트*/))  // 함수 호출
+```
+
+### Void 타입 함수
+아웃풋이 없는 함수
+
+```swift
+func voidFunction() -> Void { // Void 생략 가능
+    print("ThisIsVoidFunction")
+}
+
+voidFuction()
+```
+- 반환하는 값은 없지만 함수 내부 코드는 동작해서 "ThisIsVoidFunction"을 출력  
+- 리턴 값이 없는 Void 타입의 함수는 잘 사용하지 않음  
+ 
+>**return 키워드의 역할**  
+>
+> 1. 리턴타입이 있는 함수의 경우(아웃풋이 있는 경우):  
+>      리턴 키워드 다음의 표현식을 평가한 다음에 그 결과를 리턴하면서 함수를 벗어남
+> 2. 리턴타입이 없는 함수의 경우(아웃풋이 없는 경우):  
+>      함수의 실행을 중지하고 함수를 벗어남  
+
+### 아규먼트 레이블
+  
+일반적으로 함수를 사용할 때 더 명확하게 요구하는 것을 알려줄 수 있음  
+```swift
+func someFunction1(writeYourFirstNumber a:Int, writeYourSecondNumber b: Int) {
+    print(a + b)
+}
+
+someFunction1(writeYourFirstNumber: 3, writeYourSecondNumber: 4)
+
+// 와일드 카드 패턴을 통해 아규먼트 레이블 생략도 가능
+func addPrintFunction(_ firstNum: Int, _ secondNum: Int) {
+    print(firstNum + secondNum)
+}
+
+addPrintFunction(1, 2)
+```
+  
+### 가변 파라미터  
+  
+ - 하나의 파라미터로 2개이상의 아규먼트를 전달할 수 있다.
+ - 아규먼트는 배열형태로 전달된다.
+ - 가변 파라미터는 개별함수마다 하나씩만 선언할 수있다.(선언 순서는 상관없음)
+ - 가변 파라미터는 기본값을 가질 수 없다.
+  
+ ```swift
+func arithmeticAverage(_ numbers: Double...) -> Double {
+    var total = 0.0
+    for n in numbers {
+        total += n
+    }
+    return total / Double(numbers.count)
+}
+
+arithmeticAverage(1.5, 2.5, 3.5, 4.5)  // 파라미터들의 평균 값 반환
+``` 
+
+### 파라미터에 기본값 설정  
+  
+```swift
+func numFunction(num1: Int, num2: Int = 5) -> Int {
+    var result = num1 + num2
+    return result
+}
+
+numFunction(num1: 3)  // 8
+numFunction(num1: 3, num2: 7)  // 10
+```
+
+> **아규먼트 값이 항상 필요하지 않아도 됨**  
+>
+> 실제 애플이 미리 만들어 놓은 함수에는 기본값이 들어 있는 경우가 꽤 있음  
+>
+> ex) 출력 함수 `print()`  
+>print(`items: Any...`, separator: `String`, terminator:  `String`)
+  
+### 중첩 함수  
+  
+- 함수 안에 함수를 작성할 수도 있다.
+- 함수 안에 있는 함수는 밖에서 사용이 불가능
+- 함수를 제한적으로 사용하고 싶을 때, 사용
+  
+```swift
+func chooseStepFunction(backward: Bool, value: Int) -> Int {
+    
+    func stepForward(input: Int) -> Int {
+        return input + 1
+    }
+    
+    func stepBackward(input: Int) -> Int {
+        return input - 1
+    }
+    
+    
+    if backward {
+        return stepBackward(input: value)
+    } else {
+        return stepForward(input: value)
+    }
+    
+}
+```
+  
+### 함수의 표기  
+  
+함수의 표기법  
+ - 개발자 문서를 읽을 때 필요
+ - 함수를 변수에 담는 등 함수를 지칭할때 필요
+
+```swift
+func doSomething() {
+    print("출력")
+}
+
+func numberPrint(n: Int) {
+    print(n)
+} 
+
+func addPrint1(n1: Int, n2: Int) {
+    print(n1 + n2)
+}
+
+func addPrint2(_ firstNum: Int, _ secondNum: Int) {
+    print(firstNum + secondNum)
+}
+
+// 1) 파라미터가 없는 경우, ()를 삭제
+doSomething
+
+// 2) 아규먼트 레이블이 있는 경우, 아규먼트 레이블까지를 함수의 이름으로 봄
+numberPrint(n:)
+
+// 3) 파라미터가 여러개인 경우, 콤마없이 아규먼트이름과 콜론을 표기
+addPrint1(n1:n2:)
+
+// 4) 아규먼트 레이블이 생략된 경우, 아래와 같이 표기
+addPrint2(_:_:)
+
+//etc
+// 함수를 변수에 담기
+var function1 = doSomething
+
+// 함수에 타입을 표기하기  (Input) -> Output
+var function2: (Int, Int) -> Int = addPrint1(n1:n2:)
+```
+
+### 함수의 오버로딩  
+  
+- 같은 이름의 함수에 파라미터를 다르게 선언하여, 하나의 함수 이름에 실제 여러개의 함수를 대응 시키는 것 (함수의 이름의 재사용)
+- 스위프트는 오버로딩을 지원하는 언어
+- 함수이름, 파라미터 수/자료형, 아규먼트 레이블, 리턴형을 모두포함해서 함수를 식별
+
+```swift
+func doSomething(value: Int) {
+    print(value)
+}
+
+func doSomething(value: Double) {
+    print(value)
+}
+
+func doSomething(value: String) {
+    print(value)
+}
+
+func doSomething(_ value: String) {
+    print(value)
+}
+
+func doSomethging(value1: String, value2: Int) {
+    print(value1, value2)
+}
+```
+
+**오버로딩을 지원하지 않는 언어의 단점**  
+- 같은 기능을 제공하는 함수를 파라미터 형식마다 이름을 다르게 구현해야하기 때문에 함수의 이름이 많아지고, 구별해서 사용하는 것이 어렵다.
+  
+> 실제 애플에서 만들어놓은 함수들에도 오버로딩을 사용한 함수들이 많음
+>
+> ex) print()  
+> print(<`items: Any...`, to: &`TextOutputStream`)  
+> print(`items: Any...`, separator: `String`, terminator: `String`)  
+> print(<`items: Any...`, separator: `String`, terminator: `String`, to: &`TextOutputStream`)  
+  
+  
+## 함수 실행의 메모리 구조
+  
+- 프로그래밍에서, 가장 처음으로 프로그래밍이 시작되는 곳은 main() 메인함수  
+- 메모리는 코드 / 데이터 / 힙 / 스택 으로 나뉘어지는데  
+    - 앱 실행 시 모든 코드가 일단 코드 영역에 올라가고 순차적으로 한 줄씩 실행
+    - 메인 함수 실행 후 전역변수는 데이터 영역에 저장  
+    - 함수 실행시에는 스택프레임이라는 함수 실행에 필요한 메모리 공간을 만들고, 함수가 실행이 완료되면 해당 스택프레임은 사라짐  
+  
+### inout 파라미터
+  
+함수내의 파라미터는 기본적으로 값타입이고(복사되서 전달) 임시상수이기 때문에 변경 불가  
+  
+**inout 키워드**  
+- 함수 내에서 변수를 직접 수정하도록 해줌 (참조로 전달)
+- 입출력 파라미터는 내부적으로 copy-in, copy-out 메모리 모델를 사용하지만, 실제 원본이 전달된다고 쉽게 생각하면 됨
+
+```swift
+num1 = 123
+num2 = 456
+
+func swapNumbers(a: inout Int, b: inout Int) {
+    var temp = a
+    a = b
+    b = temp
+}
+
+swapNumbers(a: &num1, b: &num2)
+// 함수 실행시에는 앰퍼샌드를 꼭 붙여야함 -> 원본이 전달된다는 의미
+```
+  
+ inout파라미터 사용시 주의점
+ - 상수(let)나, 리터럴 전달하는 것 불가능
+ - 파라미터의 기본값 선언을 허용하지 않음
+ - 가변파라미터(여러개의 파라미터)로 선언하는 것 불가능
+
+### 함수의 리턴값
+
+|리턴값이 없는 경우|리턴 값이 있는 경우|
+|:---:|:---:|
+|함수의 결과로 값을 갖지 않음<br>(단순히 동작만 수행)|함수의 결과로 값을 가짐|
+|메모리 공간을 만들지 않음|함수 실행시 값을 반환하기 위한 <br>임시 메모리 공간을 별도로 만듦|
+|함수 실행시 CPU 제어권|함수 실행시 CPU 제어권 + 리턴값|  
+  
+비동기적인 처리에서는 제어권과 리턴값이 분리되는 경우도 생김  
+
+### @discardableResult
+
+리턴 타입이 있는 함수를 실행할 때 결과 값을 사용하지 않을 경우에 사용
+  
+```swift  
+@discardableResult  // 스위프트 5.2 부터 적용
+func sayHelloString() -> String {
+    print("하이")
+    return "안녕하세요"
+}
+```
+  
+> **@ 어트리뷰트 키워드**  
+> 추가적인 정보를 제공하는 키워드
+> - 선언에 추가정보 제공
+> - 타입에 추가정보 제공
+  
+### 튜플을 함수에서 사용하는 이유
+  
+함수는 원칙적으로 리턴값이 한개만 존재하기 때문에 여러개의 값을 반환할 수 없지만, 튜플을 통해 묶음 값으로 반환하는 것이 가능  
+  
+  
+
+----   
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
