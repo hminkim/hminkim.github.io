@@ -376,7 +376,7 @@ var newArray: Array = newSet.sorted()
   
 ### KeyValuePairs
   
-- 딕셔너리와 비슷한 형태지만, _순서_가 있는 컬렉션
+- 딕셔너리와 비슷한 형태지만, <u>순서</u>가 있는 컬렉션
 - key 값이 해셔블(hashable)일 필요 없음 -> 검색 알고리즘상 빠르지 않음
 - key 값이 동일한 것도 가능
   
