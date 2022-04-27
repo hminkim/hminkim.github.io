@@ -4,7 +4,7 @@ title: Computer Science
 slug: computerscience
 menu: true
 submenu: true
-order: 3
+order: 4
 description: >
   Computer Science
 ---
