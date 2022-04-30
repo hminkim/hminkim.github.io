@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Class & Struct"
 subtitle:  "Class & Struct"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift Class & Struct

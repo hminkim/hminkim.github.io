@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Function"
 subtitle:  "Function"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift Function

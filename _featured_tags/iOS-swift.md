@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Swift
 slug: swift
-category: language
+category: iOS
 menu: false
 order: 1
 ---

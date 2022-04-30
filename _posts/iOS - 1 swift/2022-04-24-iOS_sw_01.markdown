@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Collection"
 subtitle:  "Collection"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift Collection

@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Swift Basic"
 subtitle:  "Swift Basic"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift 기본 문법 정리

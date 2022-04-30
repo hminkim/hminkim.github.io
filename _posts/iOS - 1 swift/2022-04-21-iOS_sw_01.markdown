@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Optional"
 subtitle:  "Optional"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift Optional Type

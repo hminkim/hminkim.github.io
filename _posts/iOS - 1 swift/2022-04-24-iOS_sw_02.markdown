@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] Enumeration"
 subtitle:  "Enumeration"
-categories: language
+categories: iOS
 tags: swift
 ---
 ## Swift Enumeration
