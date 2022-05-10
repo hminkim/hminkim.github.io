@@ -1,0 +1,342 @@
+---
+layout: post
+title: "[Swift] Property & Method"
+subtitle:  "Property & Method"
+categories: iOS
+tags: swift
+---
+## Property & Method 
+  
+----  
+  
+속성
+- 구조체 / 클래스의 변수
+    - 저장 속성 (stored)
+    - 지연 저장 속성 (lazy stored)
+    - 계산 속성 (computed)
+    - 타입 속성 (type)
+    - 속성 감시자 (property observer)
+
+메서드
+- 구조체 / 클래스의 함수
+    - 인스턴스 메서드 (instance method)
+    - 타입 메서드 (type method)
+    - 서브스크립트 (subscripts)
+    - 생성자
+        - 지정생성자 (Designated)
+        - 편의생성자 (Convenience)*
+        - 필수생성자 (Required)*
+        - 실패 생성자 (Failable)
+    - 소멸자 (deinitializer)*
+
+> *가 붙은 키워드들은 class에만 존재함  
+  
+## Property 속성  
+   
+### Stored Property 저장 속성
+  
+값이 저장되는 일반적인 속성을 저장 속성이라고 함  
+  
+```swift
+struct Bird {
+    var name: String
+    var length: Double
+    
+    init(name: String, length: Double) {    // 기본값이 없으면, 생성자를 통해 값을 반드시 초기화해야함
+        self.name = name
+        self.length = length
+    }
+}
+```
+  
+- 클래스 / 구조체의 틀에서 찍어낸 각 인스턴스가 가지는 고유의 데이터 저장 공간  
+- 변수(var)나 상수(let)로 선언 가능  
+- 객체의 초기화시, 각 저장 속성은 반드시 값을 가져야 함  
+    - 기본값 설정하거나 또는 생성자에서 설정, 또는 옵셔널 타입으로 선언하여 nil을 초기값으로 갖는 것 가능
+  
+### Lazy Stored Property 지연 저장 속성  
+  
+해당 저장 속성의 초기화를 지연시키는 속성을 지연 저장 속성이라고 함  
+  
+```swift
+struct Bird {
+    var name: String
+    var length: Double  // 기본 저장 속성은 초기화를 해주기 때문에 기본값이 없어도 됨
+    lazy var weight: Double = 0.2 {  // 초기화를 해주지 않기 때문에 반드시 기본값 필요
+        return length * 0.4
+    }
+    // 지연 저장 속성으로 선언되는 속성이 다른 저장 속성을 이용해야 할 때
+    
+    init(name: String, length: Double) {
+        self.name = name
+        self.length = length
+        // weight에 대한 초기화를 해주지 않음
+    }
+}
+```
+  
+- 해당 속성이 반드시 처음부터 초기화가 필요하지 않는 경우에 초기화를 지연시킴  
+    - 일반적으로 많은 메모리 공간을 차지하는 이미지 등
+    - 불필요한 성능 저하나, 메모리 공간의 낭비를 줄일 수 있음
+- 값에 대한 접근이 있어야 초기화 (메모리 공간 생성)
+- lazy var로만 선언 가능 (lazy let은 안됨)
+- 생성자에서 초기화하지 않기 때문에 반드시 기본값이 필요
+    - 기본 값은 표현식의 어떤 형태든 return값만 일치하면 가능  
+      (함수실행문, 계산식, 클로저 실행문 등)
+
+**지연 저장 속성을 사용하는 이유**  
+  
+- 메모리 공간의 낭비를 막을 수 있음
+- 지연 저장 속성으로 선언되는 속성이 다른 저장 속성을 이용해야 할 때
+    - 초기화 시점이 더 늦으므로, 먼저 초기화되는 저장 속성을 사용 가능
+  
+### Computed Properties 계산 속성  
+  
+다른 저장 속성에 의존한 계산의 결과로 나오는 메서드를 속성 형태로 만든 것을 계산 속성이라고 함  
+  
+```swift
+class Person {
+    var height: Double = 160.0
+    var weight: Double = 60.0
+    
+    var bmi: Double {
+        get {
+            let result = weight / (height * height) * 10000
+            return result
+        }  // get블록만 있다면 (read-only property 라면), 편의를 위해 get을 생략가능
+        set(bmi) {
+            weight = bmi * height * height / 10000
+        }  // set블록의 파라미터를 생략하고 'newValue'로 대체가능
+    }
+}
+
+let p = Person()
+p.bmi  // get -> 밖에서 접근해서 값을 얻기
+p.bmi = 25  // set -> 밖에서 값을 세팅하기
+```
+  
+- 계산 속성은 구조체, 클래스, 열거형 모두 동일    
+- 실제로, 계산 속성은 겉모습은 속성(변수)형태를 가진 메서드(함수)  
+- 계산 속성은 실제 메모리 공간을 가지지 않고, 해당 속성에 접근했을때 다른 속성에 접근해서 계산한후, 그 계산 결과를 리턴하거나 세팅하는 메서드  
+  
+**메서드가 아닌, 속성방식으로 구현했을 때의 장점**
+
+- 관련이 있는 두가지 메서드(함수)를 한번에 구현할 수 있기 때문에 외부에서 보기에 속성이름으로 설정가능하므로 보다 명확해 보임  
+- 계산 속성은 메서드를 개발자들이 보다 읽기 쉽고, 명확하게 쓸 수 있는 형태인 속성으로 변환해 놓은 것  
+  
+**주의점**  
+  
+ - 항상 변하는 값이므로, var로 선언해야함 (let로 선언불가)
+ - 자료형 선언을 해야함  
+    - 형식추론 형태 안됨 
+    - 메서드이기 때문에 파라미터, 리턴형이 필요한 개념  
+ - get은 반드시 선언 해야함 (값을 얻는 것은 필수, 값을 set하는 것은 선택)
+  
+### Type Property 타입 속성  
+  
+모든 인스턴스가 동일하게 가져야하는 보편적인 속성이거나, 모든 인스턴스가 공유해야하는 성격에 가까운 속성일 때 타입 속성을 선언
+  
+```swift
+class Circle {
+    // 저장 타입 속성
+    static let pi: Double = 3.14
+    static var count: Int = 0
+    
+    // (계산) 타입 속성(read-only)
+    static var multiPi: Double {
+        return pi * 2  // Circle1.pi 가 맞는 문법이나 타입 속성끼리는 접근이 가능하다.
+    }
+    
+    // 저장 속성
+    var radius: Double  // 반지름
+    
+    // 생성자
+    init(radius: Double) {
+        self.radius = radius
+        Circle.count += 1  // 인스턴스를 몇개 생성했는지 확인 가능
+    }
+    
+    // 넓이 구하는 메서드
+    func getArea() -> Double {
+        let area = Circle.pi * radius * radius  // 내부 인스턴스에서도 타입 속성에 접근할때 타입 이름으로 접근해야 함
+        return area
+    }
+}
+
+let circle = Circle(radius: 2)
+
+//circle.  // 타입 속성은 인스턴스에서 접근연산자(.)을 찍어도 속성이 보이지 않음
+Circle.pi  // 반드시 타입(형식)의 이름으로 접근해야함
+```
+  
+- 인스턴스에 속한 속성이 아니고, 타입 자체에 속한 속성이기에 내/ 외부에서 `Type.property`로 접근해야함  
+- 저장 타입 속성을 주로 사용  
+  
+1) 저장 타입 속성  
+    - static 키워드 사용. <u>상속시 재정의 불가</u>(메서드만 상속이 가능 - class 키워드 사용 불가)
+    - let / var 선언 둘다 가능 (저장 타입 속성)
+    - 생성자에 의한 값 설정 과정이 없으므로 <u>항상 기본값(초기값) 필요</u>
+    - 자체적으로 지연(lazy) 속성의 성격을 가지므로, 호출시 메모리 할당 (내부적으로 Thread-Safe) 처리
+
+2) 계산 타입 속성  
+    - 상속시 재정의 가능 (class 키워드 사용 시에만)
+    - static 또는 class 키워드 사용  
+    (static 상속시 재정의 불가 / class 상속시 재정의 가능)
+    - var 키워드만 사용 가능 (계산 타입 속성)
+    - 메서드이기 때문에 타입에 메모리 공간이 할당되어 있지 않음 (계산 속성)
+  
+### Property Observer 속성 감사자  
+  
+- 어떤 속성이 변하는 시점을 알아차리도록 시점에 제약을 만드는 코드를 짜기는 어려움
+    - 상태메세지 변경등의 변수가 변하면 변경 내용을 반영하고 싶을 때 사용
+
+```swift
+class Profile {
+    
+    // 일반 저장 속성
+    var name: String = "이름"
+    
+    // 저장속성 + 저장 속성이 변하는 시점을 관찰하는 메서드
+    var statusMessage: String {
+        willSet {  // 바뀔 값이 파라미터로 전달
+            print("메세지가 \(statusMessage)에서 \(newValue)로 변경될 예정입니다.")
+            print("상태메세지 업데이트 준비")
+        }
+        didSet {   // 바뀌기 전의 과거값이 파라미터로 전달
+            print("메세지가 \(oldValue)에서 \(statusMessage)로 이미 변경되었습니다.")
+            print("상태메세지 업데이트 완료")
+        }
+    }
+}
+```
+  
+- 저장속성 자체는 var로만 선언 가능 (let은 관찰할 필요 없음, 지연 저장 속성은 관찰 안됨)
+- 자료형을 선언하는 것은 일반 변수와 동일 (기본값을 넣으면 형식 추론 방식 가능)
+- 저장 속성의 변화 시점을 관찰하는 사실상 메서드 (타입/인스턴스 둘다 가능은 함)  
+    (상속한 계산 속성을 재정의해, 관찰 가능하지만 주로 저장 속성에서 사용)
+- 일반적으로 `willSet`혹은 `didSet` 중에서 한가지만 구현 (보통 `didSet`으로 구현)
+    - `willSet` : 값이 바뀌기 직전에 호출
+    - `didSet` : 값이 바뀌고 난 직후에 호출
+- 변수가 변하면 무엇인가 업데이트 하려는 패턴 구현할 때 사용  
+    ex) 상태메세지, 프로필 사진 서버에서 변화 -> 바로 화면 업데이트
+  
+- 속성감시자 추가 가능한 경우 (인스턴스 속성)
+    1) 저장 속성 (<u>상속한 저장속성은 재정의 불가</u>, 감시자 추가는 가능)  
+    2) 상속한 계산 속성을 재정의해 속성 관찰자 추가 가능 (드문 경우)  
+        (본래의 계산 속성에는 setter에서 값의 변경을 관찰 가능 하므로 추가 불가)
+
+## Method 메서드
+  
+### Instance Methods 인스턴스 메서드  
+
+```swift
+struct Dog {
+    var name: String
+    var weight: Double
+    
+    init(name: String, weight: Double) {
+        self.name = name
+        self.weight = weight
+    }
+    
+    func sit() {
+        print("\(name)가 앉았습니다.")
+    }
+
+    func sit(spot: String) {  // overloading 지원
+        print("\(name)이 \(spot)에 앉았습니다.")
+    }
+    
+    // class에서는 mutating 없이 수정 가능
+    mutating func changeName(newName name: String) {
+        self.name = name
+    }
+    
+}
+```
+
+- 메서드이기 때문에 인스턴스에 메모리 공간이 할당되어 있지 않음
+- 메서드 접근 시, 인스턴스 이름으로 접근 해야함 -> `instane.method()`
+- 메서드 실행 시, 스택프레임을 만들고 인스턴스의 데이터를 사용 -> 메서드 종료 시 스택 프레임 사라짐
+- 값 타입(구조체/열거형)의 인스턴스 메서드에서 인스턴스 고유의 저장 속성을 수정할 수 없음  
+(수정하려면 명시적으로 `mutating` 키워드 필요)  
+- 일반적인 함수와 동일하게 overloading 지원  
+  
+### Type Methods 타입 메서드  
+  
+메서드이지만 인스턴스의 성격이 아닌 타입 자체의 성격에 가까운 메서드
+  
+```swift
+class Dog {
+    static var species = "Dog"
+    
+    var name: String
+    var weight: Double
+    
+    init(name: String, weight: Double) {
+        self.name = name
+        self.weight = weight
+    }
+    
+    func changeName(newName name: String) {
+        self.name = name
+    }
+    
+    static func letmeKnow() {     // 타입 메서드에서, 타입속성에 접근시에는 타입으로 접근하지 않아도 됨
+        print("종은 항상 \(species)입니다.")      // Dog.species라고 써도됨
+    }
+    
+}
+
+let bori = Dog(name: "보리", weight: 20.0)
+
+Dog.letmeKnow()  // 타입 메서드의 호출
+// 인스턴스 기능이 아닌, 타입 자체가 가져야 하는 공통된 기능을 구현할 때 주로 사용
+```
+  
+- 메서드이기 때문에 타입에 메모리 공간이 할당되어 있지 않음
+- 인스턴스에 속한 속성이 아니고 타입 자체에 속한 속성이기 때문에 내/외부에서 `Type.method()`로 접근해야 함  
+- 메서드 실행 시, 스택 프레임을 만들고 타입 데이터를 사용 -> 메서드 종료 시 스택 프레임 사라짐
+- 타입에 해당하는 보편적인 동작의 경우
+- static 또는 class 키워드 사용  
+(static 상속시 재정의 불가 / class 상속 시 재정의 가능)
+  
+### Subscripts 서브스크립트  
+  
+대괄호는 특별한 형태의 메서드 호출 역할 -> 메서드를 직접 구현도 가능
+  
+```swift
+struct Matrix {  // 2차원 배열
+    var data = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+    
+    // 2개의 파라미터를 받는 읽기전용 서브스크립트의 구현
+    subscript(row: Int, column: Int) -> String? {  // 넘어가는 인덱스 예외 처리
+        if row >= 3 || column >= 3 {
+            return nil
+        }
+        return data[row][column]
+    }
+}
+```
+  
+- 함수의 구현이 특별한 키워드인 `subscript`로 명명됨
+- 메서드이기 때문에 인스턴스에 메모리 공간이 할당되어 있지 않음
+- 메서드 접근 시, 인스턴스 이름으로 접근 해야함 -> `instance[파라미터]`
+- 메서드 실행 시, 스택프레임을 만들고 필요한 데이터를 사용 -> 메서드 종료 시 스택 프레임 사라짐
+- 여러개 파라미터도 구현 가능하긴 함 (아규먼트 레이블을 따로 사용 안함)
+
+- get블록만 선언하면 읽기전용 계산 속성이 됨 (필수 구현)
+- set블록도 선택적으로 구현할 수 있음 (필수는 아님)
+- set블록에서 기본 파라미터 `newValue`가 제공됨 (직접 파라미터 이름 설정도 가능)
+- 서브스크립트 메서드 앞에 static, class 키워드를 붙이면 타입 서브스크립트가 됨
+  
+  
+  
+----   
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
