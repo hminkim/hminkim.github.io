@@ -360,6 +360,19 @@ class Aclass {
     - 생성자는 필요한 만큼 구현할 수 있지만 소멸자는 하나만 구현 가능
     - 소멸자는 직접 호출 할 수 없고 인스턴스(객체)가 메모리에서 제거되기 직전에 자동으로 호출
 
+----
+<br>
+
+||구조체 (Struct)|클래스 (Class)|
+|:---:|:---:|:---:|
+|지정 생성자 <br> (Desinated)|init() {} <br> (생성자 구현 안할 시 기본 생성자 + Memberwise 생성자 기본 제공) <br> init(`파라미터`) {}|init() {} <br> (생성자 구현 안할 시 기본 생성자 기본 제공) <br> init(`파라미터`) {}|
+|편의 생성자 <br> (Convenience)|X|convenience init(`파라미터`) {} <br> (상속과 관련)|
+|필수 생성자 <br> (Required)|X|required init(`파라미터`) {} <br> (상속과 관련)|
+|실패 가능 생성자 <br> (Failable)|init?(`파라미터`) {} <br> init!(`파라미터`) {}|init?(`파라미터`) {} <br> init!(`파라미터`) {}|
+|소멸자 <br> (Deinitializers)|X|deinit {}|
+
+<br>
+
 ----   
   
 ### 참고  
