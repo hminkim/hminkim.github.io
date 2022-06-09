@@ -155,7 +155,8 @@ let objArray: [AnyObject] = [Person(), Superman(), NSString()]
 |||**String / Person**<br>구체적인 타입|||
   
 - switch문과 타입 캐스팅 연산자  
-    - switch문에서 is / as 패턴을 사용해서 case에서, 배열 등을 열거 후, 분기처리 가능
+    - switch문에서 is / as 패턴을 사용해서 case에서, 배열 등을 열거 후, 분기처리 가능  
+  
 ```swift
 let array: [Any] = [5, "안녕", 3.5, Person(), man(), {(name: String) in return name}]
 
@@ -183,6 +184,7 @@ for (index, item) in array.enumerated() {
     }
 }
 ```
+
 ----  
   
 ### 참고  
