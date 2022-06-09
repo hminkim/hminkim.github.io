@@ -1,0 +1,193 @@
+---
+layout: post
+title: "[Swift] Type Casting"
+subtitle:  "Type Casting"
+categories: iOS
+tags: swift
+---
+## Type Casting
+  
+---  
+  
+## 타입 캐스팅  
+  
+ - 인스턴스 사용시에 어떤 타입으로 사용할지(속성/메서드) 메모리구조에 대한 힌트를 변경하는 것
+ - 메모리의 값을 수정하는 것이 아니라 단순히 해당 타입의 인스턴스인 것처럼 취급하려는 목적  
+   
+> is 연산자 : 인스턴스 타입을 검사  
+> as 연산자 : 클래스 계층 상의 타입 변환  
+  
+### is 연산자 (type check operator)
+
+- 인스턴스 타입에 대한 검사를 수행하는 연산자
+- 인스턴스 is 타입 (이항 연산자)
+    - 참이면 `true` 리턴
+    - 거짓이면 `false` 리턴
+- 상속관계의 계층에서 포함관계를 고려
+
+```swift
+class Person {
+    var id = 0
+    var name = "이름"
+    var email = "abc@gmail.com"
+}
+
+class Student: Person {
+    // id
+    // name
+    // email
+    var studentId = 1
+}
+
+class Undergraduate: Student {
+    // id
+    // name
+    // email
+    // studentId
+    var major = "전공"
+}
+
+let person1 = Person()
+let student1 = Student()
+let undergraduate1 = Undergraduate()
+
+// 사람 인스턴스는 학생/대학생 타입은 아니다. (사람 타입이다.)
+person1 is Person                // true
+person1 is Student               // false
+person1 is Undergraduate         // false
+
+// 학생 인스턴스는 대학생 타입은 아니다.  (사람/학생 타입니다.)
+student1 is Person               // true
+student1 is Student              // true
+student1 is Undergraduate        // false
+
+// 대학생 인스턴스는 사람이거나, 학생이거나, 대학생 타입 모두에 해당한다.
+undergraduate1 is Person         // true
+undergraduate1 is Student        // true
+undergraduate1 is Undergraduate  // true
+```
+  
+### as 연산자 (type cast operator)  
+
+**업 캐스팅 & 다운 캐스팅 (Upcasting & Downcasting)**  
+  
+업캐스팅  
+- 인스턴스 `as` 타입
+- 하위 클래스의 메모리 구조로 저장된 인스턴스를 상위 클래스 타입으로 인식
+- 타입캐스팅 싶래 가능성이 없음 -> 항상 성공
+    - 상위 클래스의 메모리구조로 인식
+    - 상호 호환가능한 타입도 항상 성공
+
+다운 캐스팅  
+- 실패 가능성이 있기 때문에 기본적으로 Optional 타입
+- `as?` 연산자
+    - 참이면 Optional 타입으로 반환
+    - 실패시 nil 반환
+- `as!` 연산자
+    - 참이면 Optional 타입의 값을 강제 언래핑한 타입으로 반환
+    - 실패시 런타임 오류
+  
+|||업 캐스팅 & 다운 캐스팅|||
+|:---:|:---:|:---:|:---:|:---:|
+|||**Person()**|||
+|업 캐스팅<br>`as`<br>항상 성공|↑|↓ (상속) ↓<br>**Student()**|↓|다운 캐스팅<br>`as?` / `as!`<br>실패 가능성|
+|||↓ (상속) ↓<br>**Undergraduate()**|||
+  
+```swift
+// if let 바인딩과 함께 사용 (옵셔널 언래핑)
+if let newPerson = person as? Undergraduate {
+    print(newPerson.major)
+}
+// 실제로 인스턴스의 접근 범위를 늘려주는 것 뿐임
+
+let person3: Undergraduate = person as! Undergraduate
+person3.major
+// 타입변환이 되지 않으면 에러발생
+```
+**as 연산자의 활용**  
+  
+Bridging (브릿징) -> 서로 호환되는 형식을 캐스팅해서 쉽게 사용하는 것
+
+- 스위프트에서는 내부적으로 여전히 Objective-C의 프레임워크를 사용하는 것이 많기 때문에 서로 완전히 상호 호환이 가능하도록 설계해놓았음 (completely interchangeable)
+- 타입 캐스팅을 강제(as!)할 필요 없음  
+  
+```swift
+let str: String = "Hello"
+let otherStr = str as NSString
+```
+
+### Any & AnyObject  
+  
+- 스위프트에서 제공하는 불특정한 타입을 다룰 수 있는 타입을 제공
+- Any 타입
+    - 기본 타입(Int, String, Bool, ...) 등 포함, 커스텀 클래스, 구조체, 열거형, 함수타입까지도 포함해서 <u>어떤 타입의 인스턴스도 표현할 수 있는 타입</u> (옵셔널타입도 포함)  
+
+```swift
+var some: Any = "Swift"
+(some as? String)!.count
+// Any타입의 단점
+// 저장된 타입의 메모리 구조를 알 수없기 때문에, 항상 타입캐스팅해서 사용해야함
+
+
+class Person {
+    var name = "이름"
+}
+class man {
+    var name = "이름"
+}
+
+let array: [Any] = [5, "안녕", 3.5, Person(), man(), {(name: String) in return name}]
+// Any타입의 장점
+// 모든 타입을 담을 수 있는 배열을 생성 가능
+```
+  
+- AnyObject 타입  
+    - 어떤 클래스 타입의 인스턴스도 표현할 수 있는 타입
+
+```swift
+let objArray: [AnyObject] = [Person(), Superman(), NSString()]
+```
+  
+|||업 캐스팅 & 다운 캐스팅|||
+|:---:|:---:|:---:|:---:|:---:|
+|||**Any / AnyObject**<br>범용적인 타입|||
+|업 캐스팅<br>`as`<br>항상 성공|↑||↓|다운 캐스팅<br>`as?` / `as!`<br>실패 가능성|
+|||**String / Person**<br>구체적인 타입|||
+  
+- switch문과 타입 캐스팅 연산자  
+    - switch문에서 is / as 패턴을 사용해서 case에서, 배열 등을 열거 후, 분기처리 가능
+```swift
+let array: [Any] = [5, "안녕", 3.5, Person(), man(), {(name: String) in return name}]
+
+// 타입캐스팅 + 분기처리
+for (index, item) in array.enumerated() {
+    // (0,  5)
+    // (1, "안녕")
+    // ...
+    
+    switch item {
+    case is Int:  // item is Int
+        print("Index - \(index): 정수입니다.")
+    case let num as Double:  // let num = item as Double
+        print("Index - \(index): 소수 \(num)입니다.")
+    case is String:  // item is String
+        print("Index - \(index): 문자열입니다.")
+    case let person as Person:  // let person = item as Person
+        print("Index - \(index): 사람입니다.")
+        print("이름은 \(person.name)입니다.")
+        print("나이는 \(person.age)입니다.")
+    case is (String) -> String:  // item is (String) -> String
+        print("Index - \(index): 클로저 타입입니다.")
+    default:
+        print("Index - \(index): 그 이외의 타입입니다.")
+    }
+}
+```
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
