@@ -1,0 +1,135 @@
+---
+layout: post
+title: "[Swift] Date"
+subtitle:  "Date"
+categories: iOS
+tags: swift
+---
+## Date
+  
+---  
+  
+## Date Structure  
+
+### Date 구조체  
+  
+```swift
+let now = Date() //"Jun 15, 2022 at 1:33 AM"
+print(now)  // "2022-06-14 16:33:30 +0000\n"
+
+// Date()는 현재 설정 시간을 리턴하지만
+// 별도의 설정 없이 인스턴스를 출력하면 UCT 표준 시간을 출력
+
+now.timeIntervalSinceReferenceDate
+// 2001.1.1. 00:00:00 UTC시간을 기준으로 초단위로 저장
+
+
+now.timeIntervalSince1970
+// 보통 다른 언어에서는 1970.1.1. 00:00:00 UTC시간을 기준으로 사용
+// 그걸 기준으로 한 메서드도 존재하긴 함
+```
+- 날짜를 제대로 다루기 위해서는
+    - 달력을 다루는 `Calendar()`구조체와
+    - Date 타입을 문자열로 변환해주는 `DateFormatter` 클래스의 도움이 필요
+- 프로토콜 채택 및 프로토콜 관련 메서드도 확장이 가능
+
+### Calendar 구조체
+  
+절대 시점(Date)을 연대/연도/날짜/요일과 같은 <u>달력의 요소</u>로 변환을 돕는 객체
+
+```swift
+// 1) 날짜 - 년 / 월 / 일
+let year: Int = calendar.component(.year, from: Date())
+let month: Int = calendar.component(.month, from: Date())
+let day: Int = calendar.component(.day, from: Date())
+
+// 2) 시간 - 시 / 분 / 초
+let timeHour: Int = calendar.component(.hour, from: Date())
+let timeMinute: Int = calendar.component(.minute, from: Date())
+let timeSecond: Int = calendar.component(.second, from: Date())
+
+// 3) 요일
+let weekday: Int = calendar.component(.weekday, from: Date())
+// 웃기게도 요일은 일요일:1, 월요일:2, 화요일:3 ... 식으로 정수 값을 리턴함
+```
+  
+### DateFormatter 클래스
+
+날짜와 시간을 원하는 형식(String)으로 변환하는 방법을 제공하는 클래스  
+스위프트 표준이 아닌 RFC 3339 표준으로 작성  
+  
+Date를 특정 형식의 문자열로 변환하려면  
+- 지역 설정 + 시간대 설정 + 날짜 형식 + 시간 형식  
+  
+```swift
+
+// 애플이 미리 만들어 놓은 기존 날짜 형식 선택
+formatter.dateStyle = .full  // "Tuesday, April 13, 2021"
+formatter.dateStyle = .long  // "April 13, 2021"
+formatter.dateStyle = .medium  // "Apr 13, 2021"
+formatter.dateStyle = .none  // (날짜 없어짐)
+formatter.dateStyle = .short  // "4/13/21"
+
+
+// 애플이 미리 만들어 놓은 기존 시간 형식 선택
+formatter.timeStyle = .full  // "2:53:12 PM Korean Standard Time"
+formatter.timeStyle = .long  // "2:54:52 PM GMT+9"
+formatter.timeStyle = .medium  // "2:55:12 PM"
+formatter.timeStyle = .none  // (시간 없어짐)
+formatter.timeStyle = .short  // "2:55 P
+
+
+// 커스텀 형식
+formatter.locale = Locale(identifier: "ko_KR")  // 지역 설정
+formatter.dateFormat = "yyyy/MM/dd"  // 유니코드 방식으로 커스텀 가능
+
+
+// 문자열과 
+let dateFormatter = DateFormatter()
+
+// Date -> String
+dateformatter.string(from: Date())
+// String -> Date
+dateFormatter.date(from: String())! 
+// Date는 옵셔널 타입을 리턴하기 때문에 옵셔널 바인딩이 필요 (나는 강제 언래핑을 하긴 했지만)
+```
+
+### DateComponents 구조체
+  
+날짜와 시간 요소들을 다룰 수 있는 날짜 정보 집합 컴포넌트  
+실제 프로젝트에서 어떤 방식으로 활용할 지 고려 후 (타입) 계산 속성, (타입) 메서드, 생성자, 서브스크립트 등으로 구현 가능  
+  
+```swift
+// 구조체의 확장이용해서 Date에 생성자 구현
+
+extension Date {
+    // 구조체 실패가능 생성자로 구현
+    init?(y year: Int, m month: Int, d day: Int) {
+        
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = day
+        
+        guard let date = Calendar.current.date(from: components) else {
+            return nil  // 날짜 생성할 수 없다면 nil리턴
+        }
+
+        self = date      //구조체이기 때문에, self에 새로운 인스턴스를 할당하는 방식으로 초기화가능
+    }
+}
+```
+  
+내가 현재 듣고 있는 [강의](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)의 후반부에 나오는 내용이지만 지금 하고 있는 프로젝트에서 내가 맡은 파트가 타임 피커를 통해 시간 데이터를 넘겨주는 파트이기 때문에 먼저 들어보았다.  
+구글링을 통해 대충의 스트럭트와 메서드등으로 기능 구현을 하긴 했지만, 보다 정확한 개념을 짚고 넘어가기 위해 들었는데, 생각보다 어려운 것이 없었어서 다행이었다.  
+머리 속으로 개념 정리를 할 수 있어서 추후에 프로젝트 코드 리팩토링을 하게 된다면 구글링을 통해 긁어온 코드를 좀 더 내 스타일대로 이쁘게 코드를 만들어 볼 수 있을 것 같다.
+
+
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
