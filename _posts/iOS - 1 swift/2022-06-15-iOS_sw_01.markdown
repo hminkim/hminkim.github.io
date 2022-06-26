@@ -9,7 +9,7 @@ tags: swift
   
 ---  
   
-## Date Structure  
+## Date  
 
 ### Date 구조체  
   

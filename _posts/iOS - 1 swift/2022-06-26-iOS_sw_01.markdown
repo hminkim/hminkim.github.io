@@ -1,0 +1,574 @@
+---
+layout: post
+title: "[Swift] Protocols"
+subtitle:  "Protocols"
+categories: iOS
+tags: swift
+---
+## Protocols
+  
+---  
+  
+## Protocols  
+  
+- 특정 기능에 필요한 메소드, 프로퍼티 등을 정의만 해놓은 것  
+- 클래스와 상속의 단점  
+    - 하나의 클래스만 상속 가능 (스위프트에서는 다중 상속 불가능)
+    - 기본적인 상위 클래스의 메모리 구조를 따라갈 수 밖에 없음 (필요하지 않은 속성/메서드도 상속)
+    - 클래스(레퍼런스 타입)에서만 가능  
+- 스위프트는 프로토콜 지향 언어 (Protocol-Oriented Language)  
+    - 스위프트 표준 라이브러리를 보면 대부분 구조체로 기본 타입이 구현되어있음
+    - 클래스와는 달리 상속이 불가능한 구조체로 다양한 공통 기능을 가질 수 있는 이유는 `Protocol`, `Extension`, `Generic` 때문
+  
+```swift
+class Bird {
+    var isFemale = true
+    func layEgg() {
+        if isFemale {
+            print("새가 알을 낳는다.")
+        }
+    }
+    func fly() {
+        print("새가 하늘로 날아간다.")
+    }
+}
+
+class Penguin: Bird {
+    // isFamale
+    // layEgg()
+    // fly()       // 상속 구조에서는 펭귄이 어쩔 수 없이 날개됨
+    func swim() {
+        print("헤엄친다.")
+    }
+}
+```
+프로토콜은 위와 같은 상황을 해결해주는 해결책
+- `fly()`라는 메서드를 따로 분리해내어 굳이 상속하지 않고 사용가능하게 만들어 줌
+- 꼭 클래스가 아닌 구조체에서도 `fly()` 메서드를 동작하게 해줄 수 있음
+  
+## 프로토콜 문법
+  
+### 프로토콜 프로퍼티 요구사항
+  
+- 프로퍼티의 뜻에서 var로 선언 (let으로 선언 불가)
+- `get`,`set` 키워드를 통해서 읽기/쓰기 여부(최소한의 요구사항)를 설정
+- 저장 속성 / 계산 속성으로 모두 구현 가능  
+  
+```swift
+// 스위프트는 다중 상속이 되지 않으므로 가장 첫번째 오는 클래스는 상속받는 클래스를 의미
+// 프로토콜은 여러개를 채택 가능
+class Student: Person, AProtocol, BProtocol {
+    // Person을 상속한 Student 클래스가 AProtocol과 BProtocol을 채택함
+}
+```
+  
+프로토콜 프로세스  
+1) 정의
+    - 프로토콜(규약)을 만들어 필요한 요구사항만을 담음
+    - 프로토콜 확장에서 구체적인 구현 내용 정의도 가능
+2) 채택
+    - 프로토콜을 채택 (클래스, 구조체, 열거형에서 채택 가능)
+3) 구현
+    - 프로토콜에서 요구하는 사항(속성/메서드)을 직접 구현
+
+```swift
+protocol RemoteMouse {
+    
+    var id: String { get }  // -> let 저장속성 / var 저장속성 / 읽기계산속성 / 읽기,쓰기 계산속성
+
+    var name: String { get set }  // -> var 저장속성 / 읽기,쓰기 계산속성
+
+    static var type: String { get set }  // -> 타입 저장 속성 (static)
+                                         // -> 타입 계산 속성 (class)
+        // 타입 저장 속성은 상속은 되지만 원칙적으로 재정의 불가능
+        // 타입 계산 속성은 재정의 가능 (class 키워드 가능)
+}
+```
+  
+### 프로토콜 메서드 요구사항  
+   
+- 메서드의 헤드 부분(인풋/아웃풋)의 형태만 요구사항으로 정의
+- mutating 키워드 : 구조체(열거형)에서 저장 속성 변경하는 경우, 구조체도 채택 가능하도록 허락하는 키워드
+- 타입 메서드로 제한하려면 static 키워드만 붙이면 됨  
+  (채택해서 구현하는 쪽에서 static / class 키워드 모두 사용 가능)  
+    
+```swift
+protocol RandomNumber {
+    static func reset()  // 최소한 타입 메서드가 되야함 (class로 구현해서 재정의 허용도 가능)
+    func random() -> Int
+    mutating func changeNum()  // 구조체에서 저장속성을 변경하기 위해 mutating 키워드 사용
+}
+
+struct Number: RandomNumber {  // RandomNumber 프로토콜 채택
+    var num = 0
+    static func reset() {  // reset() 구현
+        print("다시 셋팅")
+    }
+    func random() -> Int {  // random() 구현
+        return Int.random(in: 1...100)
+    }
+    // 구조체에서 저장속성을 변경하기 위해 mutating 키워드 사용
+    // 클래스는 mutating 키워드 필요 없음
+    mutating func changeNum() {  
+        self.num = 10
+    }
+}
+```
+  
+### 생성자 요구사항  
+  
+- 클래스는 상속을 고려해야하기 때문에 생성자 앞에 required를 붙여야 함
+    - 하위에서 구현을 강제
+    - 필수 생성자로 구현
+    - 구조체의 경우 상속의 개념이 없기 때문에 required 키워드 필요 없음
+- final 키워드를 통해 상속을 막으면 required 생략 가능
+- 클래스에서는 반드시 지정생성자로 구현할 필요 없음 (편의 생성자로 구현도 가능)
+  
+```swift
+protocol SomeProtocol {     // 생성자를 요구사항으로 지정 가능
+    init(num: Int)
+}
+
+class SomeClass: SomeProtocol {
+    required init(num: Int) {
+        // 실제 구현
+    }
+}
+
+class SomeSubClass: SomeClass {
+    // 하위 클래스에서 생성자 구현 안하면 필수 생성자는 자동 상속
+}
+```
+  
+```swift
+protocol AProtocol {
+    init()
+}
+
+class ASuperClass {
+    init() {
+        // 생성자의 내용
+    }
+}
+
+class ASubClass: ASuperClass, AProtocol {
+    // AProtocol을 채택함으로 required 키워드 필요하고
+    // 상속으로 인한 override 재정의 키워드도 필요
+    required override init() {
+        // 생성자의 내용
+    }
+}
+```
+
+실패 가능(불가능) 생성자의 경우
+- init?() 요구사항 -> init() / init?() / init!() 으로 구현 가능
+- init() 요구사항 -> init?() 으로 구현 불가능
+
+
+### 서스스크립트 요구사항
+  
+- get, set 키워드를 통해서 읽기/쓰기 여부를 설정 (최소한의 요구사항)
+- get 키워드 -> 최소한 읽기 서브스크립트 구현 (읽기,쓰기 모두 가능)
+- get set 키워드 -> 반드시 읽기, 쓰기 모두 구현  
+  
+  
+> **관습적인 프로토콜 채택과 구현 (Extension)**
+> ```swift
+> protocol Certificate {
+>     func doSomething()
+> }
+>
+> class Person {
+>     // Person 클래스
+> }
+>
+> // 관습적으로 본체보다는 확장에서, 채택 구현 (코드의 깔끔한 정리 가능)
+> extension Person: Certificate {
+>     func doSomething() {
+>         print("Do something")
+>     }
+> }
+> ```
+
+## 프로토콜 타입
+  
+프로토콜은 First Class Citizen (일급 객체)이기 때문에, 타입으로 사용할 수 있음  
+  
+프로토콜 타입 취급의 장점  
+1) 같은 타입의 프로토콜을 컬렉션으로 저장할 수 있음
+```swift
+let electronic: [Remote] = [tv, sbox]  // 프로토콜의 형식으로 담겨있음
+
+// 켜기, 끄기 기능만 사용하니 타입캐스팅을 쓸 필요도 없음 (다만, 프로토콜에 있는 멤버만 사용가능)
+for item in electronic {  
+    item.turnOn()
+}
+```
+  
+2) 함수에서 파라미터로 프로토콜 타입을 쓸 수 있음
+```swift
+func turnOnSomeElectronics(item: Remote) {
+    item.turnOn()
+}
+
+turnOnSomeElectronics(item: tv)
+turnOnSomeElectronics(item: sbox)
+```
+
+프로토콜 준수성 검사 (is / as 연산자 사용 가능)
+  
+- is 연산자 : 특정 타입이 프로토콜을 채택하고 있는지 확인 (참 또는 거짓) / 그 반대도 확인 가능
+```swift
+// 특정타입이 프로토콜을 채택하고 있는지 확인
+tv is Remote  // true
+sbox is Remote  // true
+
+// 프로토콜 타입으로 저장된 인스턴스가 더 구체적인 타입인지 확인 가능
+electronic[0] is TV  // true
+electronic[1] is SetTopBox  // true
+```
+- as 연산자 : 타입 캐스팅 (특정 인스턴스를 프로토콜로 변환하거나, 프로토콜을 인스턴스 실제형식으로 캐스팅)
+```swift
+// 업캐스팅(as)
+let newBox = sbox as Remote
+newBox.turnOn()
+newBox.turnOff()
+
+// 다운캐스팅(as?/as!)
+let sbox2: SetTopBox? = electronic[1] as? SetTopBox
+sbox2?.doNetflix()
+```
+
+## 프로토콜 상속  
+  
+- 프로토콜 간의 상속이 가능 
+- 프로토콜은 다중 상속도 가능
+- 실제 프로토콜의 상속까지 구현할 일은 잘 없지만, 기본 내장 체계에서는 많이 사용되고 있음
+  
+<center><img src="/assets/img/la_sw_220624_1.png" width="100%" height="100%"></center>  
+<center>출처 : https://swiftdoc.org/v3.0/type/int/hierarchy/</center>  
+<center> 실제 스위프트 내장 구조체인 Int에 채택된 프로토콜 상속 구조 </center> 
+  
+```swift
+protocol Remote {
+    func turnOn()
+    func turnOff()
+}
+
+protocol AirConRemote {
+    func Up()
+    func Down()
+}
+
+// 프로토콜끼리, 상속 구조를 만드는 것이 가능
+protocol SuperRemoteProtocol: Remote, AirConRemote { 
+    // func turnOn()
+    // func turnOff()
+    // func Up()
+    // func Down()
+    func doSomething()
+}
+
+// 프로토콜의 채택 및 구현
+class HomePot: SuperRemoteProtocol {
+    func turnOn() { }
+    func turnOff() { }
+    
+    func Up() { }
+    func Down() { }
+    
+    func doSomething() { }
+}
+```
+  
+### 프로토콜 합성
+  
+```swift
+// 프로토콜을 합성하여 임시타입으로 활용 가능
+protocol Named {
+    var name: String { get }
+}
+
+protocol Aged {
+    var age: Int { get }
+}
+
+// 하나의 타입에서 여러개의 프로토콜을 채택 가능 (다중 상속과 비슷한 역할)
+struct Person: Named, Aged {
+    var name: String
+    var age: Int
+}
+
+// 프로토콜을 두개를 병합해서 사용 하는 문법 (&로 연결)
+func wishHappyBirthday(to celebrator: Named & Aged) {   // 임시적인 타입으로 인식
+    print("생일축하해, \(celebrator.name), 넌 이제 \(celebrator.age)살이 되었구나!")
+}
+
+let birthdayPerson = Person(name: "홍길동", age: 20)
+wishHappyBirthday(to: birthdayPerson)
+
+// 임시적인 타입으로 저장 (두개의 프로토콜을 모두 채택한 타입만 저장 가능)
+let whoIsThis: Named & Aged = birthdayPerson      
+``` 
+  
+### 클래스 전용 프로토콜  
+  
+AnyObject 프로토콜
+- 구조체 에서는 채택 불가능
+
+```swift
+protocol SomeProtocol: AnyObject {  // AnyObject는 클래스 전용 프로토콜
+    func doSomething()
+}
+
+// 클래스에서만 채택 가능
+class AClass: SomeProtocol {
+    func doSomething() {
+        print("Do Something")
+    }
+}
+```
+  
+### 선택적 요구사항의 구현
+  
+`@objc`는 스위프트로 작성한 코드를 오브젝티브C 코드에서도 사용할 수 있게 해주는 어트리뷰트
+- 프로토콜에서 요구사항 구현시, 반드시 강제하는 멤버가 아니라 선택적인 요구사항으로 구현할때 사용
+- 프로토콜 앞에는 `@objc`추가
+- 멤버 앞에는 `@objc optional`을 모두 추가
+
+> 어트리뷰트  
+> - @available, @objc, @escaping, @IBOutlet, @IBAction 등등
+> - Attribute(어트리뷰트) : 컴파일러에게 알려주는 특별한 신호이자, 추가적인 정보를 제공
+>   1) 선언에 대한 추가정보 제공
+>   2) 타입에 대한 추가정보 제공
+
+```swift
+@objc protocol Remote {
+    @objc optional var isOn: Bool { get set }
+    func turnOn()
+    func turnOff()
+    @objc optional func doNetflix()
+}
+
+class TV: Remote {
+    var isOn = false
+    
+    func turnOn() {}
+    func turnOff() {}
+}
+
+let tv: Remote = TV()
+print(tv.isOn)
+// Bool? 타입 - 선택적 구현 사항이기 때문에 해당 멤버가 없으면 nil로 반환
+tv.doNetflix
+// 선택적으로 선언했기 때문에, 함수가 없을 수도 있어서 옵셔널체이닝이 필요
+```
+선택적 멤버를 선언한 프로토콜 구현시  
+- 오브젝티브-C에 해당하는 클래스 전용 프로토콜 (구조체, 열거형 채택 불가)  
+  (오브젝티브-C는 구조체와 열거형에서 프로토콜 채택을 지원하지 않음)
+
+## 프로토콜 확장
+  
+- 프로토콜을 채택한 타입에서 실제 메서드 구현을 반복(코드 중복 구현)해야하는 불편 제거
+- 단순히 기본 구현(Default)을 제공하는 개념
+
+```swift
+protocol Remote {
+    func turnOn()
+    func turnOff()
+}
+
+// 확장하지 않을 시 채택 후 실제 구현 해야함 (여러타입에서 채택한다면 반복적으로 구현해야하는 점이 불편)
+extension Remote {  // (요구사항의 메서드 우선순위 적용 - 프로토콜 메서드 테이블 만듦)
+    func turnOn() { print("리모콘 켜기") }  // 1. (채택)구현시 해당 메서드 2. 기본 메서드
+    func turnOff() { print("리모콘 끄기") }
+    func doAnotherAction() {  // (요구사항 메서드 X - 테이블 만들지 않음)
+        print("리모콘 또 다른 동작")  // 타입에 따른 선택 (Direct Dispatch)
+    }
+}
+
+class TV: Remote {
+    func turnOn() { print("TV 켜기") }
+    func doAnotherAction() {
+        print("TV 또 다른 동작")
+    }
+}
+
+struct Aircon: Remote {
+    func turnOn() { print("리모콘 켜기") }
+    func turnOff() { print("리모콘 끄기") }
+    func doAnotherAction() {
+        print("에어컨 또 다른 동작")
+    }
+}
+
+var tv1: Remote = TV()
+tv1.turnOn()  // 프로토콜이 채택된 TV 클래스에서 구현한 메서드 실행
+tv1.turnOff()  // 기본 확장된 메서드 실행
+tv1.doAnotherAction()  // Remote 타입의 '확장된 프로토콜'에서 선언된 메서드 실행
+
+var tv2 = Aircon()
+tv2.turnOn()  // 프로토콜이 채택된 TV 클래스에서 구현한 메서드 실행 
+tv2.turnOff()  // 기본 확장된 메서드 실행
+tv2.doAnotherAction()  // Aircon 타입의 '기본 구조체'에서 선언된 메서드 실행
+
+//TV 켜기
+//리모콘 끄기
+//리모콘 또 다른 동작
+//에어컨 켜기
+//리모콘 끄기
+//에어컨 또 다른 동작
+```
+
+- 요구사항 선언 O / 확장 기본 구현 X -> Witness Table
+    - 채택 시 필수 구현
+- 요구사항 선언 O / 확장 기본 구현 O -> Witness Table
+    - 채택 시 사용자 구현 가능 (커스터마이징 가능) : 우선 순위 1
+    - 채택 시 사용자 구현하지 않으면 기본 구현을 테이블에 사용 : 우선 순위 2
+- 요구사항 선언 X / 확장 기본 구현 O -> Direct Dispatch  
+  (채택 타입에 따라 테이블을 사후적으로 만드는 개념으로 둘 중 하나의 메서드로 테이블 생성)
+    - 타입 채택 시 사용자 구현
+        - 구조체 : Direct Dispatch
+        - 클래스 : Virtual table
+    - 확장 기본 구현
+        - 프로토콜 : Direct Dispatch
+
+```swift
+protocol Remote {
+    func turnOn()
+    func turnOff()
+}
+
+extension Remote {
+    func turnOn() { print("리모콘 켜기") }
+    func turnOff() { print("리모콘 끄기") }
+    func doAnotherAction() {
+        print("리모콘 또 다른 동작")
+    }
+}
+
+//  =========================  클래스  =========================
+class Ipad: Remote {
+    func turnOn() { print("아이패드 켜기") }
+    func doAnotherAction() { print("아이패드 다른 동작") }
+}
+
+let ipad: Ipad = Ipad()
+ipad.turnOn()           // 클래스 - Virtual table
+ipad.turnOff()          // 클래스 - Virtual table
+ipad.doAnotherAction()  // 클래스 - Virtual table
+
+// 아이패드 켜기
+// 리모콘 끄기
+// 아이패드 다른 동작
+/**=================================================
+ [Class Virtual 테이블]
+ - func turnOn()          { print("아이패드 켜기") }
+ - func turnOff()         { print("리모콘 끄기") }
+ - func doAnotherAction() { print("아이패드 다른 동작") }
+====================================================**/
+
+let ipad2: Remote = Ipad()
+ipad2.turnOn()           // 프로토콜 - Witness Table
+ipad2.turnOff()          // 프로토콜 - Witness Table
+ipad2.doAnotherAction()  // 프로토콜 - Direct Dispatch (직접 메서드 주소 삽입)
+
+// 아이패드 켜기
+// 리모콘 끄기
+// 리모콘 또 다른 동작
+/**=====================================
+ [Protocol Witness 테이블] - 요구사항
+ - func turnOn()  { print("아이패드 켜기") }
+ - func turnOff() { print("리모콘 끄기") }
+========================================**/
+
+
+// =========================  구조체  =========================
+struct SmartPhone: Remote {
+    func turnOn() { print("스마트폰 켜기") }
+    func doAnotherAction() { print("스마트폰 다른 동작") }
+}
+
+// 본래의 타입으로 인식했을때
+var iphone: SmartPhone = SmartPhone()
+iphone.turnOn()           // 구조체 - Direct Dispatch (직접 메서드 주소 삽입)
+iphone.turnOff()          // 구조체 - Direct Dispatch (직접 메서드 주소 삽입)
+iphone.doAnotherAction()  // 구조체 - Direct Dispatch (직접 메서드 주소 삽입)
+
+// 스마트폰 켜기
+// 리모콘 끄기
+// 스마트폰 다른 동작
+/**=====================================
+ [구조체] - 메서드 테이블이 없음
+========================================**/
+
+
+// 프로토콜의 타입으로 인식했을때
+var iphone2: Remote = SmartPhone()
+iphone2.turnOn()           // 프로토콜 - Witness Table
+iphone2.turnOff()          // 프로토콜 - Witness Table
+iphone2.doAnotherAction()  // 프로토콜 - Direct Dispatch (직접 메서드 주소 삽입)
+
+// 스마트폰 켜기
+// 리모콘 끄기
+// 리모콘 또 다른 동작
+/**=====================================
+ [Protocol Witness 테이블] - 요구사항
+ - func turnOn()  { print("스마트폰 켜기") }
+ - func turnOff() { print("리모콘 끄기") }
+========================================**/
+```
+  
+### 프로토콜 확장의 적용 제한  
+  
+- 프로토콜 확장에서 `where`절을 통해, 프로토콜의 확장의 적용을 제한 가능
+- "특정 프로토콜"을 채택한 타입에만 프로토콜 확장이 적용되도록 제한
+- 특정 프로토콜을 채택하지 않으면, 프로토콜의 확장이 적용되지 않기 때문에 확장이 없는 것과 동일하게 메서드를 직접구현 해야함
+  
+```swift
+protocol Bluetooth {
+    func blueOn()
+    func blueOff()
+}
+// Remote 프로토콜을 채택한 타입만 Bluetooth 프로토콜 확장 적용 가능)
+extension Bluetooth where Self: Remote {   // 구체적 구현의 적용범위를 제한
+    func blueOn() { print("블루투스 켜기") }
+    func blueOff() { print("블루투스 끄기") }
+}
+
+// Remote 프로토콜을 채택한 타입만 Bluetooth 확장이 적용됨
+// Remote 프로토콜을 채택하지 않으면 확장이 적용되지 않기 때문에 직접 메서드 구현 해야함
+class SmartPhone: Remote, Bluetooth {
+    // SmartPhone 클래스
+}
+```
+  
+## 프로토콜 지향 프로그래밍
+  
+클래스와 상속의 단점
+- 하나의 클래스만 상속 가능 (다중 상속 불가능)
+- 기본적인 상위 클래스의 메모리 구조를 따라갈 수 밖에 없음  
+  (필요하지 않은 속성, 메서드도 상속됨)
+- 클래스(레퍼런스 타입)에서만 가능
+
+프로토콜 지향 프로그래밍의 장점
+- 여러개의 프로토콜 채택 가능 (다중 상속과 유사)
+- 메모리 구조에 대한 특정 요구사항 없음  
+  (`@optional`을 통해 필요한 속성, 메서드만 채택 가능)
+- 모든 타입에서 채택 가능 (밸류 타입도 가능) -> 활용성이 높아짐
+- 확장에서 구체적 정의(재정의) 가능  
+  (`where`을 통해 채택하는 타입 제약도 가능)
+- 조합의 장점을 살려서 보다 나은 구성과 재사용성을 높일 수 있음  
+  
+-> 프로토콜 지향 프로그래밍을 통해 기존의 데이터 타입에도 채택하여 확장 활용 가능  
+  
+  
+  
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
