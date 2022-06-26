@@ -63,13 +63,13 @@ class Student: Person, AProtocol, BProtocol {
 ```
   
 프로토콜 프로세스  
-1) 정의
-    - 프로토콜(규약)을 만들어 필요한 요구사항만을 담음
-    - 프로토콜 확장에서 구체적인 구현 내용 정의도 가능
-2) 채택
-    - 프로토콜을 채택 (클래스, 구조체, 열거형에서 채택 가능)
-3) 구현
-    - 프로토콜에서 요구하는 사항(속성/메서드)을 직접 구현
+1. 정의  
+    - 프로토콜(규약)을 만들어 필요한 요구사항만을 담음  
+    - 프로토콜 확장에서 구체적인 구현 내용 정의도 가능  
+2. 채택  
+    - 프로토콜을 채택 (클래스, 구조체, 열거형에서 채택 가능)  
+3. 구현  
+    - 프로토콜에서 요구하는 사항(속성/메서드)을 직접 구현  
 
 ```swift
 protocol RemoteMouse {
@@ -341,10 +341,10 @@ class AClass: SomeProtocol {
 - 멤버 앞에는 `@objc optional`을 모두 추가
 
 > 어트리뷰트  
-> - @available, @objc, @escaping, @IBOutlet, @IBAction 등등
-> - Attribute(어트리뷰트) : 컴파일러에게 알려주는 특별한 신호이자, 추가적인 정보를 제공
->   1) 선언에 대한 추가정보 제공
->   2) 타입에 대한 추가정보 제공
+> - @available, @objc, @escaping, @IBOutlet, @IBAction 등등  
+> - Attribute(어트리뷰트) : 컴파일러에게 알려주는 특별한 신호이자, 추가적인 정보를 제공  
+>   1. 선언에 대한 추가정보 제공  
+>   2. 타입에 대한 추가정보 제공  
 
 ```swift
 @objc protocol Remote {
