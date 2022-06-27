@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "프로덕트 오너"
-subtitle:  "프로덕드 오너"
+subtitle:  "프로덕트 오너"
 categories: essay
 tags: book
 ---
