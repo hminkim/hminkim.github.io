@@ -6,7 +6,7 @@ categories: essay
 tags: book
 ---
   
-## 프로덕트 오너  
+## Product Owner 
   
 <center><img src="/assets/img/as_bo_220628_1.png" width="100%" height="100%"></center>  
 <center><a href="http://www.yes24.com/Product/Goods/89553345">프로덕트 오너 - 김성한</a> </center>   
