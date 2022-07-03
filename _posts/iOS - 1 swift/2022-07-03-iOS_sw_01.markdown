@@ -1,0 +1,186 @@
+---
+layout: post
+title: "[Swift] Method Dispatch"
+subtitle:  "Method Dispatch"
+categories: iOS
+tags: swift
+---
+## Method Dispatch
+  
+---  
+  
+## 매서드 디스패치  
+  
+- 클래스, 프로토콜의 메서드가 실행되는 방식에 대한 이해  
+  
+### Direct Dispatch (직접 / Static)
+  
+- 컴파일 시점에 코드 자체에 함수의 메모리 주소 삽입 또는 함수의 명령 코드를 해당 위치에 코드를 심음 (in-line)
+- 가장 빠른 속도 (0.0 - 2.13ns)
+- 밸류 타입(구조체/열거형)에 사용
+- <u>상속 / 다형성의 장점을 누릴 수 없음</u>
+  
+```swift
+struct MyStruct {
+    func method1() { print("Struct - Direct method1") }  // 예를 들어 90~99 메모리 주소에 저장
+    func method2() { print("Struct - Direct method2") }  // 100~109 메모리 주소에 저장
+}
+
+let myStruct = MyStruct()
+myStruct.method1() // 메모리 주소 90 호출
+myStruct.method2()  // 메모리 주소 100 호출
+```
+  
+### Table Dispatch (동적 / Dynamic)
+  
+- 함수의 포인터를 배열 형태 보관 후 실행
+- 중간 속도 (3.23ns)
+- <u>클래스 / 프로토콜에서 사용</u>
+    - Virtual Table : 클래스 테이블
+    - Witness Table : 프로토콜 테이블  
+  
+```swift
+class FirstClass {
+    func method1() { print("Class - Table method1") }  // 예를 들어 110~119 메모리 주소에 저장
+    func method2() { print("Class - Table method2") }  // 120~129 메모리 주소에 저장
+}
+
+// [110, 120]   -> 배열 형태로 저장
+// ====================================================
+//  func method1() { print("Class - Table method1") }      ->   110
+//  func method2() { print("Class - Table method2") }      ->   120
+// ====================================================
+
+// 자식클래스에서 테이블을 따로 보유
+class SecondClass: FirstClass {
+    override func method2() { print("Class - Table method2-2") }  // 130~139 메모리 주소에 저장
+    func method3() { print("Class - Table method3") }             // 140~149 메모리 주소에 저장
+}
+
+// [110, 130, 140]   -> 배열 형태로 저장
+// ====================================================
+//  func method1() { print("Class - Table method1") }      ->   110
+//  func method2() { print("Class - Table method2-2") }    ->   130
+//  func method3() { print("Class - Table method3") }      ->   140
+// ====================================================
+
+let first = FirstClass()
+first.method1() // 메모리 주소 110 호출
+first.method2() // 메모리 주소 120 호출
+
+let second = SecondClass()
+second.method1() // 메모리 주소 110 호출
+second.method2() // 메모리 주소 130 호출
+second.method3() // 메모리 주소 140 호출
+```
+  
+**프로토콜 - Witness Table**  
+    
+```swift
+protocol MyProtocol {
+    func method1()    // 요구사항 - Witness Table
+    func method2()    // 요구사항 - Witness Table
+}
+
+extension MyProtocol {
+    // 요구사항의 기본 구현 제공
+    func method1() { print("Protocol - Witness Table method1") }
+    func method2() { print("Protocol - Witness Table method2") }
+    
+    // 필수 요구사항은 아님 -> Direct Dispatch
+    func anotherMothod() {
+        print("Protocol Extension - Direct method")
+    }
+}
+```
+
+**클래스 - Virtual Table**  
+  
+```swift
+class FirstClass: MyProtocol {
+    func method1() { print("Class - Virtual Table method1") }
+    func method2() { print("Class - Virtual Table method2") }
+    func anotherMothod() { print("Class - Virtual Table method3") }
+}
+
+// ==================================================================
+// [Class Virtual Table]
+// - func method1() { print("Class - Virtual Table method1") }
+// - func method2() { print("Class - Virtual Table method2") }
+// - func anotherMothod() { print("Class - Virtual Table method3") }
+// ==================================================================
+
+// ============================================================
+// [Protocol Witness Table]
+// - func method1() { print("Class - Virtual Table method1") }  요구사항 -> 우선순위 반영
+// - func method2() { print("Class - Virtual Table method2") }  요구사항 -> 우선순위 반영
+// ============================================================
+
+let first = FirstClass()
+first.method1()           // Class - Virtual Table method1
+first.method2()           // Class - Virtual Table method2
+first.anotherMothod()     // Class - Virtual Table method3
+
+let proto: MyProtocol = FirstClass()
+proto.method1()           // Class - Virtual Table method1  (Witness Table)
+proto.method2()           // Class - Virtual Table method2  (Witness Table)
+proto.anotherMothod()     // Protocol Extension - Direct method
+
+```
+  
+### Message Dispatch (메세지)  
+  
+- 상속 구조를 모두 훑은 뒤에, 실행할 메서드 결정
+- 가장 느린 속도 (5.82ns)
+- 주로 Objective-C 클래스에서 사용
+- Objective-C 런타임에 의존
+
+```swift
+// 예전 Objective-C 에서 사용하던 방식
+// 방식에 대한 이해만 하고 굳이 암기할 필요는 없음
+
+class ParentClass {
+    @objc dynamic func method1() { print("Class - Message method1") }
+    @objc dynamic func method2() { print("Class - Message method2") }
+}
+
+// =====================================================
+//  func method1() { print("Class - Message method1") }
+//  func method2() { print("Class - Message method2") }
+// =====================================================
+
+class ChildClass: ParentClass {
+    @objc dynamic override func method2() { print("Class - Message method2-2") }
+    @objc dynamic func method3() { print("Class - Message method3") }
+}
+
+// =======================================================
+//  super class                                            부모 클래스를 찾아가서 주소 확인
+//  func method2() { print("Class - Message method2-2") }  재정의한 메서드는 다시 주소가짐
+//  func method2() { print("Class - Message method3") }
+// =======================================================
+
+let child = ChildClass()
+child.method1()
+child.method2()
+child.method3()
+```
+  
+### 스위프트가 함수를 실행 하는 방법  
+  
+|구분|본체<br>(Initial Declaration)|Extension|비고|
+|:---:|:---:|:---:|:---:|
+|Value Type<br>(Struct)|Direct Dispatch|Direct Dispatch||
+|Protocol|Table Dispatch<br><font size="2em">(Witness Table)</font>|Direct Dispatch<br><font size="2em">(메서드 디폴트 구현 제공)</font>|<font size="2em">본체의 요구사항 메서드를<br>Witness Table로 구현<br>(프로토콜을 채택한 타입마다 테이블을 만듦)</font>|
+|Class|Table Dispatch<br><font size="2em">(Virtual Table)</font><br><font size="1em" color="tomato">final 키워드 (상속 불가) -> Direct</font>|Direct Dispatch<br><font size="2em">(상속시 재정의 불가 원칙)</font><br><font size="1em" color="tomato">@objc dynamic -> Message</font>|<font size="2em">@objc dynamic 키워드를 통해,<br>Message Dispatch로 바뀌면<br>extension내의 메서드 재정의 가능</font>|
+|@objc dynamic|Message Dispatch|Message Dispatch||
+
+
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
