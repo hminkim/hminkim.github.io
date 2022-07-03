@@ -23,17 +23,21 @@ KkoHMa:
   # Comment/uncommet to show/hide
   # Icons appear in order, can be rearranged:
   social:
+    linkedin: hyeongmin-kim-9b690b228
+    github: hminkim
+    instagram: hminkim2
+    youtube: https://www.youtube.com/channel/UCP92a_ZkJzIxAagKxR_Oz_w
+    email: mailto:hminkim2@gmail.com
+    rss:             https://hminkim.github.io/feed.xml
     # facebook:  
     # twitter:         <username>
-    google: hminkim2
+    # google: 
     # vk:              <username>
-    youtube: https://www.youtube.com/channel/UCP92a_ZkJzIxAagKxR_Oz_w
     # vimeo:           <username>
     # vine:            <username>
     # spotify:         <user>/<number>
     # soundcloud:      <username>
     # lastfm:          <username>
-    instagram: hminkim2
     # flickr:          <string@string>
     # 500px:           <username>
     # dribbble:        <username>
@@ -47,19 +51,15 @@ KkoHMa:
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-    github: hminkim
     # stackoverflow:   <number/username>
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-    linkedin: hyeongmin-kim-9b690b228
     # xing:            <firstname_lastname_counter>
     # blogger:         <number>
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-    email:           mailto:hminkim2@gmail.com
-    # rss:             https://hminkim.github.io/feed.xml
 
 # Another author
 mdo:

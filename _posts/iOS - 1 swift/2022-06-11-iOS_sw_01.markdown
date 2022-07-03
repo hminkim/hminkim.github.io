@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[Swift] Extensions"
-subtitle:  "Extensions"
+title: "[Swift] Extension"
+subtitle:  "Extension"
 categories: iOS
 tags: swift
 ---
-## Extensions
+## Extension
   
 ---  
   

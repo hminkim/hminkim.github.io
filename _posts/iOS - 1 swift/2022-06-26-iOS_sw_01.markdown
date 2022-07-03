@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[Swift] Protocols"
-subtitle:  "Protocols"
+title: "[Swift] Protocol"
+subtitle:  "Protocol"
 categories: iOS
 tags: swift
 ---
-## Protocols
+## Protocol
   
 ---  
   

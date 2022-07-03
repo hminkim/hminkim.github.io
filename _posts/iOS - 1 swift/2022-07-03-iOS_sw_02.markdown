@@ -1,0 +1,137 @@
+---
+layout: post
+title: "[Swift] Nested Type"
+subtitle:  "Nested Type"
+categories: iOS
+tags: swift
+---
+## Nested Type
+  
+---  
+  
+## 중첩 타입  
+
+타입 내부에 타입을 선언하는 것은 언제나 가능
+  
+```swift
+class Aclass {
+    struct Bstruct {
+        enum Cenum {
+            case aCase   // 열거형에는 케이스 필요
+            case bCase
+            
+            struct Dstruct {
+                
+            }
+        }
+        var name: Cenum
+    }
+}
+
+// 타입 선언과 인스턴스의 생성
+let aClass: Aclass = Aclass()
+let bStruct: Aclass.Bstruct = Aclass.Bstruct(name: .bCase)
+let cEnum: Aclass.Bstruct.Cenum = Aclass.Bstruct.Cenum.aCase  // 열거형은 케이스선택
+let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
+```
+
+- 특정 타입과만 연관성이 있는 타입은 해당 특정 타입 내부에 선언하여 <u>사용 범위를 한정</u>  
+  (Bstruct는 Aclass타입과 관계가 있고, Aclass 없이는 의미가 없음 -> 범위가 명확해 짐)
+- 타입 간의 연관성을 명확히 구분하고, <u>내부 구조를 디테일하게 설계</u> 가능  
+  (Aclass)
+
+### Blackjack 예시를 통한 중첩 함수 설명
+  
+```swift
+struct BlackjackCard {
+    // 중첩으로 선언 타입 =============================================
+    // Suit(세트) 열거형
+    enum Suit: Character {  // 원시값(rawValue)사용
+        case spades = "♠", hearts = "♡", diamonds = "♢", clubs = "♣"
+    }
+    // 순서(숫자) 열거형
+    enum Rank: Int {  // 원시값(rawValue)사용
+        case two = 2, three, four, five, six, seven, eight, nine, ten
+        case jack, queen, king, ace  // (원시값 존재하지만 사용하지 않고자 함 -> values)
+        
+        // Values 타입정의 (두개의 값을 사용)
+        // -> 열거형 값(순서)을 이용 새로운 타입을 반환하기 위함
+        struct Values {
+            let first: Int, second: Int?
+        }
+        
+        // (읽기) 계산 속성 (열거형 내부에 저장 속성은 선언 불가)
+        var values: Values {
+            switch self {
+            case Rank.ace:
+                return Values(first: 1, second: 11)  // 에이스 카드는 1 또는 11 로 쓰임
+            case .jack, .queen, .king:
+                return Values(first: 10, second: nil)  // 10으로 쓰임
+            default:
+                return Values(first: self.rawValue, second: nil)
+                // 2 ~ 10까지의 카드는 원시값으로 쓰임
+            }
+        }
+    }
+
+    // 블랙잭 카드 속성 / 메서드  =======================================
+    // 어떤 카드도, 순서(숫자)와 세트(Suit)를 가짐
+    let rank: Rank, suit: Suit
+    
+    // (읽기) 계산속성
+    var description: String {
+        get {
+            var output = "\(suit.rawValue) 세트,"
+            output += " 숫자 \(rank.values.first)"
+            
+            if let second = rank.values.second {   // 두번째 값이 있다면 (ace)
+                output += " 또는 \(second)"
+            }
+
+            return output
+        }
+    }
+}
+
+// A - 스페이드
+let card1 = BlackjackCard(rank: .ace, suit: .spades)
+print("1번 카드: \(card1.description)")
+
+// 5 - 다이아몬드
+let card2 = BlackjackCard(rank: .five, suit: .diamonds)
+print("2번 카드: \(card2.description)")
+
+// 정의한 타입을 외부에서 사용하기 위해서는 중첩되어 있는 타입도 붙여야함(강제) -> 훨씬 명확해짐
+let heartsSymbol: Character  = BlackjackCard.Suit.hearts.rawValue
+let suit = BlackjackCard.Suit.hearts
+```
+코드 출처 : [애플 스위프트 공식 문서](https://docs.swift.org/swift-book/LanguageGuide/NestedTypes.html)  
+주석 출처 : [Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#) 
+  
+> - 카드 1장
+>     - 세트(suit)
+>         - ♠  /  ♡  /  ♢  /  ♣
+>     - 숫자(rank)
+>         - 1 ~ 13 까지의 숫자  
+>             - 계산 속성 : 1 ----------- Value 구조체 : 1 또는 11  
+>             - 계산 속성 : 2 ~ 10 ------ Value 구조체 : 숫자 그대로  
+>             - 계산 속성 : 11 ~ 13 ----- Value 구조체 : 10  
+  
+### 중첩 타입을 배우는 목적
+  
+- 중첩타입으로 선언된 API들을 볼줄 알아야함  
+    ex) DateFormatter.Style.full  
+    (중간 타입에 대문자가 나오면, 중첩타입임을 인지)
+- 실제 앱을 만들때 중첩 선언을 잘 활용해야함 (타입 간의 관계 명확성)
+- 하나의 타입의 내부 구조(계층 관계 등)를 디테일하게 설계 가능
+  
+
+  
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
