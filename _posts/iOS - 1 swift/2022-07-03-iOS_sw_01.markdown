@@ -112,8 +112,8 @@ class FirstClass: MyProtocol {
 
 // ============================================================
 // [Protocol Witness Table]
-// - func method1() { print("Class - Virtual Table method1") }  요구사항 -> 우선순위 반영
-// - func method2() { print("Class - Virtual Table method2") }  요구사항 -> 우선순위 반영
+// - func method1() { print("Class - Virtual Table method1") }  요구사항 -> 우선 반영
+// - func method2() { print("Class - Virtual Table method2") }  요구사항 -> 우선 반영
 // ============================================================
 
 let first = FirstClass()
@@ -155,7 +155,7 @@ class ChildClass: ParentClass {
 }
 
 // =======================================================
-//  super class                                            부모 클래스를 찾아가서 주소 확인
+//  super class                                     부모 클래스를 찾아가서 주소 확인
 //  func method2() { print("Class - Message method2-2") }  재정의한 메서드는 다시 주소가짐
 //  func method2() { print("Class - Message method3") }
 // =======================================================
