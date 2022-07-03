@@ -11,7 +11,7 @@ tags: swift
   
 ## 매서드 디스패치  
   
-- 클래스, 프로토콜의 메서드가 실행되는 방식에 대한 이해  
+- 클래스, 프로토콜의 메서드가 실행되는 방식  
   
 ### Direct Dispatch (직접 / Static)
   
@@ -22,7 +22,7 @@ tags: swift
   
 ```swift
 struct MyStruct {
-    func method1() { print("Struct - Direct method1") }  // 예를 들어 90~99 메모리 주소에 저장
+    func method1() { print("Struct - Direct method1") }  // 90~99 메모리 주소에 저장
     func method2() { print("Struct - Direct method2") }  // 100~109 메모리 주소에 저장
 }
 
@@ -41,7 +41,7 @@ myStruct.method2()  // 메모리 주소 100 호출
   
 ```swift
 class FirstClass {
-    func method1() { print("Class - Table method1") }  // 예를 들어 110~119 메모리 주소에 저장
+    func method1() { print("Class - Table method1") }  // 110~119 메모리 주소에 저장
     func method2() { print("Class - Table method2") }  // 120~129 메모리 주소에 저장
 }
 
