@@ -1,0 +1,282 @@
+---
+layout: post
+title: "[Swift] Closure"
+subtitle:  "Closure"
+categories: iOS
+tags: swift
+---
+## Closure
+  
+---  
+  
+## 클로저  
+ 
+클로저와 함수는 기능은 완전히 동일한데, 형태만 다르다고 생각하면 됨  
+(파이썬의 lambda / C언어의 Block)
+- 함수 : 이름이 있는 코드 묶음 -> 다른 코드가 함수 이름으로 호출하기 위함
+```swift
+func myFunction() -> Int {
+    // function
+    return ...
+}
+```
+- 클로저 : 이름이 없는 코드 묶음 -> 굳이 이름이 없어도 호출할 수 있는 형태로 사용 가능
+```swift
+{() -> Int in
+    // closer
+    return ...
+}
+// 보통 컴파일러의 타입 추론이 가능한 경우 리턴형에 대한 표기를 생략하여 많이 사용한다.
+```  
+  
+스위프트는 함수를 <u>일급 객체</u>로 취급 (함수는 타입의 형태)
+- 함수를 변수에 할당할 수 있음
+- 함수를 호출할 때, 함수를 파라미터로 전달할 수 있음
+- 함수에서 함수를 반환할 수 있음
+
+### 클로저의 사용
+  
+클로저는 함수를 실행할 때 전달하는 형태로 사용하기 때문에 이름이 필요 없음  
+  
+**클로저를 사용하는 이유**  
+함수를 실행할 때 파라미터로 클로저 형태를 전달할 수 있음  
+- 본래 정의 된 함수를 실행시키면서, 클로저를 사후적으로 정의가 가능하므로 활용도가 늘어남
+- 함수를 실행할 때 파라미터로 전달하는 함수를 콜백(Callback)함수라고 부름
+  
+```swift
+func closureParamFunction(closure: () -> ()) {
+    print("프린트 시작")
+    closure()
+}
+
+func printSwiftFunction() {  // 함수를 정의
+    print("프린트 종료")
+}
+
+// 클로저가 없이 파라미터로 함수를 넣을 떄
+closureParamFunction(closure: printSwiftFunction)
+
+// 함수를 실행할 때 파라미터로 클로저 형태를 전달
+closureParamFunction(closure: { () -> () in
+    print("프린트 종료")
+})
+```
+  
+### 클로저 문법 간소화
+  
+- 문맥상에서 파라미터와 리턴밸류 타입 추론(Type Inference)
+- 싱글 익스프레션인 경우(한 줄 코드), 리턴을 안 적어도 됨(Implicit Return)
+- 아규먼트 이름을 축약(Shorthand Argements) -> $0, $1
+- 트레일링 클로저(후행 클로저) 문법: 함수의 마지막 전달 인자(아규먼트)로 클로저 전달되는 경우, 소괄호를 생략 가능
+  
+```swift
+// 함수의 정의
+func performClosure(param: (String) -> Int) {
+    param("Swift")
+}
+
+// 1) 타입 추론(Type Inference)
+performClosure(param: { (str: String) in
+    return str.count
+})
+
+performClosure(param: { str in
+    return str.count
+})
+
+// 2) 싱글 익스프레션인 경우(코드가 한줄인 경우), 리턴을 안 적어도 됨(Implicit Return)
+performClosure(param: { str in
+    str.count
+})
+
+// 3) 아규먼트 이름을 축약(Shorthand Argements)
+performClosure(param: {
+    $0.count  // 두번째 파라미터: $1 , 세번째 파라미터: $2
+})
+
+// 4) 트레일링 클로저
+performClosure(param: {
+    $0.count
+})
+
+performClosure() {
+    $0.count
+}
+
+performClosure { $0.count }  // 한줄로 표현이 가능해짐
+```
+  
+### 클로저 활용 예시
+
+다양한 곳에서 활용 됨  
+  
+```swift
+// URLSession
+URLSession(configuration: .default).dataTask(with: URL(string: "https://주소")!) { (data, response, error) in
+    // 데이터 처리하는 코드
+}
+  
+// Timer
+Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+    print("2초뒤에 출력하기")
+}
+
+// 앱 만드는 프레임 워크
+class ViewController: UIViewController {
+    // 뷰 컨트롤러
+}
+
+let vc = ViewController()
+
+vc.dismiss(animated: true) {
+    print("화면 닫기")
+}
+```
+  
+**멀티플 트레일링 클로저**  
+  
+- Swfit 5.3 부터 적용된 문법
+    
+```swift
+// 여러개의 함수로 클로저를 파라미터로 사용할때
+func multipleClosure(first: () -> (), second: () -> (), third: () -> ()) {
+    first()
+    second()
+    third()
+}
+
+// 기존 방식에서는 마지막 클로저만 트레일링 클로저로 쓸 수 있어서 클로저의 경계에서 코드가 헷갈릴 가능성이 있었음
+multipleClosure(first: {
+    print("1")
+}, second: {
+    print("2")
+}) {
+    print("3")
+}
+
+// Swift 5.3 부터 적용된 멀티플 트레일링 클로저 문법을 통해 헷갈릴 가능성을 줄여 줌
+multipleClosure {
+    print("mutil-1")
+} second: {
+    print("mutil-2")
+} third: {
+    print("mutil-3")
+}
+```
+
+### 클로저의 메모리 구조  
+  
+클로저는 레퍼런스 타입 (참조 타입)
+- 주소를 메모리의 <u>Stack 영역</u>에 저장하고 값은 <u>Heap 영역</u>에 저장
+- 클로저(함수)가 실제 실행되는 건, 스택 프레임에서 동작
+  
+클로저의 캡처현상
+- 클로저를 변수에 할당하거나 클로저를 호출하는 순간, 클로저는 자신이 참조하는 외부의 변수를 지속적으로 사용해야 하기 때문에 캡쳐함 (클로저 외부 변수를 사용할 땐 캡쳐 현상을 유의하며 써야함)
+ 
+```swift
+// 중첩 함수로 이뤄져 있고 내부 함수 외부에 계속 사용해야하는 값이 있기 때문에 캡쳐 현상이 발생
+// 클로저도 레퍼런스 타입이기 때문에 클로저(함수)를 변수에 저장하는 시점에 캡쳐
+func calculateFunc() -> ((Int) -> Int) {
+    var sum = 0
+    func square(num: Int) -> Int {
+        sum += (num * num)
+        return sum
+    }
+    return square
+}
+
+// 변수에 저장하는 경우 (Heap 메모리에 유지)
+var squareFunc = calculateFunc()
+
+squareFunc(10)  // 100
+squareFunc(20)  // 500
+squareFunc(30)  // 1400  -> Heap 메모리가 유지되므로 결과가 중첩됨
+
+// 변수에 저장하지 않는 경우 (Heap메모리에 유지하지 않음)
+calculateFunc()(10)  // 100
+calculateFunc()(20)  // 400
+calculateFunc()(30)  // 900  -> Heap 메모리가 유지되지 않으므로 원하는 결과 출력
+```
+  
+### 클로저와 관련된 애트리뷰트
+
+**@escaping 키워드**  
+
+- 원칙적으로 함수의 실행이 종료되면 파라미터로 쓰이는 클로저도 제거됨
+- @escaping 키워드는 클로저를 제거하지 않고 함수에서 탈출시킴 (함수가 종료되어도 클로저가 존재)
+- 클로저가 함수의 실행 흐름(스택 프레임)을 벗어날 수 있도록 함
+
+클로저를 단순 실행 (non-escaping)
+```swift
+func performEscaping1(closure: () -> ()) {
+    print("프린트 시작")
+    closure()
+}
+
+performEscaping1 {
+    print("프린트 종료")
+}
+```
+
+클로저를 외부 변수에 저장 (@escaping 필요)
+```swift
+// --- 1) 함수의 내부에 존재하는 클로저를 외부 변수에 저장 ---
+var aSavedFunction: () -> () = { print("출력") }
+
+func performEscaping2(closure: @escaping () -> ()) {
+    aSavedFunction = closure  // 클로저를 실행하는 것이 아니라  aSavedFunction 변수에 저장
+}
+
+aSavedFunction()  // 출력
+
+// 함수가 종료되어도 클로저가 Heap 영역에 존재
+performEscaping2(closure: { print("다르게 출력") })
+aSavedFunction()  // 다르게 출력
+
+
+// --- 2) GCD 비동기 코드 ---
+func performEscaping1(closure: @escaping (String) -> ()) {
+    var name = "홍길동"
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {   //1초뒤에 실행하도록 만들기
+        closure(name)
+    }
+}
+
+performEscaping1 { str in
+    print("이름 출력하기: \(str)")
+}
+```
+  
+**@autoclosure 키워드**  
+
+- 본래 함수 실행 시, 클로저 형태로 전달하지 않아도, 자동으로 클로저로 만들어 주는 키워드  
+  (파라미터가 없는 클로저만 사용 가능)
+- 기본적으로 autoclosure은 non-escaping 특성을 가지고 있음
+- 일반적으로 클로저 형태로 써도 되지만, 너무 번거로울 때 사용  
+- 번거로움을 해결해 주지만, 실제 코드가 명확해 보이지 않을 수 있으므로 사용 지양 (애플 공식 문서)  
+  (잘 사용하지 않음, 코드를 읽기 위한 문법 정도로 생각)
+  
+```swift
+func someFuction(closure: @autoclosure () -> Bool) {
+    if closure() {
+        print("참입니다.")
+    } else {
+        print("거짓입니다.")
+    }
+}
+
+var num = 1
+
+someFuction(closure: num == 1)  // 중괄호가 없는 형태이지만 클로저로 자동 인식
+```
+  
+
+
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
