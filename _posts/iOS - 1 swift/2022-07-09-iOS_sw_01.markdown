@@ -152,10 +152,10 @@ kkoma = nil        // release(kkoma)   RC : 0
         <td><div style="text-align:center">소유자에 비해, 보다 짧은 생명 주기를 가진 인스턴스를 참조할 때 주로 사용<br><font size="1em">(인스턴스가 nil로 확인 가능, nil인 경우 작업을 중단하는 것 가능)</font></div></td>
         <td><div style="text-align:center">소유자 보다 인스턴스의 생명 주기가 더 길거나, 같을 경우에 사용<br><font size="1em">(인스턴스 nil로 확인 불가능, 실제 인스턴스가 해제되었다면 에러 발생)</font></div></td>
     </tr>
-</table></center> 
+</table></center>  
   
 - `unowned` 사용 시 한번 더 고려해야 할 것이 있기 때문에, 실제로는 `weak` 키워드를 사용하는 약한 참조를 실제 프로젝트에서는 많이 사용  
-
+  
 ```swift
 // 위의 코드와 같은 내용의 코드
 class Dog {
@@ -202,7 +202,7 @@ kkoma = nil
 - 비소유 참조 -> 참조하고 있던 인스턴스가 사라지면, nil로 초기화 되지 않음
     - nil로 설정하고 접근 하면, 에러 발생
     - 에러 발생 방지를 위해 참조하던 인스턴스가 사라지기 전에 인스턴스를 nil로 재설정을 해줘야 함
-
+  
 <center><table>
   <tr>
     <th rowspan="2"><div style="text-align:center">변수와 타입</div></th>
@@ -237,9 +237,9 @@ kkoma = nil
     <td><div style="text-align:center">O</div></td>
   </tr>
 </table></center>  
-
+  
 - 주로 `weak var`를 사용  
-
+  
 ### 클로저의 캡쳐리스트  
   
 ```swift
