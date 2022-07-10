@@ -153,10 +153,8 @@ kkoma = nil        // release(kkoma)   RC : 0
         <td><div style="text-align:center">소유자 보다 인스턴스의 생명 주기가 더 길거나, 같을 경우에 사용<br><font size="1em">(인스턴스 nil로 확인 불가능, 실제 인스턴스가 해제되었다면 에러 발생)</font></div></td>
     </tr>
 </table></center> 
-
-- `unowned` 사용 시 한번 더 고려해야 할 것이 있기 때문에, 실제로는 `weak` 키워드를 사용하는 약한 참조를 실제 프로젝트에서는 많이 사용  
   
-<br>
+- `unowned` 사용 시 한번 더 고려해야 할 것이 있기 때문에, 실제로는 `weak` 키워드를 사용하는 약한 참조를 실제 프로젝트에서는 많이 사용  
 
 ```swift
 // 위의 코드와 같은 내용의 코드
