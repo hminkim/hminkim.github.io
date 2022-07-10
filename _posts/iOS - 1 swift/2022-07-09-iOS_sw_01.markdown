@@ -127,53 +127,34 @@ kkoma = nil        // release(kkoma)   RC : 0
 
 ### 메모리 누수 현상의 해결  
   
-<table style="border: 2px;">
-  <tr>
-    <td> 컨텐츠 내용1 </td>
-    <td> 컨텐츠 내용2 </td>
-    <td> 컨텐츠 내용3 </td>
-  </tr><tr>
-    <td colspan="3"> 컨텐츠 내용4 </td>
-  </tr><tr>
-    <td> 컨텐츠 내용5 </td>
-    <td colspan="2"> 컨텐츠 내용6 </td>
-  </tr><tr>
-    <td rowspan="3"> 컨텐츠 내용7 </td>
-  </tr><tr>
-    <td> 컨텐츠 내용8-1 </td>
-    <td> 컨텐츠 내용9-1 </td>
-  </tr><tr>
-    <td> 컨텐츠 내용8-2 </td>
-    <td> 컨텐츠 내용9-2 </td>
-  </tr>
-</table>
-  
-<center><table>
+<center>
+<table>
   <tr>
     <th></th>
-    <th><div style="text-align:center">Weak Reference<br>(약한 참조)</div></th>
-    <th><div style="text-align:center">Unowned Reference<br>(비소유 참조)</div></th>
+    <th> <div style="text-align:center">Weak Reference<br>(약한 참조)</div> </th>
+    <th> <div style="text-align:center">Unowned Reference<br>(비소유 참조)</div> </th>
   </tr>
   <tr>
-    <td><div style="text-align:center">방 식</div></td>
-    <td><div style="text-align:center">weak 키워드</div></td>
-    <td><div style="text-align:center">unowned 키워드</div></td>
+    <td> <div style="text-align:center">방 식</div> </td>
+    <td> <div style="text-align:center">weak 키워드</div> </td>
+    <td> <div style="text-align:center">unowned 키워드</div> </td>
   </tr>
   <tr>
-    <td><div style="text-align:center">예 시</div></td>
-    <td><div style="text-align:center">weak var pet:Dog?<br><font size="1em">(nil 자동 할당)</font></div></td>
-    <td><div style="text-align:center">unowned var pet:Dog?<br><font size="1em">(Swift 5.3 이후, 옵셔널로 선언하는 것이 가능하짐<br> 그렇지만 nil을 자동으로 할당하지는 않음)</div></td>
+    <td> <div style="text-align:center">예 시</div> </td>
+    <td> <div style="text-align:center">weak var pet:Dog?<br><font size="1em">(nil 자동 할당)</font></div> </td>
+    <td> <div style="text-align:center">unowned var pet:Dog?<br><font size="1em">(Swift 5.3 이후, 옵셔널로 선언하는 것이 가능하짐<br> 그렇지만 nil을 자동으로 할당하지는 않음)</div> </td>
   </tr>
   <tr>
-    <td><div style="text-align:center">공통점</div></td>
-    <td colspan="2"><div style="text-align:center"><b>가르키는 인스턴스의 RC의 숫자를 올라가지 않게 함</b><br>(인스턴스 사이의 강한 참조를 제거)<br><font size="2em">weak/unowned로 선언한 변수를 통해 인스턴스에 접근은 가능하지만, 인스턴스를 유지시키는 것은 불가능</font></div></td>
+    <td> <div style="text-align:center">공통점</div> </td>
+    <td colspan="2"> <div style="text-align:center"><b>가르키는 인스턴스의 RC의 숫자를 올라가지 않게 함</b><br>(인스턴스 사이의 강한 참조를 제거)<br><font size="2em">weak/unowned로 선언한 변수를 통해 인스턴스에 접근은 가능하지만, 인스턴스를 유지시키는 것은 불가능</font></div> </td>
   </tr>
   <tr>
-    <td><div style="text-align:center">차이점</div></td>
-    <td><div style="text-align:center">소유자에 비해, 보다 짧은 생명 주기를 가진 인스턴스를 참조할 때 주로 사용<br><font size="1em">(인스턴스가 nil로 확인 가능, nil인 경우 작업을 중단하는 것 가능)</font></div></td>
-    <td><div style="text-align:center">소유자 보다 인스턴스의 생명 주기가 더 길거나, 같을 경우에 사용<br><font size="1em">(인스턴스 nil로 확인 불가능, 실제 인스턴스가 해제되었다면 에러 발생)</font></div></td>
+    <td> <div style="text-align:center">차이점</div> </td>
+    <td> <div style="text-align:center">소유자에 비해, 보다 짧은 생명 주기를 가진 인스턴스를 참조할 때 주로 사용<br><font size="1em">(인스턴스가 nil로 확인 가능, nil인 경우 작업을 중단하는 것 가능)</font></div> </td>
+    <td> <div style="text-align:center">소유자 보다 인스턴스의 생명 주기가 더 길거나, 같을 경우에 사용<br><font size="1em">(인스턴스 nil로 확인 불가능, 실제 인스턴스가 해제되었다면 에러 발생)</font></div> </td>
   </tr>
-</table></center>  
+</table>
+</center>  
   
 - `unowned` 사용 시 한번 더 고려해야 할 것이 있기 때문에, 실제로는 `weak` 키워드를 사용하는 약한 참조를 실제 프로젝트에서는 많이 사용  
   
