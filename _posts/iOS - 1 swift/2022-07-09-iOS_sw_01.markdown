@@ -1,0 +1,470 @@
+---
+layout: post
+title: "[Swift] ARC"
+subtitle:  "Automatic Reference Counting"
+categories: iOS
+tags: swift
+---
+## Automatic Reference Counting
+  
+---  
+  
+## 메모리 관리  
+  
+<center>메모리</center>  
+  
+|코드(프로그램)|데이터|힙|스택|
+|:---:|:---:|:---:|:---:|
+|명령어 / 프로그램<br>앱(프로그램)의 모든 코드(Text)|전역 번수<br>타입(static/class) 변수|동적할당<br>(일반적으로 오랫동안 긴 시간 동안 저장)|함수 실행을 위한 임시적 공간|
+||공통으로 공유하기 위한 데이터<br><font size="1em">앱이 실행되는 동안 불변</font>|크기가 크고, 관리할 필요가 있는 데이터<br><font size="1em">개발자가 잘 관리해야함</font>|크기가 작고 빠르게 사용하기 위한 데이터<br><font size="1em">알아서 자동 관리됨</font>|
+|앱 실행시, 모든 코드가 일단 코드 영역에 올라감 그리고, 순차적으로 한줄 씩 실행됨|전역변수 및 타입속성이 저장<br>(어디서도 접근 가능한 데이터)|참조타입<br>(클래스의 객체, 클로저)|함수의 실행 시 필요 데이터가 생성, 사용 완료 후 사라짐<br>(value 타입)|  
+  
+- 힙 영역에 할당되는 데이터는 관리를 해야지만, 메모리에서 해제가 됨
+- 할당이 해제되지 않으면 메모리 <u>누수(Memory Leak)</u> 현상이 발생
+  
+다양한 언어에서의 메모리 관리 모델  
+  
+- java -> GC (Garbage Collector) : 런타임에 메모리 감시하는 기법
+- Objective-C -> MRC (Manual RC) / ARC (Automatic RC)
+- Swift -> ARC (Automatic RC)
+
+> RC(Reference Counting)을 통해 참조 숫자를 세어서, 메모리 관리 / 컴파일 시에 메모리 해제 시점을 결정  
+  
+### MRC(수동 RC)와 ARC(자동 RC)
+  
+<center><img src="/assets/img/la_sw_220709_1.png" width="100%" height="100%"></center>  
+<center>출처 : https://developer.apple.com/videos/play/wwdc2016/416/</center>  
+<center> 스위프트 코드 내부에서 자동으로 메모리 관리 </center> 
+<br>
+  
+```swift
+class Dog {
+    var name: String
+    var weight: Double
+    
+    init(name: String, weight: Double) {
+        self.name = name
+        self.weight = weight
+    }
+    
+    deinit {  // 실제로 메모리에서 해제가 되는지 확인을 위한 소멸자
+        print("\(name) 메모리 해제")
+    }
+}
+
+var choco: Dog? = Dog(name: "초코", weight: 15.0)  // retain(choco)   RC : 1
+var bori: Dog? = Dog(name: "보리", weight: 10.0)   // retain(bori)    RC : 1 
+
+choco = nil  //release(choco)   RC : 0
+bori = nil   //release(bori)    RC : 0
+```
+  
+이전 언어들은 모든 메모리를 수동 관리했음  
+실제로 개발자가 모든 메모리 해제 코드까지 삽입해야 했어서 실수할 가능성이 높았음  
+  
+- `retain()`  : 할당 -> RC +1
+- `release()` : 해제 -> RC -1
+  
+현대적 언어들은 대부분 자동 메모리 관리 모델을 사용  
+스위프트는 컴파일러가 실제로 할당과 해제 코드를 삽입한다고 보면 됨  
+- 컴파일러가 메모리 관리 코드를 자동으로 추가해 줌으로써, 프로그램의 메모리 관리에 대한 안정성 증가  
+  
+아래와 같은 매커니즘의 실행을 수동으로 할 것인지, 자동으로 할 것인지의 차이
+  
+- ARC모델의 기반 : 소유정책과 참조 카운팅
+    - 소유 정책
+        - 인스턴스는 하나 이상의 소유자가 있는 경우 메모리에 유지됨  
+          (소유자가 없으면, 메모리에서 제거)
+    - 참조 카운팅
+        - 인스턴스를 가르키는 소유자 수를 카운팅
+  
+- 쉽게 말해, 인스턴스를 가르키고 있는 RC가 1 이상이면 메모리에 유지되고, 0이되면 메모리에서 제거됨
+
+### Memory Leak 메모리 누수
+  
+Class에서 객체가 서로를 참조하는 **강한 참조 사이클 (Strong Reference Cycle)**로 인해 변수의 참조에 nil을 할당해도 메모리 해제가 되지 않는 <u>메모리 누수(Memory Leak)</u>의 상황이 발생
+  
+```swift
+class Dog {
+    var name: String
+    var owner: Person?  // Person을 참조 (서로 참조하고 있음)   RC : 1
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제")
+    }
+}
+
+class Person {
+    var name: String
+    var pet: Dog?  // Dog를 참조 (서로 참조하고 있음)   RC : 1
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제")
+    }
+}
+
+var bori: Dog? = Dog(name: "보리")         // retain(bori)    RC : 2
+var kkoma: Person? = Person(name: "꼬마")  // retain(kkoma)   RC : 2
+
+// 강한 참조 사이클(Strong Reference Cycle)이 일어남
+bori?.owner = kkoma
+kkoma?.pet = bori
+
+// 참조하는 모든 곳에 nil을 할당해 주어야 RC가 0이되어 메모리 누수가 일어나지 않음
+bori?.owner = nil  // release(bori)    RC : 1
+kkoma?.pet = nil   // release(kkoma)   RC : 1
+bori = nil         // release(bori)    RC : 0
+kkoma = nil        // release(kkoma)   RC : 0
+```
+
+### 메모리 누수 현상의 해결  
+  
+<center><table>
+    <tr>
+        <th></th>
+        <th><div style="text-align:center">Weak Reference<br>(약한 참조)</div></th>
+        <th><div style="text-align:center">Unowned Reference<br>(비소유 참조)</div></th>
+    </tr>
+    <tr>
+        <td><div style="text-align:center">방 식</div></td>
+        <td><div style="text-align:center">weak 키워드</div></td>
+        <td><div style="text-align:center">unowned 키워드</div></td>
+    </tr>
+    <tr>
+        <td><div style="text-align:center">예 시</div></td>
+        <td><div style="text-align:center">weak var pet:Dog?<br><font size="1em">(nil 자동 할당)</font></div></td>
+        <td><div style="text-align:center">unowned var pet:Dog?<br><font size="1em">(Swift 5.3 이후, 옵셔널로 선언하는 것이 가능하짐<br> 그렇지만 nil을 자동으로 할당하지는 않음)</div></td>
+    </tr>
+    <tr>
+        <td><div style="text-align:center">공통점</div></td>
+        <td colspan="2"><div style="text-align:center"><b>가르키는 인스턴스의 RC의 숫자를 올라가지 않게 함</b> (인스턴스 사이의 강한 참조를 제거)<br><font size="2em">weak/unowned로 선언한 변수를 통해 인스턴스에 접근은 가능하지만, 인스턴스를 유지시키는 것은 불가능</font></div></td>
+    </tr>
+    <tr>
+        <td><div style="text-align:center">차이점</div></td>
+        <td><div style="text-align:center">소유자에 비해, 보다 짧은 생명 주기를 가진 인스턴스를 참조할 때 주로 사용<br><font size="1em">(인스턴스가 nil로 확인 가능, nil인 경우 작업을 중단하는 것 가능)</font></div></td>
+        <td><div style="text-align:center">소유자 보다 인스턴스의 생명 주기가 더 길거나, 같을 경우에 사용<br><font size="1em">(인스턴스 nil로 확인 불가능, 실제 인스턴스가 해제되었다면 에러 발생)</font></div></td>
+    </tr>
+</table></center> 
+
+- `unowned` 사용 시 한번 더 고려해야 할 것이 있기 때문에, 실제로는 `weak` 키워드를 사용하는 약한 참조를 실제 프로젝트에서는 많이 사용  
+  
+<br>
+
+```swift
+// 위의 코드와 같은 내용의 코드
+class Dog {
+    var name: String
+    weak var owner: Person?  // weak 키워드 -> 약한 참조
+    // unowned var owner: Person?  // unowned 키워드 -> 비소유 참조
+    // Swift 5.3 이전버전에서는 비소유참조의 경우, 옵셔널 타입 선언이 안되었음
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제")
+    }
+}
+
+class Person {
+    var name: String
+    weak var pet: Dog?  // weak 키워드 -> 약한 참조
+    // unowned var pet: Dog?  // unowned 키워드 -> 비소유 참조
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제")
+    }
+}
+
+var bori: Dog? = Dog(name: "보리")
+var kkoma: Person? = Person(name: "꼬마")
+
+// 강한 참조 사이클이 일어나지 않음
+bori?.owner = kkoma
+kkoma?.pet = bori
+
+// 메모리 해제가 잘됨 (사실 이 경우 한쪽만 weak/unowned으로 선언해도 상관없음)
+bori = nil
+kkoma = nil
+```
+- 약한 참조 -> 참조하고 있던 인스턴스가 사라지면, nil로 초기화 되어 있음
+- 비소유 참조 -> 참조하고 있던 인스턴스가 사라지면, nil로 초기화 되지 않음
+    - nil로 설정하고 접근 하면, 에러 발생
+    - 에러 발생 방지를 위해 참조하던 인스턴스가 사라지기 전에 인스턴스를 nil로 재설정을 해줘야 함
+
+<center><table>
+  <tr>
+    <th rowspan="2"><div style="text-align:center">변수와 타입</div></th>
+    <th colspan="2"><div style="text-align:center">상수 / 변수 선언 가능 여부</div></th>
+    <th colspan="2"><div style="text-align:center">옵셔널 타입 가능 여부</div></th> 
+  </tr>
+  <tr>
+    <th><div style="text-align:center">let</div></th>
+    <th><div style="text-align:center">var</div></th>
+    <th><div style="text-align:center">Optional</div></th>
+    <th><div style="text-align:center">Non-Optional</div></th> 
+  </tr>
+  <tr>
+    <td><div style="text-align:center">Strong<br><font size="1em">(기본 변수 선언시)</font></div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O</div></td>
+  </tr>
+  <tr>
+    <td><div style="text-align:center">weak 키워드</div></td>
+    <td><div style="text-align:center">X<br><font size="1em">(nil을 할당해야 하기 때문)</font></div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">X<br><font size="1em">(nil을 할당해야 하기 때문)</font></div></td>
+  </tr>
+  <tr>
+    <td><div style="text-align:center">unowned 키워드</div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O</div></td>
+    <td><div style="text-align:center">O<br><font size="1em">(swift 5.3 이전에는 X)</font></div></td>
+    <td><div style="text-align:center">O</div></td>
+  </tr>
+</table></center>  
+
+- 주로 `weak var`를 사용  
+
+### 클로저의 캡쳐리스트  
+  
+```swift
+// 캡쳐리스트의 문법적 형태
+
+// 파라미터가 없는 경우
+{["캡쳐리스트"] in 
+    print("캡쳐리스트")
+}
+
+// 파라미터가 있는 경우
+{["캡쳐리스트"](파라미터)-> 리턴형 in
+    print("캡쳐리스트")
+}
+```
+  
+캡쳐리스트 사용 이유
+- 값 타입은 값을 복사 / 캡쳐 (외부적인 요인에 의한 값 변경 방지)
+- 참조타입은 캡쳐리스트 내에서 (메모리 주소를 캡쳐) `weak` / `unowned` 참조 선언이 가능  
+  (강한 참조 사이클 해결 가능)
+
+**값(value) 타입의 캡쳐**  
+  
+```swift
+var num = 1
+
+// 일반적인 클로저
+let valTypeCapture1 = {
+    print("밸류값 출력: \(num)")
+}
+// 클로저 외부에 존재하는 밸류 타입의 참조(num의 주소)를 캡쳐함
+// 외부 요인에 의해 해당 값이 변했을 때도 계속 참조
+
+// 캡쳐 리스트
+let valTypeCapture2 = {[num] in
+    print("밸류값 출력: \(num)"
+}
+// 클로저 외부에 존재하는 밸류타입의 값(1)을 복사해서 사용
+// 외부 요인에 의해 해당 값의 변경을 방지할 때 사용
+
+valTypeCapture1 // 밸류값 출력: 1
+valTypeCapture2 // 밸류값 출력: 1
+
+var num = 2
+valTypeCapture1 // 밸류값 출력: 2
+valTypeCapture2 // 밸류값 출력: 1
+```
+  
+**참조(Reference) 타입의 캡쳐**
+
+```swift
+class SomeClass {
+    var num = 0
+}
+
+var x = SomeClass()
+var y = SomeClass()
+
+// 일반적인 클로저
+let refTypeCapture1 = {  // 변수 참조를 캡쳐
+    print("참조 출력값:", x.num, y.num)
+}
+// 클로저 외부에 존재하는 참조타입의 참조(변수 주소)를 캡쳐함
+// 외부 요인에 의해 해당 값이 변했을 때도 계속 참조
+
+// 캡쳐 리스트
+let refTypeCapture2 = { [x] in  // 참조를 직접 캡쳐
+    print("참조 출력값:", x.num, y.num)
+}
+// 클로저 외부에 존재하는 참조타입의 주소값을 복사해서 사용
+// 외부 요인에 의해 해당 인스턴스의 해제를 방지할 때 사용
+// -> 가르키는 인스턴스의 RC를 올라가게 함으로써, 메모리에서 해제될 가능성을 방지
+
+// x : (참조 타입) 주소값 캡쳐, x를 직접 참조로 가르킴
+// y : 변수를 캡쳐해서, y 변수를 가르킴
+```
+
+**캡쳐 리스트에서 강한 참조 사이클 문제의 해결**
+
+```swift
+var z = SomeClass()
+
+let refTypeCapture1 = { [weak z] in
+    print("참조 출력값(캡처리스트):", z?.num)  
+    // 약한 참조는 nil을 할당할 수도 있기 때문에 항상 옵셔널 타입
+}
+
+refTypeCapture1()                        // Optional(0)
+
+let refTypeCapture2 = { [unowned z] in
+    print("참조 출력값(캡처리스트):", z.num)
+}
+
+refTypeCapture2()                        // 0
+
+// '약한 참조'와 '비소유 참조'를 통해 가르키는 참조 타입(인스턴스)의 RC를 올라가지 않게 함
+```
+  
+### 객체 내에서 클로저의 사용  
+  
+- 클로저 내에서 객체의 속성 및 메서드에 접근 시에는 `self` 키워드를 반드시 사용해야 함  
+  (강한 참조를 하고 있다는 것을 표시하기 위한 목적 -> RC를 +1하는 역할)
+- 클로저는 기본적으로 캡쳐 현상이 발생하는데 클로저와 인스턴스가 강한 참조로 서로를 가르키고 있다면 (Strong Reference Cycle), 메모리에서 정상적으로 해제되지 않고, 메모리 누수 형상이 발생
+    - 캡쳐리스트 내에서, 약한 참조 또는 비소유 참조를 선언해서 문제 해결
+  
+```swift
+// 클로저를 객체 내에서 사용할때는 대부분 weak과 함께 사용한다고 보면 됨
+
+class Person {
+    let name = "꼬마"
+    
+    func sayMyName() {
+        print("나의 이름은 \(name)입니다.")
+    }
+    
+    func sayMyName1() {
+        // 비동기적으로 실행하는 클로저
+        DispatchQueue.global().async {  
+            print("나의 이름은 \(self.name)입니다.")
+        }
+        // 강한 참조
+        // 해당 클로저는 오래동안 저장할 필요가 있음
+        // -> 새로운 스택을 만들어서 실행하기 때문
+    }
+    
+    func sayMyName2() {
+        // 약한 참조
+        DispatchQueue.global().async { [weak self] in  
+            print("나의 이름은 \(self?.name)입니다.")  
+            // 옵셔널 타입으로 출력
+        }
+    }
+    
+    func sayMyName3() {
+        DispatchQueue.global().async { [weak self] in
+            // 가드문 처리 ==> 객체없으면 일종료
+            guard let weakSelf = self else { return }   
+            print("나의 이름은 \(weakSelf.name)입니다.(가드문)")
+        }
+    }
+}
+```
+  
+**강한 참조 / 약한 참조 사용 사례**  
+  
+```swift
+// (서로가 서로를 가르키는) 강한 참조 사이클은 일어나진 않지만 강한 참조가 일어남
+class ViewController: UIViewController {
+    
+    var name: String = "뷰 컨트롤"
+    
+    func doSomething() {
+        DispatchQueue.global().async {
+            sleep(3)
+            print("글로벌큐에서 출력하기: \(self.name)")
+        }
+    }
+    
+    deinit {  // 메모리 해제를 알려주는 소멸자
+        print("\(name) 메모리 해제")
+    }
+}
+
+func localScopeFunction() {
+    let vc = ViewController()
+    vc.doSomething()
+}  // 이 함수는 이미 종료 -> vc변수 없음
+
+localScopeFunction()
+// (3초후)
+// 글로벌큐에서 출력하기: 뷰 컨트롤
+// 뷰 컨트롤 메모리 해제
+```
+  
+- 글로벌큐 클로저가 강하게 캡처하기 때문에, 뷰컨트롤러의 RC가 유지되어 로컬 함수의 영역에서 뷰컨트롤러를 가르키는 변수가 해제되었음에도, 3초뒤에 출력하고 난 후 실제 뷰컨트롤러가 해제됨  
+  (강한 참조 순환이 일어나진 않지만, 뷰컨트롤러가 필요없음에도 오래 머무름)  
+
+```swift
+// 약한 참조를 사용했지만 오히려 잘못 활용한 경우
+class ViewController: UIViewController {
+    
+    var name: String = "뷰 컨트롤"
+    
+    func doSomething() {
+        // 강한 참조 사이클이 일어나지 않지만, 굳이 뷰컨트롤러를 길게 잡아둘 필요가 없다면
+        // weak self로 선언
+        DispatchQueue.global().async { [weak self] in
+            // guard let weakSelf = self else { return }
+            // 가드 렛 구문을 통하면 출력 자체를 하지 않고 리턴
+            sleep(3)
+            print("글로벌큐에서 출력하기: \(self?.name)")
+            // 약한 참조 weak 키워드때문에 self를 옵셔널 타입으로 선언
+        }
+    }
+    
+    deinit {  // 메모리 해제를 알려주는 소멸자
+        print("\(name) 메모리 해제")
+    }
+}
+
+func localScopeFunction1() {
+    let vc = ViewController1()
+    vc.doSomething()
+}
+
+localScopeFunction()
+
+// 뷰 컨트롤 메모리 해제
+// (3초후)
+// 글로벌큐에서 출력하기: nil
+```
+  
+ - 뷰컨트롤러를 오래동안 잡아두지 않음 -> 메모리 (힙 영역)에서 사라짐
+ - 뷰컨트롤러가 사라지면 -> 출력하는 일을 계속하지 않도록 할 수 있음  
+   (if let 바인딩 또는 guard let 바인딩까지 더해서 return 가능하도록)
+  
+
+  
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
