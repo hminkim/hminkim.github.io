@@ -1,0 +1,493 @@
+---
+layout: post
+title: "[Swift] Networking"
+subtitle:  "Networking"
+categories: iOS
+tags: swift
+---
+## Networking in iOS
+  
+---  
+  
+## iOS에서 네트워킹  
+
+> 이 단원에서는 iOS에서 네트워크를 통해 데이터를 주고받는 내용을 다루기 때문에 CS적인 요소는 되도록 최소화한 포스팅을 하려한다.  
+
+### HTTP 프로토콜
+  
+- 클라이언트(iPhone, iPad, Mac)에서 HTTP 프로토콜에 맞춰 Request(요청)를 보내면 서버에서 요청에 맞는 Response를 보내게 됨  
+- 요청 메소드에는 다양한 종류가 있는데 흔히들 CRUD(Create/Read/Update/Delete) 메소드를 많이 사용
+    - POST : 등록 (엔티티) -> Create
+    - GET : 조회 (리소스 취득) -> Read
+    - PUT : 파일 등록 (데이터 대체, 없다면 생성) -> Update
+    - DELETE : 파일 삭제 -> Delete  
+  
+### URL query  
+  
+- 클라이언트에선 Request를 query로 요청하고 서버에선 Response를 data로 보내줌
+- https://---URL---:(포트)/----?(쿼리 파라미터)
+    - 쿼리 파라미터
+        - key = value의 형태
+        - ?로 시작, &로 추가 가능
+- 쿼리 파라미터를 통한 데이터 전송
+    - GET 메소드
+    - ex) 검색어 / 정렬 기준
+- 메세지 바디를 통한 데이터 전송
+    - POST / PUT / PATCH 메소드
+    - ex) 회원가입 / 게시글 작성 / 게시글 수정
+
+### iOS 네트워킹  
+  
+- 아래의 과정을 통해 클라이언트에서 Request를 보냄
+    1. URL 구조체
+    2. URLSession : 브라우저 실행
+    3. dataTask : url 입력
+    4. resume : 시작
+- 서버에서 요청을 받으면 (대체로) JSON형태로 데이터를 전송
+- JSON 형태의 데이터를 Class / Struct 형태로 변환 후 사용
+    - JSONDecoder()라는 객체를 통해 변환
+    - decode(변형하고 싶은 형태, from: 데이터)
+
+### Swift에서 네트워크 통신 예시  
+  
+세션 : 일정 시간동안 같은 브라우저(사용자)로부터 들어오는 연결 상태를 일정하게 유지시키는 기술  
+  
+```swift
+// 0. URL주소 - 문자열
+let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?&key= → 각자의부여받은키입력 ← &targetDt=20210201"
+
+// 1. URL 구조체 만들기
+let url = URL(string: movieURL)!
+
+// 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+let session = URLSession.shared
+
+// 3. 세션에 (일시정지 상태로)작업 부여
+let task = session.dataTask(with: url) { (data, response, error) in
+    if error != nil {
+        print(error!)
+        return
+    }
+    
+    guard let safeData = data else {
+        return
+    }
+    
+    // 데이터를 그냥 한번 출력해보기
+    print(String(decoding: safeData, as: UTF8.self))
+     // print보다 데이터를 보기좋게 깔끔하게 출력해주는 역할   
+    dump(parseJSON1(safeData)!)
+}
+
+// 4.작업시작
+task.resume()  // 일시정지된 상태로 작업이 시작하기 때문
+
+// 비동기적으로 동작함
+
+// 줄여서 이렇게 많이 사용함
+URLSession.shared.dataTask(with: url) { (data, response, error) in
+    if error != nil {
+        print(error!)
+        return
+    }
+
+    guard let safeData = data else {
+        return
+    }
+
+    print(String(decoding: safeData, as: UTF8.self))
+    dump(parseJSON1(safeData)!)
+}.resume()
+
+
+// ============== 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 ==============
+func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
+    
+    do {
+        // 스위프트5부터 적용된 방식
+        // 자동으로 원하는 클래스/구조체 형태로 분석
+        // JSONDecoder
+        let decoder = JSONDecoder()
+        
+        // decoder라는 구조체는 에러를 던질 수 있기 때문에 try 키워드를 붙여줘야함
+        // decode('변형하고 싶은 형태', from: '데이터')
+        let decodedData = try decoder.decode(MovieData.self, from: movieData)
+
+        return decodedData.boxOfficeResult.dailyBoxOfficeList
+        
+    } catch {
+        return nil
+    }
+    
+}
+```
+  
+요청 (Request) -> 서버 데이터 (JSON) -> 분석 (Parse) -> 변환 (우리가 쓰기위한 Struct/Class)  
+  
+```swift
+// ====================== 서버에서 주는 데이터 ======================
+
+struct MovieData: Codable {
+    let boxOfficeResult: BoxOfficeResult
+}
+
+// MARK: - BoxOfficeResult
+struct BoxOfficeResult: Codable {
+    let dailyBoxOfficeList: [DailyBoxOfficeList]
+}
+
+// MARK: - DailyBoxOfficeList
+struct DailyBoxOfficeList: Codable {
+    let rank: String
+    let movieNm: String
+    let audiCnt: String
+    let audiAcc: String
+    let openDt: String
+}
+
+
+// ======== 내가 만들고 싶은 데이터 (우리가 쓰려는 Struct / Class) ========
+
+struct Movie {
+    static var movieId: Int = 0   // 아이디가 하나씩 부여되도록 만듦
+    let movieName: String
+    let rank: Int
+    let openDate: String
+    let todayAudience: Int
+    let totalAudience: Int
+    
+    init(movieNm: String, rank: String, openDate: String, audiCnt: String, accAudi: String) {
+        self.movieName = movieNm
+        self.rank = Int(rank)!
+        self.openDate = openDate
+        self.todayAudience = Int(audiCnt)!
+        self.totalAudience = Int(accAudi)!
+        Movie.movieId += 1  // 객체를 하나씩 찍어낼 때 마다 id +1
+    }
+    
+}
+
+
+// =========================== 서버와 통신 ===========================
+
+struct MovieDataManager {
+    
+    let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?"
+    
+    let myKey = "7a526456eb8e084eb294715e006df16f"
+    
+    func fetchMovie(date: String, completion: @escaping ([Movie]?) -> Void) {
+        let urlString = "\(movieURL)&key=\(myKey)&targetDt=\(date)"
+        performRequest(with: urlString) { movies in
+            completion(movies)
+        }
+    }
+    
+    func performRequest(with urlString: String, completion: @escaping ([Movie]?) -> Void) {
+        print(#function)
+        
+        // 1. URL 구조체 만들기
+        guard let url = URL(string: urlString) else { return }
+        
+        // 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+        let session = URLSession(configuration: .default)
+        
+        // 3. 세션에 작업 부여
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                completion(nil)
+                return
+            }
+            
+            guard let safeData = data else {
+                completion(nil)
+                return
+            }
+            
+            // 데이터 분석하기
+            if let movies = self.parseJSON(safeData) {
+                //print("parse")
+                completion(movies)
+            } else {
+                completion(nil)
+            }
+        }
+        
+        // 4.Start the task
+        task.resume()   // 일시정지된 상태로 작업이 시작하기 때문
+    }
+    
+    func parseJSON(_ movieData: Data) -> [Movie]? {
+        print(#function)  // 함수 실행 확인 코드 (함수 이름을 출력)
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MovieData.self, from: movieData)
+            
+            let dailyLists = decodedData.boxOfficeResult.dailyBoxOfficeList
+            
+            // 고차함수(map)를 이용해 movie배열 생성하는 경우
+            let myMovielists = dailyLists.map {
+                Movie(movieNm: $0.movieNm, rank: $0.rank, openDate: $0.openDt, audiCnt: $0.audiCnt, accAudi: $0.audiAcc)
+            }
+            
+            return myMovielists
+            
+        } catch {
+            //print(error.localizedDescription)
+            // (파싱 실패 에러)
+            print("파싱 실패")
+            
+            return nil
+        }
+    }
+}
+
+
+// ===================== 뷰컨트롤러에서 일어나는 일 =====================
+
+// 빈배열
+var downloadedMovies = [Movie]()
+
+// 데이터를 다운로드 및 분석/변환하는 구조체
+let movieManager = MovieDataManager()
+
+// 실제 다운로드 코드
+movieManager.fetchMovie(date: "20210201") { (movies) in
+    
+    if let movies = movies {
+        
+        // 배열 받아서 빈배열에 넣기
+        downloadedMovies = movies
+        dump(downloadedMovies)
+        
+        print("전체 영화 갯수 확인: \(Movie.movieId)")
+    } else {
+        print("영화데이터가 없습니다. 또는 다운로드에 실패했습니다.")
+    }
+}
+```
+  
+### CRUD 코드 예시
+  
+추후 코딩할 때 참고용으로 스크랩  
+  
+**GET 메서드**  
+  
+- 서버에서 데이터 읽어오기
+- ex) 인스타그램 - 내가 팔로잉하는 사람들의 게시글 보기  
+  
+```swift
+func getMethod() {
+
+    // URL구조체 만들기
+    guard let url = URL(string: "http://dummy.restapiexample.com/api/v1/employees") else {
+        print("Error: cannot create URL")
+        return
+    }
+    
+    // URL요청 생성
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    
+    // 요청을 가지고 작업세션시작
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        // 에러가 없어야 넘어감
+        guard error == nil else {
+            print("Error: error calling GET")
+            print(error!)
+            return
+        }
+        // 옵셔널 바인딩
+        guard let safeData = data else {
+            print("Error: Did not receive data")
+            return
+        }
+        // HTTP 200번대 정상코드인 경우만 다음 코드로 넘어감
+        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+            print("Error: HTTP request failed")
+            return
+        }
+            
+        // 원하는 모델이 있다면, JSONDecoder로 decode코드로 구현
+        print(String(decoding: safeData, as: UTF8.self))
+
+    }.resume()  // 시작
+}
+```
+  
+**POST 메서드**  
+  
+- 서버에 내가 원하는 새 데이터 업로드하기
+- ex) 인스타그램 - 내 포스트 올리기 / 다른 사람의 게시물에 댓글 달기 / 서비스 가입하기  
+  
+```swift
+func postMethod() {
+    
+    guard let url = URL(string: "http://dummy.restapiexample.com/api/v1/create") else {
+        print("Error: cannot create URL")
+        return
+    }
+    
+    // 업로드할 모델(형태)
+    struct UploadData: Codable {
+        let name: String
+        let salary: String
+        let age: String
+    }
+    
+    // 실제 업로드할 (데이터)인스턴스 생성
+    let uploadDataModel = UploadData(name: "Jack", salary: "3540", age: "23")
+    
+    // 모델을 JSON data 형태로 변환
+    guard let jsonData = try? JSONEncoder().encode(uploadDataModel) else {
+        print("Error: Trying to convert model to JSON data")
+        return
+    }
+    
+    // URL요청 생성
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type") // 요청타입 JSON
+    request.setValue("application/json", forHTTPHeaderField: "Accept") // 응답타입 JSON
+    request.httpBody = jsonData
+    
+    // 요청을 가지고 세션 작업시작
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        // 에러가 없어야 넘어감
+        guard error == nil else {
+            print("Error: error calling POST")
+            print(error!)
+            return
+        }
+        // 옵셔널 바인딩
+        guard let safeData = data else {
+            print("Error: Did not receive data")
+            return
+        }
+        // HTTP 200번대 정상코드인 경우만 다음 코드로 넘어감
+        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+            print("Error: HTTP request failed")
+            return
+        }
+        
+        // 원하는 모델이 있다면, JSONDecoder로 decode코드로 구현
+        print(String(decoding: safeData, as: UTF8.self))
+        
+    }.resume()  // 시작
+}
+```
+  
+**PUT 메서드**  
+  
+- 서버에 현존하는 데이터 업데이트하기
+- ex) 인스타그램 - 내 포스트 수정하기 / 다른 사람 게시물의 좋아요 누르기 / 나의 정보 수정 
+  
+```swift
+func putMethod() {
+    guard let url = URL(string: "https://reqres.in/api/users/2") else {
+        print("Error: cannot create URL")
+        return
+    }
+    
+    // 업로드할 모델(형태)
+    struct UploadData: Codable {
+        let name: String
+        let job: String
+    }
+    
+    // 실제 업로드할 (데이터)인스턴스 생성
+    let uploadDataModel = UploadData(name: "Nicole", job: "iOS Developer")
+    
+    // 모델을 JSON data 형태로 변환
+    guard let jsonData = try? JSONEncoder().encode(uploadDataModel) else {
+        print("Error: Trying to convert model to JSON data")
+        return
+    }
+    
+    // URL요청 생성
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = jsonData
+    
+    // 요청을 가지고 작업세션시작
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        guard error == nil else {
+            print("Error: error calling PUT")
+            print(error!)
+            return
+        }
+        guard let safeData = data else {
+            print("Error: Did not receive data")
+            return
+        }
+        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+            print("Error: HTTP request failed")
+            return
+        }
+        
+        // 원하는 모델이 있다면, JSONDecoder로 decode코드로 구현
+        print(String(decoding: safeData, as: UTF8.self))
+        
+    }.resume()  // 시작
+}
+```
+  
+**DELETE 메서드**  
+  
+- 서버에 현존하는 데이터 삭제하기
+- ex) 인스타그램 - 나의 포스트 삭제하기
+  
+```swift
+func deleteMethod() {
+    guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else {
+        print("Error: cannot create URL")
+        return
+    }
+    
+    // URL요청 생성
+    var request = URLRequest(url: url)
+    request.httpMethod = "DELETE"
+    
+    // 요청을 가지고 작업세션시작
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        guard error == nil else {
+            print("Error: error calling DELETE")
+            print(error!)
+            return
+        }
+        guard let safeData = data else {
+            print("Error: Did not receive data")
+            return
+        }
+        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+            print("Error: HTTP request failed")
+            return
+        }
+        
+        // 원하는 모델이 있다면, JSONDecoder로 decode코드로 구현
+        print(String(decoding: safeData, as: UTF8.self))
+        
+    }.resume()  // 시작
+}
+```
+
+
+
+
+
+
+
+
+
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
