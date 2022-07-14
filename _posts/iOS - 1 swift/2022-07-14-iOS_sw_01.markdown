@@ -287,7 +287,8 @@ DispatchQueue.global(qos: .utility).async { [weak self] in
 ### Async / await  
   
 - Swift 5.5부터 도입  
-- 비동기 함수를 이어서 처리하는 코드상의 불편함 해결
+- 비동기 함수를 이어서 처리하는 코드상의 불편함 해결  
+  
 ```swift
 // 작업을 오랫동안 실행하는 비동기 함수가 있다고 가정
 func longtimePrint(completion: @escaping (Int) -> Void) {
@@ -318,8 +319,10 @@ func linkedPrint(completion: @escaping (Int) -> Void) {
     }
 }
 ```
+  
 - 함수에서 `async` (비동기 함수)로 정의, 리턴 방식 사용
 - 실제 사용 시, `async`로 정의된 함수는 `await` 키워드를 통해 리턴 시점을 기다릴 수 있음
+  
 ```swift
 // 작업을 오랫동안 실행하는 비동기 함수가 있다고 가정
 func longtimeAsyncAwait() async -> Int {
