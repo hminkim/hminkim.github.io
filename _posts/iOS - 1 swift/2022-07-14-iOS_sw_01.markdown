@@ -112,7 +112,7 @@ iOS 프로그래미의 2가지 대기열
     <th><div style="text-align:center">직렬 / 동시</div></th> 
   </tr>
   <tr>
-    <td rowspan="3"><div style="text-align:center">Dispatch<br>Queue<br>(GCD)<br><font size="1em">(Class)</font></div></th>
+    <td rowspan="3"><div style="text-align:center">Dispatch<br>Queue<br>(GCD)<br><font size="1em">(Class)</font></div></td>
     <td><div style="text-align:center">.main</div></td>
     <td><div style="text-align:center">DispatchQueue.main</div></td>
     <td><div style="text-align:center">메인큐 = 메인쓰레드 (1번 쓰레드)<br><font size="1em">(UI 업데이트 내용 처리하는 큐)</font></div></td>
