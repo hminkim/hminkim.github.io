@@ -194,10 +194,10 @@ print(stringToEdit.numberOfEdits)  // 읽기 가능
 속성의 읽기 설정과 속성의 쓰기 설정에 대해 각각 명시적으로 선언도 가능  
   
 > `internal private(set) var numberOfEdits`
-> 
-> 1) 속성의 읽기설정(getter)은 - internal
-> 2) 속성의 쓰기설정(setter)은 - private(set)
->
+>   
+> 1) 속성의 읽기설정(getter)은 - internal  
+> 2) 속성의 쓰기설정(setter)은 - private(set)  
+>  
 >   -> 저장속성 / 계산속성 모두에 설정 가능
 
 
