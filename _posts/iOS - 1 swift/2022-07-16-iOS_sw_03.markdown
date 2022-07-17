@@ -1,0 +1,212 @@
+---
+layout: post
+title: "[Swift] Access Control"
+subtitle:  "Access Control"
+categories: iOS
+tags: swift
+---
+## Access Control
+  
+---  
+  
+## 접근 제어  
+  
+- 코드의 세부 구현 내용을 숨기는 것이 가능하도록 만드는 개념  
+    - 객체지향 -> 은닉화가 가능해짐
+    - 언어마다 약간씩의 차이가 있음
+  
+#### 접근 제어가 필요한 이유  
+  
+- 원하는 코드를 감춰 놓을 수 있음
+- 코드의 영역을 분리시켜서, 효율적 관리 가능
+- 컴파일 시간이 줄어듦  
+  (컴파일러가 어느 범위에서만 해당 변수가 쓰이는지를 인지 가능)
+  
+### 접근 제어의 수준  
+  
+|키워드|접근 수준에 대한 범위|특징|제한 정도|
+|:---:|:---:|:---:|:---:|
+|open|다른 모듈에서 접근 가능<br>(상속/재정의 가능)|클래스의 가장 넓은 수준<br>(클래스에서만 사용 가능)|개방적|
+|public|다른 모듈에서 접근 가능<br>(상속 재정의 불가)|구조체/열거형의 가장 넓은 수준<br>(구조체는 상속 불가)<br>기본 타입의 설정 수준(Int, String 등)|↑|
+|internal|같은 모듈에서만 접근 가능<br>(디폴트 설정)|따로 명시하지 않는 경우의 기본 수준|↕|
+|fileprivate|같은 파일 내에서만 접근 가능||↓|
+|private|같은 scope 내에서만 접근 가능||폐쇄적|
+  
+- 모듈(module) : 프레임워크, 라이브러리, 앱 등 import해서 사용할 수 있는 외부의 코드
+- 모듈을 만들어서 배포하려면, `public`이상으로 선언해야 함
+  
+#### 접근 제어를 가질 수 있는 요소
+  
+- 타입 (클래스/구조체/열거형/스위프트 기본타입 등)
+- 변수 / 속성
+- 함수 / 메서드 (생성자, 서브스크립트 포함)
+- 프로토콜도 특정 영역으로 제한될 수 있음
+
+### 접근 제어의 기본 원칙  
+  
+> 타입은 타입을 사용하는 변수(속성)나, 함수(메서드)보다 높은 수준으로 선언되어야 함  
+  
+변수와 변수가 사용하는 타입  
+  
+```swift
+var some: String = "접근 가능"
+// some -> 변수 (internal)
+// String -> 타입 (public)
+```
+  
+함수와 함수 내부에서 사용하는 타입  
+(파라미터, 리턴 타입)
+  
+```swift
+internal func sFunc(a: Int) -> Bool {
+    print(a)
+    print("hello")
+    return true
+}
+// internal func -> 함수 (internal)
+// print() -> 정수, 문자열, Bool (public)
+```
+  
+- 자신보다 내부에서 더 낮은 타입을 사용하면 접근을 하지 못해서 사용 불가  
+
+#### 관습적인 패턴
+  
+```swift
+// 속성(변수)를 선언시 private으로 외부에 감추려는 속성은 _(언더바)를 사용해서 이름 지음
+class SomeOtherClass {
+    private var _name = "이름"  // 쓰기 - private
+    
+    var name: String {  // 읽기 - internal
+        return _name
+    }
+}
+```
+  
+### 커스텀 타입의 접근 제어
+
+타입의 내부 멤버는 타입 자체의 접근 수준을 넘을 수 없음
+
+```swift
+// 타입의 접근 제어 수준은 (해당 타입)멤버의 접근 제어 수준에 영향을 미침
+// ex. 타입이 internal 로 선언 되면 내부의 멤버는 internal이하(internal / fileprivate / private)로 설정됨
+
+
+public class SomePublicClass {                         // 명시적인 public 선언
+    open var someOpenProperty = "SomeOpen"             // open 이라고 설정해도 public으로 작동
+    public var somePublicProperty = "SomePublic"
+    var someInternalProperty = "SomeInternal"          // 원래의 기본 수준
+    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
+    private var somePrivateProperty = "SomePrivate"
+}
+
+let somePublic = SomePublicClass()
+somePublic.someOpenProperty
+somePublic.somePublicProperty
+somePublic.someInternalProperty
+somePublic.someFilePrivateProperty  // 같은 파일 안이기 때문에 접근 가능
+// somePublic.somePrivateProperty  // private -> 접근 불가
+```
+  
+### 내부 멤버의 접근 제어 수준
+  
+```swift
+// 타입의 접근 수준이 높다고, 내부 멤버의 접근 수준이 무조건 따라서 높아지는 것 아님
+
+open class SomeClass {
+    var someProperty = "SomeInternal"
+    // internal 임 -> 클래스와 동일한 수준을 유지하려면 명시적으로 open선언 필요
+}
+```
+
+### 상속과 확장의 접근 제어
+  
+#### 상속 관계 (Subclassing)의 접근 제어
+  
+- 타입 관련
+    - 상속해서 만든 서브클래스는 상위클래스보다 더 높은 접근 수준을 가질 수는 없음
+- 멤버 관련
+    - 동일 모듈에서 정의한 클래스의 상위 멤버에 접근가능하면, (접근 수준 올려서) 재정의(override)도 가능
+
+```swift
+public class A {
+    fileprivate func someMethod() {}
+}
+
+// public이하의 접근 수준만 가능(public/internal/fileprivate)
+internal class B: A {
+    // 접근 수준 올려서 재정의 가능
+    override internal func someMethod() {  
+        super.someMethod()
+        // (더 낮아도) 모듈에서 접근가능하기 때문에 호출가능
+    }
+}
+```
+  
+#### 확장 (Extension)의 접근 제어
+  
+```swift
+// 기본법칙 - 원래 본체와 동일한 접근 수준을 유지하고, 본체의 멤버에는 기본적인 접근 가능
+
+public class SomeClass {
+    private var somePrivateProperty = "somePrivate"
+}
+
+extension SomeClass {   // public으로 선언한 것과 같음
+    // 본체의 멤버가 private이더라도 접근 가능
+    func somePrivateControlFunction() {
+        somePrivateProperty = "접근 가능"
+    }
+}
+```
+  
+### 속성과 접근 제어  
+  
+- 속성의 읽기 설정(getter)과 속성의 쓰기 설정(setter)의 접근제어
+- 저장, 계산 속성의 읽기와 쓰기의 접근 제어 수준을 구분해서 구현 가능  
+
+```swift
+// 일반적으로 밖에서 쓰는 것(setter)은 불가능하도록 구현하는 경우가 많음
+
+struct TrackedString {
+    private(set) var numberOfEdits = 0
+    // setter에 대해서만 private 선언
+    // 자동으로 internal으로 선언
+    
+    // 속성 관찰자
+    var value: String = "시작" {
+        didSet {
+            numberOfEdits += 1
+        }
+    }
+}
+
+var stringToEdit = TrackedString()
+
+// 외부에서 직접설정하는 것은 불가능 (읽는 것은 가능)
+stringToEdit.numberOfEdits1 = 3  // 직접 설정 불가 (에러)
+print(stringToEdit.numberOfEdits)  // 읽기 가능
+```
+  
+- 변수 및 속성, 서브스크립트에 쓰기(setter)수준을 읽기(getter)수준보다 낮은 접근 수준으로 설정 가능
+- 읽기의 수준보다 쓰기의 수준이 더 높을 순 없음. 쓰기는 데이터를 바꾸는 동작이기 때문에 더 높은 위험성 가짐  
+  (다른 코드에 영향을 미칠 수 있음)
+ 
+속성의 읽기 설정과 속성의 쓰기 설정에 대해 각각 명시적으로 선언도 가능  
+  
+> `internal private(set) var numberOfEdits`
+> 
+> 1) 속성의 읽기설정(getter)은 - internal
+> 2) 속성의 쓰기설정(setter)은 - private(set)
+>
+>   -> 저장속성 / 계산속성 모두에 설정 가능
+
+
+  
+----  
+  
+### 참고  
+  
+[Ellen Swift Class](https://www.inflearn.com/course/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-%EB%AC%B8%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0-%EC%8A%A4%EC%BF%A8#)  
+  
+----  
+  
