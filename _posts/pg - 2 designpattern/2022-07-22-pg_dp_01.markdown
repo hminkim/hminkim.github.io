@@ -1,95 +1,165 @@
 ---
 layout: post
-title: "[UIKit] Storyboard vs Code"
-subtitle:  "Access Control"
-categories: iOS
-tags: UIKit
+title: "[Design Pattern] Delegate Pattern"
+subtitle:  "Delegate Pattern"
+categories: programming
+tags: designpattern
 ---
-## Storyboard vs Code
+## Delegate Pattern
   
 ---  
   
-## Storyboard  
+## Delegate Pattern  
   
-- Storyboard : 여러개의 View를 한번에 구현할 수 있는 툴, View들간 transition 등 처리 가능  
-- Xibs: 하나의 파일이 하나의 View에 대응  
+OOP(객체지향프로그래밍)에서 하나의 객체가 모든 일을 처리하는 것이 아니라 <u>일들 중 일부를 다른 객체에 넘기는 것</u>
+  
+- 효율성 관점에서 아주 중요 
+	- 기능을 위임할 수 잇는 객체가 있다는 것은 <u>그만큼 직접 구현해야 하는 부분이 적다는 것이기 때문</u>
+- 기능을 처리할 객체를 Delegate로 설정하고, 특정 이벤트가 발생할 때 이를 Delegate에 의해 위임된 본래의 객체로 전달해 줌
+  
+|데이터를 <br> 받을 View|<->|데이터를 <br> 전달할 View|
+|:---:|:---:|:---:|
+|- 프로토콜 채택<br>- 실제 구현<br>- 대리자 위임|<->|- 타입이 프로토콜인<br> 프로퍼티 생성<br>- Delegate 사용|
+  
+### 사용하는 경우
+  
+- 하나의 객체가 해야하는 일이 여러가지일 경우
+- 수신 받는 객체가 많을 때, 콜백 블럭을 받기 위한 목적이 분명할 경우
+- 내부의 블록을 호출시키는 코드를 읽고 다시 돌아와서 추적할 일이 없는 경우
+  
+### 사용하는 이유  
+  
+- Delegation은 한 클래스와 다른 클래스의 상호작용을 간단히 할 수 있도록 도움
+- 클래스 간 요구 사항을 전달해주는 프로토콜만 있으면 연결 수월해 짐
+- 완전한 클래스 또는 구조체를 상속할 필요가 없기 때문에 더욱 가볍게 사용할 수 있음
+- Delegate Pattern은 1:1 관계에서 매우 유용  
+    (1:N 또는 N:N 관계에는 Observer Pattern이 유용)
+- 델리게이트는 프로토콜을 준수하는 것 만으로 구현이 가능하므로 매우 유연
+- 제어하지 않는 코드 내에서 발생하는 이벤트를 연결할 수 있는 좋은 방법
+  
+### 사용 시 유의점  
+  
+- Delegate Pattern은 굉장히 유용하지만, 과도하게 사용될 위험성이 존재
+    - 객체에 너무 많은 위임을 생성하지 않도록 주의 
+- 강한 참조 순환이 발생하지 않도록 유의
+    - 보통 Delegate 프로퍼티의 경우 weak으로 선언
+  
+### 장점과 단점
+  
+#### 장점
+  
+- 재사용할 수 있는 코드를 작성 가능 (프로토콜의 장점)
+- 매우 엄격한 Syntax로 인해 프로토콜에 필요한 메서드들이 명확하게 명시
+- 컴파일 시 경고나 에러가 떠서 프로토콜의 구현되지 않은 메소드들을 알려줌
+- 로직의 흐름을 따라가기 쉬움
+- 프로토콜 메소드로 알려주는 것 뿐만 아니라 정보를 받을 수도 있음
+- 프로토콜이 컨트롤러의 범위 안에서 정의된다.
+  
+#### 단점
+  
+- Delegate 사용을 위해 구현해야 하는 코드가 많음
+    - 다수의 객체들에게 이벤트를 호출하는 방식이 비효율적
+    - 1:N 또는 N:N 관계에는 Observer Pattern이 적합
+- delegate 설정에 nil이 들어가지 않게 주의해야한다. 크래시를 일으킬 수 있다.
+  
+### Delegate Pattern 예시
+  
+붕어빵 장사를 예로 든다면
 
-### Storyboard 장점
-  
-- 소스 코드를 하나하나 뜯어보지 않아도 한번에 어떤 View인지 파악이 가능
-- ViewController의 코드 길이가 매우 짧아짐
-- 러닝커브, 초심자에게 쉽다.
-- 프로토타입에 용이
-    - 사용자 인터페이스 및 흐름의 프로토타이핑 및 목업을 단순화
-    - SwiftUI 가 나온 지금에 와서 더이상 장점이라 할 수 없음
-- View에 어떤 속성과 값을 설정했는지 확인이 쉬움
+- protocol property : 붕어빵 제작 재료 (붕어빵 틀 / 반죽 / 불)
+- protocol method : 붕어빵 제작 방법 (불의 세기 / 익히는 정도)
+- protocol : 붕어빵 조리 메뉴얼
+- delegate : 메뉴얼을 통한 조리
 
-### Storyboard 단점
-  
-- Storyboard의 크기가 방대해질 경우 로딩이 느려짐
-    - 화면 단위로 Stroyboard를 분리한다면 어느정도 극복은 가능
-- 필요하지 않은 ViewController들이 생겨나서 메모리 낭비 현상이 발생
-- 재사용성 없음
-    - Storyboard는 하위 View들을 재사용 하기 불편
-    - Xibs는 재사용이 가능하지만 작은 View임에도 불구하고 .swift, .xib 두개의 파일(컨텍스트)을 오가면서 작성해야 하는 단점 존재
-- Git 충돌이 나기 쉬움
-    - 팀 내부적으로 동시에 하나의 Storyboard 작업을 금지
-- 협업 시 Conflict가 났을 때 대처하기 어려움 
-    - Storyboard나 Xibs 파일은 코드 리뷰가 불가능
-    - xml 파일을 코드 리뷰 할 수 있는 개발자가 많지 않음
-- 리팩토링에 용이하지 않음
-    - 복잡한 View일수록 더 심각해짐
-- View, VC와 Storyboard간의 연결이 끊어진 경우, 실행해 봐야 알 수 있음.
-    - 빌드 타임이 아니라 런 타임에 체크하기 때문에 스토리보드와 Swift 파일간 연결이 끊겨도 빌드가 됨
-- 동적으로 UI를 구성하기 힘듦
-    - Code로 분기를 나눌 수 밖에 없음
-  
----
-  
-## Code  
-  
-### Code 장점  
-  
-- 빌드 시간이 비교적 확연히 빠르다
-- UI 변경에 빠르게 대응할 수 있음
-- 마우스가 아니라 키보드로 UI 작성할 수 있음
-- Autolayout 구조에 대한 깊은 이해가 가능
-- 익숙해지면 코드로 작성하는 것이 스토리보드 보다 개발속도, 리팩토링이 훨씬 빨라짐.
-- 재사용성
-    - 두 개 이상의 View가 똑같은 모습을 보이는 것 같지만 약간 다른 경우
-    - 각각 특정 사용자 지정이 있는 앱을 만들어야 하는 경우, 두 개 이상의 서로 다른 애플리케이션을 생성해야 함
-- 협업 시 xml Merge Conflict가 없음
-- 디버깅이 쉬움
-- 모든것을 디테일하게 컨트롤 가능
-- 메모리에서 읽기, 분석하기, 파싱하기 라는 단계가 없음
-- Localizing이 쉬움
-- Launch Screen을 제외한 Stroyboard에서 구현하는 것은 모두 코드로 구현 가능
+```swift
+// 자격 정의 (메뉴얼)
+protocol FishBreadDelegate {
+    // 붕어빵 제작 재료
+    var fishFrame
+    var dough
+    var fire
 
-### Code 단점
+    // 붕어빵 제작 방법
+    func firePower()
+    func cookTime()
+}
+
+// 붕어빵 제작 클래스
+// 보통 직접적으로 유저와 커뮤니케이션하는 부분
+class FishBreadCook {
+    
+    // 강한 참조 순환이 일어날 수 있으므로 약한 참조로 선언
+    weak var delegate: FishBreadDelegate?
+    
+    func doSomething() {
+        print("붕어빵이 만들어지고 있음")
+    }
+    
+    // 누가 붕어빵을 만드는지 몰라도 됨
+    func firePower() {
+        delegate?.firePower()
+    }
+    func cookTime() {
+        delegate?.cookTime()
+    }
+}
+
+// 사장님 클래스
+// 뷰컨트롤러의 역할
+class Shopkeeper : FishBreadDelegate {
+
+    init(manual: FishBreadCook) {
+        manual.delegate = self
+    }
+    
+    func firePower() {
+        print("사장님이 불 세기를 조절한다.")
+    }
+
+    func cookTime() {
+        print("사장님이 조리 시간을 조절한다.")
+    }
+}
+
+// 알바생 클래스
+// 뷰컨트롤러의 역할
+class partTimer: FishBreadDelegate {
+
+    init(manual: FishBreadCook) {
+        manual.delegate = self
+    }
+
+    func firePower() {
+        print("알바생이 불 세기를 조절한다.")
+    }
+    
+    func cookTime() {
+        print("알바생이 조리 시간을 조절한다.")
+    }
+}
+
+// 레시피라는 이름의 붕어빵 조리법
+let recipe = FishBreadCook
+
+// 레시피를 메뉴얼로 붕어빵을 조리하는 가게매니저님과 꼬마
+let shopmanager = Shopkeeper(manual: recipe)
+let kkoma = partTimer(manual: recipe)
+```
   
-- 해당 컴포넌트에 대한 숙지 필요
-- ViewController의 길이가 길어짐
-- 구현된 View 예측 어려움
-    - 앱을 실행 시켜야 UI 확인 가능
-- 러닝 커브  
-  
----
-  
-> 방식의 차이일 뿐  
-> - 현업에서도 프로젝트 상황에 맞게 팀과 협의하여 결정하고, 필요하면 혼용한다고 함  
-> - Storyboard만으로 구현이 불가능한 UI도 존재하기 때문에 두 영역 모두 학습해야 한다고 함  
->  
-> 현재 UIKit을 처음 공부해 보는 나에게는 Storyboard를 통해 AutoLayout에 대한 개념 이해를 하고 Code로 구현을 해보는 것도 좋겠다는 생각이 듦
 
   
 ----  
   
 ### 참고  
   
-[Won Blog](https://trilliwon.medium.com/storyboard-vs-code-510afb519d45)  
-[okstring.log](https://velog.io/@okstring/SwiftStoryboard-vs-Code-%EC%9E%A5%EB%8B%A8%EC%A0%90-%EA%B0%84%EB%8B%A8-%EB%B9%84%EA%B5%90)  
-[HANJUN iOS Blog](https://h4njun.tistory.com/entry/Storyboard-VS-CodeProgrammatically)  
-[하르밤 tistory Blog](https://haarbam.tistory.com/3)  
+[zooneon.log](https://velog.io/@zooneon/Delegate-%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C)  
+[나무’s 블로그](https://wlgusdn700.tistory.com/49)  
+[상어의 개발 블로그](https://shark-sea.kr/entry/swift-delegate%ED%8C%A8%ED%84%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0)  
+[newmon tistory Blog](https://infinitt.tistory.com/333)  
+[ggasoon2 tistory Blog](https://ggasoon2.tistory.com/6)  
+[Ian’s Blog](https://duwjdtn11.tistory.com/472)  
+[엠아이노의 iOS tistory Blog](https://minosaekki.tistory.com/64)  
+[아리의 iOS 탐구생활 tistory Blog](https://leeari95.tistory.com/64)  
   
 ----  
   
