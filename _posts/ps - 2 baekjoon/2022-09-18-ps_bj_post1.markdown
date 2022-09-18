@@ -1,0 +1,137 @@
+---
+layout: post
+title: "[백준 / 2468] 안전 영역"
+subtitle:  "백준 silver.1"
+categories: problemsolving
+tags: baekjoon
+---
+
+날짜: 2022년 9월 18일    
+카테고리: 그래프 탐색, BFS  
+태그: `silver.1`, `2468`, `파이썬`  
+
+
+[백준 2468 - 안전 영역](https://www.acmicpc.net/problem/2468)  
+  
+### 입출력 예시  
+
+|예제 입력|예제 출력|
+|---|---|
+|5|5|
+|6 8 2 6 2||
+|3 2 3 4 6||
+|6 7 3 3 2||
+|7 2 5 3 6||
+|8 9 5 2 7||  
+  
+  
+### 내가 적은 코드
+
+```python
+from collections import deque
+import sys
+
+
+def bfs(x, y, rain):
+    dx = [1, -1, 0, 0]
+    dy = [0, 0, -1, 1]
+
+    q = deque()
+    q.append([x, y])
+    visited[x][y] = 1
+
+    while q:
+        a, b = q.popleft()
+        for i in range(4):
+            nx = a + dx[i]
+            ny = b + dy[i]
+            if 0 <= nx < n and 0 <= ny < n and graph[nx][ny] > rain and visited[nx][ny] == 0:
+                visited[nx][ny] = 1
+                q.append([nx, ny])
+
+n = int(sys.stdin.readline())
+graph = list()
+safe_area = list()
+
+max_height = 0
+for _ in range(n):
+    graph.append(list(map(int, sys.stdin.readline().split())))
+
+# 이차원 배열 중 가장 큰 원소 추출
+max_height = max(max(graph))
+
+# max_height만큼 반복하여 다양한 케이스의 safe_area 개수 탐색
+for k in range(max_height + 1):
+    visited = [[0] * n for _ in range(n)]
+    count = 0
+    for i in range(n):
+        for j in range(n):
+            if graph[i][j] > k and visited[i][j] == 0:
+                bfs(i, j, k)
+                count += 1
+    # 만들 수 있는 섬의 개수 리스트 -> 최대값을 출력
+    safe_area.append(count)
+
+print(max(safe_area))
+```
+
+  
+### 풀이 과정  
+  
+예전 풀었던 bfs문제를 조금만 응용하는 well-known BFS 문제 유형이다.  
+[섬의 갯수를 구하는 문제](https://hminkim.github.io/problemsolving/2021/08/30/ps_lc_post1/)와 같은 풀이로 `height`만큼 반복해서 그 중 가장 최댓값을 출력하면 되는 문제였다.  
+다만 예전에 나는 재귀방식의 DFS로 푸는 것을 선호했는데(시간적인 이점은 1도 없지만 다만 내가 코드 보기 편해서...ㅎ) 시간적인 이점을 살리기 위해 BFS로 푸는 법도 이젠 연습해보려했다.  
+실제로 대량의 데이터를 다루거나 가중치 문제가 아닌 이상 BFS가 DFS보다 훨씬 유리하다고 한다. (자세한 내용은 [여기](https://hminkim.github.io/computerscience/2021/08/05/cs_al_01/) 참조)  
+  
+  
+### 베스트 코드
+
+```python
+import sys
+from collections import defaultdict
+input = sys.stdin.readline
+def find(x):
+    if root[x] == x: return x
+    root[x] = root[find(root[x])]
+    return root[x]
+
+def union(x1, x2):
+    root[find(x2)] = find(x1)
+
+N = int(input())
+P = 1
+W = N + 2*P
+root = {}
+dic = defaultdict(list)
+for i in range(1, N+1):
+    for j, k in zip(list(map(int, input().split())), range(W*i+1, W*(i+1) - 1)):
+        dic[j].append(k)
+
+heights = sorted(dic, reverse = True)
+cnt = 1 # 물의 높이가 가장 낮은 지점보다 낮은 경우 : 전체 면적이 안전지역 --> 모두 이어져 있으므로 1이 최소값
+safe_area = [] # 안전지역
+for h in heights:
+    # 초기화
+    # heights가 내림차순으로 되어있으므로 h값(=물의 높이)가 낮아지면서 새롭게 안전이역이 된 부분 확인하기 위함
+    for i in dic[h]:
+        root[i] = i
+
+    for i in dic[h]:
+        for j in [i - W, i - 1, i + 1, i + W]:
+            if j in root: # root 의 키값으로 j가 존재 == h보다 큰 값임
+                union(i,j)
+    
+    # root값 == 해당 구역의 대표값으로 지정
+    safe_area = [i for i in safe_area if root[i] == i]
+    for i in dic[h]:
+        if root[i] == i:
+            safe_area.append(i)
+        cnt = max(cnt, len(safe_area))
+print(cnt)
+```
+  
+### 리뷰  
+  
+- well-known 그래프 탐색 문제 유형이라서 푸는데 어렵진 않았다.
+- 베스트 코드에서 Union-Find 알고리즘으로 푼 굇수님의 코드를 봤는데 무려 내 코드에 비해 시간이 10배나 단축되었다... 이론적으로만 들었던 알고리즘은데 코드를 봐도 이해도 잘 되지않고...ㅠㅠ 어떤 원리로 시간이 이렇게나 차이가 나는지도 잘 모르겠다ㅠㅠ
+- 다시 ps문제를 풀겠다고 맘 먹고선 아카데미에서 하는 프로젝트에 집중하다보니 2달만에 다시 문제를 푼 나 자신 반성한다... 이제 다시 열심히 풀려한다.
