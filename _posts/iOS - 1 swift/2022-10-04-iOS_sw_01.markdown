@@ -67,8 +67,8 @@ Int.min       // -9223372036854775808   (-2^63 )
     - 참을 찾을때 까지만 실행하고, 참을 찾으면 나머지 표현식은 평가하지 않음
     - 최소한의 코드만 실행 - Short-circuit evaluation
  - 논리연산자 우선순위 
-    1. && 
-    2. ||
+    1. \&& 
+    2. \||
 
 ### 단락 평가 시 유의 사항  
   
@@ -154,7 +154,7 @@ print("Door: \(doorCheck), Password: \(passwordCheck)")
     - 연산속도가 빠름 (직접적으로 메모리의 실제 비트를 컨트롤)
 	- 짧은 코드로 복잡한 로직을 구현 가능한 경우가 있음
 
- ### 스위프트 비트연산자 종류  
+### 스위프트 비트연산자 종류  
    
 - 비트 논리 연산자  
     - `~`  : Bitwise NOT Operator(비트와이즈 낫 연산자)
@@ -198,7 +198,7 @@ print("Door: \(doorCheck), Password: \(passwordCheck)")
     - `>>` : Bitwise Right Shift Operator(비트와이즈 라이트 시프트 연산자)
         - 모든 비트를 원하는 값만큼 오른쪽으로 이동 (2를 나누는 효과)
         - 부호가 있을때만 주의 필요 
-            - 산술시프트 : 오른쪽으로 이동시에는 부호 유지를 위해, 부호가 있을땐 1 삽입됨 (부호가 없을땐 0 삽입)
+        - 산술시프트 : 오른쪽으로 이동시에는 부호 유지를 위해, 부호가 있을땐 1 삽입됨 (부호가 없을땐 0 삽입)
     ```swift
     let rightShiftBits: UInt8 = 32 // 0b0010_0000 //  32
     rightShiftBits >> 1            // 0b0001_0000 //  16 (나누기 2)
@@ -270,14 +270,8 @@ let plusMinusVector = firstVector +- secondVector
 
 print(plusMinusVector)   // Vector2D(x: 4.0, y: -2.0)
 ```
-
-
-
-
-
-
-
-
+  
+  
   
 ----  
   
