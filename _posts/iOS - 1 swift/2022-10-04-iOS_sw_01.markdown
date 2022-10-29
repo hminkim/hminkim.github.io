@@ -164,7 +164,7 @@ print("Door: \(doorCheck), Password: \(passwordCheck)")
     let b1 = ~a1  // 0b1111_0000  // 240
     ```
     - `&`  : Bitwise AND Operator(비트와이즈 앤드 연산자)
-        - 두개의 메모리 비트 중 모두가 1이면 1을 반환  (true && true의 논리)
+        - 두개의 메모리 비트 중 모두가 1이면 1을 반환 (true && true의 논리)
     ```swift
     let a2: UInt8 = 0b1111_1100   // 252
     let b2: UInt8 = 0b0011_1111   // 63
