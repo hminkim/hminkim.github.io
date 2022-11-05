@@ -30,7 +30,7 @@ DispatchQueue.global( ).async(group: group1) {
 
 // 메인 스레드에 알리고 작업해야함
 group1.notify(queue: DispatchQueue.main) { [weak self] in
-    self?.textLabel.text = “모든 작업이 완료되었습니다.”
+    self?.textLabel.text = "모든 작업이 완료되었습니다."
 }
 
 // 언제까지 기다릴 수 없을 때 사용하는 메서드
