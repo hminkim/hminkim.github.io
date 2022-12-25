@@ -27,7 +27,7 @@ tags: baekjoon
   
 ### 내가 적은 코드
 
-```Swift
+```swift
 import Foundation
 
 var countPeople = Int(readLine()!)!
@@ -62,7 +62,7 @@ print(answerArray.joined(separator: " "))
   
 ### 베스트 코드
 
-```Swift
+```swift
 let n = Int(readLine()!)!
 var arr = [(Int,Int)]()
 var rank = 0
