@@ -11,7 +11,7 @@ tags: baekjoon
 태그: `silver.5`, `7568`, `스위프트`  
 
 
-[백준 2468 - 안전 영역](https://www.acmicpc.net/problem/7568)  
+[백준 2468 - 덩치](https://www.acmicpc.net/problem/7568)  
   
 ### 입출력 예시  
 
